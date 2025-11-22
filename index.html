@@ -53,6 +53,12 @@
       font-size: 24px;
       font-weight: 700;
       letter-spacing: -0.5px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
     }
 
     /* Mobile menu button */
@@ -428,13 +434,6 @@
     .submit-btn:hover {
       background: #f0f0f0;
       transform: scale(1.05);
-    }
-
-    .form-success {
-      color: #4ecdc4;
-      margin-top: 15px;
-      font-size: 16px;
-      display: none;
     }
 
     /* Football Stats Section */
@@ -905,32 +904,13 @@
         gap: 10px;
       }
     }
-
-    /* Desktop-specific styles */
-    @media (min-width: 769px) {
-      .bar-athlead {
-        background: linear-gradient(to top, #4ecdc4, #1a9c9c);
-      }
-      
-      .bar-traditional {
-        background: linear-gradient(to top, #ff6b6b, #d63e3e);
-      }
-      
-      .bar-traditional .bar-value {
-        color: #fff;
-      }
-      
-      .bar-traditional .bar-label {
-        color: #fff;
-      }
-    }
   </style>
 </head>
 <body>
   <div class="container">
     <!-- Header -->
     <header class="header">
-      <div class="logo">ATHLEAD</div>
+      <div class="logo" id="logo">ATHLEAD</div>
       <button class="menu-toggle" id="menuToggle">☰</button>
       <nav class="nav-links">
         <a href="#who-we-are">Quiénes somos</a>
@@ -1032,10 +1012,10 @@
         <small>*Oferta válida para los primeros 500 registrados</small>
       </div>
       
-      <form class="signup-form" id="signupForm">
+      <form class="signup-form" action="https://formspree.io/f/TU_ENDPOINT_AQUI" method="POST">
         <div class="form-group">
           <label for="role">¿Eres?</label>
-          <select id="role" class="form-select" required>
+          <select id="role" name="role" class="form-select" required>
             <option value="">Selecciona tu rol</option>
             <option value="jugador">Jugador de fútbol</option>
             <option value="entrenador">Entrenador</option>
@@ -1045,17 +1025,17 @@
         
         <div class="form-group">
           <label for="name">Nombre y Apellido</label>
-          <input type="text" id="name" class="form-control" placeholder="Tu nombre completo" required>
+          <input type="text" id="name" name="name" class="form-control" placeholder="Tu nombre completo" required>
         </div>
         
         <div class="form-group">
           <label for="email">Email</label>
-          <input type="email" id="email" class="form-control" placeholder="tu@email.com" required>
+          <input type="email" id="email" name="email" class="form-control" placeholder="tu@email.com" required>
         </div>
         
         <div class="form-group">
           <label for="source">¿Por dónde nos conociste?</label>
-          <select id="source" class="form-select" required>
+          <select id="source" name="source" class="form-select" required>
             <option value="">Selecciona una opción</option>
             <option value="red social">Red social</option>
             <option value="recomendacion">Recomendación</option>
@@ -1066,7 +1046,7 @@
         
         <div class="form-group">
           <label for="recommend">Del 1 al 10, ¿cuánto recomendarías la aplicación a un amigo?</label>
-          <select id="recommend" class="form-select" required>
+          <select id="recommend" name="recommend" class="form-select" required>
             <option value="">Selecciona una puntuación</option>
             <option value="1">1 - No la recomendaría</option>
             <option value="2">2</option>
@@ -1083,7 +1063,7 @@
         
         <div class="form-group">
           <label for="idea">Del 1 al 10, ¿qué te parece esta idea?</label>
-          <select id="idea" class="form-select" required>
+          <select id="idea" name="idea" class="form-select" required>
             <option value="">Selecciona una puntuación</option>
             <option value="1">1 - Muy mala idea</option>
             <option value="2">2</option>
@@ -1099,9 +1079,6 @@
         </div>
         
         <button type="submit" class="submit-btn">¡SÍ, QUIERO ACCESO ANTICIPADO!</button>
-        <div id="signupSuccess" class="form-success">
-          ¡Gracias por registrarte! Recibirás tu guía gratis y acceso anticipado en breve.
-        </div>
       </form>
     </section>
 
@@ -1291,6 +1268,14 @@
   </div>
 
   <script>
+    // Logo click to scroll to top
+    document.getElementById('logo').addEventListener('click', function() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
     // Mobile menu toggle
     document.getElementById('menuToggle').addEventListener('click', function() {
       document.getElementById('mobileMenu').classList.toggle('active');
@@ -1351,30 +1336,7 @@
       observer.observe(card);
     });
 
-    // Main signup form submission
-    document.getElementById('signupForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const role = this.querySelector('#role').value;
-      const name = this.querySelector('#name').value;
-      const email = this.querySelector('#email').value;
-      const source = this.querySelector('#source').value;
-      const recommend = this.querySelector('#recommend').value;
-      const idea = this.querySelector('#idea').value;
-      
-      // Here you would normally send this data to your backend
-      // For now, we'll just show a success message
-      document.getElementById('signupSuccess').style.display = 'block';
-      
-      // Reset form
-      this.reset();
-      
-      // Hide message after 5 seconds
-      setTimeout(() => {
-        document.getElementById('signupSuccess').style.display = 'none';
-      }, 5000);
-    });
-
-    // Contact form submission
+    // Contact form submission (only for contact form, not main signup)
     document.getElementById('contactForm').addEventListener('submit', function(e) {
       e.preventDefault();
       const name = this.querySelector('#name').value;
@@ -1399,16 +1361,6 @@
       question.addEventListener('click', () => {
         const item = question.parentElement;
         item.classList.toggle('active');
-      });
-    });
-
-    // Add some interactive effects
-    document.querySelectorAll('.action-btn').forEach(btn => {
-      btn.addEventListener('click', function() {
-        if (this.classList.contains('heart')) {
-          this.textContent = this.textContent.includes('❤️') ? 
-            '❤️ 25' : '❤️ 24';
-        }
       });
     });
   </script>
