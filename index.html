@@ -3,201 +3,105 @@
   <style>
 /* Fondo del hero con imagen y filtro oscuro */
 .hero-section {
-    position: relative;
-    background-image:
-      linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
-      url("images/hero-futbol.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    min-height: 100vh;              /* ocupa toda la altura de la pantalla */
-    display: flex;                  /* para centrar contenido */
-    align-items: center;            /* centrado vertical */
-    justify-content: center;        /* centrado horizontal */
+  position: relative;
+  background-image:
+    linear-gradient(to bottom,
+      rgba(0, 0, 0, 0.65),
+      rgba(0, 0, 0, 0.35),
+      rgba(0, 0, 0, 0.65)
+    ),
+    url("images/hero-futbol.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;              /* ocupa toda la altura de la pantalla */
+  display: flex;                  /* centrar contenido */
+  align-items: center;            /* centrado vertical */
+  justify-content: center;        /* centrado horizontal */
 }
 
 /* Contenido del hero centrado y con margen lateral */
 .hero-section .hero-content {
-    max-width: 900px;
-    width: 90%;
-    margin: 0 auto;
-    text-align: center !important;
+  max-width: 900px;
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
 }
 
-
-}
+/* Título del hero */
 .hero-section h1 {
-    font-size: clamp(6rem, 8vw + 2rem, 10rem);
-    line-height: 1.15;
-    text-align: center !important;
-    margin: 0 auto 20px auto;
-    max-width: 900px;
+  font-size: clamp(3rem, 4vw + 1rem, 5rem);
+  line-height: 1.15;
+  text-align: center;
+  margin: 0 auto 20px auto;
+  max-width: 900px;
 }
 
 /* Subtítulo (frase "Deja que tu talento hable por ti") */
 .hero-section p.hero-subtitle {
-    font-size: clamp(1.2rem, 2vw, 2rem); /* MÁS GRANDE */
-    text-align: center;
-    margin-top: 16px;  /* Más espacio arriba */
-    margin-bottom: 36px; /* Más separación con botones */
-    font-style: italic;
-    opacity: 0.9;
-}
-}
-  
-/* ====== Botones estilo píldora moderno ====== */
-.btn-cta {
-  display: inline-block;
-  padding: 14px 40px;
-  border-radius: 999px;
-  background-color: #fff;
-  color: #000;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.btn-cta:hover {
-    background: #f2f2f2;
-    transform: translateY(-2px);
-}
-
-/* Versión invertida (botón negro con borde blanco) */
-.btn-secondary {
-  display: inline-block;
-  padding: 14px 40px;
-  border-radius: 999px;
-  border: 2px solid #fff;
-  background: transparent;
-  color: #fff;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.btn-secondary:hover {
-    background: white;
-    color: black;
-    transform: translateY(-2px);
-}
-
-.hero-section p.hero-subtitle {
-  font-size: 1.2rem;
+  font-size: clamp(1.2rem, 2vw, 2rem);
   text-align: center;
-  margin-top: 8px;
-  margin-bottom: 28px; /* más separación con los botones */
+  margin-top: 16px;        /* espacio arriba */
+  margin-bottom: 36px;     /* separación con botones */
+  font-style: italic;
+  opacity: 0.9;
 }
-    /* Botones más pequeños en móviles */
-@media (max-width: 768px) {
 
-    .hero-section .hero-content {
-        padding: 0 24px;
-    }
-
-    .hero-section h1 {
-        font-size: 1.8rem;
-        line-height: 1.2;
-        margin-bottom: 16px;
-    }
-
-    .hero-subtitle {
-        font-size: 1rem;
-        margin-bottom: 24px;
-    }
-
-    .hero-buttons {
-        display: flex;
-        flex-direction: row !important;  /* botones alineados horizontalmente */
-        justify-content: center;
-        gap: 12px;
-    }
-
-    .hero-buttons a {
-        padding: 10px 18px;
-        font-size: 0.9rem;
-    }
+/* Contenedor de botones del hero */
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
 }
-    /* Ajustes para móviles */
-@media (max-width: 768px) {
 
-    /* Más margen lateral en el hero */
-    .hero-section .hero-content {
-        padding: 0 24px; /* aumenta separación izquierda/derecha */
-    }
-
-    /* Título más pequeño y mejor espaciado */
-    .hero-section h1 {
-        font-size: 1.8rem;  /* más pequeño para móvil */
-        line-height: 1.2;
-        margin-bottom: 16px;
-    }
-
-    /* Slogan más pequeño */
-    .hero-subtitle {
-        font-size: 1rem;
-        margin-bottom: 24px; /* más espacio debajo */
-    }
-
-    /* Botones más pequeños */
-    .hero-buttons a {
-        padding: 10px 18px; 
-        font-size: 0.9rem;
-    }
-
-    /* Opcional: más espacio arriba para centrar el contenido */
-    .hero-section {
-        padding-top: 80px;
-    }
-}
-    @media (max-width: 768px) {
-    .hero-section h1 {
-        font-size: 2.2rem;
-        line-height: 1.2;
-        max-width: 90%;
-    }
-}
-/* ===== Fuerza el estilo de los botones del hero ===== */
+/* Estilo base de botones del hero */
 .hero-section .btn-cta,
 .hero-section .btn-secondary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 14px 40px;
-  border-radius: 999px;
+  border-radius: 999px;        /* forma de pastilla */
   font-weight: 600;
-  text-decoration: none;
   font-size: 1rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-/* Botón blanco relleno */
+/* Botón principal – blanco relleno */
 .hero-section .btn-cta {
-  background-color: #ffffff !important;
-  color: #000000 !important;
-  border: none !important;
+  background-color: #ffffff;
+  color: #000000;
+  border: none;
 }
 
-/* Botón transparente con borde blanco */
+/* Botón secundario – borde blanco */
 .hero-section .btn-secondary {
-  background: transparent !important;
-  color: #ffffff !important;
-  border: 2px solid #ffffff !important;
+  background: transparent;
+  color: #ffffff;
+  border: 2px solid #ffffff;
 }
 
 /* Hovers */
 .hero-section .btn-cta:hover {
-  background-color: #f2f2f2 !important;
+  background-color: #f2f2f2;
   transform: translateY(-2px);
 }
 
 .hero-section .btn-secondary:hover {
-  background-color: #ffffff !important;
-  color: #000000 !important;
+  background-color: #ffffff;
+  color: #000000;
   transform: translateY(-2px);
 }
-/* ===== Ajustes para móvil ===== */
-@media (max-width: 600px) {
 
+/* ===== Ajustes para móvil (solo hero + botones) ===== */
+@media (max-width: 600px) {
   .hero-section .hero-content {
     max-width: 90%;
-    padding: 0 12px;
+    padding: 0 16px;
   }
 
   /* Título más pequeño en móvil */
@@ -206,27 +110,18 @@
     line-height: 1.2;
   }
 
-  /* Subtítulo más pequeño y centrado */
-  .hero-section .hero-subtitle {
+  /* Subtítulo más pequeño en móvil */
+  .hero-section p.hero-subtitle {
     font-size: 1rem;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
   }
 
-  /* Botones más pequeños */
+  /* Botones más pequeños en móvil */
   .hero-section .btn-cta,
   .hero-section .btn-secondary {
-    padding: 10px 22px !important;  /* ✔ más pequeños */
-    font-size: 0.9rem !important;    /* ✔ texto más pequeño */
-    border-radius: 999px;
-    margin: 6px;                     /* ✔ evita que se peguen */
-  }
-
-  /* Asegurar que NO se ponen uno debajo del otro */
-  .hero-buttons {
-    display: flex;
-    flex-direction: row !important;
-    justify-content: center;
-    gap: 12px !important;
+    padding: 8px 22px;
+    font-size: 0.85rem;
+    margin: 4px;
   }
 }
 
