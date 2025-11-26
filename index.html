@@ -192,6 +192,43 @@
   color: #000000 !important;
   transform: translateY(-2px);
 }
+/* ===== Ajustes para móvil ===== */
+@media (max-width: 600px) {
+
+  .hero-section .hero-content {
+    max-width: 90%;
+    padding: 0 12px;
+  }
+
+  /* Título más pequeño en móvil */
+  .hero-section h1 {
+    font-size: clamp(2rem, 6vw, 3rem);
+    line-height: 1.2;
+  }
+
+  /* Subtítulo más pequeño y centrado */
+  .hero-section .hero-subtitle {
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+
+  /* Botones más pequeños */
+  .hero-section .btn-cta,
+  .hero-section .btn-secondary {
+    padding: 10px 22px !important;  /* ✔ más pequeños */
+    font-size: 0.9rem !important;    /* ✔ texto más pequeño */
+    border-radius: 999px;
+    margin: 6px;                     /* ✔ evita que se peguen */
+  }
+
+  /* Asegurar que NO se ponen uno debajo del otro */
+  .hero-buttons {
+    display: flex;
+    flex-direction: row !important;
+    justify-content: center;
+    gap: 12px !important;
+  }
+}
 
 </style>
 <head>
