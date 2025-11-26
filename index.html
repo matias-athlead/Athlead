@@ -1456,7 +1456,7 @@ const menuToggle = document.getElementById('menuToggle');
 const mobileMenu = document.getElementById('mobileMenu');
 
 menuToggle.addEventListener('click', function (e) {
-    e.stopPropagation();
+    e.stopPropagation(); // que este click no cuente como "click fuera"
 
     const isOpen = mobileMenu.classList.contains('active');
 
