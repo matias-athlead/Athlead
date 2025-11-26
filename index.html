@@ -18,23 +18,30 @@
 
 /* Contenido del hero centrado y con margen lateral */
 .hero-section .hero-content {
+  .hero-content {
+    max-width: 900px;
+    width: 90%;
+}
 /* ====== HERO: título más grande y centrado ====== */
 .hero-section h1 {
-    font-size: clamp(3rem, 5vw + 1rem, 4.8rem);
-    line-height: 1.15;
-    font-weight: 800;
+    font-size: clamp(3rem, 5.5vw + 1rem, 6rem);
+    line-height: 1.1;
+    font-weight: 900;
     text-align: center;
-    margin-bottom: 16px;
+    margin-bottom: 24px;
 }
 
 /* Subtítulo (frase "Deja que tu talento hable por ti") */
-.hero-section .hero-subtitle {
-    font-size: 1.25rem;
+.hero-section p.hero-subtitle {
+    font-size: clamp(1.2rem, 2vw, 2rem); /* MÁS GRANDE */
     text-align: center;
-    color: #ddd;
-    margin-bottom: 20px;  /* separación extra */
+    margin-top: 16px;  /* Más espacio arriba */
+    margin-bottom: 36px; /* Más separación con botones */
+    font-style: italic;
+    opacity: 0.9;
 }
-
+}
+  
 /* ====== Botones estilo píldora moderno ====== */
 .btn-cta {
     display: inline-block;
