@@ -90,6 +90,30 @@
   margin-top: 8px;
   margin-bottom: 28px; /* más separación con los botones */
 }
+    /* Botones más pequeños en móviles */
+@media (max-width: 600px) {
+    .btn-cta,
+    .btn-secondary {
+        padding: 8px 20px;   /* botones más pequeños */
+        font-size: 14px;     /* texto más pequeño */
+        border-radius: 30px; /* más compacto */
+    }
+
+    .hero-section h1 {
+        font-size: 2.2rem;   /* título más pequeño para que quepa bien */
+        line-height: 1.2;    /* mantener buen espaciado */
+    }
+
+    .hero-section p.hero-subtitle {
+        font-size: 1rem;     /* subtítulo proporcionado */
+        margin-bottom: 16px;
+    }
+
+    .hero-buttons {
+        gap: 10px;           /* menos separación entre botones */
+    }
+}
+
 </style>
 <head>
   <meta charset="UTF-8">
