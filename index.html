@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
   <style>
-  /* Fondo del hero con imagen y filtro oscuro */
-  .hero-section {
+/* Fondo del hero con imagen y filtro oscuro */
+.hero-section {
     position: relative;
     background-image:
       linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
@@ -10,18 +10,19 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-  }
+    min-height: 100vh;              /* ocupa toda la altura de la pantalla */
+    display: flex;                  /* para centrar contenido */
+    align-items: center;            /* centrado vertical */
+    justify-content: center;        /* centrado horizontal */
+}
 
-  /* Aseguramos buen espacio alrededor del texto del hero */
-  .hero-section .hero-content {
-    padding-top: 120px;
-    padding-bottom: 120px;
-  }
-
-  /* Por si no tienes aún esta clase, centramos el texto en el hero */
-  .hero-section .hero-content {
+/* Contenido del hero centrado y con margen lateral */
+.hero-section .hero-content {
+    max-width: 900px;
+    margin: 0 auto;
     text-align: center;
-  }
+    padding: 120px 16px 160px;      /* espacio arriba/abajo para que no choque con el menú */
+}
 </style>
 <head>
   <meta charset="UTF-8">
