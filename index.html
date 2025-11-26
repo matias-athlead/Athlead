@@ -113,39 +113,32 @@
   transform: translateY(-2px);
 }
 
-/* ===== Ajustes para móvil (solo hero + botones) ===== */
 @media (max-width: 600px) {
+
   .hero-section .hero-content {
     max-width: 90%;
     padding: 0 16px;
   }
 
-  /* Título más pequeño en móvil */
-  .hero-section h1 {
-    font-size: clamp(2rem, 6vw, 3rem);
-    line-height: 1.2;
-  }
-
-  /* Subtítulo más pequeño en móvil */
-  .hero-section p.hero-subtitle {
+  .hero-section .hero-subtitle {
     font-size: 1rem;
     margin-bottom: 24px;
   }
 
-  /* Botones más pequeños en móvil */
   .hero-section .btn-cta,
   .hero-section .btn-secondary {
     padding: 8px 22px;
     font-size: 0.85rem;
     margin: 4px;
   }
-}
-      .hero-buttons {
-    flex-wrap: nowrap;           /* no permite que se pongan uno debajo del otro */
-    justify-content: center;
-    gap: 8px;                    /* un poco menos de espacio entre ellos */
-  }
 
+  .hero-buttons {
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 8px;
+  }
+}
+    
 </style>
 <head>
   <meta charset="UTF-8">
