@@ -1,5 +1,28 @@
 <!DOCTYPE html>
 <html lang="es">
+  <style>
+  /* Fondo del hero con imagen y filtro oscuro */
+  .hero-section {
+    position: relative;
+    background-image:
+      linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
+      url("images/hero-futbol.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  /* Aseguramos buen espacio alrededor del texto del hero */
+  .hero-section .hero-content {
+    padding-top: 120px;
+    padding-bottom: 120px;
+  }
+
+  /* Por si no tienes aún esta clase, centramos el texto en el hero */
+  .hero-section .hero-content {
+    text-align: center;
+  }
+</style>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
