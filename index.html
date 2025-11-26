@@ -1536,22 +1536,17 @@ contactForm.addEventListener('submit', function(e) {
   });
 });
 
-// FAQ accordion functionality (deja esto igual)
-document.querySelectorAll('.faq-question').forEach(question => {
+// ... aquí va tu código del menú móvil ...
+
+// FAQ accordion functionality (solo un bloque)
+document.querySelectorAll('.faq-item').forEach(item => {
+  const question = item.querySelector('.faq-question');
+  if (!question) return;
   question.addEventListener('click', () => {
-    const item = question.parentElement;
     item.classList.toggle('active');
   });
 });
 
-    // FAQ accordion functionality
-    document.querySelectorAll('.faq-question').forEach(question => {
-      question.addEventListener('click', () => {
-        const item = question.parentElement;
-        item.classList.toggle('active');
-      });
-    });
-  </script>
+</script>
 </body>
 </html>
-
