@@ -190,38 +190,14 @@
 @media (max-width: 768px) {
   .stats-track {
     gap: 24px;
-    animation-duration: 18s;   /* antes 30s */
+    animation-duration: 6s;   /* antes 30s */
   }
 
   .stats-track .stat-card {
     min-width: 260px;
   }
-  /* Forzar fondos oscuros en las secciones de abajo */
-.features,
-.problem-section,
-.faq-section,
-.contact-section,
-.footer {
-  background: #000000;   /* negro puro */
 }
-    /* Resetear fondo a negro desde "Hecho para ti" hacia abajo */
-#features,
-#features *,
-#problem-section,
-#faq,
-#contact,
-footer {
-  background-color: #000 !important;
-}
-/* Fondo negro desde "Hecho para ti" hacia abajo */
-.features,
-.problem-section,
-.faq-section,
-.contact-section,
-.footer,
-.signup-section {
-  background: #000000 !important;
-}
+
 
 </style>
 <head>
@@ -1147,7 +1123,15 @@ footer {
         align-items: center;
         gap: 10px;
       }
+          /* Fondo negro desde "Hecho para ti" hacia abajo */
+    .features,
+    .problem-section,
+    .faq-section,
+    .contact-section,
+    .footer {
+      background-color: #000000;
     }
+  }
   </style>
 </head>
 <body>
