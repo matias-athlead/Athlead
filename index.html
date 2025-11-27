@@ -152,7 +152,7 @@
 .stats-track {
   display: flex;
   gap: 40px;
-  animation: stats-scroll 25s linear infinite;
+  animation: stats-scroll 16s linear infinite;  /* antes 25s */
 }
 
 /* aseguramos que cada tarjeta tenga ancho fijo y no se encoja */
@@ -176,12 +176,19 @@
 @media (max-width: 768px) {
   .stats-track {
     gap: 24px;
-    animation-duration: 30s;
+    animation-duration: 18s;   /* antes 30s */
   }
 
   .stats-track .stat-card {
-    min-width: 220px;
+    min-width: 260px;
   }
+  /* Forzar fondos oscuros en las secciones de abajo */
+.features,
+.problem-section,
+.faq-section,
+.contact-section,
+.footer {
+  background: #000000;   /* negro puro */
 }
     
 </style>
