@@ -139,97 +139,56 @@
   }
 }
     /* ===== Carrusel de estadísticas ===== */
-/* Football Stats Section (carrusel) */
 .football-stats-section {
-  padding: 100px 20px;
-  text-align: center;
-  background: linear-gradient(135deg, #1a1a2e, #16213e);
-  overflow: hidden;              /* para el carrusel en escritorio */
+  position: relative;
+  overflow: hidden;  /* evita que se vea lo que sale por los lados */
 }
 
-.football-stats-section h2 {
-  font-size: 48px;
-  margin-bottom: 20px;
-  color: #fff;
+.stats-carousel {
+  width: 100%;
+  overflow: hidden;
 }
 
-.football-stats-section p {
-  font-size: 20px;
-  opacity: 0.8;
-  margin-bottom: 60px;
-  max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* === Carrusel escritorio: una fila que se mueve sola === */
-.stats-grid {
+.stats-track {
   display: flex;
   gap: 40px;
-  margin-top: 60px;
-  animation: stats-scroll 14s linear infinite;  /* más rápido */
+  animation: stats-scroll 16s linear infinite;  /* antes 25s */
 }
 
-.stat-card {
-  background: rgba(255, 255, 255, 0.05);
-  padding: 40px 30px;
-  border-radius: 20px;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  min-width: 260px; /* ancho mínimo para que se lea bien en el carrusel */
+/* aseguramos que cada tarjeta tenga ancho fijo y no se encoja */
+.stats-track .stat-card {
+  min-width: 260px;
+  flex-shrink: 0;
 }
 
-.stat-number {
-  font-size: 48px;
-  font-weight: 700;
-  color: #4ecdc4;
-  margin-bottom: 10px;
-  line-height: 1;
-}
-
-.stat-label {
-  font-size: 20px;
-  opacity: 0.8;
-}
-
-/* Animación horizontal del carrusel en escritorio */
+/* Animación infinita hacia la izquierda */
 @keyframes stats-scroll {
   0% {
     transform: translateX(0);
   }
   100% {
+    /* se mueve aprox. la mitad del track (porque duplicamos las tarjetas) */
     transform: translateX(-50%);
   }
 }
 
-/* === Versión móvil: 2 filas, fondo negro, sin auto-scroll === */
+/* En móvil: un poco más lento y tarjetas más pequeñas */
 @media (max-width: 768px) {
-  .football-stats-section {
-    background: #000000;   /* márgenes negros en móvil */
-    overflow: visible;
+  .stats-track {
+    gap: 24px;
+    animation-duration: 18s;   /* antes 30s */
   }
 
-  .stats-grid {
-    animation: none;        /* sin movimiento automático en móvil */
-    display: grid;
-    grid-template-columns: repeat(2, minmax(140px, 1fr)); /* 2 columnas */
-    grid-auto-rows: 1fr;
-    gap: 16px;
-    margin-top: 40px;
+  .stats-track .stat-card {
+    min-width: 260px;
   }
-
-  .stat-card {
-    min-width: 0;
-    padding: 24px 16px;
-  }
-
-  .stat-number {
-    font-size: 32px;
-  }
-
-  .stat-label {
-    font-size: 16px;
-  }
+  /* Forzar fondos oscuros en las secciones de abajo */
+.features,
+.problem-section,
+.faq-section,
+.contact-section,
+.footer {
+  background: #000000;   /* negro puro */
 }
     
 </style>
