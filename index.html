@@ -216,6 +216,22 @@
     min-width: 260px;
   }
 }
+/* ===== PERMITIR QUE EL TEXTO DEL CARRUSEL SALTE DE LÍNEA (SOLO MÓVIL) ===== */
+@media (max-width: 768px) {
+
+  .stat-label {
+    white-space: normal !important;    /* permite salto de línea */
+    word-wrap: break-word !important;  /* parte palabras largas */
+    line-height: 1.4;                  /* un poquito más de aire entre líneas */
+    text-align: center;                /* centrar texto */
+  }
+
+  /* Opcional pero recomendado para que no se vean gigantes */
+  .stats-track .stat-card {
+    min-width: 220px !important;       /* una pequeña reducción */
+    padding: 22px 18px;
+  }
+}
 
 </style>
 <head>
