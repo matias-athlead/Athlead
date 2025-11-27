@@ -467,10 +467,18 @@
     }
 
     /* Main Signup Form */
-    .signup-section {
+   .signup-section {
       padding: 100px 20px;
       text-align: center;
-      background: rgba(0, 0, 0, 0.3);
+      position: relative;
+
+      /* Fondo con foto + capa oscura para que se lea bien */
+      background-image:
+        linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+        url("images/signup-bg.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
     }
 
     .signup-section h2 {
