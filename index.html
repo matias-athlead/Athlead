@@ -190,14 +190,13 @@
 @media (max-width: 768px) {
   .stats-track {
     gap: 24px;
-    animation-duration: 6s;   /* antes 30s */
+    animation-duration: 6s;   /* más rápido en móvil */
   }
 
   .stats-track .stat-card {
     min-width: 260px;
   }
 }
-
 
 </style>
 <head>
@@ -955,6 +954,14 @@
       font-size: 16px;
       display: none;
     }
+        /* Fondo negro fijo desde "Hecho para ti" hacia abajo */
+    .features,
+    .problem-section,
+    .faq-section,
+    .contact-section,
+    .footer {
+      background-color: #000000;
+    }
 
     /* Footer */
     .footer {
@@ -1350,7 +1357,9 @@
       </div>
     </div>
   </div>
-
+    
+    </section>  <!-- Cierra football-stats-section -->
+    
     <!-- Features Section -->
     <section class="features" id="features">
       <h2>Hecho para ti</h2>
