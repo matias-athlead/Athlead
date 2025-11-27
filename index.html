@@ -239,14 +239,6 @@
 /* ===== MÁRGENES MÁS GRANDES SOLO EN ORDENADOR ===== */
 @media (min-width: 1024px) {
 
-  /* Sección principal */
-  section {
-    padding-left: 80px;
-    padding-right: 80px;
-  }
-
-  /* Contenedores internos */
-  .hero-content,
   .who-we-are,
   .how-it-works,
   .signup-section,
@@ -255,10 +247,16 @@
   .problem-section,
   .faq-section,
   .contact-section {
-    padding-left: 80px;
-    padding-right: 80px;
+    padding: 100px 120px !important;  /* antes 100px 20px */
+  }
+
+  /* Hero: que el contenido no llegue tan al borde */
+  .hero-section .hero-content {
+    max-width: 1100px;
+    padding: 0 80px !important;
   }
 }
+
 </style>
 <head>
   <meta charset="UTF-8">
