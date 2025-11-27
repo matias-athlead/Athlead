@@ -138,6 +138,51 @@
     gap: 8px;
   }
 }
+    /* ===== Carrusel de estadísticas ===== */
+.football-stats-section {
+  position: relative;
+  overflow: hidden;  /* evita que se vea lo que sale por los lados */
+}
+
+.stats-carousel {
+  width: 100%;
+  overflow: hidden;
+}
+
+.stats-track {
+  display: flex;
+  gap: 40px;
+  animation: stats-scroll 25s linear infinite;
+}
+
+/* aseguramos que cada tarjeta tenga ancho fijo y no se encoja */
+.stats-track .stat-card {
+  min-width: 260px;
+  flex-shrink: 0;
+}
+
+/* Animación infinita hacia la izquierda */
+@keyframes stats-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    /* se mueve aprox. la mitad del track (porque duplicamos las tarjetas) */
+    transform: translateX(-50%);
+  }
+}
+
+/* En móvil: un poco más lento y tarjetas más pequeñas */
+@media (max-width: 768px) {
+  .stats-track {
+    gap: 24px;
+    animation-duration: 30s;
+  }
+
+  .stats-track .stat-card {
+    min-width: 220px;
+  }
+}
     
 </style>
 <head>
@@ -1243,25 +1288,45 @@
       <h2>El fútbol amateur en España</h2>
       <p>Los números hablan por sí solos. Aquí está la realidad del fútbol amateur en España:</p>
       
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-number">5.2M</div>
-          <div class="stat-label">Jugadores registrados en federaciones</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number">87%</div>
-          <div class="stat-label">Jugadores que nunca han sido vistos por scouts</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number">1.8M</div>
-          <div class="stat-label">Jugadores amateurs sin acceso a academias</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number">92%</div>
-          <div class="stat-label">Entrenadores que buscan talento en redes sociales</div>
-        </div>
+     <div class="stats-carousel">
+    <div class="stats-track">
+      <!-- Bloque 1 -->
+      <div class="stat-card">
+        <div class="stat-number">5.2M</div>
+        <div class="stat-label">Jugadores registrados en federaciones</div>
       </div>
-    </section>
+      <div class="stat-card">
+        <div class="stat-number">87%</div>
+        <div class="stat-label">Jugadores que nunca han sido vistos por scouts</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">1.8M</div>
+        <div class="stat-label">Jugadores amateurs sin acceso a academias</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">92%</div>
+        <div class="stat-label">Entrenadores que buscan talento en redes sociales</div>
+      </div>
+
+      <!-- Bloque 2 (duplicado para que el carrusel sea infinito) -->
+      <div class="stat-card">
+        <div class="stat-number">5.2M</div>
+        <div class="stat-label">Jugadores registrados en federaciones</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">87%</div>
+        <div class="stat-label">Jugadores que nunca han sido vistos por scouts</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">1.8M</div>
+        <div class="stat-label">Jugadores amateurs sin acceso a academias</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">92%</div>
+        <div class="stat-label">Entrenadores que buscan talento en redes sociales</div>
+      </div>
+    </div>
+  </div>
 
     <!-- Features Section -->
     <section class="features" id="features">
