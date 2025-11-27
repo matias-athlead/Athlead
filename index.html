@@ -148,11 +148,25 @@
   width: 100%;
   overflow: hidden;
 }
+/* Solo móvil: permitir scroll táctil horizontal */
+@media (max-width: 768px) {
+  .stats-carousel {
+    overflow-x: auto;          /* se puede desplazar con el dedo */
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch; /* scroll suave en iOS */
+  }
+}
 
 .stats-track {
   display: flex;
   gap: 40px;
   animation: stats-scroll 16s linear infinite;  /* antes 25s */
+}
+    /* Solo móvil: carrusel más rápido */
+@media (max-width: 768px) {
+  .stats-track {
+    animation-duration: 8s; /* cambia 8 por 6 o 4 si lo quieres aún más rápido */
+  }
 }
 
 /* aseguramos que cada tarjeta tenga ancho fijo y no se encoja */
