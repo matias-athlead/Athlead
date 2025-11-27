@@ -205,20 +205,36 @@
   }
 }
 
-/* ===== PERMITIR QUE EL TEXTO DEL CARRUSEL SALTE DE LÍNEA (SOLO MÓVIL) ===== */
+/* ===== AJUSTE DEL CARRUSEL SOLO PARA MÓVIL (FORZAR SALTO DE LÍNEA) ===== */
 @media (max-width: 768px) {
 
-  .stat-label {
-    white-space: normal !important;    /* permite salto de línea */
-    word-wrap: break-word !important;  /* parte palabras largas */
-    line-height: 1.4;                  /* un poquito más de aire entre líneas */
-    text-align: center;                /* centrar texto */
+  /* que el carrusel no se anime solo en móvil */
+  .stats-carousel {
+    overflow-x: auto;
+    overflow-y: hidden;
   }
 
-  /* Opcional pero recomendado para que no se vean gigantes */
-.stats-track .stat-card {
-  min-width: 100px !important;  /* <- antes 220px */
-  padding: 20px 12px;           /* menos espacio lateral */
+  .stats-track {
+    animation: none !important;
+    gap: 16px;
+  }
+
+  /* el bloque tiene un ancho fijo razonable */
+  .stats-track .stat-card {
+    min-width: 220px !important;
+    max-width: 220px !important;
+  }
+
+  /* aquí forzamos que el texto no pueda ocupar todo el ancho */
+  .stat-label {
+    display: block;
+    max-width: 150px;                 /* 🔥 más estrecho que la tarjeta */
+    margin: 0 auto;                   /* centrado dentro de la tarjeta */
+    text-align: center;
+    white-space: normal !important;   /* permite salto de línea */
+    overflow-wrap: break-word !important;
+    word-wrap: break-word !important;
+    line-height: 1.4;
   }
 }
 
