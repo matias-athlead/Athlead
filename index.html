@@ -233,13 +233,6 @@
       z-index: -2;
     }
 
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 10% 0%, rgba(0, 0, 0, 0.35), transparent 55%),
-        linear-gradient(180deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.7));
-      z-index: -1;
-    }
 
     .hero-content {
       max-width: 900px;
@@ -560,10 +553,22 @@
 
     /* ================= SIGNUP ================= */
 
-    .signup-section {
-      background: radial-gradient(circle at 0 0, #101020, #000000 55%);
-      text-align: center;
-    }
+   .signup-section {
+  position: relative;
+  text-align: center;
+  padding: 100px 20px;
+
+  /* FOTO DE FONDO */
+  background-image: linear-gradient(
+      rgba(0, 0, 0, 0.5),   /* sombra suave para que el formulario se vea */
+      rgba(0, 0, 0, 0.5)
+    ),
+    url("images/signup-bg.jpg");  /* 🔥 tu imagen */
+  
+  background-size: cover;      /* ocupa todo */
+  background-position: center; /* centrada */
+  background-repeat: no-repeat;
+}
 
     .signup-section h2 {
       font-size: 32px;
