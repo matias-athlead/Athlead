@@ -291,6 +291,22 @@
   position: relative;
   z-index: 1;
 }
+/* ===== Solo en ORDENADOR (nada de menú desplegable) ===== */
+@media (min-width: 769px) {
+  .menu-toggle {
+    display: none !important;        /* no se ve el icono hamburguesa */
+  }
+
+  .mobile-menu {
+    display: none !important;        /* nunca se muestra el menú lateral */
+    right: -100% !important;
+  }
+
+  .nav-links {
+    display: flex !important;        /* los links normales SIEMPRE visibles */
+    gap: 30px;
+  }
+}
 
 
 </style>
