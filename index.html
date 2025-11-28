@@ -1391,7 +1391,7 @@
 </section>
     
     <!-- Who We Are Section -->
-    <section class="who-we-are" id="who-we-are">
+    <section class="who-we-are screen" id="who-we-are">
       <h2>Quiénes somos</h2>
       <p>Athlead nace de una pasión por el fútbol y una frustración común, miles de jóvenes con talento extraordinario en España, que nunca tienen la oportunidad de ser vistos porque no tienen contactos, no viven en grandes ciudades, o no pueden pagar las academias caras.</p>
       <p>Somos una comunidad de exjugadores, entrenadores y fans que creemos en el fútbol auténtico. El que se juega en los campos de barrio, en los polideportivos, en los campos de tierra. El fútbol de los que no tienen patrocinadores, pero sí corazón.</p>
@@ -1414,7 +1414,7 @@
     </section>
 
     <!-- How It Works Section -->
-    <section class="how-it-works" id="how-it-works">
+    <section class="how-it-works screen" id="how-it-works">
       <h2>Cómo funciona</h2>
       <p>Simple, rápido y directo al punto.</p>
       
@@ -1438,7 +1438,7 @@
     </section>
 
     <!-- Main Signup Form -->
-    <section class="signup-section" id="signup">
+    <section class="signup-section screen" id="signup">
       <h2>Regístrate para acceso anticipado</h2>
       <p>Únete a la primera generación de talento invisible que se hizo visible. Completa este formulario y recibe tu guía gratis.</p>
       
@@ -1519,7 +1519,7 @@
     </section>
 
     <!-- Football Stats Section -->
-    <section class="football-stats-section" id="football-stats">
+    <section class="football-stats-section screen" id="football-stats">
       <h2>El fútbol amateur en España</h2>
       <p>Los números hablan por sí solos.<br>Aquí está la realidad del fútbol amateur en España:</p>
       
@@ -1566,7 +1566,7 @@
     </section>  <!-- Cierra football-stats-section -->
     
     <!-- Features Section -->
-    <section class="features" id="features">
+    <section class="features screen" id="features">
       <h2>Hecho para ti</h2>
       <p>Tu talento merece ser visto. Sin excusas. Sin intermediarios.</p>
       
@@ -1587,7 +1587,7 @@
     </section>
 
     <!-- Problem Section -->
-    <section class="problem-section" id="problem-section">
+    <section class="problem-section screen" id="problem-section">
       <h2>Jugadores invisibles</h2>
       <p>Millones de jugadores en España tienen talento pero no oportunidad. No tienen contactos, no pueden pagar escuelas caras, y sus habilidades se quedan ocultas. El fútbol sigue siendo un deporte de privilegiados. Los scouts buscan talento... pero no saben dónde mirar.</p>
       
@@ -1604,7 +1604,7 @@
     </section>
 
     <!-- FAQ Section -->
-    <section class="faq-section" id="faq">
+    <section class="faq-section screen" id="faq">
       <h2>Preguntas frecuentes</h2>
       <p>Todo lo que necesitas saber sobre Athlead.</p>
       
@@ -1672,7 +1672,7 @@
     </section>
 
    <!-- Contact Section -->
-<section class="contact-section" id="contact">
+<section class="contact-section screen" id="contact">
   <h2>¿Tienes dudas?</h2>
   <p>Contáctanos. Estamos aquí para ayudarte a que tu talento sea visto.</p>
 
@@ -1903,6 +1903,31 @@ document.querySelectorAll('.faq-item').forEach(item => {
     minutesEl.textContent = minutes.toString().padStart(2, "0");
     secondsEl.textContent = seconds.toString().padStart(2, "0");
   }
+  /* ===== Secciones tipo "pantalla" ===== */
+.screen {
+  min-height: 100vh;          /* ocupa al menos el alto de la ventana */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;    /* centra verticalmente el contenido */
+}
+
+/* Solo escritorio: que respire más lateralmente */
+@media (min-width: 1024px) {
+  .screen {
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+}
+ @media (min-width: 1024px) {
+  html, body {
+    scroll-snap-type: y mandatory;
+  }
+
+  .screen, .hero-section {
+    scroll-snap-align: start;
+  }
+}
+
 
   // Actualizar ahora mismo y luego cada segundo
   updateCountdown();
