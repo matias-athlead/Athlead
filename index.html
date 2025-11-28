@@ -1349,6 +1349,11 @@
     z-index: 200;
   }
 }
+/* ===== Ocultar header durante scroll ===== */
+.header.hide-header {
+  transform: translateY(-120%);
+  transition: transform 0.35s ease;
+}
 
   </style>
 </head>
@@ -1947,6 +1952,23 @@ document.querySelectorAll('.faq-item').forEach(item => {
   updateCountdown();
   setInterval(updateCountdown, 1000);
 })();
+    /* ===== Ocultar y mostrar el header según el scroll ===== */
+let lastScroll = 0;
+const header = document.querySelector('.header');
+
+window.addEventListener('scroll', () => {
+  const currentScroll = window.pageYOffset;
+
+  if (currentScroll > lastScroll && currentScroll > 50) {
+    // Bajando → ocultar header
+    header.classList.add('hide-header');
+  } else {
+    // Subiendo → mostrar header
+    header.classList.remove('hide-header');
+  }
+
+  lastScroll = currentScroll;
+});
 
 </script>
 </body>
