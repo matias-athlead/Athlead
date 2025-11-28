@@ -285,17 +285,6 @@
   opacity: 0.4;         /* ajusta 0.3–0.6 según lo oscuro que quieras */
 }
 
-/* Capa oscura encima del vídeo para que se lea bien el texto */
-.hero-section::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    rgba(0, 0, 0, 0.1),
-    rgba(0, 0, 0, 0.1)
-  );
-  z-index: -1;          /* por encima del vídeo, debajo del texto */
-}
 
 /* Aseguramos que el contenido está por encima del vídeo y la capa oscura */
 .hero-section .hero-content {
