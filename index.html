@@ -154,56 +154,56 @@
   animation: stats-scroll 16s linear infinite;  /* antes 25s */
 }
 
-  @media (max-width: 768px) {
+
 
 @media (max-width: 768px) {
 
-  /* Más espacio arriba y abajo */
+  /* Espacio superior/inferior mínimo */
   .highlight-videos {
-    padding: 20px 0;
+    padding: 0;
+    margin: 0;
   }
 
-  /* Track con separación entre bloques */
+  /* Carrusel táctil con snap perfecto */
   .videos-track {
     display: flex;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
-    gap: 32px;                      /* 🔥 MÁS separación entre bloques */
-    padding: 0 16px;
+    gap: 40px;                         /* 🔥 GRAN separación → evita que se vean 2 a la vez */
+    padding: 0 40px;                   /* 🔥 margen lateral para centrar mejor */
   }
 
-  /* BLOQUES: más grandes, casi toda la pantalla */
+  /* Cada bloque = un slide gigante, 100% del view */
   .video-card {
-    flex: 0 0 100%;
-    max-width: 100%;
-    scroll-snap-align: center;
-    min-height: 86vh;               /* 🔥 MÁS GRANDE */
+    flex: 0 0 100%;                    /* 🔥 solo entra 1 a la vez */
+    scroll-snap-align: center;         /* 🔥 se engancha al centro SIEMPRE */
+    height: 94vh;                      /* 🔥 full-screen “real” */
+    max-height: 94vh;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
   }
 
-  /* VIDEOS: formato reel pero ocupando casi toda la pantalla */
+  /* Vídeo ultra grande, estilo Tiktok */
   .video-card video {
     width: 100%;
-    max-width: 100%;                /* 🔥 ahora ocupa todo el ancho */
-    aspect-ratio: 9 / 15;           /* 🔥 MÁS ALTO (más grande), pero NO un 9:16 puro */
-    object-fit: cover;
-    border-radius: 18px;
-    box-shadow: 0 22px 50px rgba(0,0,0,0.6);
+    height: 100%;
+    aspect-ratio: 9 / 16;              /* 🔥 vertical real */
+    object-fit: cover;                 /* 🔥 llena todo el slide */
+    border-radius: 0;                  /* 🔥 mejor fullscreen */
   }
 
-  /* Ocultar texto */
-  .video-info {
-    display: none;
-  }
-
-  /* sin flechas */
+  /* Sin flechas, sin texto */
   .videos-arrow {
     display: none;
   }
+
+  .video-info {
+    display: none;
+  }
 }
+
 
   .highlight-videos {
   padding: 0;
