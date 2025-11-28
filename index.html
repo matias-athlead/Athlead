@@ -210,7 +210,7 @@
     display: none;
   }
 }
-     /* En móvil NO mostramos el buscador */
+   /* El buscador NO se muestra en móvil */
   .header-search {
     display: none;
   }
@@ -1752,6 +1752,41 @@ html, body {
 *::-webkit-scrollbar {
   display: none !important;
 }
+    /* === Buscador en la barra superior (desktop) === */
+
+/* Un poco de separación entre elementos del header */
+.header {
+  gap: 16px;
+}
+
+/* Contenedor del buscador */
+.header-search {
+  display: flex;
+  align-items: center;
+}
+
+/* Input del buscador */
+.header-search-input {
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(0, 0, 0, 0.45);
+  color: #ffffff;
+  font-size: 14px;
+  min-width: 220px;
+  backdrop-filter: blur(10px);
+}
+
+.header-search-input::placeholder {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.header-search-input:focus {
+  outline: none;
+  border-color: #ffffff;
+  background: rgba(0, 0, 0, 0.8);
+}
+
 
 
   </style>
@@ -1771,6 +1806,24 @@ html, body {
         <a href="#faq">FAQ</a>
         <a href="#contact">Contacto</a>
       </nav>
+        <!-- Buscador (solo se verá en ordenador) -->
+  <form
+    class="header-search"
+    action="https://www.google.com/search"
+    method="GET"
+    target="_blank"
+  >
+    <!-- esto hace que busque solo dentro de tu web -->
+    <input type="hidden" name="sitesearch" value="athlead-rho.vercel.app" />
+    <input
+      type="text"
+      name="q"
+      class="header-search-input"
+      placeholder="Buscar en Athlead..."
+    />
+  </form>
+</header>
+
     </header>
       <!-- Buscador (solo desktop) -->
   <form
