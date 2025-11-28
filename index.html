@@ -155,6 +155,64 @@
 }
     /* ===== Videos verticales SOLO en móvil ===== */
 @media (max-width: 768px) {
+
+  @media (max-width: 768px) {
+
+  /* La sección de vídeos ocupa casi toda la altura, estilo “pantalla” */
+  .highlight-videos {
+    padding: 40px 0;
+  }
+
+  /* El carrusel tiene un poco de margen lateral */
+  .videos-carousel {
+    padding: 0 12px;
+    margin: 0;
+    gap: 0;
+  }
+
+  /* Pista: scroll táctil, con espacio entre slides y un solo block centrado */
+  .videos-track {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding: 0 6px;
+    gap: 24px;                  /* 🔥 separación entre bloques */
+  }
+
+  /* Cada tarjeta ocupa 100% de ancho, pero con márgenes → como Veo */
+  .video-card {
+    flex: 0 0 100%;
+    max-width: 100%;
+    scroll-snap-align: center;  /* se centra al soltar */
+    min-height: 72vh;           /* un poco más horizontal, pero sigue grande */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 6px;              /* 🔥 margen lateral entre tarjetas */
+  }
+
+  /* Vídeo “enmarcado” por el fondo, más horizontal que un 9:16 puro */
+  .video-card video {
+    width: 100%;
+    max-width: 95%;             /* deja fondo a los lados → efecto como captura de Veo */
+    aspect-ratio: 4 / 5;        /* 👈 más horizontal que 9:16, pero aún vertical tipo reel */
+    border-radius: 22px;
+    object-fit: cover;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
+  }
+
+  /* Ocultamos texto debajo en móvil para que sea solo vídeo */
+  .video-info {
+    display: none;
+  }
+
+  /* Nada de flechas en móvil, solo dedo */
+  .videos-arrow {
+    display: none;
+  }
+}
+
   .highlight-videos {
   padding: 0;
   margin: 0;
