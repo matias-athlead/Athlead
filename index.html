@@ -369,7 +369,57 @@
     gap: 30px;
   }
 }
+/* ===== OVERRIDE FINAL SOLO MÓVIL: VIDEOS 4:3 PANTALLA COMPLETA ===== */
+@media (max-width: 768px) {
 
+  /* La sección ocupa toda la pantalla */
+  .highlight-videos,
+  .highlight-videos .videos-carousel,
+  .highlight-videos .videos-track,
+  .highlight-videos .video-card {
+    width: 100vw !important;
+    height: 100vh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Carrusel horizontal tipo diapositiva, 1 video a la vez */
+  .highlight-videos .videos-track {
+    display: flex !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    gap: 0 !important;
+  }
+
+  .highlight-videos .video-card {
+    flex: 0 0 100vw !important;           /* 1 slide = 1 pantalla */
+    scroll-snap-align: center !important;
+    background: #000 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  /* VÍDEO 4:3 HORIZONTAL, CENTRADO */
+  .highlight-videos .video-card video {
+    width: 100vw !important;
+    height: auto !important;
+    max-height: 100vh !important;
+    aspect-ratio: 4 / 3 !important;       /* 🔥 formato 4:3 */
+    object-fit: contain !important;       /* no se corta, se ve entero */
+    background: #000 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
+
+  /* Sin flechas ni texto en móvil */
+  .highlight-videos .videos-arrow,
+  .highlight-videos .video-info {
+    display: none !important;
+  }
+}
 
 </style>
 <head>
