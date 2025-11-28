@@ -213,6 +213,24 @@
     display: none;
   }
 }
+  /* ===== ELIMINAR EL SCROLL VERTICAL SOLO DEL CARRUSEL EN MÓVIL ===== */
+@media (max-width: 768px) {
+
+  .highlight-videos,
+  .highlight-videos .videos-carousel,
+  .highlight-videos .videos-track,
+  .highlight-videos .video-card {
+    overflow-y: hidden !important;     /* evita el scroll vertical */
+  }
+
+  /* Asegura que solo exista scroll horizontal */
+  .highlight-videos .videos-track {
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+}
+
 
 
     /* Solo móvil: carrusel más rápido */
