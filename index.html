@@ -1349,10 +1349,13 @@
     z-index: 200;
   }
 }
-/* ===== Ocultar header durante scroll ===== */
+/* Header desaparece hacia arriba, lento, suave */
 .header.hide-header {
-  transform: translateY(-120%);
-  transition: transform 0.35s ease;
+  transform: translateY(-140%);
+}
+
+.header {
+  transition: transform 0.65s ease-in-out !important;
 }
 
   </style>
@@ -1959,13 +1962,13 @@ const header = document.querySelector('.header');
 window.addEventListener('scroll', () => {
   const currentScroll = window.pageYOffset;
 
-  if (currentScroll > lastScroll && currentScroll > 50) {
-    // Bajando → ocultar header
+if (currentScroll > lastScroll && currentScroll > 80) {
+    // bajando → oculta lentamente
     header.classList.add('hide-header');
-  } else {
-    // Subiendo → mostrar header
+} else if (currentScroll < lastScroll) {
+    // subiendo → muestra lentamente
     header.classList.remove('hide-header');
-  }
+}
 
   lastScroll = currentScroll;
 });
