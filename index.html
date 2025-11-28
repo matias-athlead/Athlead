@@ -1109,11 +1109,27 @@
     }
 
     /* Mobile-specific styles */
-    @media (max-width: 768px) {
-        .header {
-    position: static;
-    width: 100%;
-    border-radius: 0;
+   @media (max-width: 768px) {
+  /* En móvil el header NO se oculta */
+  .header.hide-header {
+    transform: translateY(0) !important;
+  }
+
+  }
+
+  .header {
+    position: fixed;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 92%;
+    padding: 10px 18px;
+    border-radius: 999px;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+    z-index: 500;
   }
 
       .nav-links {
