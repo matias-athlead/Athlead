@@ -1125,7 +1125,7 @@
     }
 /* ===== Sección de Jugadas Destacadas ===== */
 .highlight-videos {
-  padding: 100px 20px;
+  padding: 80px 0;             /* sin padding lateral para que el vídeo pueda ir casi de lado a lado */
   text-align: center;
   background-color: #000;
 }
@@ -1142,14 +1142,14 @@
   margin: 0 auto 40px;
 }
 
-/* Carrusel principal: un solo vídeo grande a la vez */
 .videos-carousel {
   position: relative;
-  max-width: 1000px;
+  max-width: 1200px;           /* más ancho en desktop */
   margin: 0 auto;
   display: flex;
   align-items: center;
   gap: 16px;
+  padding: 0 16px;             /* un pelín de margen a los lados */
 }
 
 /* Pista de vídeos: un slide = 100% del ancho */
@@ -1159,6 +1159,7 @@
   overflow-x: hidden;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;   /* efecto “diapositiva” también en desktop */
 }
 
 /* Cada slide ocupa todo el ancho del carrusel */
@@ -1168,16 +1169,21 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  scroll-snap-align: center;         /* que el slide “encaje” en el centro */
+  min-height: calc(100vh - 220px);   /* casi pantalla completa */
+  justify-content: center;
 }
 
 /* Vídeo grande, sin marco, solo sombra ligera */
 .video-card video {
   width: 100%;
-  max-width: 960px;
+  max-width: 1100px;           /* MÁS grande en desktop */
+  aspect-ratio: 16 / 9;        /* formato vídeo panorámico */
   border-radius: 24px;
   display: block;
-  box-shadow: 0 22px 45px rgba(0, 0, 0, 0.55);
+  box-shadow: 0 26px 55px rgba(0, 0, 0, 0.7);
 }
+
 
 /* Texto pequeño debajo del vídeo */
 .video-info {
