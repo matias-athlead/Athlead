@@ -1110,6 +1110,12 @@
 
     /* Mobile-specific styles */
     @media (max-width: 768px) {
+        .header {
+    position: static;
+    width: 100%;
+    border-radius: 0;
+  }
+
       .nav-links {
         display: none;
       }
@@ -1326,6 +1332,24 @@
     font-size: 13px;
   }
 }
+    /* ===== Header flotante tipo Veo SOLO en ordenador ===== */
+@media (min-width: 1024px) {
+  .header {
+    position: fixed;                      /* se queda flotando al hacer scroll */
+    top: 20px;                            /* separado un poco del borde superior */
+    left: 50%;
+    transform: translateX(-50%);         /* centrado horizontal */
+    width: min(1100px, 90%);             /* más estrecho que la pantalla */
+    padding: 14px 28px;
+    border-radius: 999px;                /* forma de pastilla */
+    background: rgba(0, 0, 0, 0.65);     /* fondo oscuro transparente */
+    backdrop-filter: blur(16px);         /* efecto glassmorphism */
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    z-index: 200;
+  }
+}
+
   </style>
 </head>
 <body>
