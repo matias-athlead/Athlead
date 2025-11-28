@@ -158,48 +158,62 @@
 
 @media (max-width: 768px) {
 
-@media (max-width: 768px) {
-
-  /* La sección ocupa toda la pantalla */
+  /* La sección de vídeos ocupa toda la pantalla en móvil */
   .highlight-videos {
     padding: 0;
     margin: 0;
   }
 
-  /* Track: carrusel tipo diapositiva fullscreen */
-  .videos-track {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
+  .videos-carousel {
+    padding: 0;
+    margin: 0;
     width: 100vw;
     height: 100vh;
+  }
+
+  /* CARRUSEL: slides horizontales pantalla completa */
+  .videos-track {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
-    gap: 0;                   /* sin separación, cambio de slide perfecto */
+    gap: 0;                /* muy importante: sin huecos entre slides */
     padding: 0;
   }
 
-  /* Cada tarjeta = una diapositiva horizontal fullscreen */
+  /* Cada bloque = una diapositiva a pantalla completa */
   .video-card {
-    flex: 0 0 100vw;          /* ocupa TODA la pantalla */
-    height: 100vh;            /* altura completa */
+    flex: 0 0 100vw;       /* ocupa todo el ancho del móvil */
+    height: 100vh;         /* ocupa todo el alto de la pantalla */
     scroll-snap-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #000;         /* fondo negro para que no haya bordes */
+    background: #000;      /* fondo negro para que no se vea nada fuera del vídeo */
   }
 
-  /* VÍDEO HORIZONTAL FULLSCREEN */
+  /* VÍDEO EN HORIZONTAL (16:9) A PANTALLA COMPLETA */
   .video-card video {
-    width: 100vw;
-    height: 100vh;
-    object-fit: cover;        /* llena toda la pantalla */
-    border-radius: 0;         /* sin bordes */
+    width: 100vw;              /* ocupa todo el ancho */
+    height: auto;
+    max-height: 100vh;         /* nunca pasa del alto de la pantalla */
+    aspect-ratio: 16 / 9;      /* 🔥 HORIZONTAL de verdad */
+    object-fit: contain;       /* se ve entero, sin cortar la imagen */
+    border-radius: 0;          /* pantalla completa */
+    background: #000;
   }
 
-  /* Sin texto ni flechas */
-  .video-info { display: none; }
-  .videos-arrow { display: none; }
+  /* En móvil no mostramos texto ni flechas */
+  .video-info {
+    display: none;
+  }
+
+  .videos-arrow {
+    display: none;
+  }
 }
 
   .highlight-videos {
