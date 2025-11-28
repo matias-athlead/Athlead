@@ -1,356 +1,1899 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Athlead</title>
+<head>
+  <meta charset="UTF-8" />
 
-    <style>
-      /* ------------------------- RESET ------------------------- */
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png" />
+  <link rel="shortcut icon" href="images/favicon.ico" />
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+  <link rel="manifest" href="images/site.webmanifest" />
+  <meta name="theme-color" content="#000000" />
 
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Athlead - App para Jugadores de Fútbol | Deja que el talento hable por ti</title>
+  <meta
+    name="description"
+    content="Athlead es la primera red deportiva para jugadores de fútbol amateur en España. Sube tus jugadas y sé descubierto por scouts sin pagar ni tener contactos."
+  />
+  <meta
+    name="keywords"
+    content="app para jugadores de fútbol, network deportivo, talento fútbol amateur, descubrir jugadores, athlead, fútbol español, jugadores invisibles, entrenadores fútbol"
+  />
+  <meta name="author" content="Athlead" />
+
+  <!-- Open Graph / Social Media -->
+  <meta
+    property="og:title"
+    content="Athlead - App para Jugadores de Fútbol | Deja que el talento hable por ti"
+  />
+  <meta
+    property="og:description"
+    content="Sube tus jugadas y sé descubierto por scouts sin pagar ni tener contactos. La primera red deportiva para jugadores de fútbol amateur en España."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://athlead.es" />
+  <meta
+    property="og:image"
+    content="https://placehold.co/1200x630/000/fff?text=Athlead+-+Deja+que+el+talento+hable+por+ti"
+  />
+
+  <style>
+    :root {
+      --bg-main: #000000;
+      --bg-soft: #050509;
+      --bg-card: rgba(255, 255, 255, 0.04);
+      --border-soft: rgba(255, 255, 255, 0.1);
+      --text-main: #ffffff;
+      --text-muted: rgba(255, 255, 255, 0.7);
+      --accent: #ffffff;
+      --accent-soft: #f2f2f2;
+      --accent-alt: #4ecdc4;
+      --danger: #ff6b6b;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      height: 100%;
+      scroll-behavior: smooth;
+      background: var(--bg-main);
+      color: var(--text-main);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, system-ui, sans-serif;
+    }
+
+    img,
+    video {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* CONTENEDOR COMÚN */
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 80px 16px;
+    }
+
+    /* ================= HEADER ================= */
+
+    .header {
+      position: fixed;
+      top: 16px;
+      left: 50%;
+      transform: translate(-50%, 0);
+      width: min(1100px, 92%);
+      padding: 10px 20px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.72);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      transition: transform 0.6s ease-in-out;
+    }
+
+    .header.hide-header {
+      transform: translate(-50%, -180%);
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      cursor: pointer;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      font-size: 14px;
+    }
+
+    .nav-links a {
+      opacity: 0.8;
+      padding: 4px 0;
+      border-bottom: 1px solid transparent;
+      transition: opacity 0.2s, border-bottom-color 0.2s;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+      border-bottom-color: rgba(255, 255, 255, 0.8);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    /* Buscador solo desktop */
+    .header-search {
+      display: block;
+    }
+
+    .header-search-input {
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      background: rgba(0, 0, 0, 0.45);
+      color: #ffffff;
+      font-size: 13px;
+      min-width: 210px;
+      backdrop-filter: blur(10px);
+    }
+
+    .header-search-input::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .header-search-input:focus {
+      outline: none;
+      border-color: #ffffff;
+      background: rgba(0, 0, 0, 0.8);
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: #ffffff;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    /* Mobile menu */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 260px;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.96);
+      backdrop-filter: blur(14px);
+      z-index: 900;
+      padding: 80px 24px 24px;
+      transition: right 0.3s ease;
+    }
+
+    .mobile-menu.active {
+      right: 0;
+    }
+
+    .mobile-menu-links {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      font-size: 16px;
+    }
+
+    .mobile-menu-links a {
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    /* ================= HERO ================= */
+
+    .hero-section {
+      position: relative;
+      min-height: 100vh;
+      padding: 120px 16px 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.45;
+      z-index: -2;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 10% 0%, rgba(0, 0, 0, 0.35), transparent 55%),
+        linear-gradient(180deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.7));
+      z-index: -1;
+    }
+
+    .hero-content {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .hero-title {
+      font-size: clamp(2.4rem, 4vw, 3.4rem);
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+      margin-bottom: 14px;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.1rem, 2vw, 1.5rem);
+      font-style: italic;
+      opacity: 0.9;
+      margin-bottom: 32px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      opacity: 0.9;
+      margin-bottom: 18px;
+      background: rgba(0, 0, 0, 0.65);
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 30px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease,
+        color 0.15s ease;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn-cta {
+      background: #ffffff;
+      color: #000000;
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.6);
+    }
+
+    .btn-cta:hover {
+      background: #f2f2f2;
+      transform: translateY(-1px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.75);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+    }
+
+    .btn-secondary:hover {
+      background: #ffffff;
+      color: #000000;
+      transform: translateY(-1px);
+    }
+
+    /* ================= COUNTDOWN ================= */
+
+    .countdown-section {
+      background: #050505;
+    }
+
+    .countdown-title {
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 13px;
+      opacity: 0.8;
+      margin-bottom: 18px;
+    }
+
+    .countdown-timer {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      margin-bottom: 12px;
+    }
+
+    .time-box {
+      background: rgba(0, 0, 0, 0.85);
+      border-radius: 16px;
+      padding: 10px 16px;
+      min-width: 72px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .time-box span {
+      display: block;
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .time-box small {
+      display: block;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      opacity: 0.8;
+      margin-top: 2px;
+    }
+
+    .countdown-subtitle {
+      font-size: 14px;
+      opacity: 0.8;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* ================= QUIÉNES SOMOS ================= */
+
+    .who-we-are {
+      background: #000000;
+      text-align: left;
+    }
+
+    .who-we-are h2 {
+      font-size: 32px;
+      margin-bottom: 12px;
+      letter-spacing: -0.03em;
+    }
+
+    .section-kicker {
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 12px;
+      opacity: 0.7;
+      margin-bottom: 6px;
+    }
+
+    .who-we-are p {
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+      max-width: 800px;
+    }
+
+    .who-we-are p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ================= HIGHLIGHT VIDEOS ================= */
+
+    .highlight-videos {
+      background: #000000;
+    }
+
+    .highlight-videos h2 {
+      font-size: 32px;
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+
+    .highlight-subtitle {
+      font-size: 15px;
+      opacity: 0.8;
+      max-width: 540px;
+      margin: 0 auto 32px;
+      text-align: center;
+    }
+
+    .videos-carousel {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .videos-track {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 6px;
+      width: 100%;
+    }
+
+    .video-card {
+      flex: 0 0 85%;
+      max-width: 85%;
+      scroll-snap-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0 auto;
+    }
+
+    .video-card video {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+      background: #000;
+    }
+
+    .video-info {
+      margin-top: 10px;
+      text-align: center;
+      max-width: 480px;
+    }
+
+    .video-info h3 {
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .video-info p {
+      font-size: 13px;
+      opacity: 0.8;
+    }
+
+    .videos-arrow {
+      display: none; /* solo desktop, se activa en media query */
+      background: rgba(0, 0, 0, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      color: #ffffff;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 22px;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+    }
+
+    .videos-arrow:hover {
+      background: #ffffff;
+      color: #000;
+      transform: translateY(-1px);
+    }
+
+    /* ================= CÓMO FUNCIONA ================= */
+
+    .how-it-works {
+      background: #050509;
+      text-align: center;
+    }
+
+    .how-it-works h2 {
+      font-size: 32px;
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+    }
+
+    .how-it-works > .section-inner > p {
+      font-size: 15px;
+      opacity: 0.8;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .step {
+      background: var(--bg-card);
+      border-radius: 20px;
+      padding: 28px 22px;
+      border: 1px solid var(--border-soft);
+      text-align: left;
+    }
+
+    .step-number {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #ffffff;
+      color: #000000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .step h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .step p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
+
+    /* ================= SIGNUP ================= */
+
+    .signup-section {
+      background: radial-gradient(circle at 0 0, #101020, #000000 55%);
+      text-align: center;
+    }
+
+    .signup-section h2 {
+      font-size: 32px;
+      margin-bottom: 10px;
+      letter-spacing: -0.03em;
+    }
+
+    .signup-section > .section-inner > p {
+      font-size: 15px;
+      max-width: 600px;
+      margin: 0 auto 24px;
+      color: var(--text-muted);
+    }
+
+    .premium-offer {
+      max-width: 600px;
+      margin: 0 auto 24px;
+      border-radius: 16px;
+      padding: 18px 20px;
+      background: linear-gradient(135deg, #ff6b6b, #ff4757);
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+
+    .premium-offer small {
+      display: block;
+      margin-top: 6px;
+      font-size: 12px;
+      opacity: 0.9;
+    }
+
+    .signup-form {
+      max-width: 640px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border-radius: 20px;
+      padding: 28px 24px 30px;
+      border: 1px solid var(--border-soft);
+      text-align: left;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+
+    .form-control,
+    .form-select {
+      width: 100%;
+      padding: 12px 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      background: rgba(0, 0, 0, 0.4);
+      color: #ffffff;
+      font-size: 14px;
+    }
+
+    .form-control::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+      outline: none;
+      border-color: #ffffff;
+      background: rgba(0, 0, 0, 0.7);
+    }
+
+    .form-select option {
+      color: #000;
+      background: #ffffff;
+    }
+
+    .submit-btn {
+      margin-top: 8px;
+      width: 100%;
+      border-radius: 999px;
+      padding: 14px 20px;
+      border: none;
+      background: #ffffff;
+      color: #000000;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .submit-btn:hover {
+      background: #f2f2f2;
+      transform: translateY(-1px);
+      box-shadow: 0 16px 30px rgba(0, 0, 0, 0.7);
+    }
+
+    /* ================= FOOTBALL STATS ================= */
+
+    .football-stats-section {
+      background: linear-gradient(135deg, #101325, #060712);
+      text-align: center;
+    }
+
+    .football-stats-section h2 {
+      font-size: 32px;
+      letter-spacing: -0.03em;
+      margin-bottom: 10px;
+    }
+
+    .football-stats-section > .section-inner > p {
+      font-size: 15px;
+      opacity: 0.8;
+      max-width: 600px;
+      margin: 0 auto 34px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .stat-card {
+      background: rgba(0, 0, 0, 0.45);
+      border-radius: 20px;
+      padding: 22px 18px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      text-align: left;
+      min-height: 140px;
+    }
+
+    .stat-number {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--accent-alt);
+      margin-bottom: 6px;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
+
+    /* ================= FEATURES ================= */
+
+    .features {
+      background: #000000;
+      text-align: center;
+    }
+
+    .features h2 {
+      font-size: 32px;
+      margin-bottom: 10px;
+      letter-spacing: -0.03em;
+    }
+
+    .features > .section-inner > p {
+      font-size: 15px;
+      opacity: 0.8;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .feature-card {
+      background: var(--bg-card);
+      border-radius: 20px;
+      padding: 26px 22px;
+      border: 1px solid var(--border-soft);
+      text-align: left;
+    }
+
+    .feature-card h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .feature-card p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* ================= PROBLEM / SOLUTION ================= */
+
+    .problem-section {
+      background: #050509;
+      text-align: center;
+    }
+
+    .problem-section h2 {
+      font-size: 32px;
+      margin-bottom: 10px;
+      letter-spacing: -0.03em;
+    }
+
+    .problem-section > .section-inner > p {
+      font-size: 15px;
+      opacity: 0.8;
+      max-width: 650px;
+      margin: 0 auto 34px;
+    }
+
+    .problem-solution {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+      margin-top: 10px;
+    }
+
+    .problem,
+    .solution {
+      background: var(--bg-card);
+      border-radius: 20px;
+      padding: 24px 22px;
+      border: 1px solid var(--border-soft);
+      text-align: left;
+    }
+
+    .problem h3 {
+      font-size: 18px;
+      color: var(--danger);
+      margin-bottom: 10px;
+    }
+
+    .solution h3 {
+      font-size: 18px;
+      color: var(--accent-alt);
+      margin-bottom: 10px;
+    }
+
+    .problem p,
+    .solution p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* ================= FAQ ================= */
+
+    .faq-section {
+      background: #000000;
+      text-align: center;
+    }
+
+    .faq-section h2 {
+      font-size: 32px;
+      margin-bottom: 10px;
+      letter-spacing: -0.03em;
+    }
+
+    .faq-section > .section-inner > p {
+      font-size: 15px;
+      opacity: 0.8;
+      max-width: 580px;
+      margin: 0 auto 30px;
+    }
+
+    .faq-container {
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .faq-item {
+      background: var(--bg-card);
+      border-radius: 16px;
+      border: 1px solid var(--border-soft);
+      margin-bottom: 10px;
+      overflow: hidden;
+      transition: border-color 0.2s ease;
+    }
+
+    .faq-question {
+      padding: 16px 20px;
+      font-size: 15px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+
+    .faq-question:hover {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      padding: 0 20px;
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text-muted);
+      transition: max-height 0.25s ease, padding 0.25s ease;
+    }
+
+    .faq-item.active {
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 260px;
+      padding: 12px 20px 18px;
+    }
+
+    .faq-arrow {
+      transition: transform 0.25s ease;
+      font-size: 14px;
+    }
+
+    .faq-item.active .faq-arrow {
+      transform: rotate(180deg);
+    }
+
+    /* ================= CONTACTO ================= */
+
+    .contact-section {
+      background: #050509;
+      text-align: center;
+    }
+
+    .contact-section h2 {
+      font-size: 32px;
+      letter-spacing: -0.03em;
+      margin-bottom: 10px;
+    }
+
+    .contact-section > .section-inner > p {
+      font-size: 15px;
+      opacity: 0.8;
+      max-width: 520px;
+      margin: 0 auto 28px;
+    }
+
+    .contact-form {
+      max-width: 640px;
+      margin: 0 auto;
+      text-align: left;
+      background: var(--bg-card);
+      border-radius: 20px;
+      padding: 26px 24px 28px;
+      border: 1px solid var(--border-soft);
+    }
+
+    .contact-btn {
+      margin-top: 8px;
+      width: 100%;
+      border-radius: 999px;
+      padding: 14px 20px;
+      border: none;
+      background: #ffffff;
+      color: #000000;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .contact-btn:hover {
+      background: #f2f2f2;
+      transform: translateY(-1px);
+      box-shadow: 0 14px 26px rgba(0, 0, 0, 0.7);
+    }
+
+    .contact-success {
+      margin-top: 10px;
+      font-size: 14px;
+      color: var(--accent-alt);
+      display: none;
+    }
+
+    /* ================= FOOTER ================= */
+
+    .footer {
+      background: #000000;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      text-align: center;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 36px 16px 26px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+      font-size: 13px;
+      margin-bottom: 16px;
+    }
+
+    .footer-links a {
+      opacity: 0.7;
+    }
+
+    .footer-links a:hover {
+      opacity: 1;
+    }
+
+    .copyright {
+      font-size: 12px;
+      opacity: 0.6;
+      margin-bottom: 10px;
+    }
+
+    .privacy-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+      font-size: 12px;
+      opacity: 0.7;
+      margin-bottom: 10px;
+    }
+
+    .footer-tagline {
+      font-style: italic;
+      font-size: 15px;
+      opacity: 0.85;
+      margin-top: 4px;
+    }
+
+    /* ================= RESPONSIVE ================= */
+
+    @media (max-width: 900px) {
+      .section-inner {
+        padding: 64px 18px;
       }
 
-      body {
-        background-color: #000;
-        color: #fff;
-        font-family: Arial, Helvetica, sans-serif;
-        overflow-x: hidden;
+      .steps {
+        grid-template-columns: 1fr;
       }
 
-      a {
-        text-decoration: none;
+      .features-grid {
+        grid-template-columns: 1fr;
       }
 
-      /* -------------------------------------------------------------
-         HEADER
-      ------------------------------------------------------------- */
+      .problem-solution {
+        grid-template-columns: 1fr;
+      }
 
+      .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .video-card {
+        flex: 0 0 90%;
+        max-width: 90%;
+      }
+    }
+
+    @media (max-width: 768px) {
       .header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 70px;
-        background: rgba(0, 0, 0, 0.65);
-        backdrop-filter: blur(8px);
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 24px;
-        z-index: 1000;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      }
-
-      .logo {
-        font-size: 24px;
-        font-weight: 800;
-        cursor: pointer;
+        width: 94%;
+        padding: 10px 16px;
       }
 
       .nav-links {
-        display: flex;
-        gap: 20px;
-      }
-
-      .nav-links a {
-        color: white;
-        font-size: 16px;
-        opacity: 0.85;
-        transition: 0.2s;
-      }
-
-      .nav-links a:hover {
-        opacity: 1;
-      }
-
-      /* Botón menú móvil */
-      .menu-toggle {
         display: none;
-        background: none;
-        border: none;
-        color: white;
-        font-size: 24px;
-        cursor: pointer;
       }
 
-      /* Buscador (solo desktop) */
       .header-search {
-        display: flex;
-        align-items: center;
+        display: none;
       }
 
-      .header-search-input {
-        padding: 6px 12px;
-        border-radius: 6px;
-        border: none;
-        outline: none;
+      .menu-toggle {
+        display: block;
       }
-
-      @media (max-width: 850px) {
-        .nav-links {
-          position: absolute;
-          top: 70px;
-          right: 0;
-          background: black;
-          width: 100%;
-          display: none;
-          flex-direction: column;
-          padding: 20px;
-          text-align: center;
-        }
-
-        .menu-toggle {
-          display: block;
-        }
-
-        .header-search {
-          display: none;
-        }
-      }
-
-      /* -------------------------------------------------------------
-         HERO CON VIDEO DE FONDO
-      ------------------------------------------------------------- */
 
       .hero-section {
-        position: relative;
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        background: #000;
-        padding: 120px 20px 60px;
+        padding-top: 112px;
       }
 
-      .hero-video {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        opacity: 0.45;
-        z-index: -2;
-      }
-
-      .hero-content {
-        z-index: 2;
-        max-width: 900px;
-      }
-
-      .hero-section h1 {
-        font-size: clamp(3rem, 4vw + 1rem, 5rem);
-        font-weight: 700;
-        margin-bottom: 16px;
-      }
-
-      .hero-subtitle {
-        font-size: clamp(1.2rem, 2vw, 1.8rem);
-        opacity: 0.85;
-        margin-bottom: 32px;
-        font-style: italic;
-      }
-
-      .hero-buttons {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-        flex-wrap: wrap;
-      }
-
-      .btn-cta,
-      .btn-secondary {
-        padding: 12px 36px;
-        border-radius: 999px;
-        font-weight: 600;
-        font-size: 1rem;
-        transition: 0.2s ease;
-      }
-
-      .btn-cta {
-        background: white;
-        color: black;
-      }
-
-      .btn-secondary {
-        border: 2px solid white;
-        color: white;
-      }
-
-      .btn-secondary:hover,
-      .btn-cta:hover {
-        transform: translateY(-2px);
-        opacity: 0.9;
-      }
-
-      /* -------------------------------------------------------------
-         SIGNUP FORM (FORMULARIO GRANDE CON FOTO DE FONDO)
-      ------------------------------------------------------------- */
-
-      .signup-section {
-        padding: 100px 20px;
-        text-align: center;
-        position: relative;
-
-        background-image: linear-gradient(
-            rgba(0, 0, 0, 0.7),
-            rgba(0, 0, 0, 0.7)
-          ),
-          url("images/signup-bg.jpg");
-        background-size: cover;
-        background-position: center;
-      }
-
-      .signup-form {
-        background: rgba(255, 255, 255, 0.07);
-        padding: 40px;
-        border-radius: 12px;
-        max-width: 650px;
-        margin: auto;
-        backdrop-filter: blur(8px);
-      }
-
-      .signup-form h2 {
-        margin-bottom: 20px;
+      .hero-title {
         font-size: 2rem;
       }
 
-      .form-group {
-        text-align: left;
-        margin-bottom: 20px;
+      .hero-subtitle {
+        font-size: 1rem;
       }
 
-      .form-group label {
-        display: block;
-        opacity: 0.9;
-        margin-bottom: 4px;
+      .steps,
+      .features-grid,
+      .problem-solution {
+        gap: 18px;
       }
 
-      .form-group input,
-      .form-group select {
-        width: 100%;
-        padding: 12px;
-        border-radius: 6px;
-        border: none;
+      .stats-grid {
+        grid-template-columns: 1fr 1fr;
       }
 
-      .submit-btn {
-        width: 100%;
-        padding: 14px;
-        background: white;
-        color: black;
-        border-radius: 10px;
-        font-weight: 700;
-        font-size: 1.1rem;
-        cursor: pointer;
-        transition: 0.2s;
+      .videos-arrow {
+        display: none;
       }
 
-      .submit-btn:hover {
-        opacity: 0.85;
+      .countdown-timer {
+        gap: 10px;
       }
 
-      /* -------------------------------------------------------------
-         FOOTER
-      ------------------------------------------------------------- */
-
-      footer {
-        margin-top: 60px;
-        text-align: center;
-        padding: 40px;
-        opacity: 0.7;
+      .time-box {
+        min-width: 62px;
+        padding: 8px 10px;
       }
-    </style>
-  </head>
 
-  <body>
-    <!-- HEADER -->
-    <header class="header">
-      <div class="logo" id="logo">ATHLEAD</div>
+      .time-box span {
+        font-size: 20px;
+      }
 
-      <button class="menu-toggle" id="menuToggle">☰</button>
+      .who-we-are p {
+        font-size: 15px;
+      }
+    }
 
-      <nav class="nav-links">
-        <a href="#who-we-are">Quiénes somos</a>
-        <a href="#how-it-works">Cómo funciona</a>
-        <a href="#signup">Registro</a>
-      </nav>
+    @media (min-width: 1024px) {
+      /* Hero más panorámico en desktop */
+      .hero-section {
+        padding-top: 140px;
+      }
 
-      <!-- Buscador desktop -->
-      <form class="header-search" action="https://www.google.com/search" method="GET" target="_blank">
+      .videos-arrow {
+        display: flex;
+      }
+
+      .videos-track {
+        overflow-x: hidden;
+      }
+
+      .video-card {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+
+      .video-card video {
+        aspect-ratio: 16 / 9;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo" id="logo">ATHLEAD</div>
+
+    <nav class="nav-links">
+      <a href="#who-we-are">Quiénes somos</a>
+      <a href="#how-it-works">Cómo funciona</a>
+      <a href="#signup">Regístrate</a>
+      <a href="#features">Características</a>
+      <a href="#problem-section">Jugadores invisibles</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contacto</a>
+    </nav>
+
+    <div class="header-actions">
+      <!-- Buscador solo desktop -->
+      <form
+        class="header-search"
+        action="https://www.google.com/search"
+        method="GET"
+        target="_blank"
+      >
         <input
           type="text"
           name="q"
           class="header-search-input"
-          placeholder="Buscar..."
+          placeholder="Buscar en Athlead..."
         />
       </form>
-    </header>
 
-    <!-- HERO -->
-    <section class="hero-section" id="home">
-      <video class="hero-video" autoplay muted loop playsinline>
-        <source src="videos/hero.mp4" type="video/mp4" />
-      </video>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">☰</button>
+    </div>
+  </header>
 
-      <div class="hero-content">
-        <h1>En el fútbol no se gana con dinero. Se gana con talento.</h1>
-        <p class="hero-subtitle">Deja que tu talento hable por ti.</p>
+  <!-- MENÚ MÓVIL -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-links">
+      <a href="#who-we-are">Quiénes somos</a>
+      <a href="#how-it-works">Cómo funciona</a>
+      <a href="#signup">Regístrate</a>
+      <a href="#features">Características</a>
+      <a href="#problem-section">Jugadores invisibles</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contacto</a>
+    </div>
+  </div>
 
-        <div class="hero-buttons">
-          <a href="#signup" class="btn-cta">Únete a la lista de espera</a>
-          <a href="#who-we-are" class="btn-secondary">¿Quiénes somos?</a>
+  <!-- HERO -->
+  <section class="hero-section" id="home">
+    <video class="hero-video" autoplay muted loop playsinline>
+      <source src="videos/hero.mp4" type="video/mp4" />
+    </video>
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span>Fútbol amateur · España</span>
+      </div>
+
+      <h1 class="hero-title">En el fútbol no se gana con dinero. Se gana con talento.</h1>
+      <p class="hero-subtitle">Deja que tu talento hable por ti.</p>
+
+      <div class="hero-buttons">
+        <a href="#signup" class="btn btn-cta">Únete a la lista de espera</a>
+        <a href="#who-we-are" class="btn btn-secondary">¿Sabes quién soy?</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- COUNTDOWN -->
+  <section class="countdown-section" id="countdown">
+    <div class="section-inner" style="text-align: center;">
+      <p class="countdown-title">Lanzamiento oficial en</p>
+
+      <div class="countdown-timer">
+        <div class="time-box">
+          <span id="days">0</span>
+          <small>días</small>
+        </div>
+        <div class="time-box">
+          <span id="hours">0</span>
+          <small>horas</small>
+        </div>
+        <div class="time-box">
+          <span id="minutes">0</span>
+          <small>min</small>
+        </div>
+        <div class="time-box">
+          <span id="seconds">0</span>
+          <small>seg</small>
         </div>
       </div>
-    </section>
 
-    <!-- SIGNUP FORM -->
-    <section class="signup-section" id="signup">
-      <form class="signup-form">
-        <h2>Únete a Athlead</h2>
+      <p class="countdown-subtitle">
+        Athlead estará disponible muy pronto. Apúntate para tener acceso anticipado. Ya contamos con
+        200 usuarios y creciendo.
+      </p>
+    </div>
+  </section>
 
-        <div class="form-group">
-          <label>Nombre completo</label>
-          <input type="text" required />
+  <!-- QUIÉNES SOMOS -->
+  <section class="who-we-are" id="who-we-are">
+    <div class="section-inner">
+      <p class="section-kicker">Quiénes somos</p>
+      <h2>Una app hecha por jugadores para jugadores invisibles</h2>
+      <p>
+        Athlead nace de una pasión por el fútbol y una frustración común: miles de jóvenes con
+        talento extraordinario en España que nunca tienen la oportunidad de ser vistos porque no
+        tienen contactos, no viven en grandes ciudades o no pueden pagar academias caras.
+      </p>
+      <p>
+        Somos una comunidad de exjugadores, entrenadores y fans que creemos en el fútbol auténtico.
+        El que se juega en los campos de barrio, en los polideportivos y en los campos de tierra. El
+        fútbol de los que no tienen patrocinadores, pero sí corazón.
+      </p>
+      <p>
+        No somos scouts, ni una academia ni una empresa de servicios. Somos una plataforma creada
+        por y para los jugadores. Una herramienta simple, gratuita y potente que pone el talento en
+        primer lugar.
+      </p>
+    </div>
+  </section>
+
+  <!-- JUGADAS DESTACADAS -->
+  <section class="highlight-videos" id="highlight-videos">
+    <div class="section-inner">
+      <p class="section-kicker">Jugadas destacadas</p>
+      <h2>Mira cómo juegan los futuros fichajes</h2>
+      <p class="highlight-subtitle">
+        Vídeos reales de jugadores como tú. Lo que pasa cada fin de semana en los campos de barrio,
+        ahora en un solo lugar.
+      </p>
+
+      <div class="videos-carousel">
+        <button class="videos-arrow prev" aria-label="Vídeo anterior">‹</button>
+
+        <div class="videos-track">
+          <div class="video-card">
+            <video src="videos/highlight1.mp4" controls muted playsinline></video>
+            <div class="video-info">
+              <h3>Luqui Sorry · U17</h3>
+              <p>Contra el equipo campeón de la liga. Presión alta, robo y definición cruzada.</p>
+            </div>
+          </div>
+
+          <div class="video-card">
+            <video src="videos/highlight2.mp4" controls muted playsinline></video>
+            <div class="video-info">
+              <h3>Luqui Sorry · U17</h3>
+              <p>Pared al primer toque y definición al ángulo. Nada de filtros, solo fútbol.</p>
+            </div>
+          </div>
+
+          <div class="video-card">
+            <video src="videos/highlight3.mp4" controls muted playsinline></video>
+            <div class="video-info">
+              <h3>Luqui Sorry · U17</h3>
+              <p>El gol que nadie esperaba, menos el portero.</p>
+            </div>
+          </div>
         </div>
 
-        <div class="form-group">
-          <label>Edad</label>
-          <input type="number" required />
-        </div>
+        <button class="videos-arrow next" aria-label="Siguiente vídeo">›</button>
+      </div>
+    </div>
+  </section>
 
+  <!-- CÓMO FUNCIONA -->
+  <section class="how-it-works" id="how-it-works">
+    <div class="section-inner">
+      <p class="section-kicker">Cómo funciona</p>
+      <h2>Simple, rápido y directo al punto</h2>
+      <p>En menos de 3 minutos puedes tener un perfil que hable por ti dentro del campo.</p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Crea tu perfil 😎</h3>
+          <p>
+            Regístrate con tu email y completa tu información básica: nombre, posición, edad y
+            equipo actual. Nada de formularios eternos.
+          </p>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Sube tus vídeos 🎞️</h3>
+          <p>
+            Comparte tus mejores jugadas, goles, asistencias o acciones defensivas directamente
+            desde tu móvil. Vídeos cortos, claros y reales.
+          </p>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Sé descubierto 😍</h3>
+          <p>
+            Scouts, academias y clubes pueden encontrar tu perfil y contactarte directamente. Sin
+            intermediarios, sin pagar por ser visto.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SIGNUP -->
+  <section class="signup-section" id="signup">
+    <div class="section-inner">
+      <p class="section-kicker">Acceso anticipado</p>
+      <h2>Regístrate para entrar en la primera generación Athlead</h2>
+      <p>
+        Únete a los primeros jugadores que van a dejar de ser invisibles. Completa este formulario y
+        recibe una guía gratuita para que tu perfil destaque desde el primer día.
+      </p>
+
+      <div class="premium-offer">
+        ¿Quieres más visibilidad?
+        <br />
+        Regístrate hoy y llévate 1 mes Premium GRATIS + una guía personalizada para que tu perfil
+        destaque desde el primer día.
+        <small>*Oferta válida para los primeros 500 registrados.</small>
+      </div>
+
+      <form
+        class="signup-form"
+        action="https://script.google.com/macros/s/AKfycbzJLa15-mvHbZZ4MLDJ9asjBTHCcYdMXwvs4k2DuSxOQyMej1ZhVQRjxWD9b4zhDf5aSQ/exec"
+        method="POST"
+      >
         <div class="form-group">
-          <label>Posición</label>
-          <select>
-            <option>Delantero</option>
-            <option>Extremo</option>
-            <option>Mediocentro</option>
-            <option>Defensa</option>
-            <option>Portero</option>
+          <label for="role">¿Eres?</label>
+          <select id="role" name="role" class="form-select" required>
+            <option value="">Selecciona tu rol</option>
+            <option value="jugador">Jugador de fútbol</option>
+            <option value="entrenador">Entrenador</option>
+            <option value="club">Club / Academia</option>
           </select>
         </div>
 
-        <button class="submit-btn">Registrarme</button>
+        <div class="form-group">
+          <label for="signup-name">Nombre y Apellido</label>
+          <input
+            type="text"
+            id="signup-name"
+            name="name"
+            class="form-control"
+            placeholder="Tu nombre completo"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="signup-email">Email</label>
+          <input
+            type="email"
+            id="signup-email"
+            name="email"
+            class="form-control"
+            placeholder="tu@email.com"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="source">¿Por dónde nos conociste?</label>
+          <select id="source" name="source" class="form-select" required>
+            <option value="">Selecciona una opción</option>
+            <option value="red social">Red social</option>
+            <option value="recomendacion">Recomendación</option>
+            <option value="ia">Inteligencia Artificial</option>
+            <option value="internet">Internet</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="recommend"
+            >Del 1 al 10, ¿cuánto recomendarías la aplicación a un amigo?</label
+          >
+          <select id="recommend" name="recommend" class="form-select" required>
+            <option value="">Selecciona una puntuación</option>
+            <option value="1">1 - No la recomendaría</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5 - Neutral</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10 - La recomendaría mucho</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="idea">Del 1 al 10, ¿qué te parece esta idea?</label>
+          <select id="idea" name="idea" class="form-select" required>
+            <option value="">Selecciona una puntuación</option>
+            <option value="1">1 - Muy mala idea</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5 - Neutral</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10 - Excelente idea</option>
+          </select>
+        </div>
+
+        <button type="submit" class="submit-btn">¡SÍ, QUIERO ACCESO ANTICIPADO!</button>
       </form>
-    </section>
+    </div>
+  </section>
 
-    <footer>
-      © 2025 Athlead. Todos los derechos reservados.
-    </footer>
+  <!-- FOOTBALL STATS -->
+  <section class="football-stats-section" id="football-stats">
+    <div class="section-inner">
+      <p class="section-kicker">Fútbol amateur en España</p>
+      <h2>Millones de jugadores. Muy pocos son vistos.</h2>
+      <p>
+        Los números hablan por sí solos. Esta es la realidad del fútbol amateur en España y el
+        motivo por el que existe Athlead.
+      </p>
 
-    <script>
-      // Menu móvil
-      const menuToggle = document.getElementById("menuToggle");
-      const navLinks = document.querySelector(".nav-links");
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">5,2M</div>
+          <div class="stat-label">Jugadores registrados en federaciones españolas.</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">87%</div>
+          <div class="stat-label">
+            Nunca han tenido una conversación real con un scout o una academia.
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">1,8M</div>
+          <div class="stat-label">Juegan sin acceso a academias de alto rendimiento.</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">92%</div>
+          <div class="stat-label">
+            De los entrenadores ya buscan talento en redes sociales o internet.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      menuToggle.onclick = () => {
-        navLinks.style.display =
-          navLinks.style.display === "flex" ? "none" : "flex";
-      };
-    </script>
-  </body>
+  <!-- FEATURES -->
+  <section class="features" id="features">
+    <div class="section-inner">
+      <p class="section-kicker">Pensado para ti</p>
+      <h2>Tu talento merece un escaparate mejor que un grupo de WhatsApp</h2>
+      <p>
+        Athlead convierte tus jugadas en un perfil claro, ordenado y fácil de entender para
+        cualquiera que sepa de fútbol.
+      </p>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <h3>Sube tus jugadas 🕺</h3>
+          <p>
+            Comparte tus mejores momentos: goles, asistencias, regates, robos o salidas jugando. En
+            vídeos cortos que van directos al grano.
+          </p>
+        </div>
+        <div class="feature-card">
+          <h3>Conecta con el mundo 🌎</h3>
+          <p>
+            Vincula tu Instagram, TikTok o YouTube para que se vea tu evolución, tu carácter y tu
+            trabajo fuera de los 90 minutos.
+          </p>
+        </div>
+        <div class="feature-card">
+          <h3>Visibilidad real 🏆</h3>
+          <p>
+            Entrenadores, scouts y clubes pueden encontrarte usando filtros por edad, posición y
+            zona. Tú decides qué muestras y cómo.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM / SOLUTION -->
+  <section class="problem-section" id="problem-section">
+    <div class="section-inner">
+      <p class="section-kicker">Jugadores invisibles</p>
+      <h2>El fútbol no debería ser solo para los que tienen contactos</h2>
+      <p>
+        Millones de jugadores en España tienen talento pero no oportunidad. No pueden pagar escuelas
+        caras, no conocen a nadie en clubes grandes y sus habilidades se quedan escondidas en un
+        campo de barrio.
+      </p>
+
+      <div class="problem-solution">
+        <div class="problem">
+          <h3>El problema</h3>
+          <p>
+            Los jugadores amateurs no tienen visibilidad. Sus vídeos están perdidos entre grupos,
+            chats y redes sin contexto. Un jugador con potencial puede estar a 10 minutos de un club,
+            pero nunca sabrán que existe.
+          </p>
+        </div>
+        <div class="solution">
+          <h3>Nuestra solución</h3>
+          <p>
+            Athlead es la primera red deportiva española que conecta directamente a jugadores con
+            scouts y clubes. Sin intermediarios, sin pagar por ser visto. Subes tu vídeo, compartes
+            tu perfil y dejas que el fútbol haga el resto.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section" id="faq">
+    <div class="section-inner">
+      <p class="section-kicker">FAQ</p>
+      <h2>Preguntas frecuentes</h2>
+      <p>Todo lo que necesitas saber sobre Athlead antes de subir tu primera jugada.</p>
+
+      <div class="faq-container">
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>¿Es gratis usar Athlead?</span>
+            <span class="faq-arrow">▼</span>
+          </div>
+          <div class="faq-answer">
+            Sí, Athlead es completamente gratuito para jugadores. No cobramos por crear tu perfil,
+            subir videos o recibir mensajes de scouts. Nuestra misión es democratizar el acceso al
+            fútbol profesional, no venderte promesas vacías.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>¿Qué tipo de vídeos puedo subir?</span>
+            <span class="faq-arrow">▼</span>
+          </div>
+          <div class="faq-answer">
+            Puedes subir cualquier vídeo que muestre tu talento: goles, asistencias, regates,
+            defensas, liderazgo o incluso entrenamientos. Lo ideal son clips de 15 a 60 segundos,
+            donde se vea claramente qué aportas como jugador.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>¿Quiénes pueden ver mi perfil?</span>
+            <span class="faq-arrow">▼</span>
+          </div>
+          <div class="faq-answer">
+            Tu perfil es visible para todos los usuarios de Athlead y para scouts, entrenadores o
+            clubes que buscan talento. Podrás elegir si tu perfil es público o si solo quieres que
+            se muestre en búsquedas específicas.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>¿Puedo vincular mi Instagram o TikTok?</span>
+            <span class="faq-arrow">▼</span>
+          </div>
+          <div class="faq-answer">
+            Sí. Podrás vincular tus redes para que vean más de ti: cómo entrenas, cómo eres fuera
+            del campo y cómo vives el fútbol en tu día a día. Eso también es parte de tu perfil.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>¿Cómo sé si un scout me ha visto?</span>
+            <span class="faq-arrow">▼</span>
+          </div>
+          <div class="faq-answer">
+            Cuando un scout, entrenador o club te quiera contactar, recibirás una notificación en la
+            app (cuando esté disponible) y un email. Nadie te llamará por teléfono sin tu permiso, y
+            siempre tendrás el control de con quién hablas.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>¿Cuándo se lanza Athlead?</span>
+            <span class="faq-arrow">▼</span>
+          </div>
+          <div class="faq-answer">
+            Athlead se lanzará oficialmente en septiembre de 2026. Si te registras ahora, tendrás
+            acceso anticipado, actualizaciones exclusivas y una guía para preparar tu perfil de la
+            mejor manera posible antes del lanzamiento.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="contact-section" id="contact">
+    <div class="section-inner">
+      <p class="section-kicker">Contacto</p>
+      <h2>¿Tienes dudas?</h2>
+      <p>
+        Escríbenos. Estamos construyendo Athlead contigo y queremos escuchar lo que necesitas para
+        que tu talento sea visto.
+      </p>
+
+      <form class="contact-form" id="contactForm">
+        <div class="form-group">
+          <label for="contact-name">Nombre</label>
+          <input
+            type="text"
+            id="contact-name"
+            name="nombre"
+            class="form-control"
+            placeholder="Tu nombre completo"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="contact-email">Email</label>
+          <input
+            type="email"
+            id="contact-email"
+            name="email"
+            class="form-control"
+            placeholder="tu@email.com"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="contact-message">Mensaje</label>
+          <textarea
+            id="contact-message"
+            name="mensaje"
+            class="form-control"
+            rows="5"
+            placeholder="¿Qué te gustaría saber sobre Athlead? ¿Tienes alguna idea, duda o propuesta?"
+            required
+          ></textarea>
+        </div>
+
+        <button type="submit" class="contact-btn">Enviar mensaje</button>
+
+        <div id="contactSuccess" class="contact-success">
+          ¡Gracias por contactarnos! Te responderemos en menos de 48 horas.
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-links">
+        <a href="#who-we-are">Quiénes somos</a>
+        <a href="#how-it-works">Cómo funciona</a>
+        <a href="#signup">Regístrate</a>
+        <a href="#features">Características</a>
+        <a href="#problem-section">Jugadores invisibles</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contacto</a>
+      </div>
+
+      <div class="copyright">© 2025 Athlead. Todos los derechos reservados.</div>
+
+      <div class="privacy-links">
+        <a href="#privacy">Política de Privacidad</a>
+        <a href="#terms">Términos y Condiciones</a>
+        <a href="#cookies">Política de Cookies</a>
+        <a href="#data">Protección de Datos</a>
+      </div>
+
+      <div class="footer-tagline">Deja que el talento hable por ti.</div>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll al top al clicar logo
+    document.getElementById('logo').addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Menú móvil
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    menuToggle.addEventListener('click', function (e) {
+      e.stopPropagation();
+      const isOpen = mobileMenu.classList.contains('active');
+      if (isOpen) {
+        mobileMenu.classList.remove('active');
+        menuToggle.textContent = '☰';
+      } else {
+        mobileMenu.classList.add('active');
+        menuToggle.textContent = '✕';
+      }
+    });
+
+    // Cerrar menú móvil al clicar enlace
+    document.querySelectorAll('.mobile-menu-links a').forEach((link) => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+        menuToggle.textContent = '☰';
+      });
+    });
+
+    // Cerrar menú móvil al clicar fuera
+    document.addEventListener('click', (e) => {
+      if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+        mobileMenu.classList.remove('active');
+        menuToggle.textContent = '☰';
+      }
+    });
+
+    // Scroll suave para anclas
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener('click', function (e) {
+        const targetId = this.getAttribute('href');
+        if (targetId.length > 1) {
+          e.preventDefault();
+          const target = document.querySelector(targetId);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      });
+    });
+
+    // Animación de aparición en scroll
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    document
+      .querySelectorAll('.feature-card, .step, .problem, .solution, .faq-item, .stat-card')
+      .forEach((card) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        card.style.transition = 'all 0.5s ease';
+        observer.observe(card);
+      });
+
+    // Formulario de contacto → Google Sheets
+    const CONTACT_SCRIPT_URL =
+      'https://script.google.com/macros/s/AKfycbx5udqjlBi3yRKZMGbfgNxvzvBozoeyglYj9drSUo2C4OIBLQmJJqOXTtyuz-aouAO9/exec';
+
+    const contactForm = document.getElementById('contactForm');
+    const contactSuccess = document.getElementById('contactSuccess');
+
+    contactForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const formData = new FormData(contactForm);
+
+      fetch(CONTACT_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        body: formData
+      })
+        .then(() => {
+          contactSuccess.style.display = 'block';
+          contactForm.reset();
+          setTimeout(() => {
+            contactSuccess.style.display = 'none';
+          }, 5000);
+        })
+        .catch((error) => {
+          console.error('Error al enviar el mensaje:', error);
+          alert('Ha habido un error al enviar el mensaje. Inténtalo de nuevo.');
+        });
+    });
+
+    // FAQ acordeón
+    document.querySelectorAll('.faq-item').forEach((item) => {
+      const question = item.querySelector('.faq-question');
+      if (!question) return;
+      question.addEventListener('click', () => {
+        item.classList.toggle('active');
+      });
+    });
+
+    // Cuenta atrás hasta lanzamiento
+    (function () {
+      const launchDate = new Date('2026-08-01T00:00:00').getTime();
+      const daysEl = document.getElementById('days');
+      const hoursEl = document.getElementById('hours');
+      const minutesEl = document.getElementById('minutes');
+      const secondsEl = document.getElementById('seconds');
+      const countdownSection = document.getElementById('countdown');
+      if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
+
+      function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = launchDate - now;
+
+        if (distance <= 0) {
+          daysEl.textContent = '0';
+          hoursEl.textContent = '0';
+          minutesEl.textContent = '0';
+          secondsEl.textContent = '0';
+          const subtitle = countdownSection.querySelector('.countdown-subtitle');
+          if (subtitle) {
+            subtitle.textContent = 'Athlead ya está disponible. ¡Gracias por acompañarnos!';
+          }
+          return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        daysEl.textContent = days;
+        hoursEl.textContent = hours.toString().padStart(2, '0');
+        minutesEl.textContent = minutes.toString().padStart(2, '0');
+        secondsEl.textContent = seconds.toString().padStart(2, '0');
+      }
+
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+    })();
+
+    // Ocultar / mostrar header al hacer scroll
+    let lastScroll = 0;
+    const header = document.querySelector('.header');
+
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+      if (currentScroll > lastScroll && currentScroll > 80) {
+        header.classList.add('hide-header');
+      } else if (currentScroll < lastScroll) {
+        header.classList.remove('hide-header');
+      }
+      lastScroll = currentScroll;
+    });
+
+    // Carrusel de vídeos (flechas solo desktop)
+    const videosTrack = document.querySelector('.videos-track');
+    const prevBtn = document.querySelector('.videos-arrow.prev');
+    const nextBtn = document.querySelector('.videos-arrow.next');
+
+    if (videosTrack && prevBtn && nextBtn) {
+      const scrollSlide = () => videosTrack.clientWidth;
+
+      prevBtn.addEventListener('click', () => {
+        videosTrack.scrollBy({ left: -scrollSlide(), behavior: 'smooth' });
+      });
+
+      nextBtn.addEventListener('click', () => {
+        videosTrack.scrollBy({ left: scrollSlide(), behavior: 'smooth' });
+      });
+    }
+
+    // Autoplay silencioso de vídeos en móvil
+    if (window.innerWidth < 768) {
+      document.querySelectorAll('.video-card video').forEach((v) => {
+        v.muted = true;
+        v.autoplay = true;
+        v.loop = true;
+        v.playsInline = true;
+        v.controls = false;
+        v.play().catch(() => {});
+      });
+    }
+  </script>
+</body>
 </html>
