@@ -153,61 +153,53 @@
   gap: 40px;
   animation: stats-scroll 16s linear infinite;  /* antes 25s */
 }
-    /* ===== Videos verticales SOLO en móvil ===== */
-@media (max-width: 768px) {
 
   @media (max-width: 768px) {
 
-  /* La sección de vídeos ocupa casi toda la altura, estilo “pantalla” */
+@media (max-width: 768px) {
+
+  /* Más espacio arriba y abajo */
   .highlight-videos {
-    padding: 40px 0;
+    padding: 20px 0;
   }
 
-  /* El carrusel tiene un poco de margen lateral */
-  .videos-carousel {
-    padding: 0 12px;
-    margin: 0;
-    gap: 0;
-  }
-
-  /* Pista: scroll táctil, con espacio entre slides y un solo block centrado */
+  /* Track con separación entre bloques */
   .videos-track {
     display: flex;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
-    padding: 0 6px;
-    gap: 24px;                  /* 🔥 separación entre bloques */
+    gap: 32px;                      /* 🔥 MÁS separación entre bloques */
+    padding: 0 16px;
   }
 
-  /* Cada tarjeta ocupa 100% de ancho, pero con márgenes → como Veo */
+  /* BLOQUES: más grandes, casi toda la pantalla */
   .video-card {
     flex: 0 0 100%;
     max-width: 100%;
-    scroll-snap-align: center;  /* se centra al soltar */
-    min-height: 72vh;           /* un poco más horizontal, pero sigue grande */
+    scroll-snap-align: center;
+    min-height: 86vh;               /* 🔥 MÁS GRANDE */
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 6px;              /* 🔥 margen lateral entre tarjetas */
   }
 
-  /* Vídeo “enmarcado” por el fondo, más horizontal que un 9:16 puro */
+  /* VIDEOS: formato reel pero ocupando casi toda la pantalla */
   .video-card video {
     width: 100%;
-    max-width: 95%;             /* deja fondo a los lados → efecto como captura de Veo */
-    aspect-ratio: 4 / 5;        /* 👈 más horizontal que 9:16, pero aún vertical tipo reel */
-    border-radius: 22px;
+    max-width: 100%;                /* 🔥 ahora ocupa todo el ancho */
+    aspect-ratio: 9 / 15;           /* 🔥 MÁS ALTO (más grande), pero NO un 9:16 puro */
     object-fit: cover;
-    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
+    border-radius: 18px;
+    box-shadow: 0 22px 50px rgba(0,0,0,0.6);
   }
 
-  /* Ocultamos texto debajo en móvil para que sea solo vídeo */
+  /* Ocultar texto */
   .video-info {
     display: none;
   }
 
-  /* Nada de flechas en móvil, solo dedo */
+  /* sin flechas */
   .videos-arrow {
     display: none;
   }
