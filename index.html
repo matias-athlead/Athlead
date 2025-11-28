@@ -156,59 +156,55 @@
 
 
 
-@media (max-width: 768px) {
 
 @media (max-width: 768px) {
 
-  /* La sección de vídeos ocupa toda la pantalla en móvil */
+ @media (max-width: 768px) {
+
+  /* Fullscreen section */
   .highlight-videos {
     padding: 0;
     margin: 0;
-  }
-
-  .videos-carousel {
-    padding: 0;
-    margin: 0;
     width: 100vw;
     height: 100vh;
   }
 
-  /* CARRUSEL: slides horizontales pantalla completa */
+  /* Horizontal fullscreen carousel */
   .videos-track {
     display: flex;
-    width: 100vw;
-    height: 100vh;
     overflow-x: auto;
     overflow-y: hidden;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
-    gap: 0;                /* muy importante: sin huecos entre slides */
+    width: 100vw;
+    height: 100vh;
+    gap: 0;              /* NO separation: solo 1 slide a la vez */
     padding: 0;
   }
 
-  /* Cada bloque = una diapositiva a pantalla completa */
+  /* Cada bloque ocupa toda la pantalla */
   .video-card {
-    flex: 0 0 100vw;       /* ocupa todo el ancho del móvil */
-    height: 100vh;         /* ocupa todo el alto de la pantalla */
+    flex: 0 0 100vw;
+    height: 100vh;
     scroll-snap-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #000;      /* fondo negro para que no se vea nada fuera del vídeo */
+    background: #000;   /* fondo negro para que el 4:3 se vea bien */
   }
 
-  /* VÍDEO EN HORIZONTAL (16:9) A PANTALLA COMPLETA */
+  /* VIDEO EN FORMATO 4:3 */
   .video-card video {
-    width: 100vw;              /* ocupa todo el ancho */
-    height: auto;
-    max-height: 100vh;         /* nunca pasa del alto de la pantalla */
-    aspect-ratio: 16 / 9;      /* 🔥 HORIZONTAL de verdad */
-    object-fit: contain;       /* se ve entero, sin cortar la imagen */
-    border-radius: 0;          /* pantalla completa */
-    background: #000;
+    width: 100%;
+    max-width: 100vw;   /* ocupa todo el ancho posible */
+    height: auto;       /* respetamos relación */
+    aspect-ratio: 4 / 3; /* 🔥 FORMATO EXACTO QUE QUIERES */
+    object-fit: contain; /* siempre se ve entero, sin cortar */
+    background: #000;    /* fondo negro arriba/abajo si hace falta */
+    border-radius: 0;    /* fullscreen feeling */
   }
 
-  /* En móvil no mostramos texto ni flechas */
+  /* En móvil ocultamos texto y flechas */
   .video-info {
     display: none;
   }
@@ -217,6 +213,7 @@
     display: none;
   }
 }
+
 
     /* Solo móvil: carrusel más rápido */
 @media (max-width: 768px) {
