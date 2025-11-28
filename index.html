@@ -1142,53 +1142,48 @@
   margin: 0 auto 40px;
 }
 
-/* Carrusel */
+/* Carrusel principal: un solo vídeo grande a la vez */
 .videos-carousel {
   position: relative;
-  max-width: 1100px;
+  max-width: 1000px;
   margin: 0 auto;
   display: flex;
   align-items: center;
   gap: 16px;
 }
 
-/* Pista de vídeos: táctil en móvil, carrusel en desktop */
+/* Pista de vídeos: un slide = 100% del ancho */
 .videos-track {
   display: flex;
-  gap: 20px;
-  overflow-x: auto;
+  width: 100%;
+  overflow-x: hidden;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-  padding: 10px 4px;
-  scrollbar-width: none;        /* Firefox */
-}
-.videos-track::-webkit-scrollbar {
-  display: none;                /* Chrome/Safari */
 }
 
-/* Cada tarjeta de vídeo */
+/* Cada slide ocupa todo el ancho del carrusel */
 .video-card {
-  flex: 0 0 320px;
-  max-width: 360px;
-  background: rgba(255, 255, 255, 0.04);
-  border-radius: 24px;
-  padding: 14px 14px 18px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
-  scroll-snap-align: center;
+  flex: 0 0 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
+/* Vídeo grande, sin marco, solo sombra ligera */
 .video-card video {
   width: 100%;
-  border-radius: 18px;
+  max-width: 960px;
+  border-radius: 24px;
   display: block;
+  box-shadow: 0 22px 45px rgba(0, 0, 0, 0.55);
 }
 
-/* Texto debajo del vídeo */
+/* Texto pequeño debajo del vídeo */
 .video-info {
-  margin-top: 10px;
-  text-align: left;
+  margin-top: 12px;
+  text-align: center;
+  max-width: 720px;
 }
 
 .video-info h3 {
@@ -1222,6 +1217,40 @@
   color: #000;
   transform: translateY(-1px);
 }
+
+/* ===== Ajustes móviles: scroll táctil, sin flechas ===== */
+@media (max-width: 768px) {
+  .highlight-videos {
+    padding: 70px 16px;
+  }
+
+  .highlight-videos h2 {
+    font-size: 28px;
+  }
+
+  .highlight-videos .highlight-subtitle {
+    font-size: 15px;
+    margin-bottom: 24px;
+  }
+
+  .videos-carousel {
+    gap: 0;
+  }
+
+  .videos-track {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+
+  .video-card {
+    scroll-snap-align: center;
+  }
+
+  .videos-arrow {
+    display: none; /* en móvil solo scroll con el dedo */
+  }
+}
+
 
 /* ===== Ajustes móviles ===== */
 @media (max-width: 768px) {
@@ -2190,7 +2219,7 @@ const prevBtn = document.querySelector('.videos-arrow.prev');
 const nextBtn = document.querySelector('.videos-arrow.next');
 
 if (videosTrack && prevBtn && nextBtn) {
-  const scrollAmount = 360; // píxeles que avanza cada vez
+const scrollAmount = videosTrack.clientWidth; // avanza 1 slide entero
 
   prevBtn.addEventListener('click', () => {
     videosTrack.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
