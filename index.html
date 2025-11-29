@@ -550,6 +550,25 @@
       line-height: 1.6;
       color: var(--text-muted);
     }
+      <!-- APP PREVIEW / MOCKUPS -->
+  <section class="app-preview" id="app-preview">
+    <div class="section-inner">
+      <p class="section-kicker">App Preview</p>
+      <h2>Así se ve Athlead por dentro</h2>
+      <p class="preview-text">
+        Mira algunas pantallas reales de la app: feed, mensajes, perfil, ranking y más.
+      </p>
+
+      <div class="mockup-gallery">
+        <img src="images/mockups/mockup1.png" alt="Mockup Athlead 1" />
+        <img src="images/mockups/mockup2.png" alt="Mockup Athlead 2" />
+        <img src="images/mockups/mockup3.png" alt="Mockup Athlead 3" />
+        <img src="images/mockups/mockup4.png" alt="Mockup Athlead 4" />
+        <img src="images/mockups/mockup5.png" alt="Mockup Athlead 5" />
+        <img src="images/mockups/mockup6.png" alt="Mockup Athlead 6" />
+      </div>
+    </div>
+  </section>
 
     /* ================= SIGNUP ================= */
 
@@ -1158,6 +1177,44 @@
   position: relative;
   z-index: 2;
 }
+    /* ============ APP PREVIEW / MOCKUPS ============ */
+
+.app-preview {
+  background: #000000;
+  text-align: center;
+}
+
+.app-preview h2 {
+  font-size: 32px;
+  margin-bottom: 10px;
+  letter-spacing: -0.03em;
+}
+
+.preview-text {
+  font-size: 15px;
+  opacity: 0.8;
+  max-width: 600px;
+  margin: 0 auto 40px;
+}
+
+.mockup-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 22px;
+}
+
+.mockup-gallery img {
+  width: 100%;
+  border-radius: 24px;
+  background: #101010;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.mockup-gallery img:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 28px 50px rgba(0, 0, 0, 0.65);
+}
 
 
   </style>
@@ -1174,6 +1231,7 @@
       <a href="#features">Características</a>
       <a href="#problem-section">Jugadores invisibles</a>
       <a href="#faq">FAQ</a>
+      <a href="#app-preview">App Preview</a>
       <a href="#contact">Contacto</a>
     </nav>
 
