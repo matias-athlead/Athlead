@@ -89,26 +89,25 @@
 
     /* ================= HEADER ================= */
 
-.header {
-  position: fixed;
-  top: 16px;
-  left: 50%;
-  transform: translate(-50%, 0);
-  width: min(1100px, 92%);
-  padding: 20px 28px; /* ⬅ MÁS ALTO */
-  border-radius: 999px;
-  background: rgba(0, 0, 0, 0.78);
-  backdrop-filter: blur(18px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 22px 45px rgba(0, 0, 0, 0.65);
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  transition: transform 0.6s ease-in-out;
-}
-
+    .header {
+      position: fixed;
+      top: 16px;
+      left: 50%;
+      transform: translate(-50%, 0);
+      width: min(1100px, 92%);
+      padding: 20px 28px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.78);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 22px 45px rgba(0, 0, 0, 0.65);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      transition: transform 0.6s ease-in-out;
+    }
 
     .header.hide-header {
       transform: translate(-50%, -180%);
@@ -222,6 +221,7 @@
       justify-content: center;
       overflow: hidden;
       background: #000;
+      z-index: 0;
     }
 
     .hero-video {
@@ -230,12 +230,20 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      opacity: 1;
-      z-index: -2;
+      opacity: 0.8;
+      z-index: 0;
     }
 
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.09);
+      z-index: 1;
+    }
 
     .hero-content {
+      position: relative;
+      z-index: 2;
       max-width: 900px;
       margin: 0 auto;
       text-align: center;
@@ -401,7 +409,7 @@
       margin-bottom: 0;
     }
 
-    /* ================= HIGHLIGHT VIDEOS ================= */
+    /* ================= JUGADAS DESTACADAS ================= */
 
     .highlight-videos {
       background: #000000;
@@ -474,7 +482,7 @@
     }
 
     .videos-arrow {
-      display: none; /* solo desktop, se activa en media query */
+      display: none;
       background: rgba(0, 0, 0, 0.7);
       border: 1px solid rgba(255, 255, 255, 0.4);
       color: #ffffff;
@@ -495,81 +503,189 @@
       transform: translateY(-1px);
     }
 
-    /* ================= CÓMO FUNCIONA ================= */
+    /* ========== CÓMO FUNCIONA · BLOQUES TIPO VEO ========== */
 
     .how-it-works {
-      background: #050509;
-      text-align: center;
+      background: #f3eee6; /* tono arena como Veo */
+      color: #111111;
+      text-align: left;
     }
 
     .how-it-works h2 {
       font-size: 32px;
       letter-spacing: -0.03em;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
+      color: #111111;
     }
 
-    .how-it-works > .section-inner > p {
+    .how-subtitle {
       font-size: 15px;
-      opacity: 0.8;
+      max-width: 560px;
+      color: rgba(0, 0, 0, 0.72);
+      margin-bottom: 32px;
     }
 
-    .steps {
+    .roles-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 24px;
-      margin-top: 40px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 32px;
     }
 
-    .step {
-      background: var(--bg-card);
-      border-radius: 20px;
-      padding: 28px 22px;
-      border: 1px solid var(--border-soft);
-      text-align: left;
-    }
-
-    .step-number {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
+    .role-card {
       background: #ffffff;
-      color: #000000;
+      border-radius: 32px;
+      padding: 32px 28px 28px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
       display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .role-image {
+      width: 100%;
+      max-width: 380px;
+      margin: 0 auto 24px;
+      display: block;
+    }
+
+    .role-label {
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(0, 0, 0, 0.6);
+      margin-bottom: 6px;
+    }
+
+    .role-title {
+      font-size: 22px;
+      margin-bottom: 8px;
+      color: #111111;
+    }
+
+    .role-description {
+      font-size: 15px;
+      color: rgba(0, 0, 0, 0.78);
+      margin-bottom: 12px;
+    }
+
+    .role-benefits {
+      list-style: none;
+      padding-left: 0;
+      margin: 0 0 20px;
+      font-size: 14px;
+      color: rgba(0, 0, 0, 0.78);
+    }
+
+    .role-benefits li {
+      position: relative;
+      padding-left: 18px;
+      margin-bottom: 6px;
+    }
+
+    .role-benefits li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: #0a7be8;
+    }
+
+    .role-cta {
+      margin-top: auto;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-weight: 700;
+      padding: 10px 22px;
+      border-radius: 999px;
+      background: #000000;
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .role-cta:hover {
+      background: #111111;
+      transform: translateY(-1px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    /* ========== PANTALLAS DETALLE JUGADOR / CLUB ========== */
+
+    .role-detail {
+      background: #000000;
+    }
+
+    .role-detail-alt {
+      background: #050509;
+    }
+
+    .role-detail h2 {
+      font-size: 30px;
+      letter-spacing: -0.03em;
+      margin-bottom: 18px;
+    }
+
+    .role-detail-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 36px;
+      align-items: center;
+    }
+
+    .role-detail-text p {
+      font-size: 15px;
+      color: var(--text-muted);
       margin-bottom: 14px;
     }
 
-    .step h3 {
-      font-size: 18px;
+    .role-detail-list {
+      list-style: none;
+      padding-left: 0;
+      margin: 10px 0 0;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .role-detail-list li {
       margin-bottom: 10px;
     }
 
-    .step p {
-      font-size: 14px;
-      line-height: 1.6;
-      color: var(--text-muted);
+    .role-detail-list strong {
+      color: #ffffff;
+    }
+
+    .role-detail-media {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .role-detail-image {
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      max-width: 360px;
+      width: 100%;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.7);
     }
 
     /* ================= SIGNUP ================= */
 
-   .signup-section {
-  position: relative;
-  text-align: center;
-  padding: 100px 20px;
-
-  /* FOTO DE FONDO */
-  background-image: linear-gradient(
-      rgba(0, 0, 0, 0.5),   /* sombra suave para que el formulario se vea */
-      rgba(0, 0, 0, 0.5)
-    ),
-    url("images/signup-bg.jpg");  /* 🔥 tu imagen */
-  
-  background-size: cover;      /* ocupa todo */
-  background-position: center; /* centrada */
-  background-repeat: no-repeat;
-}
+    .signup-section {
+      position: relative;
+      text-align: center;
+      padding: 100px 20px;
+      background-image: linear-gradient(
+          rgba(0, 0, 0, 0.5),
+          rgba(0, 0, 0, 0.5)
+        ),
+        url("images/signup-bg.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
 
     .signup-section h2 {
       font-size: 32px;
@@ -602,17 +718,16 @@
       opacity: 0.9;
     }
 
-     .signup-form {
+    .signup-form {
       max-width: 640px;
       margin: 0 auto;
-      background: rgba(255, 255, 255, 0.40);
+      background: rgba(255, 255, 255, 0.4);
       border-radius: 20px;
       padding: 28px 24px 30px;
       border: 1px solid var(--border-soft);
       text-align: left;
       backdrop-filter: blur(12px);
-}
-
+    }
 
     .form-group {
       margin-bottom: 16px;
@@ -1014,10 +1129,6 @@
         padding: 64px 18px;
       }
 
-      .steps {
-        grid-template-columns: 1fr;
-      }
-
       .features-grid {
         grid-template-columns: 1fr;
       }
@@ -1033,6 +1144,23 @@
       .video-card {
         flex: 0 0 90%;
         max-width: 90%;
+      }
+
+      .roles-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .role-card {
+        max-width: 540px;
+        margin: 0 auto;
+      }
+
+      .role-detail-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .role-detail-media {
+        order: -1;
       }
     }
 
@@ -1066,12 +1194,6 @@
         font-size: 1rem;
       }
 
-      .steps,
-      .features-grid,
-      .problem-solution {
-        gap: 18px;
-      }
-
       .stats-grid {
         grid-template-columns: 1fr 1fr;
       }
@@ -1099,7 +1221,6 @@
     }
 
     @media (min-width: 1024px) {
-      /* Hero más panorámico en desktop */
       .hero-section {
         padding-top: 140px;
       }
@@ -1125,42 +1246,6 @@
         grid-template-columns: repeat(4, minmax(0, 1fr));
       }
     }
-/* ========== HERO CON VÍDEO DE FONDO ========== */
-.hero-section {
-  position: relative;
-  min-height: 100vh;
-  padding: 120px 16px 80px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  background: #000;
-  z-index: 0;
-}
-
-.hero-video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.8;      /* 🔺 antes 0.45 */
-  z-index: 0;
-}
-
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.09);  /* 🔺 antes 0.15, mucho más clara */
-  z-index: 1;
-}
-
-.hero-content {
-  position: relative;
-  z-index: 2;
-}
-
-
   </style>
 </head>
 <body>
@@ -1178,7 +1263,6 @@
     </nav>
 
     <div class="header-actions">
-      <!-- Buscador solo desktop -->
       <form
         class="header-search"
         action="https://www.google.com/search"
@@ -1329,37 +1413,158 @@
     </div>
   </section>
 
-  <!-- CÓMO FUNCIONA -->
+  <!-- CÓMO FUNCIONA · BLOQUES TIPO VEO -->
   <section class="how-it-works" id="how-it-works">
     <div class="section-inner">
       <p class="section-kicker">Cómo funciona</p>
-      <h2>Simple, rápido y directo al punto</h2>
-      <p>En menos de 3 minutos puedes tener un perfil que hable por ti dentro del campo.</p>
+      <h2>La misma app, dos formas de usarla</h2>
+      <p class="how-subtitle">
+        Athlead está pensada para los dos lados del juego: jugadores que quieren dejar de ser
+        invisibles y clubes o entrenadores que necesitan encontrar talento real sin perder tiempo.
+      </p>
 
-      <div class="steps">
-        <div class="step">
-          <div class="step-number">1</div>
-          <h3>Crea tu perfil 😎</h3>
-          <p>
-            Regístrate con tu email y completa tu información básica: nombre, posición, edad y
-            equipo actual. Nada de formularios eternos.
+      <div class="roles-grid">
+        <!-- BLOQUE JUGADOR -->
+        <article class="role-card">
+          <img
+            src="images/athlead-jugador-main.png"
+            alt="Vista de Athlead para jugadores"
+            class="role-image"
+          />
+          <span class="role-label">Para jugadores</span>
+          <h3 class="role-title">Tu escaparate de fútbol en el bolsillo</h3>
+          <p class="role-description">
+            Crea tu perfil en minutos, sube tus mejores jugadas y muestra quién eres dentro del
+            campo sin depender de contactos.
           </p>
+          <ul class="role-benefits">
+            <li>Perfil con posición, edad, equipo y datos clave.</li>
+            <li>Vídeos cortos ordenados por tipo de jugada.</li>
+            <li>Visibilidad frente a entrenadores y scouts que ya buscan online.</li>
+          </ul>
+          <a href="#jugador-detalle" class="role-cta">Explorar</a>
+        </article>
+
+        <!-- BLOQUE CLUB / ENTRENADOR -->
+        <article class="role-card">
+          <img
+            src="images/athlead-clubes-main.png"
+            alt="Vista de Athlead para clubes y entrenadores"
+            class="role-image"
+          />
+          <span class="role-label">Para clubes y entrenadores</span>
+          <h3 class="role-title">Encuentra talento sin perder horas en vídeos sueltos</h3>
+          <p class="role-description">
+            Un panel pensado para fichar mejor: filtros avanzados, rankings y listas de seguimiento
+            para tener controlado a cada jugador interesante.
+          </p>
+          <ul class="role-benefits">
+            <li>Filtros por edad, posición y zona geográfica.</li>
+            <li>Perfiles con contexto y jugadas ordenadas.</li>
+            <li>Mensajes directos, sin intermediarios ni comisiones ocultas.</li>
+          </ul>
+          <a href="#club-detalle" class="role-cta">Explorar</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- DETALLE JUGADORES -->
+  <section class="role-detail" id="jugador-detalle">
+    <div class="section-inner">
+      <p class="section-kicker">Explorar · Jugadores</p>
+      <h2>Todo lo que puedes hacer como jugador en Athlead</h2>
+
+      <div class="role-detail-grid">
+        <div class="role-detail-text">
+          <p>
+            Athlead convierte tus vídeos en un perfil claro y profesional. No hace falta editar como
+            un creador de contenidos: recortas tus mejores jugadas, las subes y la app se encarga de
+            ordenarlo todo.
+          </p>
+          <ul class="role-detail-list">
+            <li>
+              <strong>Perfil completo:</strong> nombre, posición, pie dominante, equipo actual,
+              categoría, ciudad y pequeña bio para explicar cómo juegas.
+            </li>
+            <li>
+              <strong>Biblioteca de jugadas:</strong> goles, asistencias, acciones defensivas, salidas
+              de balón o liderazgo. Cada clip etiquetado por tipo de acción.
+            </li>
+            <li>
+              <strong>Visibilidad inteligente:</strong> tu perfil aparece en búsquedas de entrenadores
+              y clubes que filtren por tu zona, tu edad o tu posición.
+            </li>
+            <li>
+              <strong>Puente con tus redes:</strong> conecta Instagram, TikTok o YouTube para que
+              puedan ver tu trabajo diario y tu personalidad.
+            </li>
+          </ul>
         </div>
-        <div class="step">
-          <div class="step-number">2</div>
-          <h3>Sube tus vídeos 🎞️</h3>
-          <p>
-            Comparte tus mejores jugadas, goles, asistencias o acciones defensivas directamente
-            desde tu móvil. Vídeos cortos, claros y reales.
-          </p>
+
+        <div class="role-detail-media">
+          <img
+            src="images/jugador-perfil-1.png"
+            alt="Ejemplo de perfil de jugador en Athlead"
+            class="role-detail-image"
+          />
+          <img
+            src="images/jugador-perfil-2.png"
+            alt="Vista de jugadas destacadas de un jugador en Athlead"
+            class="role-detail-image"
+          />
         </div>
-        <div class="step">
-          <div class="step-number">3</div>
-          <h3>Sé descubierto 😍</h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- DETALLE CLUBES / ENTRENADORES -->
+  <section class="role-detail role-detail-alt" id="club-detalle">
+    <div class="section-inner">
+      <p class="section-kicker">Explorar · Clubes y entrenadores</p>
+      <h2>Un panel pensado para fichar mejor y más rápido</h2>
+
+      <div class="role-detail-grid">
+        <div class="role-detail-text">
           <p>
-            Scouts, academias y clubes pueden encontrar tu perfil y contactarte directamente. Sin
-            intermediarios, sin pagar por ser visto.
+            Athlead te evita perder horas entre vídeos sueltos y mensajes privados. Tienes a todos
+            los jugadores organizados en un solo lugar, con contexto y datos que importan.
           </p>
+          <ul class="role-detail-list">
+            <li>
+              <strong>Buscador con filtros:</strong> filtra por edad, posición, categoría,
+              localización o características específicas que te interesen.
+            </li>
+            <li>
+              <strong>Perfiles claros:</strong> cada jugador tiene sus datos básicos y sus mejores
+              jugadas ordenadas, para que puedas valorar rápido si encaja.
+            </li>
+            <li>
+              <strong>Listas de seguimiento:</strong> guarda jugadores en “shortlists” por posición,
+              generación o estado (en observación, invitado a prueba, fichado…).
+            </li>
+            <li>
+              <strong>Mensajes directos:</strong> habla con el jugador o con su entorno sin
+              intermediarios y sin comisiones. Comunicación simple y transparente.
+            </li>
+            <li>
+              <strong>Rankings y tendencias:</strong> descubre a los jugadores más vistos y guardados
+              en tu zona para no perderte ningún talento emergente.
+            </li>
+          </ul>
+        </div>
+
+        <div class="role-detail-media">
+          <img
+            src="images/club-panel-1.png"
+            alt="Panel de búsqueda de jugadores para clubes en Athlead"
+            class="role-detail-image"
+          />
+          <img
+            src="images/club-panel-2.png"
+            alt="Lista de jugadores guardados por un club en Athlead"
+            class="role-detail-image"
+          />
         </div>
       </div>
     </div>
@@ -1434,9 +1639,7 @@
         </div>
 
         <div class="form-group">
-          <label for="recommend"
-            >Del 1 al 10, ¿cuánto recomendarías la aplicación a un amigo?</label
-          >
+          <label for="recommend">Del 1 al 10, ¿cuánto recomendarías la aplicación a un amigo?</label>
           <select id="recommend" name="recommend" class="form-select" required>
             <option value="">Selecciona una puntuación</option>
             <option value="1">1 - No la recomendaría</option>
@@ -1651,9 +1854,9 @@
           </div>
           <div class="faq-answer">
             Estamos en fase de Acceso Anticipado. Nuestro objetivo es lanzar la versión oficial
-  cuando tengamos la suficiente base de jugadores y scouts. Si te registras ahora, tendrás
-  acceso prioritario a la Beta, actualizaciones exclusivas y una guía para preparar tu perfil
-  de la mejor manera posible antes del lanzamiento público.
+            cuando tengamos la suficiente base de jugadores y scouts. Si te registras ahora, tendrás
+            acceso prioritario a la Beta, actualizaciones exclusivas y una guía para preparar tu perfil
+            de la mejor manera posible antes del lanzamiento público.
           </div>
         </div>
       </div>
@@ -1808,7 +2011,7 @@
     );
 
     document
-      .querySelectorAll('.feature-card, .step, .problem, .solution, .faq-item, .stat-card')
+      .querySelectorAll('.feature-card, .problem, .solution, .faq-item, .stat-card, .role-card')
       .forEach((card) => {
         card.style.opacity = '0';
         card.style.transform = 'translateY(20px)';
