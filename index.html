@@ -87,6 +87,14 @@
       padding: 80px 16px;
     }
 
+    .section-kicker {
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 12px;
+      opacity: 0.7;
+      margin-bottom: 6px;
+    }
+
     /* ================= HEADER ================= */
 
     .header {
@@ -389,14 +397,6 @@
       letter-spacing: -0.03em;
     }
 
-    .section-kicker {
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      font-size: 12px;
-      opacity: 0.7;
-      margin-bottom: 6px;
-    }
-
     .who-we-are p {
       font-size: 17px;
       line-height: 1.7;
@@ -482,7 +482,7 @@
     }
 
     .videos-arrow {
-      display: none;
+      display: none; /* solo desktop, se activa en media query */
       background: rgba(0, 0, 0, 0.7);
       border: 1px solid rgba(255, 255, 255, 0.4);
       color: #ffffff;
@@ -503,18 +503,16 @@
       transform: translateY(-1px);
     }
 
-    /* ================= CÓMO FUNCIONA (DOS BLOQUES TIPO VEO) ================= */
+    /* ================= CÓMO FUNCIONA – ESTILO VEO ================= */
 
     .how-it-works {
       background: #050509;
-      text-align: left;
     }
 
     .how-it-works h2 {
       font-size: 32px;
       letter-spacing: -0.03em;
       margin-bottom: 8px;
-      text-align: left;
     }
 
     .how-it-works > .section-inner > p {
@@ -523,71 +521,68 @@
       max-width: 620px;
     }
 
-    .roles-layout {
+    .experience-grid {
+      margin-top: 40px;
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 32px;
-      margin-top: 40px;
+      gap: 28px;
     }
 
-    .role-card {
-      background: #f7f6f3;
+    .experience-card {
+      background: #f5f5f5;
       color: #000000;
-      border-radius: 26px;
-      padding: 26px 24px 24px;
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.65);
+      border-radius: 32px;
+      padding: 28px 26px 26px;
+      box-shadow: 0 22px 45px rgba(0, 0, 0, 0.65);
       display: flex;
       flex-direction: column;
-      height: 100%;
+    }
+
+    .experience-image-wrapper {
+      border-radius: 24px;
+      overflow: hidden;
+      margin-bottom: 24px;
+      background: #000;
     }
 
     .role-image {
       width: 100%;
-      border-radius: 22px;
-      margin-bottom: 18px;
+      height: auto;
+      display: block;
       object-fit: cover;
-      max-height: 260px;
     }
 
-    .role-label {
-      font-size: 13px;
+    .experience-label {
       text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: #555;
-      margin-bottom: 6px;
-    }
-
-    .role-title {
-      font-size: 22px;
-      letter-spacing: -0.03em;
-      margin-bottom: 10px;
-    }
-
-    .role-description {
-      font-size: 15px;
-      color: #333;
-      margin-bottom: 14px;
-    }
-
-    .role-benefits {
-      list-style: none;
-      padding-left: 0;
-      margin: 0 0 20px 0;
-      font-size: 14px;
-      color: #444;
-    }
-
-    .role-benefits li {
+      letter-spacing: 0.16em;
+      font-size: 11px;
+      color: #777777;
       margin-bottom: 8px;
     }
 
-    .role-cta {
-      margin-top: auto;
+    .experience-card h3 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .experience-card p {
+      font-size: 14px;
+      line-height: 1.7;
+      color: #333333;
+    }
+
+    .experience-card ul {
+      margin-top: 14px;
+      margin-bottom: 20px;
+      padding-left: 18px;
+      font-size: 14px;
+      color: #444444;
+      line-height: 1.6;
+    }
+
+    .experience-btn {
       align-self: flex-start;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 11px 26px;
+      padding: 10px 26px;
       border-radius: 999px;
       border: none;
       background: #000000;
@@ -598,10 +593,72 @@
       transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
     }
 
-    .role-cta:hover {
-      background: #111111;
+    .experience-btn:hover {
+      background: #1a1a1a;
       transform: translateY(-1px);
-      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.8);
+      box-shadow: 0 14px 26px rgba(0, 0, 0, 0.6);
+    }
+
+    /* ================= VISTAS DETALLE (NUEVA PANTALLA) ================= */
+
+    .detail-view {
+      display: none;
+      background: #000000;
+    }
+
+    .detail-view.active {
+      display: block;
+    }
+
+    .detail-inner {
+      max-width: 780px;
+      margin: 0 auto;
+      padding-top: 120px;
+      padding-bottom: 80px;
+    }
+
+    .detail-inner h2 {
+      font-size: 32px;
+      letter-spacing: -0.03em;
+      margin-bottom: 12px;
+    }
+
+    .detail-inner p {
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .detail-inner ul {
+      margin-top: 10px;
+      margin-bottom: 18px;
+      padding-left: 18px;
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+
+    .detail-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 24px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      background: transparent;
+      color: #ffffff;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .detail-back:hover {
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .hidden-main {
+      display: none !important;
     }
 
     /* ================= SIGNUP ================= */
@@ -614,7 +671,7 @@
           rgba(0, 0, 0, 0.5),
           rgba(0, 0, 0, 0.5)
         ),
-        url("images/signup-bg.jpg");
+        url('images/signup-bg.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -1055,102 +1112,11 @@
       margin-top: 4px;
     }
 
-    /* ================= MODALES (PANTALLAS EXPLORAR) ================= */
-
-    .role-modal-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.86);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 3000;
-    }
-
-    .role-modal-backdrop.active {
-      display: flex;
-    }
-
-    .role-modal {
-      background: #050509;
-      border-radius: 24px;
-      max-width: 1000px;
-      width: 92%;
-      max-height: 90vh;
-      padding: 28px 26px 26px;
-      overflow-y: auto;
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8);
-    }
-
-    .role-modal h2 {
-      font-size: 28px;
-      letter-spacing: -0.03em;
-      margin-bottom: 16px;
-    }
-
-    .role-modal-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-      gap: 28px;
-      margin-top: 6px;
-    }
-
-    .role-modal-text p {
-      font-size: 15px;
-      color: var(--text-muted);
-      margin-bottom: 14px;
-    }
-
-    .role-modal-text ul {
-      list-style: none;
-      padding-left: 0;
-      margin: 0;
-      font-size: 14px;
-    }
-
-    .role-modal-text li {
-      margin-bottom: 10px;
-    }
-
-    .role-modal-text li strong {
-      color: #ffffff;
-    }
-
-    .role-modal-media {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      align-items: center;
-    }
-
-    .role-modal-media img {
-      width: 100%;
-      max-width: 360px;
-      border-radius: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.7);
-      object-fit: cover;
-    }
-
-    .role-modal-close {
-      background: transparent;
-      border: none;
-      color: #ffffff;
-      font-size: 26px;
-      cursor: pointer;
-      float: right;
-      margin-bottom: 6px;
-    }
-
     /* ================= RESPONSIVE ================= */
 
     @media (max-width: 900px) {
       .section-inner {
         padding: 64px 18px;
-      }
-
-      .roles-layout {
-        grid-template-columns: 1fr;
       }
 
       .features-grid {
@@ -1170,16 +1136,8 @@
         max-width: 90%;
       }
 
-      .role-modal {
-        padding: 22px 18px 20px;
-      }
-
-      .role-modal-grid {
+      .experience-grid {
         grid-template-columns: 1fr;
-      }
-
-      .role-modal-media {
-        order: -1;
       }
     }
 
@@ -1314,7 +1272,7 @@
   </div>
 
   <!-- HERO -->
-  <section class="hero-section" id="home">
+  <section class="hero-section" id="home" data-main-section>
     <video class="hero-video" autoplay muted loop playsinline>
       <source src="videos/hero.mp4" type="video/mp4" />
     </video>
@@ -1336,7 +1294,7 @@
   </section>
 
   <!-- COUNTDOWN -->
-  <section class="countdown-section" id="countdown">
+  <section class="countdown-section" id="countdown" data-main-section>
     <div class="section-inner" style="text-align: center;">
       <p class="countdown-title">Lanzamiento oficial en</p>
 
@@ -1367,7 +1325,7 @@
   </section>
 
   <!-- QUIÉNES SOMOS -->
-  <section class="who-we-are" id="who-we-are">
+  <section class="who-we-are" id="who-we-are" data-main-section>
     <div class="section-inner">
       <p class="section-kicker">Quiénes somos</p>
       <h2>Una app hecha por jugadores para jugadores invisibles</h2>
@@ -1390,7 +1348,7 @@
   </section>
 
   <!-- JUGADAS DESTACADAS -->
-  <section class="highlight-videos" id="highlight-videos">
+  <section class="highlight-videos" id="highlight-videos" data-main-section>
     <div class="section-inner">
       <p class="section-kicker">Jugadas destacadas</p>
       <h2>Mira cómo juegan los futuros fichajes</h2>
@@ -1433,8 +1391,8 @@
     </div>
   </section>
 
-  <!-- CÓMO FUNCIONA · DOS BLOQUES -->
-  <section class="how-it-works" id="how-it-works">
+  <!-- CÓMO FUNCIONA – DOS BLOQUES TIPO VEO -->
+  <section class="how-it-works" id="how-it-works" data-main-section>
     <div class="section-inner">
       <p class="section-kicker">Cómo funciona</p>
       <h2>Una experiencia Athlead para cada tipo de usuario</h2>
@@ -1443,155 +1401,156 @@
         club o entrenador que necesita encontrar talento sin perder tiempo en vídeos sueltos.
       </p>
 
-      <div class="roles-layout">
-        <!-- BLOQUE JUGADOR -->
-        <article class="role-card">
-          <img
-            src="images/athlead-jugador-main.png"
-            alt="Vista de Athlead para jugadores"
-            class="role-image"
-          />
-          <span class="role-label">Para jugadores</span>
-          <h3 class="role-title">Tu escaparate de fútbol en el bolsillo</h3>
-          <p class="role-description">
+      <div class="experience-grid">
+        <!-- Jugadores -->
+        <article class="experience-card">
+          <div class="experience-image-wrapper">
+            <img
+              src="images/athlead-jugador-main.png"
+              alt="Vista de Athlead para jugadores"
+              class="role-image"
+            />
+          </div>
+          <p class="experience-label">Para jugadores</p>
+          <h3>Tu escaparate de fútbol en el bolsillo</h3>
+          <p>
             Crea tu perfil en minutos, sube tus mejores jugadas y deja que tu talento llegue a
-            entrenadores y clubes que no te conocen… todavía.
+            entrenadores y clubes que no te conocen... todavía.
           </p>
-          <ul class="role-benefits">
+          <ul>
             <li>Perfil con posición, edad, equipo y datos clave.</li>
             <li>Vídeos cortos ordenados por tipo de jugada.</li>
             <li>Visibilidad frente a entrenadores y scouts que ya buscan online.</li>
           </ul>
-          <button type="button" class="role-cta" data-modal="modal-jugador">Explorar</button>
+          <button class="experience-btn" data-target="detalle-jugadores">Explorar</button>
         </article>
 
-        <!-- BLOQUE CLUB / ENTRENADOR -->
-        <article class="role-card">
-          <img
-            src="images/athlead-clubes-main.png"
-            alt="Vista de Athlead para clubes y entrenadores"
-            class="role-image"
-          />
-          <span class="role-label">Para clubes y entrenadores</span>
-          <h3 class="role-title">Encuentra talento sin perder horas en vídeos sueltos</h3>
-          <p class="role-description">
+        <!-- Clubes y entrenadores -->
+        <article class="experience-card">
+          <div class="experience-image-wrapper">
+            <img
+              src="images/athlead-clubes-main.png"
+              alt="Vista de Athlead para clubes y entrenadores"
+              class="role-image"
+            />
+          </div>
+          <p class="experience-label">Para clubes y entrenadores</p>
+          <h3>Encuentra talento sin perder horas en vídeos sueltos</h3>
+          <p>
             Un panel pensado para fichar mejor: filtros avanzados, rankings y listas de seguimiento
             para tener controlados a los jugadores que te interesan.
           </p>
-          <ul class="role-benefits">
+          <ul>
             <li>Filtros por edad, posición, categoría y zona geográfica.</li>
             <li>Perfiles con contexto y jugadas ordenadas para decidir rápido.</li>
             <li>Mensajes directos, sin intermediarios ni comisiones ocultas.</li>
           </ul>
-          <button type="button" class="role-cta" data-modal="modal-club">Explorar</button>
+          <button class="experience-btn" data-target="detalle-clubes">Explorar</button>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- MODAL JUGADOR -->
-  <div class="role-modal-backdrop" id="modal-jugador">
-    <div class="role-modal">
-      <button class="role-modal-close" aria-label="Cerrar">×</button>
-      <p class="section-kicker">Explorar · Jugadores</p>
-      <h2>Todo lo que puedes hacer como jugador en Athlead</h2>
+  <!-- VISTA DETALLE JUGADORES -->
+  <section class="detail-view" id="detalle-jugadores" aria-hidden="true">
+    <div class="detail-inner">
+      <button class="detail-back" type="button" data-back>
+        ← Volver a la vista principal
+      </button>
+      <p class="section-kicker">Para jugadores</p>
+      <h2>Tu escaparate de fútbol en el bolsillo</h2>
+      <p>
+        Athlead está diseñada para que cualquier jugador pueda enseñar su fútbol como si tuviera un
+        vídeo profesional y un representante... pero sin pagar nada. Tu perfil se convierte en tu
+        carta de presentación: claro, ordenado y fácil de entender para cualquiera que sepa de
+        fútbol.
+      </p>
+      <p>
+        En lugar de mandar vídeos por WhatsApp o guardar clips perdidos en tu galería, tendrás todo
+        en un solo lugar. Así, cuando un entrenador te pida vídeos, solo tienes que enviar tu perfil
+        Athlead.
+      </p>
 
-      <div class="role-modal-grid">
-        <div class="role-modal-text">
-          <p>
-            Athlead convierte tus vídeos en un perfil claro y profesional. No hace falta ser editor:
-            recortas tus mejores jugadas, las subes y la app se encarga de ordenarlo todo para que
-            cualquier entrenador lo entienda en segundos.
-          </p>
-          <ul>
-            <li>
-              <strong>Perfil completo:</strong> nombre, posición, pie dominante, equipo, categoría y ciudad.
-            </li>
-            <li>
-              <strong>Biblioteca de jugadas:</strong> goles, asistencias, acciones defensivas, salidas de balón
-              o liderazgo, cada clip etiquetado.
-            </li>
-            <li>
-              <strong>Visibilidad inteligente:</strong> apareces en búsquedas de entrenadores y clubes por edad,
-              posición o zona.
-            </li>
-            <li>
-              <strong>Puente con tus redes:</strong> conecta Instagram, TikTok o YouTube para enseñar tu trabajo
-              diario dentro y fuera del campo.
-            </li>
-            <li>
-              <strong>Control total:</strong> tú decides qué jugadas muestras y cuándo actualizas tu perfil.
-            </li>
-          </ul>
-        </div>
+      <ul>
+        <li>
+          <strong>Perfil completo en minutos:</strong> posición, edad, pie dominante, altura,
+          equipo actual y categoría.
+        </li>
+        <li>
+          <strong>Vídeos por tipo de jugada:</strong> goles, asistencias, defensa, salida de balón,
+          paradas... cada clip donde mejor se ve qué sabes hacer.
+        </li>
+        <li>
+          <strong>Contexto real de partido:</strong> jugadas reales, sin ediciones locas ni música
+          que distraiga. Lo que interesa ver a un entrenador.
+        </li>
+        <li>
+          <strong>Tu evolución en el tiempo:</strong> podrás ir actualizando tu perfil para que se
+          vea cómo mejoras temporada a temporada.
+        </li>
+        <li>
+          <strong>Compartir en un clic:</strong> envía tu perfil por enlace a cualquier club,
+          campus, academia o entrenador que te pida referencias.
+        </li>
+      </ul>
 
-        <div class="role-modal-media">
-          <img
-            src="images/jugador-perfil-1.png"
-            alt="Perfil de jugador en Athlead"
-          />
-          <img
-            src="images/jugador-perfil-2.png"
-            alt="Jugadas destacadas de un jugador en Athlead"
-          />
-        </div>
-      </div>
+      <p>
+        El objetivo es simple: que si juegas bien al fútbol, dejar de ser invisible deje de depender
+        de la suerte o de tener contactos. Que dependa de lo que haces dentro del campo.
+      </p>
     </div>
-  </div>
+  </section>
 
-  <!-- MODAL CLUB / ENTRENADOR -->
-  <div class="role-modal-backdrop" id="modal-club">
-    <div class="role-modal">
-      <button class="role-modal-close" aria-label="Cerrar">×</button>
-      <p class="section-kicker">Explorar · Clubes y entrenadores</p>
-      <h2>Un panel diseñado para decidir fichajes con datos y contexto</h2>
+  <!-- VISTA DETALLE CLUBES / ENTRENADORES -->
+  <section class="detail-view" id="detalle-clubes" aria-hidden="true">
+    <div class="detail-inner">
+      <button class="detail-back" type="button" data-back>
+        ← Volver a la vista principal
+      </button>
+      <p class="section-kicker">Para clubes y entrenadores</p>
+      <h2>Encuentra talento sin perder horas en vídeos sueltos</h2>
+      <p>
+        Athlead es un panel de scouting ligero pensado para el día a día de clubes amateurs,
+        academias y entrenadores que no tienen un departamento profesional de análisis, pero sí
+        necesitan fichar mejor.
+      </p>
+      <p>
+        En lugar de revisar decenas de vídeos sin contexto en redes sociales o recibir enlaces
+        sueltos, tendrás jugadores ordenados, filtrables y comparables en un mismo entorno.
+      </p>
 
-      <div class="role-modal-grid">
-        <div class="role-modal-text">
-          <p>
-            Olvídate de vídeos perdidos en WhatsApp o carpetas sin contexto. Athlead te da un panel
-            donde puedes buscar, comparar y guardar jugadores en segundos.
-          </p>
-          <ul>
-            <li>
-              <strong>Buscador con filtros:</strong> edad, posición, categoría, localización y características
-              específicas que estés buscando.
-            </li>
-            <li>
-              <strong>Perfiles claros:</strong> datos clave del jugador + jugadas etiquetadas para valorar
-              rápido si encaja en tu idea de juego.
-            </li>
-            <li>
-              <strong>Listas de seguimiento:</strong> crea shortlists por posición, generación o estado del
-              jugador (observación, pre-seguimiento, prueba…).
-            </li>
-            <li>
-              <strong>Mensajes directos:</strong> contacto con el jugador o su entorno sin intermediarios ni
-              comisiones, todo dentro de la plataforma.
-            </li>
-            <li>
-              <strong>Rankings y tendencias:</strong> descubre los jugadores más vistos y guardados en tu zona
-              para no llegar tarde a los fichajes.
-            </li>
-          </ul>
-        </div>
+      <ul>
+        <li>
+          <strong>Búsquedas con filtros avanzados:</strong> posición, edad, categoría, zona
+          geográfica y características clave del jugador.
+        </li>
+        <li>
+          <strong>Perfiles con contexto:</strong> datos básicos del jugador, club actual, minutos
+          jugados (cuando esté disponible) y sus mejores jugadas agrupadas por tipo.
+        </li>
+        <li>
+          <strong>Listas de seguimiento:</strong> guarda jugadores que te interesen para tenerlos
+          controlados de cara a la próxima temporada, torneos o pruebas.
+        </li>
+        <li>
+          <strong>Rankings dinámicos:</strong> descubre quiénes son los jugadores más vistos o más
+          guardados en tu zona.
+        </li>
+        <li>
+          <strong>Mensajes directos sin intermediarios:</strong> habla con el jugador o su entorno
+          directamente desde Athlead, sin comisiones ni intermediarios.
+        </li>
+      </ul>
 
-        <div class="role-modal-media">
-          <img
-            src="images/club-panel-1.png"
-            alt="Panel de búsqueda para clubes en Athlead"
-          />
-          <img
-            src="images/club-panel-2.png"
-            alt="Lista de seguimiento de jugadores en Athlead"
-          />
-        </div>
-      </div>
+      <p>
+        Athlead no pretende sustituir al ojo del entrenador, sino ahorrarle tiempo para que llegue
+        antes a los perfiles que realmente le pueden encajar en su equipo.
+      </p>
     </div>
-  </div>
+  </section>
 
   <!-- SIGNUP -->
-  <section class="signup-section" id="signup">
+  <section class="signup-section" id="signup" data-main-section>
     <div class="section-inner">
       <p class="section-kicker">Acceso anticipado</p>
       <h2>Regístrate para entrar en la primera generación Athlead</h2>
@@ -1700,7 +1659,7 @@
   </section>
 
   <!-- FOOTBALL STATS -->
-  <section class="football-stats-section" id="football-stats">
+  <section class="football-stats-section" id="football-stats" data-main-section>
     <div class="section-inner">
       <p class="section-kicker">Fútbol amateur en España</p>
       <h2>Millones de jugadores. Muy pocos son vistos.</h2>
@@ -1735,7 +1694,7 @@
   </section>
 
   <!-- FEATURES -->
-  <section class="features" id="features">
+  <section class="features" id="features" data-main-section>
     <div class="section-inner">
       <p class="section-kicker">Pensado para ti</p>
       <h2>Tu talento merece un escaparate mejor que un grupo de WhatsApp</h2>
@@ -1771,7 +1730,7 @@
   </section>
 
   <!-- PROBLEM / SOLUTION -->
-  <section class="problem-section" id="problem-section">
+  <section class="problem-section" id="problem-section" data-main-section>
     <div class="section-inner">
       <p class="section-kicker">Jugadores invisibles</p>
       <h2>El fútbol no debería ser solo para los que tienen contactos</h2>
@@ -1803,7 +1762,7 @@
   </section>
 
   <!-- FAQ -->
-  <section class="faq-section" id="faq">
+  <section class="faq-section" id="faq" data-main-section>
     <div class="section-inner">
       <p class="section-kicker">FAQ</p>
       <h2>Preguntas frecuentes</h2>
@@ -1886,7 +1845,7 @@
   </section>
 
   <!-- CONTACTO -->
-  <section class="contact-section" id="contact">
+  <section class="contact-section" id="contact" data-main-section>
     <div class="section-inner">
       <p class="section-kicker">Contacto</p>
       <h2>¿Tienes dudas?</h2>
@@ -2033,7 +1992,7 @@
     );
 
     document
-      .querySelectorAll('.feature-card, .problem, .solution, .faq-item, .stat-card, .role-card')
+      .querySelectorAll('.feature-card, .problem, .solution, .faq-item, .stat-card')
       .forEach((card) => {
         card.style.opacity = '0';
         card.style.transform = 'translateY(20px)';
@@ -2163,39 +2122,53 @@
       });
     }
 
-    // ================= MODALES ROL (Explorar) =================
-    const roleButtons = document.querySelectorAll('.role-cta');
-    const roleModals = document.querySelectorAll('.role-modal-backdrop');
+    // ================= LÓGICA VISTA DETALLE "EXPLORAR" =================
+    const mainSections = document.querySelectorAll('section[data-main-section]');
+    const detailViews = document.querySelectorAll('.detail-view');
 
-    roleButtons.forEach((btn) => {
+    function openDetail(id) {
+      const target = document.getElementById(id);
+      if (!target) return;
+      mainSections.forEach((sec) => sec.classList.add('hidden-main'));
+      detailViews.forEach((sec) => sec.classList.remove('active'));
+      target.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function closeDetail() {
+      detailViews.forEach((sec) => sec.classList.remove('active'));
+      mainSections.forEach((sec) => sec.classList.remove('hidden-main'));
+    }
+
+    document.querySelectorAll('.experience-btn').forEach((btn) => {
       btn.addEventListener('click', () => {
-        const modalId = btn.dataset.modal;
-        const modal = document.getElementById(modalId);
-        if (modal) {
-          modal.classList.add('active');
-          document.body.style.overflow = 'hidden';
+        const targetId = btn.getAttribute('data-target');
+        openDetail(targetId);
+      });
+    });
+
+    document.querySelectorAll('[data-back]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        closeDetail();
+        const howItWorks = document.getElementById('how-it-works');
+        if (howItWorks) {
+          howItWorks.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       });
     });
 
-    document.querySelectorAll('.role-modal-close').forEach((closeBtn) => {
-      closeBtn.addEventListener('click', () => {
-        const backdrop = closeBtn.closest('.role-modal-backdrop');
-        if (backdrop) {
-          backdrop.classList.remove('active');
-          document.body.style.overflow = '';
-        }
-      });
-    });
-
-    roleModals.forEach((backdrop) => {
-      backdrop.addEventListener('click', (e) => {
-        if (e.target === backdrop) {
-          backdrop.classList.remove('active');
-          document.body.style.overflow = '';
+    // Si el usuario pulsa "Cómo funciona" en el menú estando en una vista detalle
+    document.querySelectorAll('a[href="#how-it-works"]').forEach((link) => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        closeDetail();
+        const howItWorks = document.getElementById('how-it-works');
+        if (howItWorks) {
+          howItWorks.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       });
     });
   </script>
 </body>
 </html>
+
