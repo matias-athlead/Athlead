@@ -24,7 +24,7 @@
   />
   <meta name="author" content="Athlead" />
 
-  <!-- Open Graph / Social Media -->
+  <!-- Open Graph -->
   <meta
     property="og:title"
     content="Athlead - App para Jugadores de Fútbol | Deja que el talento hable por ti"
@@ -80,7 +80,6 @@
       text-decoration: none;
     }
 
-    /* CONTENEDOR COMÚN */
     .section-inner {
       max-width: 1100px;
       margin: 0 auto;
@@ -95,7 +94,7 @@
       margin-bottom: 6px;
     }
 
-    /* ================= HEADER ================= */
+    /* HEADER */
 
     .header {
       position: fixed;
@@ -153,7 +152,6 @@
       gap: 14px;
     }
 
-    /* Buscador solo desktop */
     .header-search {
       display: block;
     }
@@ -188,7 +186,6 @@
       cursor: pointer;
     }
 
-    /* Mobile menu */
     .mobile-menu {
       position: fixed;
       top: 0;
@@ -218,7 +215,7 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.12);
     }
 
-    /* ========== HERO CON VÍDEO DE FONDO ========== */
+    /* HERO */
 
     .hero-section {
       position: relative;
@@ -333,7 +330,7 @@
       transform: translateY(-1px);
     }
 
-    /* ================= COUNTDOWN ================= */
+    /* COUNTDOWN */
 
     .countdown-section {
       background: #050505;
@@ -384,7 +381,7 @@
       margin: 0 auto;
     }
 
-    /* ================= QUIÉNES SOMOS ================= */
+    /* QUIÉNES SOMOS */
 
     .who-we-are {
       background: #000000;
@@ -409,7 +406,7 @@
       margin-bottom: 0;
     }
 
-    /* ================= JUGADAS DESTACADAS ================= */
+    /* JUGADAS DESTACADAS */
 
     .highlight-videos {
       background: #000000;
@@ -503,7 +500,7 @@
       transform: translateY(-1px);
     }
 
-    /* ================= CÓMO FUNCIONA – BLOQUE DE PASOS (tipo Veo) ================= */
+    /* CÓMO FUNCIONA – TRES PASOS */
 
     .how-steps {
       background: #000000;
@@ -513,7 +510,7 @@
     .how-steps-inner {
       max-width: 1100px;
       margin: 0 auto;
-      padding: 80px 16px 120px;
+      padding: 120px 16px 160px;
     }
 
     .how-steps h2 {
@@ -528,7 +525,7 @@
       display: flex;
       align-items: center;
       gap: 40px;
-      min-height: 380px;
+      min-height: 75vh; /* casi toda la pantalla */
       z-index: 1;
     }
 
@@ -542,7 +539,7 @@
     .how-step-card-wrapper {
       flex: 1;
       position: relative;
-      height: 380px;
+      height: 460px;
     }
 
     .how-step-slide {
@@ -626,7 +623,7 @@
       height: 80vh;
     }
 
-    /* ================= CÓMO FUNCIONA – EXPERIENCIA POR TIPO DE USUARIO ================= */
+    /* CÓMO FUNCIONA – EXPERIENCIA */
 
     .how-it-works {
       background: #050509;
@@ -730,7 +727,7 @@
       background: #111111;
     }
 
-    /* ================= SIGNUP ================= */
+    /* SIGNUP */
 
     .signup-section {
       position: relative;
@@ -846,7 +843,7 @@
       box-shadow: 0 16px 30px rgba(0, 0, 0, 0.7);
     }
 
-    /* ================= FOOTBALL STATS ================= */
+    /* FOOTBALL STATS */
 
     .football-stats-section {
       background: linear-gradient(135deg, #101325, #060712);
@@ -894,7 +891,7 @@
       color: var(--text-muted);
     }
 
-    /* ================= FEATURES ================= */
+    /* FEATURES */
 
     .features {
       background: #000000;
@@ -938,7 +935,7 @@
       line-height: 1.7;
     }
 
-    /* ================= PROBLEM / SOLUTION ================= */
+    /* PROBLEM / SOLUTION */
 
     .problem-section {
       background: #050509;
@@ -993,7 +990,7 @@
       line-height: 1.7;
     }
 
-    /* ================= FAQ ================= */
+    /* FAQ */
 
     .faq-section {
       background: #000000;
@@ -1070,7 +1067,7 @@
       transform: rotate(180deg);
     }
 
-    /* ================= CONTACTO ================= */
+    /* CONTACTO */
 
     .contact-section {
       background: #050509;
@@ -1127,7 +1124,7 @@
       display: none;
     }
 
-    /* ================= FOOTER ================= */
+    /* FOOTER */
 
     .footer {
       background: #000000;
@@ -1181,7 +1178,7 @@
       margin-top: 4px;
     }
 
-    /* ================= RESPONSIVE ================= */
+    /* RESPONSIVE */
 
     @media (max-width: 900px) {
       .section-inner {
@@ -1298,7 +1295,7 @@
       }
     }
 
-    /* Ajustes mobile del bloque de pasos */
+    /* Bloque de pasos en móvil */
 
     @media (max-width: 1023px) {
       .how-steps-inner {
@@ -1375,7 +1372,6 @@
     </nav>
 
     <div class="header-actions">
-      <!-- Buscador solo desktop -->
       <form
         class="header-search"
         action="https://www.google.com/search"
@@ -1394,7 +1390,6 @@
     </div>
   </header>
 
-  <!-- MENÚ MÓVIL -->
   <div class="mobile-menu" id="mobileMenu">
     <div class="mobile-menu-links">
       <a href="#who-we-are">Quiénes somos</a>
@@ -1526,7 +1521,7 @@
     </div>
   </section>
 
-  <!-- CÓMO FUNCIONA – TRES PASOS (tipo Veo) -->
+  <!-- CÓMO FUNCIONA – TRES PASOS -->
   <section class="how-steps" id="how-steps">
     <div class="how-steps-inner">
       <p class="section-kicker">Cómo funciona</p>
@@ -1548,7 +1543,7 @@
                 <div>
                   <h3 class="how-step-title">Graba tus mejores jugadas</h3>
                   <p class="how-step-sub">Desde el móvil o la cámara del campo, sin complicaciones.</p>
-                  <a href="detalle-funcionamiento.html" class="how-step-cta">Explorar</a>
+                  <a href="pasos.html" class="how-step-cta">Explorar</a>
                 </div>
               </div>
             </div>
@@ -1566,7 +1561,7 @@
                 <div>
                   <h3 class="how-step-title">Súbelas en segundos</h3>
                   <p class="how-step-sub">Etiqueta posición, tipo de jugada y deja todo ordenado.</p>
-                  <a href="detalle-funcionamiento.html" class="how-step-cta">Explorar</a>
+                  <a href="pasos.html" class="how-step-cta">Explorar</a>
                 </div>
               </div>
             </div>
@@ -1584,7 +1579,7 @@
                 <div>
                   <h3 class="how-step-title">Déjate descubrir</h3>
                   <p class="how-step-sub">Entrenadores y clubes te encuentran filtrando por lo que eres.</p>
-                  <a href="detalle-funcionamiento.html" class="how-step-cta">Explorar</a>
+                  <a href="pasos.html" class="how-step-cta">Explorar</a>
                 </div>
               </div>
             </div>
@@ -1592,7 +1587,7 @@
         </div>
       </div>
 
-      <!-- Triggers invisibles para el scroll de escritorio -->
+      <!-- Triggers para el scroll (solo desktop) -->
       <div class="how-step-triggers">
         <div class="how-step-trigger" data-step="0"></div>
         <div class="how-step-trigger" data-step="1"></div>
@@ -1636,7 +1631,7 @@
             <button
               type="button"
               class="experience-btn"
-              onclick="window.location.href='detalle-jugadores.html'"
+              onclick="window.location.href='roles.html#jugadores'"
             >
               Explorar
             </button>
@@ -1667,7 +1662,7 @@
             <button
               type="button"
               class="experience-btn"
-              onclick="window.location.href='detalle-clubes.html'"
+              onclick="window.location.href='roles.html#clubes'"
             >
               Explorar
             </button>
@@ -2055,7 +2050,7 @@
   </footer>
 
   <script>
-    // Scroll al top al clicar logo
+    // Logo → top
     document.getElementById('logo').addEventListener('click', function () {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
@@ -2076,7 +2071,6 @@
       }
     });
 
-    // Cerrar menú móvil al clicar enlace
     document.querySelectorAll('.mobile-menu-links a').forEach((link) => {
       link.addEventListener('click', () => {
         mobileMenu.classList.remove('active');
@@ -2084,7 +2078,6 @@
       });
     });
 
-    // Cerrar menú móvil al clicar fuera
     document.addEventListener('click', (e) => {
       if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
         mobileMenu.classList.remove('active');
@@ -2092,7 +2085,7 @@
       }
     });
 
-    // Scroll suave para anclas
+    // Scroll suave
     document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
       anchor.addEventListener('click', function (e) {
         const targetId = this.getAttribute('href');
@@ -2106,7 +2099,7 @@
       });
     });
 
-    // Animación de aparición en scroll
+    // Animaciones
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -2128,7 +2121,7 @@
         observer.observe(card);
       });
 
-    // Formulario de contacto → Google Sheets
+    // Contact form → Google Sheets
     const CONTACT_SCRIPT_URL =
       'https://script.google.com/macros/s/AKfycbx5udqjlBi3yRKZMGbfgNxvzvBozoeyglYj9drSUo2C4OIBLQmJJqOXTtyuz-aouAO9/exec';
 
@@ -2166,7 +2159,7 @@
       });
     });
 
-    // Cuenta atrás hasta lanzamiento
+    // Cuenta atrás
     (function () {
       const launchDate = new Date('2026-08-01T00:00:00').getTime();
       const daysEl = document.getElementById('days');
@@ -2174,6 +2167,7 @@
       const minutesEl = document.getElementById('minutes');
       const secondsEl = document.getElementById('seconds');
       const countdownSection = document.getElementById('countdown');
+
       if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
 
       function updateCountdown() {
@@ -2207,7 +2201,7 @@
       setInterval(updateCountdown, 1000);
     })();
 
-    // Ocultar / mostrar header al hacer scroll
+    // Ocultar header en scroll
     let lastScroll = 0;
     const header = document.querySelector('.header');
 
@@ -2221,7 +2215,7 @@
       lastScroll = currentScroll;
     });
 
-    // Carrusel de vídeos (flechas solo desktop)
+    // Carrusel de vídeos desktop
     const videosTrack = document.querySelector('.videos-track');
     const prevBtn = document.querySelector('.videos-arrow.prev');
     const nextBtn = document.querySelector('.videos-arrow.next');
@@ -2238,7 +2232,7 @@
       });
     }
 
-    // Autoplay silencioso de vídeos en móvil (solo loop, sin slider auto)
+    // Autoplay silencioso en móvil
     if (window.innerWidth < 768) {
       document.querySelectorAll('.video-card video').forEach((v) => {
         v.muted = true;
@@ -2250,7 +2244,7 @@
       });
     }
 
-    // Bloque "Tres pasos" – cambia de slide al hacer scroll (solo escritorio)
+    // Bloque "Tres pasos" – scroll solo escritorio
     (function () {
       const stepsSection = document.getElementById('how-steps');
       if (!stepsSection || window.innerWidth < 1024) return;
@@ -2289,3 +2283,4 @@
   </script>
 </body>
 </html>
+
