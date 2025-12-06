@@ -49,7 +49,7 @@
       --text-main: #ffffff;
       --text-muted: rgba(255, 255, 255, 0.7);
       --accent: #ffffff;
-      --accent-soft: #f2f2f2;
+      --accent-soft: #f5f5f5;
       --accent-alt: #4ecdc4;
       --danger: #ff6b6b;
     }
@@ -87,14 +87,6 @@
       padding: 80px 16px;
     }
 
-    .section-kicker {
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      font-size: 12px;
-      opacity: 0.7;
-      margin-bottom: 6px;
-    }
-
     /* ================= HEADER ================= */
 
     .header {
@@ -103,7 +95,7 @@
       left: 50%;
       transform: translate(-50%, 0);
       width: min(1100px, 92%);
-      padding: 20px 28px;
+      padding: 18px 24px;
       border-radius: 999px;
       background: rgba(0, 0, 0, 0.78);
       backdrop-filter: blur(18px);
@@ -223,7 +215,7 @@
     .hero-section {
       position: relative;
       min-height: 100vh;
-      padding: 120px 16px 80px;
+      padding: 140px 16px 90px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -245,7 +237,7 @@
     .hero-overlay {
       position: absolute;
       inset: 0;
-      background: rgba(0, 0, 0, 0.09);
+      background: radial-gradient(circle at top, rgba(0, 0, 0, 0.15), #000);
       z-index: 1;
     }
 
@@ -255,20 +247,6 @@
       max-width: 900px;
       margin: 0 auto;
       text-align: center;
-    }
-
-    .hero-title {
-      font-size: clamp(2.4rem, 4vw, 3.4rem);
-      line-height: 1.1;
-      letter-spacing: -0.04em;
-      margin-bottom: 14px;
-    }
-
-    .hero-subtitle {
-      font-size: clamp(1.1rem, 2vw, 1.5rem);
-      font-style: italic;
-      opacity: 0.9;
-      margin-bottom: 32px;
     }
 
     .hero-badge {
@@ -284,6 +262,20 @@
       opacity: 0.9;
       margin-bottom: 18px;
       background: rgba(0, 0, 0, 0.65);
+    }
+
+    .hero-title {
+      font-size: clamp(2.4rem, 4vw, 3.4rem);
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+      margin-bottom: 14px;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.1rem, 2vw, 1.5rem);
+      font-style: italic;
+      opacity: 0.9;
+      margin-bottom: 32px;
     }
 
     .hero-buttons {
@@ -397,6 +389,14 @@
       letter-spacing: -0.03em;
     }
 
+    .section-kicker {
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 12px;
+      opacity: 0.7;
+      margin-bottom: 6px;
+    }
+
     .who-we-are p {
       font-size: 17px;
       line-height: 1.7;
@@ -503,46 +503,48 @@
       transform: translateY(-1px);
     }
 
-    /* ================= CÓMO FUNCIONA – ESTILO VEO ================= */
+    /* ================= EXPERIENCIA (CÓMO FUNCIONA) ================= */
 
-    .how-it-works {
+    .experience-section {
       background: #050509;
+      color: #ffffff;
     }
 
-    .how-it-works h2 {
+    .experience-title {
       font-size: 32px;
       letter-spacing: -0.03em;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
-    .how-it-works > .section-inner > p {
+    .experience-intro {
       font-size: 15px;
       opacity: 0.8;
-      max-width: 620px;
+      max-width: 650px;
+      margin-bottom: 32px;
     }
 
     .experience-grid {
-      margin-top: 40px;
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 28px;
     }
 
     .experience-card {
-      background: #f5f5f5;
-      color: #000000;
+      background: #f7f7f7;
+      color: #000;
       border-radius: 32px;
       padding: 28px 26px 26px;
-      box-shadow: 0 22px 45px rgba(0, 0, 0, 0.65);
+      box-shadow: 0 26px 60px rgba(0, 0, 0, 0.5);
       display: flex;
       flex-direction: column;
+      min-height: 100%;
     }
 
     .experience-image-wrapper {
-      border-radius: 24px;
+      margin: -28px -26px 24px;
+      border-radius: 32px 32px 0 0;
       overflow: hidden;
-      margin-bottom: 24px;
-      background: #000;
+      background: #101010;
     }
 
     .role-image {
@@ -550,43 +552,50 @@
       height: auto;
       display: block;
       object-fit: cover;
+      max-height: 260px;
     }
 
     .experience-label {
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
       font-size: 11px;
-      color: #777777;
-      margin-bottom: 8px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      margin-bottom: 6px;
     }
 
     .experience-card h3 {
-      font-size: 22px;
+      font-size: 20px;
       margin-bottom: 10px;
     }
 
     .experience-card p {
       font-size: 14px;
-      line-height: 1.7;
-      color: #333333;
+      color: #333;
+      line-height: 1.6;
+      margin-bottom: 12px;
     }
 
     .experience-card ul {
-      margin-top: 14px;
-      margin-bottom: 20px;
-      padding-left: 18px;
-      font-size: 14px;
-      color: #444444;
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 18px;
+    }
+
+    .experience-card li {
+      font-size: 13px;
+      color: #4b4b4b;
       line-height: 1.6;
+      margin-bottom: 6px;
     }
 
     .experience-btn {
       align-self: flex-start;
-      padding: 10px 26px;
+      margin-top: auto;
+      background: #000;
+      color: #fff;
       border-radius: 999px;
+      padding: 10px 24px;
       border: none;
-      background: #000000;
-      color: #ffffff;
       font-weight: 600;
       font-size: 14px;
       cursor: pointer;
@@ -594,71 +603,100 @@
     }
 
     .experience-btn:hover {
-      background: #1a1a1a;
+      background: #111;
       transform: translateY(-1px);
-      box-shadow: 0 14px 26px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.6);
     }
 
-    /* ================= VISTAS DETALLE (NUEVA PANTALLA) ================= */
+    /* ===== Pantallas de detalle (jugadores / clubes) ===== */
 
-    .detail-view {
+    .experience-details {
       display: none;
+      min-height: 100vh;
       background: #000000;
+      color: #ffffff;
     }
 
-    .detail-view.active {
+    .experience-details.active {
       display: block;
     }
 
-    .detail-inner {
-      max-width: 780px;
+    .experience-detail {
+      display: none;
+      max-width: 900px;
       margin: 0 auto;
-      padding-top: 120px;
-      padding-bottom: 80px;
+      padding: 120px 16px 80px;
     }
 
-    .detail-inner h2 {
+    .experience-detail.active {
+      display: block;
+    }
+
+    .detail-kicker {
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 12px;
+      opacity: 0.7;
+      margin-bottom: 8px;
+    }
+
+    .detail-title {
       font-size: 32px;
       letter-spacing: -0.03em;
       margin-bottom: 12px;
     }
 
-    .detail-inner p {
+    .detail-intro {
       font-size: 15px;
-      line-height: 1.8;
       color: var(--text-muted);
-      margin-bottom: 14px;
+      margin-bottom: 26px;
+      max-width: 700px;
     }
 
-    .detail-inner ul {
-      margin-top: 10px;
-      margin-bottom: 18px;
-      padding-left: 18px;
-      font-size: 15px;
+    .detail-block {
+      margin-bottom: 22px;
+    }
+
+    .detail-block h3 {
+      font-size: 18px;
+      margin-bottom: 6px;
+    }
+
+    .detail-block p {
+      font-size: 14px;
+      color: var(--text-muted);
       line-height: 1.7;
-      color: var(--text-muted);
     }
 
-    .detail-back {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      margin-bottom: 24px;
-      padding: 6px 14px;
+    .detail-list {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .detail-list li {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      line-height: 1.6;
+    }
+
+    .back-btn {
+      margin-top: 28px;
       border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.35);
+      padding: 10px 24px;
+      border: 1px solid rgba(255, 255, 255, 0.5);
       background: transparent;
       color: #ffffff;
-      font-size: 13px;
+      font-weight: 500;
+      font-size: 14px;
       cursor: pointer;
+      transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
     }
 
-    .detail-back:hover {
-      background: rgba(255, 255, 255, 0.06);
-    }
-
-    .hidden-main {
-      display: none !important;
+    .back-btn:hover {
+      background: #ffffff;
+      color: #000;
+      transform: translateY(-1px);
     }
 
     /* ================= SIGNUP ================= */
@@ -668,8 +706,8 @@
       text-align: center;
       padding: 100px 20px;
       background-image: linear-gradient(
-          rgba(0, 0, 0, 0.5),
-          rgba(0, 0, 0, 0.5)
+          rgba(0, 0, 0, 0.55),
+          rgba(0, 0, 0, 0.7)
         ),
         url('images/signup-bg.jpg');
       background-size: cover;
@@ -1119,6 +1157,15 @@
         padding: 64px 18px;
       }
 
+      .experience-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .experience-card {
+        max-width: 520px;
+        margin: 0 auto;
+      }
+
       .features-grid {
         grid-template-columns: 1fr;
       }
@@ -1134,10 +1181,6 @@
       .video-card {
         flex: 0 0 90%;
         max-width: 90%;
-      }
-
-      .experience-grid {
-        grid-template-columns: 1fr;
       }
     }
 
@@ -1160,11 +1203,11 @@
       }
 
       .hero-section {
-        padding-top: 112px;
+        padding-top: 120px;
       }
 
       .hero-title {
-        font-size: 2rem;
+        font-size: 2.1rem;
       }
 
       .hero-subtitle {
@@ -1195,11 +1238,15 @@
       .who-we-are p {
         font-size: 15px;
       }
+
+      .experience-detail {
+        padding-top: 110px;
+      }
     }
 
     @media (min-width: 1024px) {
       .hero-section {
-        padding-top: 140px;
+        padding-top: 150px;
       }
 
       .videos-arrow {
@@ -1240,7 +1287,6 @@
     </nav>
 
     <div class="header-actions">
-      <!-- Buscador solo desktop -->
       <form
         class="header-search"
         action="https://www.google.com/search"
@@ -1271,660 +1317,643 @@
     </div>
   </div>
 
-  <!-- HERO -->
-  <section class="hero-section" id="home" data-main-section>
-    <video class="hero-video" autoplay muted loop playsinline>
-      <source src="videos/hero.mp4" type="video/mp4" />
-    </video>
-    <div class="hero-overlay"></div>
+  <!-- MAIN CONTENT (se oculta cuando se abre una pantalla de detalle) -->
+  <div id="mainContent">
+    <!-- HERO -->
+    <section class="hero-section" id="home">
+      <video class="hero-video" autoplay muted loop playsinline>
+        <source src="videos/hero.mp4" type="video/mp4" />
+      </video>
+      <div class="hero-overlay"></div>
 
-    <div class="hero-content">
-      <div class="hero-badge">
-        <span>Fútbol amateur · España</span>
-      </div>
-
-      <h1 class="hero-title">En el fútbol no se gana con dinero. Se gana con talento.</h1>
-      <p class="hero-subtitle">Deja que tu talento hable por ti.</p>
-
-      <div class="hero-buttons">
-        <a href="#signup" class="btn btn-cta">Únete a la lista de espera</a>
-        <a href="#who-we-are" class="btn btn-secondary">Conócenos</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- COUNTDOWN -->
-  <section class="countdown-section" id="countdown" data-main-section>
-    <div class="section-inner" style="text-align: center;">
-      <p class="countdown-title">Lanzamiento oficial en</p>
-
-      <div class="countdown-timer">
-        <div class="time-box">
-          <span id="days">0</span>
-          <small>días</small>
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span>Fútbol amateur · España</span>
         </div>
-        <div class="time-box">
-          <span id="hours">0</span>
-          <small>horas</small>
-        </div>
-        <div class="time-box">
-          <span id="minutes">0</span>
-          <small>min</small>
-        </div>
-        <div class="time-box">
-          <span id="seconds">0</span>
-          <small>seg</small>
+
+        <h1 class="hero-title">En el fútbol no se gana con dinero. Se gana con talento.</h1>
+        <p class="hero-subtitle">Deja que tu talento hable por ti.</p>
+
+        <div class="hero-buttons">
+          <a href="#signup" class="btn btn-cta">Únete a la lista de espera</a>
+          <a href="#who-we-are" class="btn btn-secondary">Conócenos</a>
         </div>
       </div>
+    </section>
 
-      <p class="countdown-subtitle">
-        Athlead estará disponible muy pronto. Apúntate para tener acceso anticipado. Ya contamos con
-        200 usuarios y creciendo.
-      </p>
-    </div>
-  </section>
+    <!-- COUNTDOWN -->
+    <section class="countdown-section" id="countdown">
+      <div class="section-inner" style="text-align: center;">
+        <p class="countdown-title">Lanzamiento oficial en</p>
 
-  <!-- QUIÉNES SOMOS -->
-  <section class="who-we-are" id="who-we-are" data-main-section>
-    <div class="section-inner">
-      <p class="section-kicker">Quiénes somos</p>
-      <h2>Una app hecha por jugadores para jugadores invisibles</h2>
-      <p>
-        Athlead nace de una pasión por el fútbol y una frustración común: miles de jóvenes con
-        talento extraordinario en España que nunca tienen la oportunidad de ser vistos porque no
-        tienen contactos, no viven en grandes ciudades o no pueden pagar academias caras.
-      </p>
-      <p>
-        Somos una comunidad de exjugadores, entrenadores y fans que creemos en el fútbol auténtico.
-        El que se juega en los campos de barrio, en los polideportivos y en los campos de tierra. El
-        fútbol de los que no tienen patrocinadores, pero sí corazón.
-      </p>
-      <p>
-        No somos scouts, ni una academia ni una empresa de servicios. Somos una plataforma creada
-        por y para los jugadores. Una herramienta simple, gratuita y potente que pone el talento en
-        primer lugar.
-      </p>
-    </div>
-  </section>
-
-  <!-- JUGADAS DESTACADAS -->
-  <section class="highlight-videos" id="highlight-videos" data-main-section>
-    <div class="section-inner">
-      <p class="section-kicker">Jugadas destacadas</p>
-      <h2>Mira cómo juegan los futuros fichajes</h2>
-      <p class="highlight-subtitle">
-        Vídeos reales de jugadores como tú. Lo que pasa cada fin de semana en los campos de barrio,
-        ahora en un solo lugar.
-      </p>
-
-      <div class="videos-carousel">
-        <button class="videos-arrow prev" aria-label="Vídeo anterior">‹</button>
-
-        <div class="videos-track">
-          <div class="video-card">
-            <video src="videos/highlight1.mp4" controls muted playsinline></video>
-            <div class="video-info">
-              <h3>Luqui Sorry · U17</h3>
-              <p>Pase filtrado del medio centro inofensivo.</p>
-            </div>
+        <div class="countdown-timer">
+          <div class="time-box">
+            <span id="days">0</span>
+            <small>días</small>
           </div>
-
-          <div class="video-card">
-            <video src="videos/highlight2.mp4" controls muted playsinline></video>
-            <div class="video-info">
-              <h3>Luqui Sorry · U17</h3>
-              <p>El gol que nedie estaba esperadno.</p>
-            </div>
+          <div class="time-box">
+            <span id="hours">0</span>
+            <small>horas</small>
           </div>
-
-          <div class="video-card">
-            <video src="videos/highlight3.mp4" controls muted playsinline></video>
-            <div class="video-info">
-              <h3>Luqui Sorry · U17</h3>
-              <p>Golazo contra el equipo de campeones.</p>
-            </div>
+          <div class="time-box">
+            <span id="minutes">0</span>
+            <small>min</small>
+          </div>
+          <div class="time-box">
+            <span id="seconds">0</span>
+            <small>seg</small>
           </div>
         </div>
 
-        <button class="videos-arrow next" aria-label="Siguiente vídeo">›</button>
+        <p class="countdown-subtitle">
+          Athlead estará disponible muy pronto. Apúntate para tener acceso anticipado. Ya contamos con
+          200 usuarios y creciendo.
+        </p>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- CÓMO FUNCIONA – DOS BLOQUES TIPO VEO -->
-  <section class="how-it-works" id="how-it-works" data-main-section>
-    <div class="section-inner">
-      <p class="section-kicker">Cómo funciona</p>
-      <h2>Una experiencia Athlead para cada tipo de usuario</h2>
-      <p>
-        Athlead está pensada tanto para el jugador que quiere dejar de ser invisible como para el
-        club o entrenador que necesita encontrar talento sin perder tiempo en vídeos sueltos.
-      </p>
+    <!-- QUIÉNES SOMOS -->
+    <section class="who-we-are" id="who-we-are">
+      <div class="section-inner">
+        <p class="section-kicker">Quiénes somos</p>
+        <h2>Una app hecha por jugadores para jugadores invisibles</h2>
+        <p>
+          Athlead nace de una pasión por el fútbol y una frustración común: miles de jóvenes con
+          talento extraordinario en España que nunca tienen la oportunidad de ser vistos porque no
+          tienen contactos, no viven en grandes ciudades o no pueden pagar academias caras.
+        </p>
+        <p>
+          Somos una comunidad de exjugadores, entrenadores y fans que creemos en el fútbol auténtico.
+          El que se juega en los campos de barrio, en los polideportivos y en los campos de tierra. El
+          fútbol de los que no tienen patrocinadores, pero sí corazón.
+        </p>
+        <p>
+          No somos scouts, ni una academia ni una empresa de servicios. Somos una plataforma creada
+          por y para los jugadores. Una herramienta simple, gratuita y potente que pone el talento en
+          primer lugar.
+        </p>
+      </div>
+    </section>
 
-      <div class="experience-grid">
-        <!-- Jugadores -->
-        <article class="experience-card">
-          <div class="experience-image-wrapper">
-            <img
-              src="images/athlead-jugador-main.jpg"
-              alt="Vista de Athlead para jugadores"
-              class="role-image"
+    <!-- JUGADAS DESTACADAS -->
+    <section class="highlight-videos" id="highlight-videos">
+      <div class="section-inner">
+        <p class="section-kicker">Jugadas destacadas</p>
+        <h2>Mira cómo juegan los futuros fichajes</h2>
+        <p class="highlight-subtitle">
+          Vídeos reales de jugadores como tú. Lo que pasa cada fin de semana en los campos de barrio,
+          ahora en un solo lugar.
+        </p>
+
+        <div class="videos-carousel">
+          <button class="videos-arrow prev" aria-label="Vídeo anterior">‹</button>
+
+          <div class="videos-track">
+            <div class="video-card">
+              <video src="videos/highlight1.mp4" controls muted playsinline></video>
+              <div class="video-info">
+                <h3>Luqui Sorry · U17</h3>
+                <p>Pase filtrado del medio centro inofensivo.</p>
+              </div>
+            </div>
+
+            <div class="video-card">
+              <video src="videos/highlight2.mp4" controls muted playsinline></video>
+              <div class="video-info">
+                <h3>Luqui Sorry · U17</h3>
+                <p>El gol que nedie estaba esperadno.</p>
+              </div>
+            </div>
+
+            <div class="video-card">
+              <video src="videos/highlight3.mp4" controls muted playsinline></video>
+              <div class="video-info">
+                <h3>Luqui Sorry · U17</h3>
+                <p>Golazo contra el equipo de campeones.</p>
+              </div>
+            </div>
+          </div>
+
+          <button class="videos-arrow next" aria-label="Siguiente vídeo">›</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCIA ATHLEAD (sustituye al antiguo "Cómo funciona") -->
+    <section class="experience-section" id="how-it-works">
+      <div class="section-inner">
+        <p class="section-kicker">Cómo funciona</p>
+        <h2 class="experience-title">Una experiencia Athlead para cada tipo de usuario</h2>
+        <p class="experience-intro">
+          Athlead está pensada tanto para el jugador que quiere dejar de ser invisible como para el
+          club o entrenador que necesita encontrar talento sin perder tiempo en vídeos sueltos.
+        </p>
+
+        <div class="experience-grid">
+          <!-- Jugadores -->
+          <article class="experience-card">
+            <div class="experience-image-wrapper">
+              <img
+                src="images/athlead-jugador-main.jpg"
+                alt="Vista de Athlead para jugadores"
+                class="role-image"
+              />
+            </div>
+            <p class="experience-label">Para jugadores</p>
+            <h3>Tu escaparate de fútbol en el bolsillo</h3>
+            <p>
+              Crea tu perfil en minutos, sube tus mejores jugadas y deja que tu talento llegue a
+              entrenadores y clubes que no te conocen… todavía.
+            </p>
+            <ul>
+              <li>Perfil con posición, edad, equipo y datos clave.</li>
+              <li>Vídeos cortos ordenados por tipo de jugada.</li>
+              <li>Visibilidad frente a entrenadores y scouts que ya buscan online.</li>
+            </ul>
+            <button class="experience-btn" data-target="detalle-jugadores">Explorar</button>
+          </article>
+
+          <!-- Clubes y entrenadores -->
+          <article class="experience-card">
+            <div class="experience-image-wrapper">
+              <img
+                src="images/athlead-clubes-main.jpg"
+                alt="Vista de Athlead para clubes y entrenadores"
+                class="role-image"
+              />
+            </div>
+            <p class="experience-label">Para clubes y entrenadores</p>
+            <h3>Encuentra talento sin perder horas en vídeos sueltos</h3>
+            <p>
+              Un panel pensado para fichar mejor: filtros avanzados, rankings y listas de
+              seguimiento para tener controlados a los jugadores que te interesan.
+            </p>
+            <ul>
+              <li>Filtros por edad, posición, categoría y zona geográfica.</li>
+              <li>Perfiles con contexto y jugadas ordenadas para decidir rápido.</li>
+              <li>Mensajes directos, sin intermediarios ni comisiones ocultas.</li>
+            </ul>
+            <button class="experience-btn" data-target="detalle-clubes">Explorar</button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SIGNUP -->
+    <section class="signup-section" id="signup">
+      <div class="section-inner">
+        <p class="section-kicker">Acceso anticipado</p>
+        <h2>Regístrate para entrar en la primera generación Athlead</h2>
+        <p>
+          Únete a los primeros jugadores que van a dejar de ser invisibles. Completa este formulario y
+          recibe una guía gratuita para que tu perfil destaque desde el primer día.
+        </p>
+
+        <div class="premium-offer">
+          ¿Quieres más visibilidad?
+          <br />
+          Regístrate hoy y llévate 1 mes Premium GRATIS + una guía personalizada para que tu perfil
+          destaque desde el primer día.
+          <small>*Oferta válida para los primeros 500 registrados.</small>
+        </div>
+
+        <form
+          class="signup-form"
+          action="https://script.google.com/macros/s/AKfycbzJLa15-mvHbZZ4MLDJ9asjBTHCcYdMXwvs4k2DuSxOQyMej1ZhVQRjxWD9b4zhDf5aSQ/exec"
+          method="POST"
+        >
+          <div class="form-group">
+            <label for="role">¿Eres?</label>
+            <select id="role" name="role" class="form-select" required>
+              <option value="">Selecciona tu rol</option>
+              <option value="jugador">Jugador de fútbol</option>
+              <option value="entrenador">Entrenador</option>
+              <option value="club">Club / Academia</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="signup-name">Nombre y Apellido</label>
+            <input
+              type="text"
+              id="signup-name"
+              name="name"
+              class="form-control"
+              placeholder="Tu nombre completo"
+              required
             />
           </div>
-          <p class="experience-label">Para jugadores</p>
-          <h3>Tu escaparate de fútbol en el bolsillo</h3>
-          <p>
-            Crea tu perfil en minutos, sube tus mejores jugadas y deja que tu talento llegue a
-            entrenadores y clubes que no te conocen... todavía.
-          </p>
-          <ul>
-            <li>Perfil con posición, edad, equipo y datos clave.</li>
-            <li>Vídeos cortos ordenados por tipo de jugada.</li>
-            <li>Visibilidad frente a entrenadores y scouts que ya buscan online.</li>
-          </ul>
-          <button class="experience-btn" data-target="detalle-jugadores">Explorar</button>
-        </article>
 
-        <!-- Clubes y entrenadores -->
-        <article class="experience-card">
-          <div class="experience-image-wrapper">
-            <img
-              src="images/athlead-clubes-main.jpg"
-              alt="Vista de Athlead para clubes y entrenadores"
-              class="role-image"
+          <div class="form-group">
+            <label for="signup-email">Email</label>
+            <input
+              type="email"
+              id="signup-email"
+              name="email"
+              class="form-control"
+              placeholder="tu@email.com"
+              required
             />
           </div>
-          <p class="experience-label">Para clubes y entrenadores</p>
-          <h3>Encuentra talento sin perder horas en vídeos sueltos</h3>
-          <p>
-            Un panel pensado para fichar mejor: filtros avanzados, rankings y listas de seguimiento
-            para tener controlados a los jugadores que te interesan.
-          </p>
-          <ul>
-            <li>Filtros por edad, posición, categoría y zona geográfica.</li>
-            <li>Perfiles con contexto y jugadas ordenadas para decidir rápido.</li>
-            <li>Mensajes directos, sin intermediarios ni comisiones ocultas.</li>
-          </ul>
-          <button class="experience-btn" data-target="detalle-clubes">Explorar</button>
-        </article>
-      </div>
-    </div>
-  </section>
 
-  <!-- VISTA DETALLE JUGADORES -->
-  <section class="detail-view" id="detalle-jugadores" aria-hidden="true">
-    <div class="detail-inner">
-      <button class="detail-back" type="button" data-back>
-        ← Volver a la vista principal
-      </button>
-      <p class="section-kicker">Para jugadores</p>
-      <h2>Tu escaparate de fútbol en el bolsillo</h2>
-      <p>
-        Athlead está diseñada para que cualquier jugador pueda enseñar su fútbol como si tuviera un
-        vídeo profesional y un representante... pero sin pagar nada. Tu perfil se convierte en tu
-        carta de presentación: claro, ordenado y fácil de entender para cualquiera que sepa de
-        fútbol.
-      </p>
-      <p>
-        En lugar de mandar vídeos por WhatsApp o guardar clips perdidos en tu galería, tendrás todo
-        en un solo lugar. Así, cuando un entrenador te pida vídeos, solo tienes que enviar tu perfil
-        Athlead.
-      </p>
-
-      <ul>
-        <li>
-          <strong>Perfil completo en minutos:</strong> posición, edad, pie dominante, altura,
-          equipo actual y categoría.
-        </li>
-        <li>
-          <strong>Vídeos por tipo de jugada:</strong> goles, asistencias, defensa, salida de balón,
-          paradas... cada clip donde mejor se ve qué sabes hacer.
-        </li>
-        <li>
-          <strong>Contexto real de partido:</strong> jugadas reales, sin ediciones locas ni música
-          que distraiga. Lo que interesa ver a un entrenador.
-        </li>
-        <li>
-          <strong>Tu evolución en el tiempo:</strong> podrás ir actualizando tu perfil para que se
-          vea cómo mejoras temporada a temporada.
-        </li>
-        <li>
-          <strong>Compartir en un clic:</strong> envía tu perfil por enlace a cualquier club,
-          campus, academia o entrenador que te pida referencias.
-        </li>
-      </ul>
-
-      <p>
-        El objetivo es simple: que si juegas bien al fútbol, dejar de ser invisible deje de depender
-        de la suerte o de tener contactos. Que dependa de lo que haces dentro del campo.
-      </p>
-    </div>
-  </section>
-
-  <!-- VISTA DETALLE CLUBES / ENTRENADORES -->
-  <section class="detail-view" id="detalle-clubes" aria-hidden="true">
-    <div class="detail-inner">
-      <button class="detail-back" type="button" data-back>
-        ← Volver a la vista principal
-      </button>
-      <p class="section-kicker">Para clubes y entrenadores</p>
-      <h2>Encuentra talento sin perder horas en vídeos sueltos</h2>
-      <p>
-        Athlead es un panel de scouting ligero pensado para el día a día de clubes amateurs,
-        academias y entrenadores que no tienen un departamento profesional de análisis, pero sí
-        necesitan fichar mejor.
-      </p>
-      <p>
-        En lugar de revisar decenas de vídeos sin contexto en redes sociales o recibir enlaces
-        sueltos, tendrás jugadores ordenados, filtrables y comparables en un mismo entorno.
-      </p>
-
-      <ul>
-        <li>
-          <strong>Búsquedas con filtros avanzados:</strong> posición, edad, categoría, zona
-          geográfica y características clave del jugador.
-        </li>
-        <li>
-          <strong>Perfiles con contexto:</strong> datos básicos del jugador, club actual, minutos
-          jugados (cuando esté disponible) y sus mejores jugadas agrupadas por tipo.
-        </li>
-        <li>
-          <strong>Listas de seguimiento:</strong> guarda jugadores que te interesen para tenerlos
-          controlados de cara a la próxima temporada, torneos o pruebas.
-        </li>
-        <li>
-          <strong>Rankings dinámicos:</strong> descubre quiénes son los jugadores más vistos o más
-          guardados en tu zona.
-        </li>
-        <li>
-          <strong>Mensajes directos sin intermediarios:</strong> habla con el jugador o su entorno
-          directamente desde Athlead, sin comisiones ni intermediarios.
-        </li>
-      </ul>
-
-      <p>
-        Athlead no pretende sustituir al ojo del entrenador, sino ahorrarle tiempo para que llegue
-        antes a los perfiles que realmente le pueden encajar en su equipo.
-      </p>
-    </div>
-  </section>
-
-  <!-- SIGNUP -->
-  <section class="signup-section" id="signup" data-main-section>
-    <div class="section-inner">
-      <p class="section-kicker">Acceso anticipado</p>
-      <h2>Regístrate para entrar en la primera generación Athlead</h2>
-      <p>
-        Únete a los primeros jugadores que van a dejar de ser invisibles. Completa este formulario y
-        recibe una guía gratuita para que tu perfil destaque desde el primer día.
-      </p>
-
-      <div class="premium-offer">
-        ¿Quieres más visibilidad?
-        <br />
-        Regístrate hoy y llévate 1 mes Premium GRATIS + una guía personalizada para que tu perfil
-        destaque desde el primer día.
-        <small>*Oferta válida para los primeros 500 registrados.</small>
-      </div>
-
-      <form
-        class="signup-form"
-        action="https://script.google.com/macros/s/AKfycbzJLa15-mvHbZZ4MLDJ9asjBTHCcYdMXwvs4k2DuSxOQyMej1ZhVQRjxWD9b4zhDf5aSQ/exec"
-        method="POST"
-      >
-        <div class="form-group">
-          <label for="role">¿Eres?</label>
-          <select id="role" name="role" class="form-select" required>
-            <option value="">Selecciona tu rol</option>
-            <option value="jugador">Jugador de fútbol</option>
-            <option value="entrenador">Entrenador</option>
-            <option value="club">Club / Academia</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="signup-name">Nombre y Apellido</label>
-          <input
-            type="text"
-            id="signup-name"
-            name="name"
-            class="form-control"
-            placeholder="Tu nombre completo"
-            required
-          />
-        </div>
-
-        <div class="form-group">
-          <label for="signup-email">Email</label>
-          <input
-            type="email"
-            id="signup-email"
-            name="email"
-            class="form-control"
-            placeholder="tu@email.com"
-            required
-          />
-        </div>
-
-        <div class="form-group">
-          <label for="source">¿Por dónde nos conociste?</label>
-          <select id="source" name="source" class="form-select" required>
-            <option value="">Selecciona una opción</option>
-            <option value="red social">Red social</option>
-            <option value="recomendacion">Recomendación</option>
-            <option value="ia">Inteligencia Artificial</option>
-            <option value="internet">Internet</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="recommend"
-            >Del 1 al 10, ¿cuánto recomendarías la aplicación a un amigo?</label
-          >
-          <select id="recommend" name="recommend" class="form-select" required>
-            <option value="">Selecciona una puntuación</option>
-            <option value="1">1 - No la recomendaría</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5 - Neutral</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10 - La recomendaría mucho</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="idea">Del 1 al 10, ¿qué te parece esta idea?</label>
-          <select id="idea" name="idea" class="form-select" required>
-            <option value="">Selecciona una puntuación</option>
-            <option value="1">1 - Muy mala idea</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5 - Neutral</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10 - Excelente idea</option>
-          </select>
-        </div>
-
-        <button type="submit" class="submit-btn">¡SÍ, QUIERO ACCESO ANTICIPADO!</button>
-      </form>
-    </div>
-  </section>
-
-  <!-- FOOTBALL STATS -->
-  <section class="football-stats-section" id="football-stats" data-main-section>
-    <div class="section-inner">
-      <p class="section-kicker">Fútbol amateur en España</p>
-      <h2>Millones de jugadores. Muy pocos son vistos.</h2>
-      <p>
-        Los números hablan por sí solos. Esta es la realidad del fútbol amateur en España y el
-        motivo por el que existe Athlead.
-      </p>
-
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-number">5,2M</div>
-          <div class="stat-label">Jugadores registrados en federaciones españolas.</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number">87%</div>
-          <div class="stat-label">
-            Nunca han tenido una conversación real con un scout o una academia.
+          <div class="form-group">
+            <label for="source">¿Por dónde nos conociste?</label>
+            <select id="source" name="source" class="form-select" required>
+              <option value="">Selecciona una opción</option>
+              <option value="red social">Red social</option>
+              <option value="recomendacion">Recomendación</option>
+              <option value="ia">Inteligencia Artificial</option>
+              <option value="internet">Internet</option>
+            </select>
           </div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number">1,8M</div>
-          <div class="stat-label">Juegan sin acceso a academias de alto rendimiento.</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number">92%</div>
-          <div class="stat-label">
-            De los entrenadores ya buscan talento en redes sociales o internet.
+
+          <div class="form-group">
+            <label for="recommend"
+              >Del 1 al 10, ¿cuánto recomendarías la aplicación a un amigo?</label
+            >
+            <select id="recommend" name="recommend" class="form-select" required>
+              <option value="">Selecciona una puntuación</option>
+              <option value="1">1 - No la recomendaría</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5 - Neutral</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10 - La recomendaría mucho</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="idea">Del 1 al 10, ¿qué te parece esta idea?</label>
+            <select id="idea" name="idea" class="form-select" required>
+              <option value="">Selecciona una puntuación</option>
+              <option value="1">1 - Muy mala idea</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5 - Neutral</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10 - Excelente idea</option>
+            </select>
+          </div>
+
+          <button type="submit" class="submit-btn">¡SÍ, QUIERO ACCESO ANTICIPADO!</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- FOOTBALL STATS -->
+    <section class="football-stats-section" id="football-stats">
+      <div class="section-inner">
+        <p class="section-kicker">Fútbol amateur en España</p>
+        <h2>Millones de jugadores. Muy pocos son vistos.</h2>
+        <p>
+          Los números hablan por sí solos. Esta es la realidad del fútbol amateur en España y el
+          motivo por el que existe Athlead.
+        </p>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-number">5,2M</div>
+            <div class="stat-label">Jugadores registrados en federaciones españolas.</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">87%</div>
+            <div class="stat-label">
+              Nunca han tenido una conversación real con un scout o una academia.
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">1,8M</div>
+            <div class="stat-label">Juegan sin acceso a academias de alto rendimiento.</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">92%</div>
+            <div class="stat-label">
+              De los entrenadores ya buscan talento en redes sociales o internet.
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- FEATURES -->
-  <section class="features" id="features" data-main-section>
-    <div class="section-inner">
-      <p class="section-kicker">Pensado para ti</p>
-      <h2>Tu talento merece un escaparate mejor que un grupo de WhatsApp</h2>
-      <p>
-        Athlead convierte tus jugadas en un perfil claro, ordenado y fácil de entender para
-        cualquiera que sepa de fútbol.
+    <!-- FEATURES -->
+    <section class="features" id="features">
+      <div class="section-inner">
+        <p class="section-kicker">Pensado para ti</p>
+        <h2>Tu talento merece un escaparate mejor que un grupo de WhatsApp</h2>
+        <p>
+          Athlead convierte tus jugadas en un perfil claro, ordenado y fácil de entender para
+          cualquiera que sepa de fútbol.
+        </p>
+
+        <div class="features-grid">
+          <div class="feature-card">
+            <h3>Sube tus jugadas 🕺</h3>
+            <p>
+              Comparte tus mejores momentos: goles, asistencias, regates, robos o salidas jugando. En
+              vídeos cortos que van directos al grano.
+            </p>
+          </div>
+          <div class="feature-card">
+            <h3>Conecta con el mundo 🌎</h3>
+            <p>
+              Vincula tu Instagram, TikTok o YouTube para que se vea tu evolución, tu carácter y tu
+              trabajo fuera de los 90 minutos.
+            </p>
+          </div>
+          <div class="feature-card">
+            <h3>Visibilidad real 🏆</h3>
+            <p>
+              Entrenadores, scouts y clubes pueden encontrarte usando filtros por edad, posición y
+              zona. Tú decides qué muestras y cómo.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROBLEM / SOLUTION -->
+    <section class="problem-section" id="problem-section">
+      <div class="section-inner">
+        <p class="section-kicker">Jugadores invisibles</p>
+        <h2>El fútbol no debería ser solo para los que tienen contactos</h2>
+        <p>
+          Millones de jugadores en España tienen talento pero no oportunidad. No pueden pagar escuelas
+          caras, no conocen a nadie en clubes grandes y sus habilidades se quedan escondidas en un
+          campo de barrio.
+        </p>
+
+        <div class="problem-solution">
+          <div class="problem">
+            <h3>El problema</h3>
+            <p>
+              Los jugadores amateurs no tienen visibilidad. Sus vídeos están perdidos entre grupos,
+              chats y redes sin contexto. Un jugador con potencial puede estar a 10 minutos de un club,
+              pero nunca sabrán que existe.
+            </p>
+          </div>
+          <div class="solution">
+            <h3>Nuestra solución</h3>
+            <p>
+              Athlead es la primera red deportiva española que conecta directamente a jugadores con
+              scouts y clubes. Sin intermediarios, sin pagar por ser visto. Subes tu vídeo, compartes
+              tu perfil y dejas que el fútbol haga el resto.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section" id="faq">
+      <div class="section-inner">
+        <p class="section-kicker">FAQ</p>
+        <h2>Preguntas frecuentes</h2>
+        <p>Todo lo que necesitas saber sobre Athlead antes de subir tu primera jugada.</p>
+
+        <div class="faq-container">
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>¿Es gratis usar Athlead?</span>
+              <span class="faq-arrow">▼</span>
+            </div>
+            <div class="faq-answer">
+              Sí, Athlead es completamente gratuito para jugadores. No cobramos por crear tu perfil,
+              subir videos o recibir mensajes de scouts. Nuestra misión es democratizar el acceso al
+              fútbol profesional, no venderte promesas vacías.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>¿Qué tipo de vídeos puedo subir?</span>
+              <span class="faq-arrow">▼</span>
+            </div>
+            <div class="faq-answer">
+              Puedes subir cualquier vídeo que muestre tu talento: goles, asistencias, regates,
+              defensas, liderazgo o incluso entrenamientos. Lo ideal son clips de 15 a 60 segundos,
+              donde se vea claramente qué aportas como jugador.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>¿Quiénes pueden ver mi perfil?</span>
+              <span class="faq-arrow">▼</span>
+            </div>
+            <div class="faq-answer">
+              Tu perfil es visible para todos los usuarios de Athlead y para scouts, entrenadores o
+              clubes que buscan talento. Podrás elegir si tu perfil es público o si solo quieres que
+              se muestre en búsquedas específicas.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>¿Puedo vincular mi Instagram o TikTok?</span>
+              <span class="faq-arrow">▼</span>
+            </div>
+            <div class="faq-answer">
+              Sí. Podrás vincular tus redes para que vean más de ti: cómo entrenas, cómo eres fuera
+              del campo y cómo vives el fútbol en tu día a día. Eso también es parte de tu perfil.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>¿Cómo sé si un scout me ha visto?</span>
+              <span class="faq-arrow">▼</span>
+            </div>
+            <div class="faq-answer">
+              Cuando un scout, entrenador o club te quiera contactar, recibirás una notificación en la
+              app (cuando esté disponible) y un email. Nadie te llamará por teléfono sin tu permiso, y
+              siempre tendrás el control de con quién hablas.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>¿Cuándo se lanza Athlead?</span>
+              <span class="faq-arrow">▼</span>
+            </div>
+            <div class="faq-answer">
+              Estamos en fase de Acceso Anticipado. Nuestro objetivo es lanzar la versión oficial
+              cuando tengamos la suficiente base de jugadores y scouts. Si te registras ahora, tendrás
+              acceso prioritario a la Beta, actualizaciones exclusivas y una guía para preparar tu
+              perfil de la mejor manera posible antes del lanzamiento público.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section class="contact-section" id="contact">
+      <div class="section-inner">
+        <p class="section-kicker">Contacto</p>
+        <h2>¿Tienes dudas?</h2>
+        <p>
+          Escríbenos. Estamos construyendo Athlead contigo y queremos escuchar lo que necesitas para
+          que tu talento sea visto.
+        </p>
+
+        <form class="contact-form" id="contactForm">
+          <div class="form-group">
+            <label for="contact-name">Nombre</label>
+            <input
+              type="text"
+              id="contact-name"
+              name="nombre"
+              class="form-control"
+              placeholder="Tu nombre completo"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="contact-email">Email</label>
+            <input
+              type="email"
+              id="contact-email"
+              name="email"
+              class="form-control"
+              placeholder="tu@email.com"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="contact-message">Mensaje</label>
+            <textarea
+              id="contact-message"
+              name="mensaje"
+              class="form-control"
+              rows="5"
+              placeholder="¿Qué te gustaría saber sobre Athlead? ¿Tienes alguna idea, duda o propuesta?"
+              required
+            ></textarea>
+          </div>
+
+          <button type="submit" class="contact-btn">Enviar mensaje</button>
+
+          <div id="contactSuccess" class="contact-success">
+            ¡Gracias por contactarnos! Te responderemos en menos de 48 horas.
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="footer-inner">
+        <div class="footer-links">
+          <a href="#who-we-are">Quiénes somos</a>
+          <a href="#how-it-works">Cómo funciona</a>
+          <a href="#signup">Regístrate</a>
+          <a href="#features">Características</a>
+          <a href="#problem-section">Jugadores invisibles</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contact">Contacto</a>
+        </div>
+
+        <div class="copyright">© 2025 Athlead. Todos los derechos reservados.</div>
+
+        <div class="privacy-links">
+          <a href="#privacy">Política de Privacidad</a>
+          <a href="#terms">Términos y Condiciones</a>
+          <a href="#cookies">Política de Cookies</a>
+          <a href="#data">Protección de Datos</a>
+        </div>
+
+        <div class="footer-tagline">Deja que el talento hable por ti.</div>
+      </div>
+    </footer>
+  </div> <!-- /#mainContent -->
+
+  <!-- PANTALLAS DE DETALLE (se muestran al pulsar "Explorar") -->
+  <section class="experience-details" id="experienceDetails">
+    <!-- Detalle jugadores -->
+    <div id="detalle-jugadores" class="experience-detail">
+      <p class="detail-kicker">Athlead para jugadores</p>
+      <h2 class="detail-title">Convierte tus jugadas en oportunidades reales</h2>
+      <p class="detail-intro">
+        Tu perfil en Athlead es tu carta de presentación. No hace falta un vídeo perfecto, hace falta
+        que quien decide fichar vea rápido quién eres, cómo juegas y qué puedes aportar a su equipo.
       </p>
 
-      <div class="features-grid">
-        <div class="feature-card">
-          <h3>Sube tus jugadas 🕺</h3>
-          <p>
-            Comparte tus mejores momentos: goles, asistencias, regates, robos o salidas jugando. En
-            vídeos cortos que van directos al grano.
-          </p>
-        </div>
-        <div class="feature-card">
-          <h3>Conecta con el mundo 🌎</h3>
-          <p>
-            Vincula tu Instagram, TikTok o YouTube para que se vea tu evolución, tu carácter y tu
-            trabajo fuera de los 90 minutos.
-          </p>
-        </div>
-        <div class="feature-card">
-          <h3>Visibilidad real 🏆</h3>
-          <p>
-            Entrenadores, scouts y clubes pueden encontrarte usando filtros por edad, posición y
-            zona. Tú decides qué muestras y cómo.
-          </p>
-        </div>
+      <div class="detail-block">
+        <h3>Un perfil pensado para el fútbol, no para influencers</h3>
+        <p>
+          Incluye solo lo que importa: posición, edad, pierna dominante, equipo actual, categoría y
+          minutos jugados. Nada de filtros raros ni bailecitos: aquí manda lo que haces en el campo.
+        </p>
       </div>
-    </div>
-  </section>
 
-  <!-- PROBLEM / SOLUTION -->
-  <section class="problem-section" id="problem-section" data-main-section>
-    <div class="section-inner">
-      <p class="section-kicker">Jugadores invisibles</p>
-      <h2>El fútbol no debería ser solo para los que tienen contactos</h2>
-      <p>
-        Millones de jugadores en España tienen talento pero no oportunidad. No pueden pagar escuelas
-        caras, no conocen a nadie en clubes grandes y sus habilidades se quedan escondidas en un
-        campo de barrio.
+      <div class="detail-block">
+        <h3>Tus mejores acciones, ordenadas como en un informe de scouting</h3>
+        <ul class="detail-list">
+          <li>Sube clips cortos de 15 a 60 segundos con tus mejores jugadas.</li>
+          <li>Organiza los vídeos por tipo: goles, asistencias, regates, robos, salida de balón…</li>
+          <li>Destaca tus puntos fuertes para que un entrenador entienda tu perfil en segundos.</li>
+        </ul>
+      </div>
+
+      <div class="detail-block">
+        <h3>Visibilidad sin pagar por “pruebas” dudosas</h3>
+        <p>
+          Tu perfil se muestra a clubes y entrenadores que usan Athlead para buscar jugadores por
+          edad, posición y zona. Ellos deciden a quién llaman; tú decides con quién quieres hablar.
+        </p>
+      </div>
+
+      <button class="back-btn" type="button">← Volver a la página principal</button>
+    </div>
+
+    <!-- Detalle clubes -->
+    <div id="detalle-clubes" class="experience-detail">
+      <p class="detail-kicker">Athlead para clubes y entrenadores</p>
+      <h2 class="detail-title">Fichar mejor, perdiendo menos tiempo</h2>
+      <p class="detail-intro">
+        Athlead está pensado para que encuentres exactamente el tipo de jugador que necesitas sin
+        pasar horas saltando entre vídeos de redes sociales sin contexto.
       </p>
 
-      <div class="problem-solution">
-        <div class="problem">
-          <h3>El problema</h3>
-          <p>
-            Los jugadores amateurs no tienen visibilidad. Sus vídeos están perdidos entre grupos,
-            chats y redes sin contexto. Un jugador con potencial puede estar a 10 minutos de un club,
-            pero nunca sabrán que existe.
-          </p>
-        </div>
-        <div class="solution">
-          <h3>Nuestra solución</h3>
-          <p>
-            Athlead es la primera red deportiva española que conecta directamente a jugadores con
-            scouts y clubes. Sin intermediarios, sin pagar por ser visto. Subes tu vídeo, compartes
-            tu perfil y dejas que el fútbol haga el resto.
-          </p>
-        </div>
+      <div class="detail-block">
+        <h3>Filtros como los que usas en tu libreta, pero en digital</h3>
+        <ul class="detail-list">
+          <li>Busca por posición, edad, categoría, zona geográfica y características clave.</li>
+          <li>Filtra por tipo de acciones: finalización, 1v1, juego aéreo, salida desde atrás…</li>
+          <li>Guarda tus búsquedas para volver a ellas antes de cada mercado o torneo.</li>
+        </ul>
       </div>
+
+      <div class="detail-block">
+        <h3>Perfiles con contexto, no solo highlights editados</h3>
+        <p>
+          Cada jugador tiene una ficha clara: datos básicos, historial de clubes y vídeos ordenados
+          por tipo de jugada. Puedes valorar rápidamente si encaja en tu idea de juego.
+        </p>
+      </div>
+
+      <div class="detail-block">
+        <h3>Listas de seguimiento y contacto directo</h3>
+        <ul class="detail-list">
+          <li>Crea listas de jugadores seguidos por posición o por ventana de fichajes.</li>
+          <li>Controla quién has visto, a quién quieres seguir y a quién quieres invitar a prueba.</li>
+          <li>Contacta por mensaje directo, sin representantes obligatorios ni comisiones ocultas.</li>
+        </ul>
+      </div>
+
+      <button class="back-btn" type="button">← Volver a la página principal</button>
     </div>
   </section>
-
-  <!-- FAQ -->
-  <section class="faq-section" id="faq" data-main-section>
-    <div class="section-inner">
-      <p class="section-kicker">FAQ</p>
-      <h2>Preguntas frecuentes</h2>
-      <p>Todo lo que necesitas saber sobre Athlead antes de subir tu primera jugada.</p>
-
-      <div class="faq-container">
-        <div class="faq-item">
-          <div class="faq-question">
-            <span>¿Es gratis usar Athlead?</span>
-            <span class="faq-arrow">▼</span>
-          </div>
-          <div class="faq-answer">
-            Sí, Athlead es completamente gratuito para jugadores. No cobramos por crear tu perfil,
-            subir videos o recibir mensajes de scouts. Nuestra misión es democratizar el acceso al
-            fútbol profesional, no venderte promesas vacías.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-question">
-            <span>¿Qué tipo de vídeos puedo subir?</span>
-            <span class="faq-arrow">▼</span>
-          </div>
-          <div class="faq-answer">
-            Puedes subir cualquier vídeo que muestre tu talento: goles, asistencias, regates,
-            defensas, liderazgo o incluso entrenamientos. Lo ideal son clips de 15 a 60 segundos,
-            donde se vea claramente qué aportas como jugador.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-question">
-            <span>¿Quiénes pueden ver mi perfil?</span>
-            <span class="faq-arrow">▼</span>
-          </div>
-          <div class="faq-answer">
-            Tu perfil es visible para todos los usuarios de Athlead y para scouts, entrenadores o
-            clubes que buscan talento. Podrás elegir si tu perfil es público o si solo quieres que
-            se muestre en búsquedas específicas.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-question">
-            <span>¿Puedo vincular mi Instagram o TikTok?</span>
-            <span class="faq-arrow">▼</span>
-          </div>
-          <div class="faq-answer">
-            Sí. Podrás vincular tus redes para que vean más de ti: cómo entrenas, cómo eres fuera
-            del campo y cómo vives el fútbol en tu día a día. Eso también es parte de tu perfil.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-question">
-            <span>¿Cómo sé si un scout me ha visto?</span>
-            <span class="faq-arrow">▼</span>
-          </div>
-          <div class="faq-answer">
-            Cuando un scout, entrenador o club te quiera contactar, recibirás una notificación en la
-            app (cuando esté disponible) y un email. Nadie te llamará por teléfono sin tu permiso, y
-            siempre tendrás el control de con quién hablas.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-question">
-            <span>¿Cuándo se lanza Athlead?</span>
-            <span class="faq-arrow">▼</span>
-          </div>
-          <div class="faq-answer">
-            Estamos en fase de Acceso Anticipado. Nuestro objetivo es lanzar la versión oficial
-            cuando tengamos la suficiente base de jugadores y scouts. Si te registras ahora, tendrás
-            acceso prioritario a la Beta, actualizaciones exclusivas y una guía para preparar tu
-            perfil de la mejor manera posible antes del lanzamiento público.
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACTO -->
-  <section class="contact-section" id="contact" data-main-section>
-    <div class="section-inner">
-      <p class="section-kicker">Contacto</p>
-      <h2>¿Tienes dudas?</h2>
-      <p>
-        Escríbenos. Estamos construyendo Athlead contigo y queremos escuchar lo que necesitas para
-        que tu talento sea visto.
-      </p>
-
-      <form class="contact-form" id="contactForm">
-        <div class="form-group">
-          <label for="contact-name">Nombre</label>
-          <input
-            type="text"
-            id="contact-name"
-            name="nombre"
-            class="form-control"
-            placeholder="Tu nombre completo"
-            required
-          />
-        </div>
-
-        <div class="form-group">
-          <label for="contact-email">Email</label>
-          <input
-            type="email"
-            id="contact-email"
-            name="email"
-            class="form-control"
-            placeholder="tu@email.com"
-            required
-          />
-        </div>
-
-        <div class="form-group">
-          <label for="contact-message">Mensaje</label>
-          <textarea
-            id="contact-message"
-            name="mensaje"
-            class="form-control"
-            rows="5"
-            placeholder="¿Qué te gustaría saber sobre Athlead? ¿Tienes alguna idea, duda o propuesta?"
-            required
-          ></textarea>
-        </div>
-
-        <button type="submit" class="contact-btn">Enviar mensaje</button>
-
-        <div id="contactSuccess" class="contact-success">
-          ¡Gracias por contactarnos! Te responderemos en menos de 48 horas.
-        </div>
-      </form>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-links">
-        <a href="#who-we-are">Quiénes somos</a>
-        <a href="#how-it-works">Cómo funciona</a>
-        <a href="#signup">Regístrate</a>
-        <a href="#features">Características</a>
-        <a href="#problem-section">Jugadores invisibles</a>
-        <a href="#faq">FAQ</a>
-        <a href="#contact">Contacto</a>
-      </div>
-
-      <div class="copyright">© 2025 Athlead. Todos los derechos reservados.</div>
-
-      <div class="privacy-links">
-        <a href="#privacy">Política de Privacidad</a>
-        <a href="#terms">Términos y Condiciones</a>
-        <a href="#cookies">Política de Cookies</a>
-        <a href="#data">Protección de Datos</a>
-      </div>
-
-      <div class="footer-tagline">Deja que el talento hable por ti.</div>
-    </div>
-  </footer>
 
   <script>
     // Scroll al top al clicar logo
@@ -2122,50 +2151,34 @@
       });
     }
 
-    // ================= LÓGICA VISTA DETALLE "EXPLORAR" =================
-    const mainSections = document.querySelectorAll('section[data-main-section]');
-    const detailViews = document.querySelectorAll('.detail-view');
-
-    function openDetail(id) {
-      const target = document.getElementById(id);
-      if (!target) return;
-      mainSections.forEach((sec) => sec.classList.add('hidden-main'));
-      detailViews.forEach((sec) => sec.classList.remove('active'));
-      target.classList.add('active');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function closeDetail() {
-      detailViews.forEach((sec) => sec.classList.remove('active'));
-      mainSections.forEach((sec) => sec.classList.remove('hidden-main'));
-    }
+    // ===== LÓGICA PANTALLAS DE EXPERIENCIA (Explorar) =====
+    const mainContent = document.getElementById('mainContent');
+    const experienceDetails = document.getElementById('experienceDetails');
+    const detailSections = document.querySelectorAll('.experience-detail');
 
     document.querySelectorAll('.experience-btn').forEach((btn) => {
       btn.addEventListener('click', () => {
-        const targetId = btn.getAttribute('data-target');
-        openDetail(targetId);
+        const targetId = btn.dataset.target;
+        const targetSection = document.getElementById(targetId);
+        if (!targetSection) return;
+
+        // Ocultar contenido principal y mostrar "pantalla" de detalle
+        mainContent.style.display = 'none';
+        experienceDetails.classList.add('active');
+        detailSections.forEach((sec) => sec.classList.remove('active'));
+        targetSection.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'instant' });
       });
     });
 
-    document.querySelectorAll('[data-back]').forEach((btn) => {
+    document.querySelectorAll('.back-btn').forEach((btn) => {
       btn.addEventListener('click', () => {
-        closeDetail();
-        const howItWorks = document.getElementById('how-it-works');
-        if (howItWorks) {
-          howItWorks.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
-    });
-
-    // Si el usuario pulsa "Cómo funciona" en el menú estando en una vista detalle
-    document.querySelectorAll('a[href="#how-it-works"]').forEach((link) => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        closeDetail();
-        const howItWorks = document.getElementById('how-it-works');
-        if (howItWorks) {
-          howItWorks.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+        experienceDetails.classList.remove('active');
+        detailSections.forEach((sec) => sec.classList.remove('active'));
+        mainContent.style.display = '';
+        document
+          .getElementById('how-it-works')
+          .scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     });
   </script>
