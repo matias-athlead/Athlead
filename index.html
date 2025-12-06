@@ -1267,7 +1267,113 @@
         font-size: 15px;
       }
     }
+@media (max-width: 768px) {
+  /* Contenedor general de la sección */
+  #how-steps {
+    padding: 60px 16px 60px;
+  }
 
+  .how-steps-inner {
+    max-width: 430px;
+    margin: 0 auto;
+  }
+
+  /* Quitamos el layout de dos columnas en móvil */
+  .how-steps-layout {
+    display: block;
+  }
+
+  /* Ocultamos el número gigante 01, 02, 03 en móvil */
+  .how-step-number {
+    display: none;
+  }
+
+  /* Carrusel horizontal táctil */
+  .how-step-card-wrapper {
+    margin-top: 24px;
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 16px;
+    padding-bottom: 18px;
+  }
+
+  .how-step-slide {
+    flex: 0 0 88%;
+    scroll-snap-align: center;
+  }
+
+  /* Tarjeta grande como en Veo */
+  .how-step-card {
+    position: relative;
+    border-radius: 26px;
+    overflow: hidden;
+    height: 70vh;          /* altura grande en móvil */
+    max-height: 580px;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.65);
+  }
+
+  .how-step-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Texto colocado en la parte baja de la foto */
+  .how-step-overlay {
+    position: absolute;
+    inset: auto 0 0 0;      /* pegado abajo */
+    padding: 22px 20px 24px;
+  }
+
+  .how-step-title {
+    font-size: 20px;
+    margin-bottom: 6px;
+  }
+
+  .how-step-sub {
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+
+  .how-step-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 9px 18px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    font-size: 13px;
+    text-decoration: none;
+  }
+
+  /* Puntitos de paginación debajo de la tarjeta */
+  .how-steps-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 4px;
+  }
+
+  .how-step-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    border: none;
+    padding: 0;
+    background: rgba(255, 255, 255, 0.35);
+  }
+
+  .how-step-dot.active {
+    width: 18px;
+    background: #ffffff;
+  }
+}
+
+    
     @media (min-width: 1024px) {
       .hero-section {
         padding-top: 140px;
@@ -1723,7 +1829,12 @@
           </div>
         </div>
       </div>
-
+     <div class="how-steps-dots">
+        <button class="how-step-dot active" data-step="0"></button>
+        <button class="how-step-dot" data-step="1"></button>
+        <button class="how-step-dot" data-step="2"></button>
+      </div>
+    
       <!-- Triggers para el scroll (solo desktop) -->
       <div class="how-step-triggers">
         <div class="how-step-trigger" data-step="0"></div>
@@ -2417,6 +2528,51 @@
 
       triggers.forEach((trigger) => stepObserver.observe(trigger));
     })();
+    // ---------- Carrusel táctil en móvil para "Captura tu talento en tres pasos" ----------
+(function () {
+  const wrapper = document.querySelector('.how-step-card-wrapper');
+  const slides = document.querySelectorAll('.how-step-slide');
+  const dots   = document.querySelectorAll('.how-step-dot');
+
+  if (!wrapper || !slides.length || !dots.length) return;
+  if (window.innerWidth > 768) return; // solo móvil
+
+  function setActiveDot(index) {
+    dots.forEach((d, i) => d.classList.toggle('active', i === index));
+  }
+
+  // Click en los puntitos
+  dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+      const slide = slides[index];
+      if (!slide) return;
+      wrapper.scrollTo({
+        left: slide.offsetLeft - wrapper.offsetLeft,
+        behavior: 'smooth'
+      });
+      setActiveDot(index);
+    });
+  });
+
+  // Actualizar puntitos cuando el usuario hace swipe
+  wrapper.addEventListener('scroll', () => {
+    const center = wrapper.scrollLeft + wrapper.clientWidth / 2;
+    let activeIndex = 0;
+
+    slides.forEach((slide, index) => {
+      const slideCenter = slide.offsetLeft + slide.clientWidth / 2;
+      const activeCenter =
+        slides[activeIndex].offsetLeft + slides[activeIndex].clientWidth / 2;
+
+      if (Math.abs(slideCenter - center) < Math.abs(activeCenter - center)) {
+        activeIndex = index;
+      }
+    });
+
+    setActiveDot(activeIndex);
+  });
+})();
+
   </script>
 </body>
 </html>
