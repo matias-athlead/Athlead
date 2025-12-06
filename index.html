@@ -89,32 +89,33 @@
 
     /* ================= HEADER ================= */
 
-    .header {
-      position: fixed;
-      top: 16px;
-      left: 50%;
-      transform: translate(-50%, 0);
-      width: min(1100px, 92%);
-      padding: 10px 20px;
-      border-radius: 999px;
-      background: rgba(0, 0, 0, 0.72);
-      backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      transition: transform 0.6s ease-in-out;
-    }
+.header {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: min(1100px, 92%);
+  padding: 20px 28px; /* ⬅ MÁS ALTO */
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.78);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 22px 45px rgba(0, 0, 0, 0.65);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  transition: transform 0.6s ease-in-out;
+}
+
 
     .header.hide-header {
       transform: translate(-50%, -180%);
     }
 
     .logo {
-      font-size: 20px;
+      font-size: 24px;
       font-weight: 700;
       letter-spacing: 0.16em;
       cursor: pointer;
@@ -124,7 +125,7 @@
       display: flex;
       gap: 20px;
       align-items: center;
-      font-size: 14px;
+      font-size: 16px;
     }
 
     .nav-links a {
