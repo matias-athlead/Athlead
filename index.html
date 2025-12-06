@@ -1357,18 +1357,20 @@
     }
     /* ===== FOTOS GRANDES EN "CAPTURA TU TALENTO EN TRES PASOS" (SOLO ORDENADOR) ===== */
 @media (min-width: 1024px) {
-  /* La sección en general un poco más alta */
-  #talent-steps .section-inner {
+  #how-steps .how-steps-inner {
     padding-top: 120px;
     padding-bottom: 120px;
   }
 
-  /* Las imágenes de los 3 pasos: grandes tipo Veo */
-  #talent-steps img {
+  #how-steps .how-step-card-wrapper {
+    min-height: 520px;
+  }
+
+  #how-steps .how-step-image {
     width: 100%;
-    height: min(60vh, 550px);  /* altura grande pero limitada a la pantalla */
-    object-fit: cover;         /* recorta sin deformar */
-    border-radius: 28px;       /* esquinas redondeadas como Veo */
+    height: min(60vh, 550px);
+    object-fit: cover;
+    border-radius: 28px;
   }
 }
   </style>
@@ -1538,7 +1540,7 @@
   </section>
 
 <!-- CÓMO FUNCIONA — TRES PASOS -->
-<section class="how-steps" id="talent-steps">
+<section class="how-steps" id="how-steps">
   <div class="how-steps-inner">
     <p class="section-kicker">Cómo funciona</p>
     <h2>Captura tu talento en tres pasos</h2>
