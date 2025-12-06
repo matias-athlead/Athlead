@@ -1,1 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Athlead – Roles de usuario</title>
+
+  <style>
+    :root {
+      --bg-main: #000000;
+      --bg-card: #111318;
+      --border-soft: rgba(255, 255, 255, 0.12);
+      --text-main: #ffffff;
+      --text-muted: rgba(255, 255, 255, 0.7);
+      --accent: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+      background: var(--bg-main);
+      color: var(--text-main);
+      min-height: 100vh;
+    }
+
+    .page-shell {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px 16px 64px;
+    }
+
+    /* Mini header */
+    .mini-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 32px;
+    }
+
+    .mini-logo {
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      font-size: 18px;
+    }
+
+    .mini-back {
+      font-size: 13px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.4);
+      text-decoration: none;
+      color: #fff;
+    }
+
+    .mini-back:hover {
+      background: #fff;
+      color: #000;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 3vw, 2.6rem);
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+    }
+
+    .page-subtitle {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+      max-width: 640px;
+    }
+
+    .roles-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 24px;
+    }
+
+    .role-card {
+      background: var(--bg-card);
+      border-radius: 24px;
+      padding: 24px 22px 26px;
+      border: 1px solid var(--border-soft);
+    }
+
+    .role-tag {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .role-title {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .role-lead {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      line-height: 1.6;
+    }
+
+    .role-list {
+      list-style: none;
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 6px;
+    }
+
+    .role-list li::before {
+      content: "• ";
+      color: var(--accent);
+    }
+
+    .role-highlight {
+      margin-top: 8px;
+      font-size: 13px;
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    @media (max-width: 800px) {
+      .roles-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .page-shell {
+        padding: 20px 16px 40px;
+      }
+
+      .mini-header {
+        flex-direction: row;
+        gap: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="mini-header">
+      <div class="mini-logo">ATHLEAD</div>
+      <!-- Vuelve a la home -->
+      <a href="index.html#experience" class="mini-back">← Volver a Athlead</a>
+    </header>
+
+    <main>
+      <h1>Una experiencia Athlead para cada tipo de usuario</h1>
+      <p class="page-subtitle">
+        Athlead se adapta al rol que tengas en el fútbol. Ya seas jugador, entrenador o club, la
+        plataforma te da las herramientas necesarias para encontrar oportunidades reales.
+      </p>
+
+      <section class="roles-grid">
+        <!-- Bloque jugadores -->
+        <article class="role-card" id="jugadores">
+          <p class="role-tag">Para jugadores</p>
+          <h2 class="role-title">Tu escaparate de fútbol en el bolsillo</h2>
+          <p class="role-lead">
+            Crea tu perfil en minutos, sube tus mejores jugadas y deja que tu talento llegue a entrenadores y clubes que todavía no te conocen.
+          </p>
+          <ul class="role-list">
+            <li>Perfil con posición, edad, equipo y datos clave.</li>
+            <li>Vídeos cortos ordenados por tipo de jugada (goles, asistencias, regates, robos...).</li>
+            <li>Visibilidad frente a entrenadores y scouts que ya buscan talento online.</li>
+            <li>Panel donde ves quién ha visitado tu perfil y qué jugadas miran más.</li>
+          </ul>
+          <p class="role-highlight">
+            Objetivo: que cualquier entrenador pueda entender en 30 segundos qué tipo de jugador eres.
+          </p>
+        </article>
+
+        <!-- Bloque clubes + entrenadores -->
+        <article class="role-card" id="clubes">
+          <p class="role-tag">Para clubes y entrenadores</p>
+          <h2 class="role-title">Encuentra talento sin perder horas en vídeos sueltos</h2>
+          <p class="role-lead">
+            Un panel pensado para fichar mejor: filtros avanzados, rankings y listas de seguimiento para tener controlados a los jugadores que te interesan.
+          </p>
+          <ul class="role-list">
+            <li>Filtros por edad, posición, categoría y zona geográfica.</li>
+            <li>Perfiles con contexto y jugadas ordenadas para decidir rápido.</li>
+            <li>Listas de seguimiento para seguir la evolución de cada jugador.</li>
+            <li>Mensajes directos, sin intermediarios ni comisiones ocultas.</li>
+          </ul>
+          <p class="role-highlight">
+            Objetivo: que puedas descubrir jugadores que encajen con tu equipo sin salir del móvil.
+          </p>
+        </article>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
 
