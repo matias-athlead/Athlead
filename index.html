@@ -20,7 +20,7 @@
   />
   <meta
     name="keywords"
-    content="app para jugadores de fútbol, network deportivo, talento fútbol amateur, descubrir jugadores, athlead, fútbol español, entrenadores fútbol"
+    content="app para jugadores de fútbol, network deportivo, talento fútbol amateur, descubrir jugadores, athlead, fútbol español, jugadores invisibles, entrenadores fútbol"
   />
   <meta name="author" content="Athlead" />
 
@@ -80,13 +80,22 @@
       text-decoration: none;
     }
 
+    /* CONTENEDOR COMÚN */
     .section-inner {
       max-width: 1100px;
       margin: 0 auto;
       padding: 80px 16px;
     }
 
-    /* ============ HEADER ============ */
+    .section-kicker {
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 12px;
+      opacity: 0.7;
+      margin-bottom: 6px;
+    }
+
+    /* ================= HEADER ================= */
 
     .header {
       position: fixed;
@@ -144,6 +153,7 @@
       gap: 14px;
     }
 
+    /* Buscador solo desktop */
     .header-search {
       display: block;
     }
@@ -178,6 +188,7 @@
       cursor: pointer;
     }
 
+    /* Mobile menu */
     .mobile-menu {
       position: fixed;
       top: 0;
@@ -207,7 +218,7 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.12);
     }
 
-    /* ============ HERO ============ */
+    /* ========== HERO CON VÍDEO DE FONDO ========== */
 
     .hero-section {
       position: relative;
@@ -217,7 +228,7 @@
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      background: #000;
+      background: #000000;
       z-index: 0;
     }
 
@@ -227,16 +238,14 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      opacity: 0.9;
+      opacity: 0.8;
       z-index: 0;
     }
 
-    /* si quieres recuperar una sombra, añade un div .hero-overlay en el HTML
-       y dale fondo aquí; ahora está sin sombra */
     .hero-overlay {
       position: absolute;
       inset: 0;
-      background: transparent;
+      background: rgba(0, 0, 0, 0.09);
       z-index: 1;
     }
 
@@ -324,7 +333,7 @@
       transform: translateY(-1px);
     }
 
-    /* ============ COUNTDOWN ============ */
+    /* ================= COUNTDOWN ================= */
 
     .countdown-section {
       background: #050505;
@@ -375,7 +384,7 @@
       margin: 0 auto;
     }
 
-    /* ============ QUIÉNES SOMOS ============ */
+    /* ================= QUIÉNES SOMOS ================= */
 
     .who-we-are {
       background: #000000;
@@ -386,14 +395,6 @@
       font-size: 32px;
       margin-bottom: 12px;
       letter-spacing: -0.03em;
-    }
-
-    .section-kicker {
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      font-size: 12px;
-      opacity: 0.7;
-      margin-bottom: 6px;
     }
 
     .who-we-are p {
@@ -408,7 +409,7 @@
       margin-bottom: 0;
     }
 
-    /* ============ JUGADAS DESTACADAS ============ */
+    /* ================= JUGADAS DESTACADAS ================= */
 
     .highlight-videos {
       background: #000000;
@@ -502,101 +503,134 @@
       transform: translateY(-1px);
     }
 
-    /* ============ NUEVO SLIDER: CÓMO FUNCIONA (3 PASOS) ============ */
+    /* ================= CÓMO FUNCIONA – BLOQUE DE PASOS (tipo Veo) ================= */
 
-    .how-steps-section {
+    .how-steps {
       background: #000000;
+      color: #ffffff;
     }
 
-    .how-steps-section h2 {
+    .how-steps-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 80px 16px 120px;
+    }
+
+    .how-steps h2 {
       font-size: 32px;
       letter-spacing: -0.03em;
-      margin-bottom: 8px;
+      margin-bottom: 20px;
     }
 
-    .how-steps-section > .section-inner > p.how-steps-subtitle {
-      font-size: 15px;
-      opacity: 0.8;
-      max-width: 600px;
-      margin-top: 8px;
-    }
-
-    .how-steps-wrapper {
-      margin-top: 40px;
+    .how-steps-layout {
+      position: sticky;
+      top: 120px;
       display: flex;
       align-items: center;
       gap: 40px;
+      min-height: 380px;
+      z-index: 1;
     }
 
-    .how-steps-media {
-      flex: 1.2;
+    .how-step-number {
+      font-size: clamp(80px, 12vw, 160px);
+      font-weight: 800;
+      letter-spacing: -0.06em;
+      line-height: 0.9;
     }
 
-    .how-steps-media img {
+    .how-step-card-wrapper {
+      flex: 1;
+      position: relative;
+      height: 380px;
+    }
+
+    .how-step-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      pointer-events: none;
+    }
+
+    .how-step-slide.active {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .how-step-card {
       width: 100%;
-      border-radius: 26px;
-      box-shadow: 0 26px 60px rgba(0, 0, 0, 0.9);
+      height: 100%;
+      border-radius: 32px;
+      overflow: hidden;
+      position: relative;
+      background: #111111;
+    }
+
+    .how-step-image {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
     }
 
-    .how-steps-content {
-      flex: 1;
-    }
-
-    .how-steps-number {
-      font-size: 72px;
-      font-weight: 800;
-      letter-spacing: -0.08em;
-      line-height: 1;
-      opacity: 0.9;
-      margin-bottom: 12px;
-    }
-
-    .how-steps-title {
-      font-size: 24px;
-      font-weight: 600;
-      margin-bottom: 12px;
-    }
-
-    .how-steps-text {
-      font-size: 15px;
-      color: var(--text-muted);
-      line-height: 1.7;
-      margin-bottom: 26px;
-      max-width: 460px;
-    }
-
-    .how-steps-dots {
+    .how-step-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.15));
       display: flex;
+      align-items: flex-end;
+      padding: 32px 34px;
+    }
+
+    .how-step-title {
+      font-size: 24px;
+      font-weight: 700;
+      max-width: 420px;
+    }
+
+    .how-step-sub {
+      font-size: 14px;
+      opacity: 0.85;
+      margin-top: 6px;
+    }
+
+    .how-step-cta {
+      margin-top: 14px;
+      display: inline-flex;
       align-items: center;
-      gap: 10px;
-    }
-
-    .how-steps-dot {
-      width: 10px;
-      height: 10px;
+      justify-content: center;
+      padding: 8px 18px;
       border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.7);
-      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      font-size: 13px;
+      font-weight: 600;
       cursor: pointer;
-      padding: 0;
-      transition: all 0.2s ease;
+      background: transparent;
+      color: #ffffff;
+      text-decoration: none;
     }
 
-    .how-steps-dot.active {
+    .how-step-cta:hover {
       background: #ffffff;
-      width: 28px;
+      color: #000000;
     }
 
-    .how-steps-dot:focus {
-      outline: none;
+    .how-step-triggers {
+      position: relative;
+      margin-top: 40px;
     }
 
-    /* ============ CÓMO FUNCIONA (EXPERIENCIA POR ROLES) ============ */
+    .how-step-trigger {
+      height: 80vh;
+    }
+
+    /* ================= CÓMO FUNCIONA – EXPERIENCIA POR TIPO DE USUARIO ================= */
 
     .how-it-works {
       background: #050509;
-      text-align: left;
+      color: #ffffff;
     }
 
     .how-it-works h2 {
@@ -609,28 +643,29 @@
       font-size: 15px;
       opacity: 0.8;
       max-width: 650px;
+      margin-top: 4px;
     }
 
     .experience-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 28px;
+      gap: 32px;
       margin-top: 40px;
     }
 
     .experience-card {
-      background: #f7f5f2;
-      color: #111111;
-      border-radius: 30px;
+      background: #ffffff;
+      color: #000000;
+      border-radius: 28px;
       overflow: hidden;
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.9);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
       display: flex;
       flex-direction: column;
     }
 
     .experience-image-wrapper {
-      width: 100%;
-      aspect-ratio: 16 / 9;
+      position: relative;
+      height: 260px;
       overflow: hidden;
     }
 
@@ -638,45 +673,42 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      display: block;
     }
 
-    .experience-card-inner {
-      padding: 22px 24px 24px;
+    .experience-body {
+      padding: 22px 26px 24px;
     }
 
     .experience-label {
-      font-size: 12px;
-      text-transform: uppercase;
+      font-size: 11px;
       letter-spacing: 0.16em;
-      color: #777;
+      text-transform: uppercase;
+      color: #777777;
       margin-bottom: 8px;
     }
 
     .experience-card h3 {
       font-size: 20px;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
     .experience-card p {
       font-size: 14px;
+      color: #444444;
       line-height: 1.7;
-      margin-bottom: 12px;
-      color: #444;
+      margin-bottom: 14px;
     }
 
     .experience-card ul {
       list-style: none;
       padding-left: 0;
-      margin-bottom: 18px;
+      margin: 0 0 16px;
+      font-size: 13px;
+      color: #555555;
     }
 
-    .experience-card li {
-      font-size: 14px;
-      color: #555;
-      line-height: 1.6;
-    }
-
-    .experience-card li + li {
+    .experience-card ul li + li {
       margin-top: 4px;
     }
 
@@ -687,80 +719,26 @@
       padding: 10px 22px;
       border-radius: 999px;
       border: none;
+      background: #000000;
+      color: #ffffff;
       font-weight: 600;
       font-size: 14px;
       cursor: pointer;
-      background: #000;
-      color: #fff;
-      transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
     }
 
     .experience-btn:hover {
       background: #111111;
-      transform: translateY(-1px);
-      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.5);
     }
 
-    /* ============ DETALLE JUGADORES / CLUBES ============ */
-
-    .role-detail-section {
-      background: #000000;
-      border-top: 1px solid rgba(255, 255, 255, 0.12);
-    }
-
-    .role-detail-section h2 {
-      font-size: 30px;
-      letter-spacing: -0.03em;
-      margin-bottom: 10px;
-    }
-
-    .role-detail-section > .section-inner > p {
-      font-size: 15px;
-      opacity: 0.8;
-      max-width: 650px;
-      margin-bottom: 30px;
-    }
-
-    .detail-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 26px;
-    }
-
-    .detail-card {
-      background: var(--bg-card);
-      border-radius: 20px;
-      padding: 24px 22px;
-      border: 1px solid var(--border-soft);
-    }
-
-    .detail-card h3 {
-      font-size: 18px;
-      margin-bottom: 10px;
-    }
-
-    .detail-card p,
-    .detail-card li {
-      font-size: 14px;
-      color: var(--text-muted);
-      line-height: 1.7;
-    }
-
-    .detail-card ul {
-      list-style: disc;
-      padding-left: 18px;
-      margin-top: 6px;
-    }
-
-    /* ============ SIGNUP ============ */
+    /* ================= SIGNUP ================= */
 
     .signup-section {
       position: relative;
       text-align: center;
       padding: 100px 20px;
       background-image: linear-gradient(
-          rgba(0, 0, 0, 0.45),
-          rgba(0, 0, 0, 0.65)
+          rgba(0, 0, 0, 0.5),
+          rgba(0, 0, 0, 0.5)
         ),
         url('images/signup-bg.jpg');
       background-size: cover;
@@ -868,7 +846,7 @@
       box-shadow: 0 16px 30px rgba(0, 0, 0, 0.7);
     }
 
-    /* ============ FOOTBALL STATS ============ */
+    /* ================= FOOTBALL STATS ================= */
 
     .football-stats-section {
       background: linear-gradient(135deg, #101325, #060712);
@@ -916,7 +894,7 @@
       color: var(--text-muted);
     }
 
-    /* ============ FEATURES ============ */
+    /* ================= FEATURES ================= */
 
     .features {
       background: #000000;
@@ -960,7 +938,7 @@
       line-height: 1.7;
     }
 
-    /* ============ PROBLEM / SOLUTION ============ */
+    /* ================= PROBLEM / SOLUTION ================= */
 
     .problem-section {
       background: #050509;
@@ -1015,7 +993,7 @@
       line-height: 1.7;
     }
 
-    /* ============ FAQ ============ */
+    /* ================= FAQ ================= */
 
     .faq-section {
       background: #000000;
@@ -1092,7 +1070,7 @@
       transform: rotate(180deg);
     }
 
-    /* ============ CONTACTO ============ */
+    /* ================= CONTACTO ================= */
 
     .contact-section {
       background: #050509;
@@ -1149,7 +1127,7 @@
       display: none;
     }
 
-    /* ============ FOOTER ============ */
+    /* ================= FOOTER ================= */
 
     .footer {
       background: #000000;
@@ -1203,15 +1181,15 @@
       margin-top: 4px;
     }
 
-    /* ============ RESPONSIVE ============ */
+    /* ================= RESPONSIVE ================= */
 
     @media (max-width: 900px) {
       .section-inner {
         padding: 64px 18px;
       }
 
-      .videos-arrow {
-        display: none;
+      .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       .video-card {
@@ -1219,29 +1197,13 @@
         max-width: 90%;
       }
 
-      .stats-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
       .experience-grid {
         grid-template-columns: 1fr;
+        gap: 20px;
       }
 
-      .detail-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .how-steps-wrapper {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .how-steps-media {
-        order: -1;
-      }
-
-      .how-steps-number {
-        font-size: 48px;
+      .experience-image-wrapper {
+        height: 220px;
       }
     }
 
@@ -1275,14 +1237,20 @@
         font-size: 1rem;
       }
 
-      .steps,
-      .features-grid,
       .problem-solution {
-        gap: 18px;
+        grid-template-columns: 1fr;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
       }
 
       .stats-grid {
         grid-template-columns: 1fr 1fr;
+      }
+
+      .videos-arrow {
+        display: none;
       }
 
       .countdown-timer {
@@ -1329,6 +1297,67 @@
         grid-template-columns: repeat(4, minmax(0, 1fr));
       }
     }
+
+    /* Ajustes mobile del bloque de pasos */
+
+    @media (max-width: 1023px) {
+      .how-steps-inner {
+        padding: 56px 16px 72px;
+      }
+
+      .how-steps-layout {
+        position: static;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        min-height: auto;
+      }
+
+      .how-step-number {
+        display: none;
+      }
+
+      .how-step-card-wrapper {
+        position: static;
+        height: auto;
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 16px;
+        padding-bottom: 8px;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .how-step-slide {
+        position: static;
+        opacity: 1 !important;
+        transform: none !important;
+        pointer-events: auto;
+        flex: 0 0 82%;
+        min-width: 82%;
+        scroll-snap-align: center;
+      }
+
+      .how-step-card {
+        height: 260px;
+      }
+
+      .how-step-overlay {
+        padding: 20px 18px;
+      }
+
+      .how-step-title {
+        font-size: 19px;
+      }
+
+      .how-step-sub {
+        font-size: 13px;
+      }
+
+      .how-step-triggers {
+        display: none;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1338,7 +1367,7 @@
 
     <nav class="nav-links">
       <a href="#who-we-are">Quiénes somos</a>
-      <a href="#how-it-works">Cómo funciona</a>
+      <a href="#how-steps">Cómo funciona</a>
       <a href="#signup">Regístrate</a>
       <a href="#features">Características</a>
       <a href="#faq">FAQ</a>
@@ -1346,6 +1375,7 @@
     </nav>
 
     <div class="header-actions">
+      <!-- Buscador solo desktop -->
       <form
         class="header-search"
         action="https://www.google.com/search"
@@ -1368,7 +1398,7 @@
   <div class="mobile-menu" id="mobileMenu">
     <div class="mobile-menu-links">
       <a href="#who-we-are">Quiénes somos</a>
-      <a href="#how-it-works">Cómo funciona</a>
+      <a href="#how-steps">Cómo funciona</a>
       <a href="#signup">Regístrate</a>
       <a href="#features">Características</a>
       <a href="#faq">FAQ</a>
@@ -1381,8 +1411,6 @@
     <video class="hero-video" autoplay muted loop playsinline>
       <source src="videos/hero.mp4" type="video/mp4" />
     </video>
-
-    <!-- overlay ahora transparente, no oscurece -->
     <div class="hero-overlay"></div>
 
     <div class="hero-content">
@@ -1488,7 +1516,7 @@
             <video src="videos/highlight3.mp4" controls muted playsinline></video>
             <div class="video-info">
               <h3>Luqui Sorry · U17</h3>
-              <p>Golazo contra el equipo campeón de liga.</p>
+              <p>Golazo contra el equipo de campeones.</p>
             </div>
           </div>
         </div>
@@ -1498,48 +1526,82 @@
     </div>
   </section>
 
-  <!-- NUEVA SECCIÓN: CÓMO FUNCIONA EN 3 PASOS (SLIDER) -->
-  <!-- IMPORTANTE: sube estas imágenes a /images:
-       - how1-grabar.jpg
-       - how2-subir.jpg
-       - how3-descubrir.jpg -->
-  <section class="how-steps-section" id="how-steps">
-    <div class="section-inner">
-      <p class="section-kicker">Cómo funciona la app</p>
-      <h2>Graba, súbelo y deja que te descubran</h2>
-      <p class="how-steps-subtitle">
-        Athlead está pensada para que, en pocos minutos, tu fútbol pueda verse desde cualquier
-        parte. Estos son los tres pasos clave.
-      </p>
+  <!-- CÓMO FUNCIONA – TRES PASOS (tipo Veo) -->
+  <section class="how-steps" id="how-steps">
+    <div class="how-steps-inner">
+      <p class="section-kicker">Cómo funciona</p>
+      <h2>Captura tu talento en tres pasos</h2>
 
-      <div class="how-steps-wrapper">
-        <div class="how-steps-content">
-          <div class="how-steps-number" id="howStepNumber">01</div>
-          <h3 class="how-steps-title" id="howStepTitle">Graba tus mejores jugadas</h3>
-          <p class="how-steps-text" id="howStepText">
-            Utiliza tu móvil o la cámara que tengas a mano para grabar partidos, entrenamientos y
-            momentos clave. No necesitas producción profesional: solo que se vea claro cómo juegas.
-          </p>
+      <div class="how-steps-layout">
+        <div class="how-step-number" id="howStepNumber">01</div>
 
-          <div class="how-steps-dots">
-            <button class="how-steps-dot active" data-step="0" aria-label="Paso 1"></button>
-            <button class="how-steps-dot" data-step="1" aria-label="Paso 2"></button>
-            <button class="how-steps-dot" data-step="2" aria-label="Paso 3"></button>
+        <div class="how-step-card-wrapper">
+          <!-- Paso 1 -->
+          <div class="how-step-slide active" data-step="0">
+            <div class="how-step-card">
+              <img
+                src="images/how-step-1.jpg"
+                alt="Graba tus mejores jugadas"
+                class="how-step-image"
+              />
+              <div class="how-step-overlay">
+                <div>
+                  <h3 class="how-step-title">Graba tus mejores jugadas</h3>
+                  <p class="how-step-sub">Desde el móvil o la cámara del campo, sin complicaciones.</p>
+                  <a href="detalle-funcionamiento.html" class="how-step-cta">Explorar</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Paso 2 -->
+          <div class="how-step-slide" data-step="1">
+            <div class="how-step-card">
+              <img
+                src="images/how-step-2.jpg"
+                alt="Sube tus vídeos a Athlead"
+                class="how-step-image"
+              />
+              <div class="how-step-overlay">
+                <div>
+                  <h3 class="how-step-title">Súbelas en segundos</h3>
+                  <p class="how-step-sub">Etiqueta posición, tipo de jugada y deja todo ordenado.</p>
+                  <a href="detalle-funcionamiento.html" class="how-step-cta">Explorar</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Paso 3 -->
+          <div class="how-step-slide" data-step="2">
+            <div class="how-step-card">
+              <img
+                src="images/how-step-3.jpg"
+                alt="Déjate descubrir por clubes y entrenadores"
+                class="how-step-image"
+              />
+              <div class="how-step-overlay">
+                <div>
+                  <h3 class="how-step-title">Déjate descubrir</h3>
+                  <p class="how-step-sub">Entrenadores y clubes te encuentran filtrando por lo que eres.</p>
+                  <a href="detalle-funcionamiento.html" class="how-step-cta">Explorar</a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+      </div>
 
-        <div class="how-steps-media">
-          <img
-            id="howStepImage"
-            src="images/how1-grabar.jpg"
-            alt="Jugador grabando sus mejores jugadas"
-          />
-        </div>
+      <!-- Triggers invisibles para el scroll de escritorio -->
+      <div class="how-step-triggers">
+        <div class="how-step-trigger" data-step="0"></div>
+        <div class="how-step-trigger" data-step="1"></div>
+        <div class="how-step-trigger" data-step="2"></div>
       </div>
     </div>
   </section>
 
-  <!-- CÓMO FUNCIONA: EXPERIENCIA POR TIPO DE USUARIO -->
+  <!-- CÓMO FUNCIONA – EXPERIENCIA POR TIPO DE USUARIO -->
   <section class="how-it-works" id="how-it-works">
     <div class="section-inner">
       <p class="section-kicker">Cómo funciona</p>
@@ -1559,7 +1621,7 @@
               class="role-image"
             />
           </div>
-          <div class="experience-card-inner">
+          <div class="experience-body">
             <p class="experience-label">Para jugadores</p>
             <h3>Tu escaparate de fútbol en el bolsillo</h3>
             <p>
@@ -1571,11 +1633,17 @@
               <li>Vídeos cortos ordenados por tipo de jugada.</li>
               <li>Visibilidad frente a entrenadores y scouts que ya buscan online.</li>
             </ul>
-            <button class="experience-btn" data-target="detalle-jugadores">Explorar</button>
+            <button
+              type="button"
+              class="experience-btn"
+              onclick="window.location.href='detalle-jugadores.html'"
+            >
+              Explorar
+            </button>
           </div>
         </article>
 
-        <!-- Clubes / entrenadores -->
+        <!-- Clubes y entrenadores -->
         <article class="experience-card">
           <div class="experience-image-wrapper">
             <img
@@ -1584,7 +1652,7 @@
               class="role-image"
             />
           </div>
-          <div class="experience-card-inner">
+          <div class="experience-body">
             <p class="experience-label">Para clubes y entrenadores</p>
             <h3>Encuentra talento sin perder horas en vídeos sueltos</h3>
             <p>
@@ -1596,84 +1664,14 @@
               <li>Perfiles con contexto y jugadas ordenadas para decidir rápido.</li>
               <li>Mensajes directos, sin intermediarios ni comisiones ocultas.</li>
             </ul>
-            <button class="experience-btn" data-target="detalle-clubes">Explorar</button>
+            <button
+              type="button"
+              class="experience-btn"
+              onclick="window.location.href='detalle-clubes.html'"
+            >
+              Explorar
+            </button>
           </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- DETALLE JUGADORES -->
-  <section class="role-detail-section" id="detalle-jugadores">
-    <div class="section-inner">
-      <p class="section-kicker">Para jugadores</p>
-      <h2>Convierte tus jugadas en un perfil profesional</h2>
-      <p>
-        Athlead te ayuda a ordenar todo lo que ya haces dentro y fuera del campo para que un
-        entrenador pueda entenderte en segundos.
-      </p>
-
-      <div class="detail-grid">
-        <article class="detail-card">
-          <h3>Perfil deportivo completo</h3>
-          <p>
-            Define de forma clara quién eres como jugador y qué ofreces a un club o academia.
-          </p>
-          <ul>
-            <li>Datos básicos: edad, altura, peso, pierna dominante.</li>
-            <li>Historial de equipos y competiciones.</li>
-            <li>Posiciones principales y secundarias.</li>
-          </ul>
-        </article>
-
-        <article class="detail-card">
-          <h3>Biblioteca de jugadas</h3>
-          <p>
-            Tus mejores clips organizados por tipo de acción para que no se pierdan en un grupo de
-            WhatsApp.
-          </p>
-          <ul>
-            <li>Goles, asistencias, acciones defensivas, salidas de balón…</li>
-            <li>Clips cortos con contexto: rival, competición, minuto.</li>
-            <li>Posibilidad de actualizar tu perfil cada fin de semana.</li>
-          </ul>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- DETALLE CLUBES -->
-  <section class="role-detail-section" id="detalle-clubes">
-    <div class="section-inner">
-      <p class="section-kicker">Para clubes y entrenadores</p>
-      <h2>Un radar de talento hecho para ahorrar tiempo</h2>
-      <p>
-        En lugar de perderte en cientos de vídeos sueltos, Athlead concentra la información clave
-        de cada jugador en un solo lugar.
-      </p>
-
-      <div class="detail-grid">
-        <article class="detail-card">
-          <h3>Búsqueda avanzada</h3>
-          <p>Encuentra justo el perfil que necesitas para tu plantilla.</p>
-          <ul>
-            <li>Filtros por edad, demarcación, nivel competitivo y zona.</li>
-            <li>Rankings por rendimiento y actividad reciente.</li>
-            <li>Listas de seguimiento para seguir la evolución de cada jugador.</li>
-          </ul>
-        </article>
-
-        <article class="detail-card">
-          <h3>Contacto directo</h3>
-          <p>
-            Cuando alguien encaja con lo que buscas, lo tienes a un mensaje de distancia, sin
-            intermediarios.
-          </p>
-          <ul>
-            <li>Mensajes dentro de la plataforma (en la versión app).</li>
-            <li>Posibilidad de solicitar más vídeos o información concreta.</li>
-            <li>Historial de conversaciones con cada jugador.</li>
-          </ul>
         </article>
       </div>
     </div>
@@ -2035,7 +2033,7 @@
     <div class="footer-inner">
       <div class="footer-links">
         <a href="#who-we-are">Quiénes somos</a>
-        <a href="#how-it-works">Cómo funciona</a>
+        <a href="#how-steps">Cómo funciona</a>
         <a href="#signup">Regístrate</a>
         <a href="#features">Características</a>
         <a href="#problem-section">Jugadores invisibles</a>
@@ -2078,6 +2076,7 @@
       }
     });
 
+    // Cerrar menú móvil al clicar enlace
     document.querySelectorAll('.mobile-menu-links a').forEach((link) => {
       link.addEventListener('click', () => {
         mobileMenu.classList.remove('active');
@@ -2085,6 +2084,7 @@
       });
     });
 
+    // Cerrar menú móvil al clicar fuera
     document.addEventListener('click', (e) => {
       if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
         mobileMenu.classList.remove('active');
@@ -2120,9 +2120,7 @@
     );
 
     document
-      .querySelectorAll(
-        '.feature-card, .problem, .solution, .faq-item, .stat-card, .detail-card, .experience-card'
-      )
+      .querySelectorAll('.feature-card, .problem, .solution, .faq-item, .stat-card')
       .forEach((card) => {
         card.style.opacity = '0';
         card.style.transform = 'translateY(20px)';
@@ -2240,7 +2238,7 @@
       });
     }
 
-    // Autoplay silencioso de vídeos en móvil
+    // Autoplay silencioso de vídeos en móvil (solo loop, sin slider auto)
     if (window.innerWidth < 768) {
       document.querySelectorAll('.video-card video').forEach((v) => {
         v.muted = true;
@@ -2252,92 +2250,42 @@
       });
     }
 
-    // Botones "Explorar" → secciones de detalle
-    document.querySelectorAll('.experience-btn').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const targetId = btn.getAttribute('data-target');
-        const target = document.getElementById(targetId);
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
-    });
+    // Bloque "Tres pasos" – cambia de slide al hacer scroll (solo escritorio)
+    (function () {
+      const stepsSection = document.getElementById('how-steps');
+      if (!stepsSection || window.innerWidth < 1024) return;
 
-    // Slider "Cómo funciona la app" (3 pasos)
-    const howStepsData = [
-      {
-        number: '01',
-        title: 'Graba tus mejores jugadas',
-        text:
-          'Utiliza tu móvil o la cámara que tengas a mano para grabar partidos, entrenamientos y momentos clave. No necesitas producción profesional: solo que se vea claro cómo juegas.',
-        image: 'images/how1-grabar.jpg',
-        alt: 'Jugador grabando sus mejores jugadas'
-      },
-      {
-        number: '02',
-        title: 'Sube los vídeos a Athlead',
-        text:
-          'Elige tus mejores clips y súbelos directamente desde tu móvil. Etiqueta posición, tipo de jugada y contexto del partido para que los entrenadores entiendan tu juego en segundos.',
-        image: 'images/how2-subir.jpg',
-        alt: 'Jugador subiendo sus vídeos a Athlead desde el móvil'
-      },
-      {
-        number: '03',
-        title: 'Sé descubierto por clubes y entrenadores',
-        text:
-          'Tu perfil se convierte en tu escaparate: rankings, filtros y búsquedas permiten que entrenadores y clubes te encuentren sin intermediarios y te contacten cuando encajes en lo que buscan.',
-        image: 'images/how3-descubrir.jpg',
-        alt: 'Entrenadores descubriendo talento a través de Athlead'
-      }
-    ];
+      const slides = stepsSection.querySelectorAll('.how-step-slide');
+      const numberEl = document.getElementById('howStepNumber');
+      const triggers = stepsSection.querySelectorAll('.how-step-trigger');
 
-    const howImageEl = document.getElementById('howStepImage');
-    const howNumberEl = document.getElementById('howStepNumber');
-    const howTitleEl = document.getElementById('howStepTitle');
-    const howTextEl = document.getElementById('howStepText');
-    const howDots = document.querySelectorAll('.how-steps-dot');
+      if (!slides.length || !triggers.length || !numberEl) return;
 
-    function setHowStep(index) {
-      const step = howStepsData[index];
-      if (!step || !howImageEl || !howNumberEl || !howTitleEl || !howTextEl) return;
-
-      howNumberEl.textContent = step.number;
-      howTitleEl.textContent = step.title;
-      howTextEl.textContent = step.text;
-      howImageEl.src = step.image;
-      howImageEl.alt = step.alt;
-
-      howDots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === index);
-      });
-    }
-
-    if (howDots.length && howImageEl) {
-      let currentStep = 0;
-      let intervalId = null;
-
-      howDots.forEach((dot) => {
-        dot.addEventListener('click', () => {
-          const stepIndex = parseInt(dot.getAttribute('data-step'), 10);
-          currentStep = stepIndex;
-          setHowStep(stepIndex);
-          if (intervalId) {
-            clearInterval(intervalId);
-            intervalId = startHowAutoplay();
-          }
+      const activate = (index) => {
+        slides.forEach((slide, i) => {
+          slide.classList.toggle('active', i === index);
         });
-      });
+        numberEl.textContent = `0${index + 1}`;
+      };
 
-      function startHowAutoplay() {
-        return setInterval(() => {
-          currentStep = (currentStep + 1) % howStepsData.length;
-          setHowStep(currentStep);
-        }, 8000);
-      }
+      activate(0);
 
-      setHowStep(0);
-      intervalId = startHowAutoplay();
-    }
+      const stepObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const stepIndex = parseInt(entry.target.getAttribute('data-step'), 10) || 0;
+              activate(stepIndex);
+            }
+          });
+        },
+        {
+          threshold: 0.6
+        }
+      );
+
+      triggers.forEach((trigger) => stepObserver.observe(trigger));
+    })();
   </script>
 </body>
 </html>
