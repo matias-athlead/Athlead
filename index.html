@@ -1355,6 +1355,22 @@
         display: none;
       }
     }
+    /* ===== FOTOS GRANDES EN "CAPTURA TU TALENTO EN TRES PASOS" (SOLO ORDENADOR) ===== */
+@media (min-width: 1024px) {
+  /* La sección en general un poco más alta */
+  #talent-steps .section-inner {
+    padding-top: 120px;
+    padding-bottom: 120px;
+  }
+
+  /* Las imágenes de los 3 pasos: grandes tipo Veo */
+  #talent-steps img {
+    width: 100%;
+    height: min(60vh, 550px);  /* altura grande pero limitada a la pantalla */
+    object-fit: cover;         /* recorta sin deformar */
+    border-radius: 28px;       /* esquinas redondeadas como Veo */
+  }
+}
   </style>
 </head>
 <body>
@@ -1364,7 +1380,7 @@
 
     <nav class="nav-links">
       <a href="#who-we-are">Quiénes somos</a>
-      <a href="#how-steps">Cómo funciona</a>
+      <a href="#talent-steps">Cómo funciona</a>
       <a href="#signup">Regístrate</a>
       <a href="#features">Características</a>
       <a href="#faq">FAQ</a>
@@ -1521,11 +1537,11 @@
     </div>
   </section>
 
-  <!-- CÓMO FUNCIONA – TRES PASOS -->
-  <section class="how-steps" id="how-steps">
-    <div class="how-steps-inner">
-      <p class="section-kicker">Cómo funciona</p>
-      <h2>Captura tu talento en tres pasos</h2>
+<!-- CÓMO FUNCIONA — TRES PASOS -->
+<section class="how-steps" id="talent-steps">
+  <div class="how-steps-inner">
+    <p class="section-kicker">Cómo funciona</p>
+    <h2>Captura tu talento en tres pasos</h2>
 
       <div class="how-steps-layout">
         <div class="how-step-number" id="howStepNumber">01</div>
