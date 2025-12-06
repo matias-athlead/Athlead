@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Athlead – Cómo funciona</title>
+
+  <style>
+    :root {
+      --bg-main: #000000;
+      --bg-card: #101219;
+      --border-soft: rgba(255, 255, 255, 0.14);
+      --text-main: #ffffff;
+      --text-muted: rgba(255, 255, 255, 0.7);
+      --accent: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+      background: var(--bg-main);
+      color: var(--text-main);
+      min-height: 100vh;
+    }
+
+    .page-shell {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px 16px 64px;
+    }
+
+    .mini-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 32px;
+    }
+
+    .mini-logo {
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      font-size: 18px;
+    }
+
+    .mini-back {
+      font-size: 13px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.4);
+      text-decoration: none;
+      color: #fff;
+    }
+
+    .mini-back:hover {
+      background: #fff;
+      color: #000;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 3vw, 2.6rem);
+      letter-spacing: -0.03em;
+      margin-bottom: 10px;
+    }
+
+    .page-subtitle {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+      max-width: 640px;
+    }
+
+    .steps-list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 24px;
+    }
+
+    .step-card {
+      background: var(--bg-card);
+      border-radius: 24px;
+      padding: 24px 22px 26px;
+      border: 1px solid var(--border-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .step-number {
+      position: absolute;
+      top: 10px;
+      right: 18px;
+      font-size: 32px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.1);
+    }
+
+    .step-title {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .step-lead {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+
+    .step-detail {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    @media (max-width: 900px) {
+      .steps-list {
+        grid-template-columns: 1fr;
+      }
+
+      .page-shell {
+        padding: 20px 16px 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="mini-header">
+      <div class="mini-logo">ATHLEAD</div>
+      <a href="index.html#how-it-works" class="mini-back">← Volver a Athlead</a>
+    </header>
+
+    <main>
+      <h1>Captura tu talento en tres pasos</h1>
+      <p class="page-subtitle">
+        Athlead está pensada para que, en pocos minutos, tu fútbol pueda verse desde cualquier parte. 
+        Estos son los tres pasos clave para sacarle partido a la app.
+      </p>
+
+      <section class="steps-list">
+        <article class="step-card">
+          <div class="step-number">01</div>
+          <h2 class="step-title">Graba tus mejores jugadas</h2>
+          <p class="step-lead">
+            No necesitas una productora: con el móvil o la cámara del campo es suficiente.
+          </p>
+          <p class="step-detail">
+            Concéntrate en acciones claras: goles, asistencias, buenos desmarques, robos importantes,
+            salidas jugando desde atrás… Cuanto más definan tu estilo, mejor. Es preferible un clip
+            de 15 segundos muy claro que un vídeo de 3 minutos donde no se entiende qué aportas.
+          </p>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">02</div>
+          <h2 class="step-title">Súbelas a tu perfil Athlead</h2>
+          <p class="step-lead">
+            Ordena tus jugadas por tipo y posición para que cualquiera entienda rápido quién eres.
+          </p>
+          <p class="step-detail">
+            Cada vídeo se asocia a una categoría (gol, asistencia, defensa, liderazgo, etc.).
+            Así, cuando un entrenador entra en tu perfil puede filtrar lo que le interesa ver
+            y tener una idea real de tu rendimiento en muy poco tiempo.
+          </p>
+        </article>
+
+        <article class="step-card">
+          <div class="step-number">03</div>
+          <h2 class="step-title">Deja que te descubran</h2>
+          <p class="step-lead">
+            Entrenadores y clubes usan filtros para buscar perfiles como el tuyo.
+          </p>
+          <p class="step-detail">
+            Cuando tu perfil encaja con lo que un club está buscando, puede guardarte en su lista
+            de seguimiento, revisar tu evolución y contactarte directamente. Sin intermediarios,
+            sin comisiones y sin pagar por “ser visto”.
+          </p>
+        </article>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
