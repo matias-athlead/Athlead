@@ -525,7 +525,7 @@
       display: flex;
       align-items: center;
       gap: 40px;
-      min-height: 75vh; /* casi toda la pantalla */
+      min-height: 75vh;
       z-index: 1;
     }
 
@@ -575,7 +575,6 @@
     .how-step-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(120deg, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.15));
       display: flex;
       align-items: flex-end;
       padding: 32px 34px;
@@ -621,6 +620,27 @@
 
     .how-step-trigger {
       height: 80vh;
+    }
+
+    .how-steps-dots {
+      display: flex;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .how-step-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      border: none;
+      padding: 0;
+      background: rgba(255, 255, 255, 0.35);
+      cursor: pointer;
+    }
+
+    .how-step-dot.active {
+      width: 22px;
+      background: #ffffff;
     }
 
     /* CÓMO FUNCIONA – EXPERIENCIA */
@@ -1178,7 +1198,7 @@
       margin-top: 4px;
     }
 
-    /* RESPONSIVE */
+    /* RESPONSIVE GENERAL */
 
     @media (max-width: 900px) {
       .section-inner {
@@ -1267,190 +1287,7 @@
         font-size: 15px;
       }
     }
-@media (max-width: 768px) {
-  /* Contenedor general de la sección */
-  #how-steps {
-    padding: 60px 16px 60px;
-  }
 
-  .how-steps-inner {
-    max-width: 430px;
-    margin: 0 auto;
-  }
-
-  /* Quitamos el layout de dos columnas en móvil */
-  .how-steps-layout {
-    display: block;
-  }
-
-  /* Ocultamos el número gigante 01, 02, 03 en móvil */
-  .how-step-number {
-    display: none;
-  }
-
-  /* Carrusel horizontal táctil */
-  .how-step-card-wrapper {
-    margin-top: 24px;
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    gap: 16px;
-    padding-bottom: 18px;
-  }
-
-  .how-step-slide {
-    flex: 0 0 88%;
-    scroll-snap-align: center;
-  }
-
-  /* Tarjeta grande como en Veo */
-  .how-step-card {
-    position: relative;
-    border-radius: 26px;
-    overflow: hidden;
-    height: 70vh;          /* altura grande en móvil */
-    max-height: 580px;
-    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.65);
-  }
-
-  .how-step-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-  /* Texto colocado en la parte baja de la foto */
-  .how-step-overlay {
-    position: absolute;
-    inset: auto 0 0 0;      /* pegado abajo */
-    padding: 22px 20px 24px;
-  }
-
-  .how-step-title {
-    font-size: 20px;
-    margin-bottom: 6px;
-  }
-
-  .how-step-sub {
-    font-size: 14px;
-    line-height: 1.5;
-    margin-bottom: 12px;
-  }
-
-  .how-step-cta {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 9px 18px;
-    border-radius: 999px;
-    border: 1px solid rgba(255, 255, 255, 0.9);
-    font-size: 13px;
-    text-decoration: none;
-  }
-
-  /* Puntitos de paginación debajo de la tarjeta */
-  .how-steps-dots {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 4px;
-  }
-
-  .how-step-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 999px;
-    border: none;
-    padding: 0;
-    background: rgba(255, 255, 255, 0.35);
-  }
-
-  .how-step-dot.active {
-    width: 18px;
-    background: #ffffff;
-  }
-    /* ===== MOBILE - Captura tu talento en tres pasos ===== */
-
-  /* Más espacio vertical para toda la sección */
-  .how-steps {
-    padding: 60px 0 70px;
-  }
-
-  .how-steps-inner {
-    padding: 0 16px;
-  }
-
-  /* Quitamos el número gigante en móvil */
-  .how-steps-layout {
-    display: block;
-  }
-
-  .how-step-number {
-    display: none;
-  }
-
-  /* Carrusel horizontal tipo “story” */
-  .how-step-card-wrapper {
-    display: flex;
-    gap: 16px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    padding: 0 16px 24px;
-  }
-
-  /* Cada tarjeta ocupa casi toda la pantalla de ancho */
-  .how-step-slide {
-    flex: 0 0 90%;
-    scroll-snap-align: center;
-  }
-
-  /* Tarjetas grandes y verticales (alto de pantalla) */
-  .how-step-card {
-    width: 100%;
-    height: 75vh;         /* ocupa el 75% del alto de la pantalla */
-    max-height: 640px;    /* por si el móvil es muy alto */
-    border-radius: 28px;
-  }
-
-  .how-step-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;    /* que la foto llene sin deformarse */
-    display: block;
-  }
-
-  /* Texto abajo de la foto, como en Veo */
-  .how-step-overlay {
-    padding: 24px 22px 22px;
-    justify-content: flex-end;
-  }
-
-  .how-step-title {
-    font-size: 20px;
-  }
-
-  .how-step-sub {
-    font-size: 14px;
-  }
-
-  /* Puntos del carrusel centrados debajo de la tarjeta */
-  .how-steps-dots {
-    justify-content: center;
-    margin-top: 4px;
-    gap: 8px;
-  }
-
-  .how-step-dot {
-    width: 7px;
-    height: 7px;
-  }
-
-}
-
-    
     @media (min-width: 1024px) {
       .hero-section {
         padding-top: 140px;
@@ -1478,203 +1315,176 @@
       }
     }
 
-    /* Bloque de pasos en móvil */
+    /* Quitar la sombra de las fotos en "Captura tu talento en tres pasos" */
+    #how-steps .how-step-overlay {
+      background: none !important;
+    }
 
-    @media (max-width: 1023px) {
-      .how-steps-inner {
-        padding: 56px 16px 72px;
+    /* --- AJUSTE FINAL SECCIÓN "CAPTURA TU TALENTO EN TRES PASOS" --- */
+
+    /* Desktop: número grande a la izquierda + tarjeta gigante */
+    @media (min-width: 1024px) {
+      #how-steps .how-steps-inner {
+        max-width: 1200px;
+        padding: 120px 32px 140px;
       }
 
-      .how-steps-layout {
+      #how-steps .how-steps-layout {
+        position: sticky;
+        top: 120px;
+        display: flex;
+        align-items: center;
+        gap: 56px;
+        min-height: 75vh;
+      }
+
+      #how-steps .how-step-number {
+        display: block;
+        font-size: clamp(6rem, 16vw, 11rem);
+        line-height: 0.85;
+      }
+
+      #how-steps .how-step-card-wrapper {
+        flex: 1;
+        position: relative;
+        min-height: min(70vh, 620px);
+      }
+
+      #how-steps .how-step-slide {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transform: translateY(20px);
+        pointer-events: none;
+      }
+
+      #how-steps .how-step-slide.active {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+
+      #how-steps .how-step-card {
+        height: 100%;
+        border-radius: 32px;
+        overflow: hidden;
+        box-shadow: 0 26px 60px rgba(0, 0, 0, 0.75);
+      }
+
+      #how-steps .how-step-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      #how-steps .how-step-overlay {
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-start;
+        padding: 32px 36px 36px;
+        max-width: 520px;
+      }
+    }
+
+    /* Móvil y tablet: tarjetas verticales grandes tipo story */
+    @media (max-width: 1023px) {
+      #how-steps {
+        padding: 56px 0 72px;
+      }
+
+      #how-steps .how-steps-inner {
+        max-width: 430px;
+        padding: 0 16px;
+        margin: 0 auto;
+      }
+
+      #how-steps .how-steps-layout {
         position: static;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 12px;
+        display: block;
         min-height: auto;
       }
 
-      .how-step-number {
+      #how-steps .how-step-number {
         display: none;
       }
 
-      .how-step-card-wrapper {
-        position: static;
-        height: auto;
+      #how-steps .how-step-card-wrapper {
+        margin-top: 24px;
         display: flex;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
         gap: 16px;
-        padding-bottom: 8px;
+        overflow-x: auto;
+        padding-bottom: 24px;
+        scroll-snap-type: x mandatory;
         -webkit-overflow-scrolling: touch;
       }
 
-      .how-step-slide {
+      #how-steps .how-step-slide {
         position: static;
+        flex: 0 0 88%;
+        min-width: 88%;
+        scroll-snap-align: center;
         opacity: 1 !important;
         transform: none !important;
         pointer-events: auto;
-        flex: 0 0 82%;
-        min-width: 82%;
-        scroll-snap-align: center;
       }
 
-      .how-step-card {
-        height: 260px;
+      #how-steps .how-step-card {
+        height: 80vh;
+        max-height: 650px;
+        border-radius: 28px;
+        box-shadow: 0 22px 50px rgba(0, 0, 0, 0.8);
       }
 
-      .how-step-overlay {
-        padding: 20px 18px;
+      #how-steps .how-step-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
 
-      .how-step-title {
-        font-size: 19px;
+      #how-steps .how-step-overlay {
+        align-items: flex-end;
+        justify-content: flex-end;
+        padding: 24px 22px 26px;
       }
 
-      .how-step-sub {
+      #how-steps .how-step-title {
+        font-size: 20px;
+      }
+
+      #how-steps .how-step-sub {
+        font-size: 14px;
+      }
+
+      #how-steps .how-step-cta {
+        padding: 9px 18px;
         font-size: 13px;
       }
 
-      .how-step-triggers {
+      #how-steps .how-steps-dots {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 4px;
+      }
+
+      #how-steps .how-step-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 999px;
+        border: none;
+        padding: 0;
+        background: rgba(255, 255, 255, 0.35);
+      }
+
+      #how-steps .how-step-dot.active {
+        width: 18px;
+        background: #ffffff;
+      }
+
+      #how-steps .how-step-triggers {
         display: none;
       }
     }
-    /* ===== FOTOS GRANDES EN "CAPTURA TU TALENTO EN TRES PASOS" (SOLO ORDENADOR) ===== */
-@media (min-width: 1024px) {
-  #how-steps .how-steps-inner {
-    padding-top: 120px;
-    padding-bottom: 120px;
-  }
-
-  #how-steps .how-step-card-wrapper {
-    min-height: 520px;
-  }
-
-  #how-steps .how-step-image {
-    width: 100%;
-    height: min(60vh, 550px);
-    object-fit: cover;
-    border-radius: 28px;
-  }
-/* ============================================
-   AJUSTE "CAPTURA TU TALENTO EN TRES PASOS"
-   ============================================ */
-
-/* ⬆️ Versión ORDENADOR: tarjeta muy grande, imagen encajada */
-@media (min-width: 1024px) {
-  /* Más espacio y sección grande en negro */
-  #how-steps {
-    background: #000000;
-  }
-
-  #how-steps .how-steps-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 120px 32px; /* más alto */
-  }
-
-  /* Número grande a la izquierda y tarjeta gigante a la derecha */
-  #how-steps .how-steps-layout {
-    display: grid;
-    grid-template-columns: 0.28fr 0.72fr; /* ancho número / tarjeta */
-    column-gap: 56px;
-    align-items: center;
-  }
-
-  #how-steps .how-step-number {
-    font-size: clamp(6rem, 16vw, 11rem);
-    line-height: 0.85;
-  }
-
-  /* El wrapper de la tarjeta ocupa casi toda la pantalla */
-  #how-steps .how-step-card-wrapper {
-    position: relative;
-    min-height: min(70vh, 620px); /* ALTO TOTAL de la tarjeta */
-  }
-
-  /* Cada slide rellena todo el wrapper */
-  #how-steps .how-step-slide {
-    position: absolute;
-    inset: 0;
-  }
-
-  /* La tarjeta ocupa exactamente el alto del wrapper */
-  #how-steps .how-step-card {
-    height: 100%;
-    border-radius: 32px;
-    overflow: hidden;          /* 🔥 muy importante: recorta la foto */
-    background: #111111;
-  }
-
-  /* La imagen rellena toda la tarjeta y se recorta si hace falta */
-  #how-steps .how-step-image {
-    width: 100%;
-    height: 100%;
-    display: block;
-    object-fit: cover;         /* 🔥 se adapta al espacio sin deformarse */
-  }
-
-  /* El texto de dentro de la foto */
-  #how-steps .how-step-overlay {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    padding: 32px 36px 36px;
-    max-width: 520px;
-    background: linear-gradient(
-      to top,
-      rgba(0, 0, 0, 0.85),
-      rgba(0, 0, 0, 0.0)
-    );
-  }
-}
-
-/* ⬇️ Versión MÓVIL: que siga funcionando bien y sin cortes raros */
-@media (max-width: 1023px) {
-  #how-steps .how-steps-inner {
-    padding: 64px 18px;
-  }
-
-  /* En móvil NO usamos grid con el número al lado */
-  #how-steps .how-steps-layout {
-    display: block;
-  }
-
-  #how-steps .how-step-number {
-    font-size: 4rem;
-  }
-
-  #how-steps .how-step-card-wrapper {
-    position: relative;
-    min-height: auto;
-    margin-top: 24px;
-  }
-
-  /* Cada slide uno debajo de otro / deslizable según lo tengas */
-  #how-steps .how-step-slide {
-    position: relative;
-  }
-
-  #how-steps .how-step-card {
-    border-radius: 24px;
-  }
-
-  #how-steps .how-step-image {
-    width: 100%;
-    height: 260px;   /* alta pero no enorme en móvil */
-    object-fit: cover;
-  }
-}
-  /* Quitar la sombra de las fotos en "Captura tu talento en tres pasos" */
-#how-steps .how-step-card {
-  background: transparent !important;
-}
-
-#how-steps .how-step-overlay {
-  background: none !important;
-}
-
-
   </style>
 </head>
 <body>
@@ -1684,7 +1494,7 @@
 
     <nav class="nav-links">
       <a href="#who-we-are">Quiénes somos</a>
-      <a href="#talent-steps">Cómo funciona</a>
+      <a href="#how-steps">Cómo funciona</a>
       <a href="#signup">Regístrate</a>
       <a href="#features">Características</a>
       <a href="#faq">FAQ</a>
@@ -1841,11 +1651,11 @@
     </div>
   </section>
 
-<!-- CÓMO FUNCIONA — TRES PASOS -->
-<section class="how-steps" id="how-steps">
-  <div class="how-steps-inner">
-    <p class="section-kicker">Cómo funciona</p>
-    <h2>Captura tu talento en tres pasos</h2>
+  <!-- CÓMO FUNCIONA — TRES PASOS -->
+  <section class="how-steps" id="how-steps">
+    <div class="how-steps-inner">
+      <p class="section-kicker">Cómo funciona</p>
+      <h2>Captura tu talento en tres pasos</h2>
 
       <div class="how-steps-layout">
         <div class="how-step-number" id="howStepNumber">01</div>
@@ -1906,12 +1716,13 @@
           </div>
         </div>
       </div>
-     <div class="how-steps-dots">
+
+      <div class="how-steps-dots">
         <button class="how-step-dot active" data-step="0"></button>
         <button class="how-step-dot" data-step="1"></button>
         <button class="how-step-dot" data-step="2"></button>
       </div>
-    
+
       <!-- Triggers para el scroll (solo desktop) -->
       <div class="how-step-triggers">
         <div class="how-step-trigger" data-step="0"></div>
@@ -2605,52 +2416,51 @@
 
       triggers.forEach((trigger) => stepObserver.observe(trigger));
     })();
-    // ---------- Carrusel táctil en móvil para "Captura tu talento en tres pasos" ----------
-(function () {
-  const wrapper = document.querySelector('.how-step-card-wrapper');
-  const slides = document.querySelectorAll('.how-step-slide');
-  const dots   = document.querySelectorAll('.how-step-dot');
 
-  if (!wrapper || !slides.length || !dots.length) return;
-  if (window.innerWidth > 768) return; // solo móvil
+    // Carrusel táctil en móvil para "Captura tu talento en tres pasos"
+    (function () {
+      const wrapper = document.querySelector('.how-step-card-wrapper');
+      const slides = document.querySelectorAll('.how-step-slide');
+      const dots = document.querySelectorAll('.how-step-dot');
 
-  function setActiveDot(index) {
-    dots.forEach((d, i) => d.classList.toggle('active', i === index));
-  }
+      if (!wrapper || !slides.length || !dots.length) return;
+      if (window.innerWidth > 768) return; // solo móvil
 
-  // Click en los puntitos
-  dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => {
-      const slide = slides[index];
-      if (!slide) return;
-      wrapper.scrollTo({
-        left: slide.offsetLeft - wrapper.offsetLeft,
-        behavior: 'smooth'
-      });
-      setActiveDot(index);
-    });
-  });
-
-  // Actualizar puntitos cuando el usuario hace swipe
-  wrapper.addEventListener('scroll', () => {
-    const center = wrapper.scrollLeft + wrapper.clientWidth / 2;
-    let activeIndex = 0;
-
-    slides.forEach((slide, index) => {
-      const slideCenter = slide.offsetLeft + slide.clientWidth / 2;
-      const activeCenter =
-        slides[activeIndex].offsetLeft + slides[activeIndex].clientWidth / 2;
-
-      if (Math.abs(slideCenter - center) < Math.abs(activeCenter - center)) {
-        activeIndex = index;
+      function setActiveDot(index) {
+        dots.forEach((d, i) => d.classList.toggle('active', i === index));
       }
-    });
 
-    setActiveDot(activeIndex);
-  });
-})();
+      // Click en los puntitos
+      dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+          const slide = slides[index];
+          if (!slide) return;
+          wrapper.scrollTo({
+            left: slide.offsetLeft - wrapper.offsetLeft,
+            behavior: 'smooth'
+          });
+          setActiveDot(index);
+        });
+      });
 
+      // Actualizar puntitos cuando el usuario hace swipe
+      wrapper.addEventListener('scroll', () => {
+        const center = wrapper.scrollLeft + wrapper.clientWidth / 2;
+        let activeIndex = 0;
+
+        slides.forEach((slide, index) => {
+          const slideCenter = slide.offsetLeft + slide.clientWidth / 2;
+          const activeCenter =
+            slides[activeIndex].offsetLeft + slides[activeIndex].clientWidth / 2;
+
+          if (Math.abs(slideCenter - center) < Math.abs(activeCenter - center)) {
+            activeIndex = index;
+          }
+        });
+
+        setActiveDot(activeIndex);
+      });
+    })();
   </script>
 </body>
 </html>
-
