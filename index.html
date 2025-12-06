@@ -1372,7 +1372,117 @@
     object-fit: cover;
     border-radius: 28px;
   }
+/* ============================================
+   AJUSTE "CAPTURA TU TALENTO EN TRES PASOS"
+   ============================================ */
+
+/* ⬆️ Versión ORDENADOR: tarjeta muy grande, imagen encajada */
+@media (min-width: 1024px) {
+  /* Más espacio y sección grande en negro */
+  #how-steps {
+    background: #000000;
+  }
+
+  #how-steps .how-steps-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 120px 32px; /* más alto */
+  }
+
+  /* Número grande a la izquierda y tarjeta gigante a la derecha */
+  #how-steps .how-steps-layout {
+    display: grid;
+    grid-template-columns: 0.28fr 0.72fr; /* ancho número / tarjeta */
+    column-gap: 56px;
+    align-items: center;
+  }
+
+  #how-steps .how-step-number {
+    font-size: clamp(6rem, 16vw, 11rem);
+    line-height: 0.85;
+  }
+
+  /* El wrapper de la tarjeta ocupa casi toda la pantalla */
+  #how-steps .how-step-card-wrapper {
+    position: relative;
+    min-height: min(70vh, 620px); /* ALTO TOTAL de la tarjeta */
+  }
+
+  /* Cada slide rellena todo el wrapper */
+  #how-steps .how-step-slide {
+    position: absolute;
+    inset: 0;
+  }
+
+  /* La tarjeta ocupa exactamente el alto del wrapper */
+  #how-steps .how-step-card {
+    height: 100%;
+    border-radius: 32px;
+    overflow: hidden;          /* 🔥 muy importante: recorta la foto */
+    background: #111111;
+  }
+
+  /* La imagen rellena toda la tarjeta y se recorta si hace falta */
+  #how-steps .how-step-image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;         /* 🔥 se adapta al espacio sin deformarse */
+  }
+
+  /* El texto de dentro de la foto */
+  #how-steps .how-step-overlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 32px 36px 36px;
+    max-width: 520px;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.85),
+      rgba(0, 0, 0, 0.0)
+    );
+  }
 }
+
+/* ⬇️ Versión MÓVIL: que siga funcionando bien y sin cortes raros */
+@media (max-width: 1023px) {
+  #how-steps .how-steps-inner {
+    padding: 64px 18px;
+  }
+
+  /* En móvil NO usamos grid con el número al lado */
+  #how-steps .how-steps-layout {
+    display: block;
+  }
+
+  #how-steps .how-step-number {
+    font-size: 4rem;
+  }
+
+  #how-steps .how-step-card-wrapper {
+    position: relative;
+    min-height: auto;
+    margin-top: 24px;
+  }
+
+  /* Cada slide uno debajo de otro / deslizable según lo tengas */
+  #how-steps .how-step-slide {
+    position: relative;
+  }
+
+  #how-steps .how-step-card {
+    border-radius: 24px;
+  }
+
+  #how-steps .how-step-image {
+    width: 100%;
+    height: 260px;   /* alta pero no enorme en móvil */
+    object-fit: cover;
+  }
+}
+
   </style>
 </head>
 <body>
