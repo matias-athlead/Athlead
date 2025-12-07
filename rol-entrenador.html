@@ -67,133 +67,311 @@
 
     /* HEADER (igual que la principal / rol-jugador) */
 
-    .header {
-      position: fixed;
-      top: 16px;
-      left: 50%;
-      transform: translate(-50%, 0);
-      width: min(1100px, 92%);
-      padding: 14px 22px;
-      border-radius: 999px;
-      background: rgba(0, 0, 0, 0.78);
-      backdrop-filter: blur(18px);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      box-shadow: 0 22px 45px rgba(0, 0, 0, 0.65);
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      gap: 24px;
-    }
+  /* ===== HEADER + NAV + IDIOMA (MISMO QUE INDEX) ===== */
 
-    .logo {
-      font-size: 24px;
-      font-weight: 700;
-      letter-spacing: 0.16em;
-      cursor: pointer;
-    }
+.header {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: min(1100px, 92%);
+  padding: 20px 28px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.78);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 22px 45px rgba(0, 0, 0, 0.65);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  transition: transform 0.6s ease-in-out;
+}
 
-    .nav-links {
-      display: flex;
-      gap: 20px;
-      align-items: center;
-      font-size: 15px;
-    }
+.header.hide-header {
+  transform: translate(-50%, -180%);
+}
 
-    .nav-links a {
-      opacity: 0.8;
-      padding: 4px 0;
-      border-bottom: 1px solid transparent;
-      transition: opacity 0.2s, border-bottom-color 0.2s;
-    }
+.logo {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  cursor: pointer;
+}
 
-    .nav-links a:hover {
-      opacity: 1;
-      border-bottom-color: rgba(255, 255, 255, 0.8);
-    }
+.nav-links {
+  display: flex;
+  gap: 20px;
+  align-items:  center;
+  font-size: 16px;
+}
 
-    .nav-links .active {
-      opacity: 1;
-      border-bottom-color: rgba(255, 255, 255, 0.8);
-    }
+.nav-links a {
+  opacity: 0.8;
+  padding: 4px 0;
+  border-bottom: 1px solid transparent;
+  transition: opacity 0.2s, border-bottom-color 0.2s;
+}
 
-    .header-actions {
-      margin-left: auto;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
+.nav-links a:hover {
+  opacity: 1;
+  border-bottom-color: rgba(255, 255, 255, 0.8);
+}
 
-    /* Botón idioma (igual que la home) */
+/* Dropdown "Rol" escritorio */
+.nav-item-role {
+  position: relative;
+}
 
-    .lang-toggle {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.35);
-      background: rgba(0, 0, 0, 0.95);
-      font-size: 13px;
-      cursor: pointer;
-      white-space: nowrap;
-    }
+.nav-dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  opacity: 0.8;
+  padding: 4px 0;
+  border: none;
+  background: transparent;
+  color: #ffffff;
+  font-size: 16px;
+  cursor: pointer;
+}
 
-    .lang-flag {
-      font-size: 16px;
-      line-height: 1;
-    }
+.nav-dropdown-toggle:hover {
+  opacity: 1;
+}
 
-    .lang-code {
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      font-size: 11px;
-    }
+.nav-dropdown-arrow {
+  font-size: 11px;
+}
 
-    .lang-caret {
-      font-size: 10px;
-      opacity: 0.7;
-      margin-left: 2px;
-    }
+.nav-dropdown {
+  position: absolute;
+  top: 130%;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 200px;
+  background: rgba(0, 0, 0, 0.96);
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.8);
+  padding: 10px 6px;
+  display: none;
+  z-index: 1200;
+}
 
-    .menu-toggle {
-      display: none;
-      background: none;
-      border: none;
-      color: #ffffff;
-      font-size: 24px;
-      cursor: pointer;
-      line-height: 1;
-    }
+.nav-dropdown.open {
+  display: block;
+}
 
-    .mobile-menu {
-      position: fixed;
-      top: 0;
-      right: -100%;
-      width: 260px;
-      height: 100vh;
-      background: rgba(0, 0, 0, 0.96);
-      backdrop-filter: blur(14px);
-      z-index: 900;
-      padding: 80px 24px 24px;
-      transition: right 0.3s ease;
-    }
+.nav-dropdown a {
+  display: block;
+  padding: 8px 14px;
+  font-size: 14px;
+  border-radius: 999px;
+  border-bottom: none;
+}
 
-    .mobile-menu.active {
-      right: 0;
-    }
+.nav-dropdown a:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
 
-    .mobile-menu-links {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      font-size: 16px;
-    }
+/* Selector de idioma */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
-    .mobile-menu-links a {
-      padding-bottom: 10px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-    }
+.lang-switcher {
+  position: relative;
+}
 
+.lang-current {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(0, 0, 0, 0.45);
+  color: #ffffff;
+  font-size: 13px;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+}
+
+.lang-flag {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.lang-label {
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.lang-arrow {
+  font-size: 10px;
+  opacity: 0.8;
+}
+
+.lang-menu {
+  position: absolute;
+  right: 0;
+  top: 110%;
+  min-width: 160px;
+  background: #000000;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.8);
+  padding: 6px;
+  display: none;
+  z-index: 1200;
+}
+
+.lang-menu.open {
+  display: block;
+}
+
+.lang-menu button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 13px;
+  cursor: pointer;
+  border-radius: 999px;
+  text-align: left;
+}
+
+.lang-menu button:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Menú móvil */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 260px;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.96);
+  backdrop-filter: blur(14px);
+  z-index: 900;
+  padding: 80px 24px 24px;
+  transition: right 0.3s ease;
+}
+
+.mobile-menu.active {
+  right: 0;
+}
+
+.mobile-menu-links {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  font-size: 16px;
+}
+
+.mobile-menu-links a {
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Dropdown "Rol" en menú móvil */
+.mobile-menu-role {
+  margin-top: 12px;
+}
+
+.mobile-role-title {
+  width: 100%;
+  padding: 10px 0;
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.mobile-role-arrow {
+  font-size: 13px;
+  transition: transform 0.2s ease;
+}
+
+.mobile-role-submenu {
+  display: none;
+  padding-left: 8px;
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.mobile-role-submenu a {
+  display: block;
+  padding: 8px 0;
+  font-size: 15px;
+  border: none;
+}
+
+.mobile-role-submenu.open {
+  display: block;
+}
+
+.mobile-role-title.open .mobile-role-arrow {
+  transform: rotate(180deg);
+}
+
+/* Responsive header */
+@media (max-width: 768px) {
+  .header {
+    width: 94%;
+    padding: 10px 16px;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .header-actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: nowrap;
+  }
+
+  .lang-current {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+
+  .lang-switcher {
+    flex-shrink: 1;
+  }
+
+  .menu-toggle {
+    display: block;
+    flex-shrink: 0;
+    font-size: 22px;
+    padding: 0;
+    line-height: 1;
+  }
+}
     /* BOTONES GENERALES */
 
     .btn {
@@ -488,21 +666,48 @@
   <div class="logo" id="logo">ATHLEAD</div>
 
   <nav class="nav-links">
-    <a href="index.html#who-we-are">Quiénes somos</a>
-    <a href="index.html#how-steps">Cómo funciona</a>
-    <a href="rol-jugador.html">Rol jugador</a>
-    <a href="rol-club.html">Rol club</a>
-    <a href="rol-entrenador.html" class="active">Rol entrenador</a>
-    <a href="index.html#signup">Regístrate</a>
+    <a href="index.html#who-we-are" data-i18n="nav_about">Quiénes somos</a>
+    <a href="index.html#how-steps" data-i18n="nav_how">Cómo funciona</a>
+
+    <!-- Dropdown Rol -->
+    <div class="nav-item-role">
+      <button class="nav-dropdown-toggle" type="button">
+        <span data-i18n="nav_role">Rol</span>
+        <span class="nav-dropdown-arrow">▾</span>
+      </button>
+      <div class="nav-dropdown">
+        <a href="rol-jugador.html" data-i18n="nav_role_player">Jugador</a>
+        <a href="rol-club.html" data-i18n="nav_role_club">Club</a>
+        <a href="rol-entrenador.html" data-i18n="nav_role_coach">Entrenador</a>
+      </div>
+    </div>
+    <!-- Fin Dropdown Rol -->
+
+    <a href="index.html#signup" data-i18n="nav_signup">Regístrate</a>
+    <a href="index.html#features" data-i18n="nav_features">Características</a>
+    <a href="index.html#faq" data-i18n="nav_faq">FAQ</a>
+    <a href="index.html#contact" data-i18n="nav_contact">Contacto</a>
   </nav>
 
   <div class="header-actions">
-    <!-- Indicador de idioma igual que en la home -->
-    <button class="lang-toggle" type="button" id="langToggle">
-      <span class="lang-flag">🇪🇸</span>
-      <span class="lang-code">ES</span>
-      <span class="lang-caret">▾</span>
-    </button>
+    <!-- Selector de idioma -->
+    <div class="lang-switcher" id="langSwitcher">
+      <button class="lang-current" type="button" aria-expanded="false">
+        <span class="lang-flag">🇪🇸</span>
+        <span class="lang-label">ES</span>
+        <span class="lang-arrow">▾</span>
+      </button>
+      <div class="lang-menu" id="langMenu">
+        <button type="button" data-lang="es">
+          <span class="lang-flag">🇪🇸</span>
+          <span>Español</span>
+        </button>
+        <button type="button" data-lang="en">
+          <span class="lang-flag">🇬🇧</span>
+          <span>English</span>
+        </button>
+      </div>
+    </div>
 
     <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">☰</button>
   </div>
@@ -510,14 +715,30 @@
 
 <div class="mobile-menu" id="mobileMenu">
   <div class="mobile-menu-links">
-    <a href="index.html#who-we-are">Quiénes somos</a>
-    <a href="index.html#how-steps">Cómo funciona</a>
-    <a href="rol-jugador.html">Rol jugador</a>
-    <a href="rol-club.html">Rol club</a>
-    <a href="rol-entrenador.html">Rol entrenador</a>
-    <a href="index.html#signup">Regístrate</a>
+    <a href="index.html#who-we-are" data-i18n="nav_about">Quiénes somos</a>
+    <a href="index.html#how-steps" data-i18n="nav_how">Cómo funciona</a>
+
+    <!-- Rol en móvil -->
+    <div class="mobile-menu-role">
+      <button type="button" class="mobile-role-title">
+        <span data-i18n="nav_role">Rol</span>
+        <span class="mobile-role-arrow">▾</span>
+      </button>
+      <div class="mobile-role-submenu">
+        <a href="rol-jugador.html" data-i18n="nav_role_player">Jugador</a>
+        <a href="rol-club.html" data-i18n="nav_role_club">Club</a>
+        <a href="rol-entrenador.html" data-i18n="nav_role_coach">Entrenador</a>
+      </div>
+    </div>
+    <!-- Fin Rol móvil -->
+
+    <a href="index.html#signup" data-i18n="nav_signup">Regístrate</a>
+    <a href="index.html#features" data-i18n="nav_features">Características</a>
+    <a href="index.html#faq" data-i18n="nav_faq">FAQ</a>
+    <a href="index.html#contact" data-i18n="nav_contact">Contacto</a>
   </div>
 </div>
+
 
 <section class="role-hero role-hero-entrenador">
   <div class="role-hero-overlay"></div>
@@ -606,11 +827,50 @@
 </footer>
 
 <script>
-  // Logo → home
+  // Idiomas solo para la barra (nav + dropdown Rol)
+  let ATHLEAD_LANG = localStorage.getItem('athlead_lang') || 'es';
+
+  const i18n = {
+    es: {
+      nav_about: 'Quiénes somos',
+      nav_how: 'Cómo funciona',
+      nav_signup: 'Regístrate',
+      nav_features: 'Características',
+      nav_faq: 'FAQ',
+      nav_contact: 'Contacto',
+      nav_role: 'Rol',
+      nav_role_player: 'Jugador',
+      nav_role_club: 'Club',
+      nav_role_coach: 'Entrenador'
+    },
+    en: {
+      nav_about: 'About',
+      nav_how: 'How it works',
+      nav_signup: 'Sign up',
+      nav_features: 'Features',
+      nav_faq: 'FAQ',
+      nav_contact: 'Contact',
+      nav_role: 'Role',
+      nav_role_player: 'Player',
+      nav_role_club: 'Club',
+      nav_role_coach: 'Coach'
+    }
+  };
+
+  function applyTranslations(lang) {
+    const dict = i18n[lang] || i18n.es;
+    document.querySelectorAll('[data-i18n]').forEach((el) => {
+      const key = el.getAttribute('data-i18n');
+      if (dict[key]) el.textContent = dict[key];
+    });
+  }
+
+  // Logo → vuelve al home
   document.getElementById('logo').addEventListener('click', function () {
     window.location.href = 'index.html';
   });
 
+  // Menú móvil
   const menuToggle = document.getElementById('menuToggle');
   const mobileMenu = document.getElementById('mobileMenu');
 
@@ -640,14 +900,87 @@
     });
   });
 
-  // Botón de idioma (de momento solo indicador, igual que en la home)
-  const langToggle = document.getElementById('langToggle');
-  if (langToggle) {
-    langToggle.addEventListener('click', (e) => {
+  // Dropdown "Rol" escritorio
+  (function () {
+    const roleItem = document.querySelector('.nav-item-role');
+    if (!roleItem) return;
+    const toggle = roleItem.querySelector('.nav-dropdown-toggle');
+    const menu = roleItem.querySelector('.nav-dropdown');
+
+    toggle.addEventListener('click', (e) => {
+      e.preventDefault();
       e.stopPropagation();
-      // Aquí puedes reutilizar la misma lógica de cambio de idioma que tengas en index.html
+      menu.classList.toggle('open');
     });
-  }
+
+    document.addEventListener('click', (e) => {
+      if (!roleItem.contains(e.target)) menu.classList.remove('open');
+    });
+  })();
+
+  // Dropdown "Rol" en menú móvil
+  (function () {
+    const toggle = document.querySelector('.mobile-role-title');
+    const submenu = document.querySelector('.mobile-role-submenu');
+    if (!toggle || !submenu) return;
+
+    toggle.addEventListener('click', () => {
+      submenu.classList.toggle('open');
+      toggle.classList.toggle('open');
+    });
+  })();
+
+  // Selector de idioma
+  (function () {
+    const langSwitcher = document.getElementById('langSwitcher');
+    if (!langSwitcher) return;
+
+    const currentBtn = langSwitcher.querySelector('.lang-current');
+    const menu = document.getElementById('langMenu');
+    const currentFlag = currentBtn.querySelector('.lang-flag');
+    const currentLabel = currentBtn.querySelector('.lang-label');
+
+    function setLang(lang) {
+      ATHLEAD_LANG = lang === 'en' ? 'en' : 'es';
+      localStorage.setItem('athlead_lang', ATHLEAD_LANG);
+      if (ATHLEAD_LANG === 'en') {
+        currentFlag.textContent = '🇬🇧';
+        currentLabel.textContent = 'EN';
+        document.documentElement.lang = 'en';
+      } else {
+        currentFlag.textContent = '🇪🇸';
+        currentLabel.textContent = 'ES';
+        document.documentElement.lang = 'es';
+      }
+      applyTranslations(ATHLEAD_LANG);
+    }
+
+    // idioma inicial
+    setLang(ATHLEAD_LANG);
+
+    currentBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      menu.classList.toggle('open');
+      const expanded = currentBtn.getAttribute('aria-expanded') === 'true';
+      currentBtn.setAttribute('aria-expanded', (!expanded).toString());
+    });
+
+    menu.querySelectorAll('button[data-lang]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const lang = btn.getAttribute('data-lang') || 'es';
+        setLang(lang);
+        menu.classList.remove('open');
+        currentBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!langSwitcher.contains(e.target)) {
+        menu.classList.remove('open');
+        currentBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  })();
 </script>
 </body>
 </html>
