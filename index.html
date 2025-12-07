@@ -1435,11 +1435,14 @@
   max-height: none;  /* sin límite que deje hueco negro */
 }
 
+  
       #how-steps .how-step-image {
   width: 100%;
-  height: auto;      /* mantiene la proporción original */
-  display: block;    /* evita espacios raros */
+  height: auto;
+  max-height: 80vh;   /* 👉 la tarjeta será como mucho el 80% del alto de pantalla */
+  display: block;
 }
+
 
       #how-steps .how-step-overlay {
         align-items: flex-end;
