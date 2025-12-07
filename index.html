@@ -405,6 +405,19 @@
     .who-we-are p:last-child {
       margin-bottom: 0;
     }
+        .who-we-are-cta {
+      margin-top: 24px;
+    }
+
+    /* Opcional: centrar el botón en móvil */
+    @media (max-width: 768px) {
+      .who-we-are-cta {
+        display: inline-flex;
+        justify-content: center;
+        width: 100%;
+      }
+    }
+
 
     /* JUGADAS DESTACADAS */
 
@@ -1663,6 +1676,9 @@
         por y para los jugadores. Una herramienta simple, gratuita y potente que pone el talento en
         primer lugar.
       </p>
+          <a href="#signup" class="btn btn-cta who-we-are-cta">
+      Consigue tu oportunidad
+    </a>
     </div>
   </section>
 
