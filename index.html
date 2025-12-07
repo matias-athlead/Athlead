@@ -1326,21 +1326,25 @@
 
     /* --- AJUSTE FINAL SECCIÓN "CAPTURA TU TALENTO EN TRES PASOS" --- */
 
-    /* Desktop */
-    @media (min-width: 1024px) {
-      #how-steps .how-steps-inner {
-        max-width: 1200px;
-        padding: 120px 32px 140px;
-      }
+   /* Desktop */
+@media (min-width: 1024px) {
+  #how-steps .how-steps-inner {
+    max-width: 1300px;         /* 👉 más ancho, la tarjeta crece */
+    padding: 120px 16px 140px 40px;
+    /* top:120px, right:16px (poco margen a la derecha),
+       bottom:140px, left:40px */
+  }
 
-      #how-steps .how-steps-layout {
-        position: sticky;
-        top: 120px;
-        display: flex;
-        align-items: center;
-        gap: 56px;
-        min-height: 75vh;
-      }
+  /* el resto del bloque lo dejas igual */
+  #how-steps .how-steps-layout {
+    position: sticky;
+    top: 120px;
+    display: flex;
+    align-items: center;
+    gap: 56px;
+    min-height: 75vh;
+    z-index: 1;
+  }
 
       #how-steps .how-step-number {
         display: block;
