@@ -94,6 +94,16 @@
       margin-bottom: 6px;
     }
 
+    .section-cta {
+      margin-top: 28px;
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    .section-cta.center {
+      justify-content: center;
+    }
+
     /* HEADER */
 
     .header {
@@ -150,31 +160,6 @@
       display: flex;
       align-items: center;
       gap: 14px;
-    }
-
-    .header-search {
-      display: block;
-    }
-
-    .header-search-input {
-      padding: 8px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.35);
-      background: rgba(0, 0, 0, 0.45);
-      color: #ffffff;
-      font-size: 13px;
-      min-width: 210px;
-      backdrop-filter: blur(10px);
-    }
-
-    .header-search-input::placeholder {
-      color: rgba(255, 255, 255, 0.6);
-    }
-
-    .header-search-input:focus {
-      outline: none;
-      border-color: #ffffff;
-      background: rgba(0, 0, 0, 0.8);
     }
 
     .menu-toggle {
@@ -623,29 +608,8 @@
     }
 
     .how-steps-dots {
-      display: flex;
-      gap: 8px;
-      margin-top: 16px;
+      display: none !important;
     }
-
-    .how-step-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      border: none;
-      padding: 0;
-      background: rgba(255, 255, 255, 0.35);
-      cursor: pointer;
-    }
-
-    .how-step-dot.active {
-      width: 22px;
-      background: #ffffff;
-    }
-    /* Ocultar los 3 puntos del carrusel de pasos en todos los dispositivos */
-.how-steps-dots {
-  display: none !important;
-}
 
     /* CÓMO FUNCIONA – EXPERIENCIA */
 
@@ -912,6 +876,51 @@
     .stat-label {
       font-size: 14px;
       line-height: 1.6;
+      color: var(--text-muted);
+    }
+
+    /* BENEFICIOS */
+
+    .benefits {
+      background: #000000;
+      text-align: center;
+    }
+
+    .benefits h2 {
+      font-size: 32px;
+      margin-bottom: 10px;
+      letter-spacing: -0.03em;
+    }
+
+    .benefits > .section-inner > p {
+      font-size: 15px;
+      opacity: 0.8;
+      max-width: 640px;
+      margin: 0 auto 34px;
+    }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .benefit-card {
+      background: var(--bg-card);
+      border-radius: 20px;
+      padding: 24px 20px;
+      border: 1px solid var(--border-soft);
+      text-align: left;
+    }
+
+    .benefit-card h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .benefit-card p {
+      font-size: 14px;
+      line-height: 1.7;
       color: var(--text-muted);
     }
 
@@ -1226,6 +1235,10 @@
       .experience-image-wrapper {
         height: 220px;
       }
+
+      .benefits-grid {
+        grid-template-columns: 1fr 1fr;
+      }
     }
 
     @media (max-width: 768px) {
@@ -1235,10 +1248,6 @@
       }
 
       .nav-links {
-        display: none;
-      }
-
-      .header-search {
         display: none;
       }
 
@@ -1263,6 +1272,10 @@
       }
 
       .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .benefits-grid {
         grid-template-columns: 1fr;
       }
 
@@ -1317,34 +1330,21 @@
       .stats-grid {
         grid-template-columns: repeat(4, minmax(0, 1fr));
       }
-    }
 
-    /* Quitar la sombra de las fotos en "Captura tu talento en tres pasos" */
-    #how-steps .how-step-overlay {
-      background: none !important;
-    }
+      #how-steps .how-steps-inner {
+        max-width: 1300px;
+        padding: 120px 16px 140px 40px;
+      }
 
-    /* --- AJUSTE FINAL SECCIÓN "CAPTURA TU TALENTO EN TRES PASOS" --- */
-
-   /* Desktop */
-@media (min-width: 1024px) {
-  #how-steps .how-steps-inner {
-    max-width: 1300px;         /* 👉 más ancho, la tarjeta crece */
-    padding: 120px 16px 140px 40px;
-    /* top:120px, right:16px (poco margen a la derecha),
-       bottom:140px, left:40px */
-  }
-
-  /* el resto del bloque lo dejas igual */
-  #how-steps .how-steps-layout {
-    position: sticky;
-    top: 120px;
-    display: flex;
-    align-items: center;
-    gap: 56px;
-    min-height: 75vh;
-    z-index: 1;
-  }
+      #how-steps .how-steps-layout {
+        position: sticky;
+        top: 120px;
+        display: flex;
+        align-items: center;
+        gap: 56px;
+        min-height: 75vh;
+        z-index: 1;
+      }
 
       #how-steps .how-step-number {
         display: block;
@@ -1392,57 +1392,60 @@
         padding: 32px 36px 36px;
         max-width: 520px;
       }
-    /* Texto más grande SOLO en ordenador */
-  #how-steps .how-step-title {
-    font-size: 42px;        /* título grande */
-    line-height: 1.15;
-  }
 
-  #how-steps .how-step-sub {
-    font-size: 18px;        /* subtítulo más grande */
-    line-height: 1.6;
-    max-width: 520px;
-  }
+      #how-steps .how-step-title {
+        font-size: 42px;
+        line-height: 1.15;
+      }
 
-  #how-steps .how-step-cta {
-    font-size: 15px;
-    padding: 10px 22px;
-  }
-  /* --- Sección "Una experiencia Athlead..." más grande SOLO en ordenador --- */
+      #how-steps .how-step-sub {
+        font-size: 18px;
+        line-height: 1.6;
+        max-width: 520px;
+      }
 
-  .how-it-works .section-inner {
-    max-width: 1300px;      /* ensancha la sección en desktop */
-    padding: 100px 40px;    /* más aire lateral y vertical */
-  }
+      #how-steps .how-step-cta {
+        font-size: 15px;
+        padding: 10px 22px;
+      }
 
-  .how-it-works .experience-grid {
-    gap: 40px;              /* separación un poco mayor entre las 2 tarjetas */
-  }
+      .how-it-works .section-inner {
+        max-width: 1300px;
+        padding: 100px 40px;
+      }
 
-  .how-it-works .experience-card {
-    border-radius: 32px;    /* tarjetas visualmente más grandes y suaves */
-  }
+      .how-it-works .experience-grid {
+        gap: 40px;
+      }
 
-  .how-it-works .experience-image-wrapper {
-    height: 340px;          /* imagen más alta => tarjeta más grande */
-  }
+      .how-it-works .experience-card {
+        border-radius: 32px;
+      }
 
-  .how-it-works .experience-card h3 {
-    font-size: 22px;        /* título un pelín más grande */
-  }
+      .how-it-works .experience-image-wrapper {
+        height: 340px;
+      }
 
-  .how-it-works .experience-card p {
-    font-size: 15px;        /* cuerpo de texto algo mayor */
-  }
+      .how-it-works .experience-card h3 {
+        font-size: 22px;
+      }
 
-  .how-it-works .experience-btn {
-    padding: 12px 26px;
-    font-size: 15px;
-  }
+      .how-it-works .experience-card p {
+        font-size: 15px;
+      }
 
-}
+      .how-it-works .experience-btn {
+        padding: 12px 26px;
+        font-size: 15px;
+      }
+    }
 
-    /* Móvil y tablet: tarjetas verticales sin cortar la foto */
+    /* Ajuste overlay pasos */
+    #how-steps .how-step-overlay {
+      background: none !important;
+    }
+
+    /* Móvil y tablet: tarjetas pasos en carrusel horizontal */
     @media (max-width: 1023px) {
       #how-steps {
         padding: 0;
@@ -1484,21 +1487,18 @@
         pointer-events: auto;
       }
 
-
       #how-steps .how-step-card {
-  border-radius: 24px;
-  height: auto;      /* la tarjeta se adapta al alto de la foto */
-  max-height: none;  /* sin límite que deje hueco negro */
-}
+        border-radius: 24px;
+        height: auto;
+        max-height: none;
+      }
 
-  
       #how-steps .how-step-image {
-  width: 100%;
-  height: auto;
-  max-height: 60vh;   /* 👉 la tarjeta será como mucho el 80% del alto de pantalla */
-  display: block;
-}
-
+        width: 100%;
+        height: auto;
+        max-height: 60vh;
+        display: block;
+      }
 
       #how-steps .how-step-overlay {
         align-items: flex-end;
@@ -1561,20 +1561,6 @@
     </nav>
 
     <div class="header-actions">
-      <form
-        class="header-search"
-        action="https://www.google.com/search"
-        method="GET"
-        target="_blank"
-      >
-        <input
-          type="text"
-          name="q"
-          class="header-search-input"
-          placeholder="Buscar en Athlead..."
-        />
-      </form>
-
       <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">☰</button>
     </div>
   </header>
@@ -1590,7 +1576,7 @@
     </div>
   </div>
 
-  <!-- HERO (pantalla principal) -->
+  <!-- HERO -->
   <section class="hero-section" id="home">
     <video class="hero-video" autoplay muted loop playsinline>
       <source src="videos/hero.mp4" type="video/mp4" />
@@ -1612,7 +1598,7 @@
     </div>
   </section>
 
-  <!-- COUNTDOWN (2) -->
+  <!-- COUNTDOWN -->
   <section class="countdown-section" id="countdown">
     <div class="section-inner" style="text-align: center;">
       <p class="countdown-title">Lanzamiento oficial en</p>
@@ -1643,7 +1629,7 @@
     </div>
   </section>
 
-  <!-- QUIÉNES SOMOS (3) -->
+  <!-- QUIÉNES SOMOS -->
   <section class="who-we-are" id="who-we-are">
     <div class="section-inner">
       <p class="section-kicker">Quiénes somos</p>
@@ -1663,10 +1649,14 @@
         por y para los jugadores. Una herramienta simple, gratuita y potente que pone el talento en
         primer lugar.
       </p>
+
+      <div class="section-cta">
+        <a href="#signup" class="btn btn-cta">Quiero dejar de ser invisible</a>
+      </div>
     </div>
   </section>
 
-  <!-- CÓMO FUNCIONA — TRES PASOS (4) -->
+  <!-- CÓMO FUNCIONA — TRES PASOS -->
   <section class="how-steps" id="how-steps">
     <div class="how-steps-inner">
       <p class="section-kicker">Cómo funciona</p>
@@ -1680,17 +1670,14 @@
           <div class="how-step-slide active" data-step="0">
             <div class="how-step-card">
               <picture>
-                <!-- Imagen vertical SOLO para móvil -->
                 <source
                   srcset="images/how-step-1-mobile.jpg"
                   media="(max-width: 768px)"
                 />
-                <!-- Imagen horizontal para escritorio/tablet -->
                 <source
                   srcset="images/how-step-1.jpg"
                   media="(min-width: 769px)"
                 />
-                <!-- Fallback -->
                 <img
                   src="images/how-step-1.jpg"
                   alt="Graba tus mejores jugadas"
@@ -1702,7 +1689,7 @@
                 <div>
                   <h3 class="how-step-title">Graba tus mejores jugadas</h3>
                   <p class="how-step-sub">Desde el móvil o la cámara del campo, sin complicaciones.</p>
-                  <a href="pasos.html" class="how-step-cta">Explorar</a>
+                  <a href="#signup" class="how-step-cta">Empieza hoy</a>
                 </div>
               </div>
             </div>
@@ -1731,7 +1718,7 @@
                 <div>
                   <h3 class="how-step-title">Súbelas en segundos</h3>
                   <p class="how-step-sub">Etiqueta posición, tipo de jugada y deja todo ordenado.</p>
-                  <a href="pasos.html" class="how-step-cta">Explorar</a>
+                  <a href="#signup" class="how-step-cta">Únete a la beta</a>
                 </div>
               </div>
             </div>
@@ -1760,7 +1747,7 @@
                 <div>
                   <h3 class="how-step-title">Déjate descubrir</h3>
                   <p class="how-step-sub">Entrenadores y clubes te encuentran filtrando por lo que eres.</p>
-                  <a href="pasos.html" class="how-step-cta">Explorar</a>
+                  <a href="#signup" class="how-step-cta">Reserva tu plaza</a>
                 </div>
               </div>
             </div>
@@ -1768,13 +1755,14 @@
         </div>
       </div>
 
+      <!-- Dots móviles -->
       <div class="how-steps-dots">
         <button class="how-step-dot active" data-step="0"></button>
         <button class="how-step-dot" data-step="1"></button>
         <button class="how-step-dot" data-step="2"></button>
       </div>
 
-      <!-- Triggers para el scroll (solo desktop) -->
+      <!-- Triggers para scroll desktop -->
       <div class="how-step-triggers">
         <div class="how-step-trigger" data-step="0"></div>
         <div class="how-step-trigger" data-step="1"></div>
@@ -1783,7 +1771,7 @@
     </div>
   </section>
 
-  <!-- CÓMO FUNCIONA – EXPERIENCIA POR TIPO DE USUARIO (5) -->
+  <!-- CÓMO FUNCIONA – EXPERIENCIA POR ROL -->
   <section class="how-it-works" id="how-it-works">
     <div class="section-inner">
       <p class="section-kicker">Elige tu rol</p>
@@ -1800,7 +1788,6 @@
             <img
               src="images/athlead-jugador-main.jpg"
               alt="Vista de Athlead para jugadores"
-              class="role-image"
             />
           </div>
           <div class="experience-body">
@@ -1818,20 +1805,19 @@
             <button
               type="button"
               class="experience-btn"
-              onclick="window.location.href='roles.html#jugadores'"
+              onclick="window.location.href='#signup'"
             >
-              Explorar
+              Quiero mi perfil Athlead
             </button>
           </div>
         </article>
 
-        <!-- Clubes y entrenadores -->
+        <!-- Clubes -->
         <article class="experience-card">
           <div class="experience-image-wrapper">
             <img
               src="images/athlead-clubes-main.jpg"
               alt="Vista de Athlead para clubes y entrenadores"
-              class="role-image"
             />
           </div>
           <div class="experience-body">
@@ -1849,17 +1835,21 @@
             <button
               type="button"
               class="experience-btn"
-              onclick="window.location.href='roles.html#clubes'"
+              onclick="window.location.href='#signup'"
             >
-              Explorar
+              Quiero probar Athlead
             </button>
           </div>
         </article>
       </div>
+
+      <div class="section-cta center">
+        <a href="#signup" class="btn btn-cta">Apúntate al acceso anticipado</a>
+      </div>
     </div>
   </section>
 
-  <!-- SIGNUP (6) -->
+  <!-- SIGNUP -->
   <section class="signup-section" id="signup">
     <div class="section-inner">
       <p class="section-kicker">Acceso anticipado</p>
@@ -1968,7 +1958,7 @@
     </div>
   </section>
 
-  <!-- JUGADAS DESTACADAS (7) -->
+  <!-- JUGADAS DESTACADAS -->
   <section class="highlight-videos" id="highlight-videos">
     <div class="section-inner">
       <p class="section-kicker">Jugadas destacadas</p>
@@ -2009,6 +1999,10 @@
 
         <button class="videos-arrow next" aria-label="Siguiente vídeo">›</button>
       </div>
+
+      <div class="section-cta center">
+        <a href="#signup" class="btn btn-cta">Quiero que mis jugadas salgan aquí</a>
+      </div>
     </div>
   </section>
 
@@ -2047,6 +2041,46 @@
     </div>
   </section>
 
+  <!-- BENEFICIOS -->
+  <section class="benefits" id="benefits">
+    <div class="section-inner">
+      <p class="section-kicker">Lo que ganas</p>
+      <h2>Beneficios reales para tu carrera deportiva</h2>
+      <p>
+        Athlead no es solo otra app: es una herramienta pensada para darte más opciones, más
+        visibilidad y más control sobre tu futuro en el fútbol.
+      </p>
+
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <h3>Más visibilidad sin contactos</h3>
+          <p>
+            Tus jugadas dejan de estar perdidas en grupos de WhatsApp o vídeos sueltos. En Athlead tu
+            talento se presenta en un perfil profesional que cualquier entrenador puede entender.
+          </p>
+        </div>
+        <div class="benefit-card">
+          <h3>Un perfil que habla por ti</h3>
+          <p>
+            Posición, edad, equipo, estadísticas y vídeos clave en un solo lugar. Cuando un club
+            abra tu perfil, sabrá en segundos qué tipo de jugador eres.
+          </p>
+        </div>
+        <div class="benefit-card">
+          <h3>Oportunidades medibles</h3>
+          <p>
+            Verás quién visita tu perfil, qué jugadas se ven más y desde dónde te están
+            descubriendo. Dejas de depender del “a ver si alguien te ve” y empiezas a tener datos.
+          </p>
+        </div>
+      </div>
+
+      <div class="section-cta center">
+        <a href="#signup" class="btn btn-cta">Apúntate y desbloquea estos beneficios</a>
+      </div>
+    </div>
+  </section>
+
   <!-- FEATURES -->
   <section class="features" id="features">
     <div class="section-inner">
@@ -2080,6 +2114,10 @@
           </p>
         </div>
       </div>
+
+      <div class="section-cta center">
+        <a href="#signup" class="btn btn-cta">Quiero mi escaparate Athlead</a>
+      </div>
     </div>
   </section>
 
@@ -2111,6 +2149,10 @@
             tu perfil y dejas que el fútbol haga el resto.
           </p>
         </div>
+      </div>
+
+      <div class="section-cta center">
+        <a href="#signup" class="btn btn-cta">Únete a la generación que sí se ve</a>
       </div>
     </div>
   </section>
@@ -2281,7 +2323,7 @@
   </footer>
 
   <script>
-    // 🔹 En móvil: al recargar, siempre volver al inicio
+    // En móvil: al recargar, volver al inicio
     (function () {
       if (window.innerWidth < 768) {
         if ('scrollRestoration' in history) {
@@ -2340,7 +2382,7 @@
       });
     });
 
-    // Animaciones
+    // Animaciones tarjetas
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -2354,7 +2396,7 @@
     );
 
     document
-      .querySelectorAll('.feature-card, .problem, .solution, .faq-item, .stat-card')
+      .querySelectorAll('.feature-card, .problem, .solution, .faq-item, .stat-card, .benefit-card')
       .forEach((card) => {
         card.style.opacity = '0';
         card.style.transform = 'translateY(20px)';
@@ -2473,7 +2515,7 @@
       });
     }
 
-    // Autoplay silencioso en móvil
+    // Autoplay silencioso en móvil para jugadas
     if (window.innerWidth < 768) {
       document.querySelectorAll('.video-card video').forEach((v) => {
         v.muted = true;
@@ -2522,7 +2564,7 @@
       triggers.forEach((trigger) => stepObserver.observe(trigger));
     })();
 
-    // Carrusel táctil en móvil para "Captura tu talento en tres pasos"
+    // Carrusel táctil móvil "Tres pasos"
     (function () {
       const wrapper = document.querySelector('.how-step-card-wrapper');
       const slides = document.querySelectorAll('.how-step-slide');
@@ -2535,7 +2577,6 @@
         dots.forEach((d, i) => d.classList.toggle('active', i === index));
       }
 
-      // Click en los puntitos
       dots.forEach((dot, index) => {
         dot.addEventListener('click', () => {
           const slide = slides[index];
@@ -2548,7 +2589,6 @@
         });
       });
 
-      // Actualizar puntitos cuando el usuario hace swipe
       wrapper.addEventListener('scroll', () => {
         const center = wrapper.scrollLeft + wrapper.clientWidth / 2;
         let activeIndex = 0;
