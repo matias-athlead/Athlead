@@ -45,6 +45,7 @@
       --text-main: #ffffff;
       --text-muted: rgba(255, 255, 255, 0.7);
       --accent: #ffffff;
+      --accent-alt: #4ecdc4;
     }
 
     * {
@@ -58,44 +59,239 @@
       background: var(--bg-main);
       color: var(--text-main);
       min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
     }
 
-    .page-shell {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 24px 16px 64px;
+    body::before {
+      content: "";
+      position: fixed;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(78, 205, 196, 0.16) 0, transparent 50%),
+        radial-gradient(circle at 90% 100%, rgba(255, 255, 255, 0.06) 0, transparent 55%);
+      opacity: 1;
+      pointer-events: none;
+      z-index: -1;
     }
 
-    /* Mini header */
-    .mini-header {
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ===== HEADER PRINCIPAL ===== */
+
+    .header {
+      position: fixed;
+      top: 16px;
+      left: 50%;
+      transform: translate(-50%, 0);
+      width: min(1100px, 92%);
+      padding: 20px 28px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.78);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 22px 45px rgba(0, 0, 0, 0.65);
+      z-index: 1000;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 32px;
-      gap: 12px;
+      gap: 20px;
+      transition: transform 0.6s ease-in-out;
     }
 
-    .mini-logo {
+    .header.hide-header {
+      transform: translate(-50%, -180%);
+    }
+
+    .logo {
+      font-size: 24px;
       font-weight: 700;
       letter-spacing: 0.16em;
-      font-size: 18px;
+      cursor: pointer;
     }
 
-    .mini-back {
-      font-size: 13px;
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      font-size: 16px;
+    }
+
+    .nav-links a {
+      opacity: 0.8;
+      padding: 4px 0;
+      border-bottom: 1px solid transparent;
+      transition: opacity 0.2s, border-bottom-color 0.2s;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+      border-bottom-color: rgba(255, 255, 255, 0.8);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    /* Selector de idioma */
+    .lang-switcher {
+      position: relative;
+    }
+
+    .lang-current {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       padding: 8px 14px;
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.4);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      background: rgba(0, 0, 0, 0.45);
+      color: #ffffff;
+      font-size: 13px;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+    }
+
+    .lang-flag {
+      font-size: 16px;
+      line-height: 1;
+    }
+
+    .lang-label {
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .lang-arrow {
+      font-size: 10px;
+      opacity: 0.8;
+    }
+
+    .lang-menu {
+      position: absolute;
+      right: 0;
+      top: 110%;
+      min-width: 160px;
+      background: #000000;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.8);
+      padding: 6px;
+      display: none;
+      z-index: 1200;
+    }
+
+    .lang-menu.open {
+      display: block;
+    }
+
+    .lang-menu button {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      background: transparent;
+      border: none;
+      color: #ffffff;
+      font-size: 13px;
+      cursor: pointer;
+      border-radius: 999px;
+      text-align: left;
+    }
+
+    .lang-menu button:hover {
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: #ffffff;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 260px;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.96);
+      backdrop-filter: blur(14px);
+      z-index: 900;
+      padding: 80px 24px 24px;
+      transition: right 0.3s ease;
+    }
+
+    .mobile-menu.active {
+      right: 0;
+    }
+
+    .mobile-menu-links {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      font-size: 16px;
+    }
+
+    .mobile-menu-links a {
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    /* Layout general */
+    .page-shell {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 120px 16px 72px; /* espacio para la barra fija */
+    }
+
+    /* Botón volver dentro del contenido */
+    .mini-back {
+      font-size: 13px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.4);
       text-decoration: none;
       color: #fff;
-      background: transparent;
-      cursor: pointer;
       white-space: nowrap;
+      background: rgba(0, 0, 0, 0.6);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease,
+        transform 0.12s ease, box-shadow 0.18s ease;
+      margin-bottom: 20px;
+      cursor: pointer;
+    }
+
+    .mini-back span {
+      font-size: 14px;
+      line-height: 1;
     }
 
     .mini-back:hover {
-      background: #fff;
+      background: #ffffff;
       color: #000;
+      border-color: #ffffff;
+      transform: translateY(-1px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.7);
+    }
+
+    .section-kicker {
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 11px;
+      opacity: 0.7;
+      margin-bottom: 6px;
     }
 
     h1 {
@@ -107,21 +303,40 @@
     .page-subtitle {
       font-size: 15px;
       color: var(--text-muted);
-      margin-bottom: 32px;
+      margin-bottom: 24px;
       max-width: 640px;
+      line-height: 1.7;
+    }
+
+    .page-tagline {
+      font-size: 13px;
+      color: var(--accent-alt);
+      margin-bottom: 32px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
     }
 
     .roles-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0,1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 24px;
     }
 
     .role-card {
-      background: var(--bg-card);
+      background: radial-gradient(circle at 0 0, rgba(78, 205, 196, 0.16), transparent 55%),
+        var(--bg-card);
       border-radius: 24px;
       padding: 24px 22px 26px;
       border: 1px solid var(--border-soft);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.7);
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+    }
+
+    .role-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 26px 60px rgba(0, 0, 0, 0.9);
+      border-color: rgba(255, 255, 255, 0.24);
     }
 
     .role-tag {
@@ -154,47 +369,116 @@
 
     .role-list li::before {
       content: "• ";
-      color: var(--accent);
+      color: var(--accent-alt);
     }
 
     .role-highlight {
       margin-top: 8px;
       font-size: 13px;
       font-style: italic;
-      color: var(--accent);
+      color: var(--accent-alt);
     }
 
-    @media (max-width: 800px) {
+    @media (max-width: 900px) {
+      .page-shell {
+        padding: 100px 16px 48px;
+      }
+
       .roles-grid {
         grid-template-columns: 1fr;
       }
 
-      .page-shell {
-        padding: 20px 16px 40px;
+      .role-card {
+        padding: 22px 18px 22px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header {
+        width: 94%;
+        padding: 10px 16px;
       }
 
-      .mini-header {
-        flex-direction: row;
-        gap: 12px;
+      .nav-links {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .lang-current {
+        padding: 6px 10px;
+        font-size: 12px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="page-shell">
-    <header class="mini-header">
-      <div class="mini-logo">ATHLEAD</div>
-      <!-- Vuelve exactamente a la página anterior (con fallback) -->
-      <button type="button" class="mini-back" id="backBtn" data-i18n="back_link">
-        ← Volver a Athlead
-      </button>
-    </header>
+  <!-- BARRA PRINCIPAL -->
+  <header class="header">
+    <div class="logo" id="logo">ATHLEAD</div>
 
+    <nav class="nav-links">
+      <a href="index.html#who-we-are" data-i18n="nav_about">Quiénes somos</a>
+      <a href="index.html#how-steps" data-i18n="nav_how">Cómo funciona</a>
+      <a href="index.html#signup" data-i18n="nav_signup">Regístrate</a>
+      <a href="index.html#features" data-i18n="nav_features">Características</a>
+      <a href="index.html#faq" data-i18n="nav_faq">FAQ</a>
+      <a href="index.html#contact" data-i18n="nav_contact">Contacto</a>
+    </nav>
+
+    <div class="header-actions">
+      <div class="lang-switcher" id="langSwitcher">
+        <button class="lang-current" type="button" aria-expanded="false">
+          <span class="lang-flag">🇪🇸</span>
+          <span class="lang-label">ES</span>
+          <span class="lang-arrow">▾</span>
+        </button>
+        <div class="lang-menu" id="langMenu">
+          <button type="button" data-lang="es">
+            <span class="lang-flag">🇪🇸</span>
+            <span>Español</span>
+          </button>
+          <button type="button" data-lang="en">
+            <span class="lang-flag">🇬🇧</span>
+            <span>English</span>
+          </button>
+        </div>
+      </div>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">☰</button>
+    </div>
+  </header>
+
+  <!-- MENÚ MÓVIL -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-links">
+      <a href="index.html#who-we-are" data-i18n="nav_about">Quiénes somos</a>
+      <a href="index.html#how-steps" data-i18n="nav_how">Cómo funciona</a>
+      <a href="index.html#signup" data-i18n="nav_signup">Regístrate</a>
+      <a href="index.html#features" data-i18n="nav_features">Características</a>
+      <a href="index.html#faq" data-i18n="nav_faq">FAQ</a>
+      <a href="index.html#contact" data-i18n="nav_contact">Contacto</a>
+    </div>
+  </div>
+
+  <div class="page-shell">
     <main>
+      <!-- Botón volver dentro del contenido -->
+      <button type="button" class="mini-back" id="backBtn">
+        <span>←</span>
+        <span data-i18n="back_link">Volver a Athlead</span>
+      </button>
+
+      <p class="section-kicker" data-i18n="roles_kicker">Roles de usuario</p>
       <h1 data-i18n="roles_title">Una experiencia Athlead para cada tipo de usuario</h1>
       <p class="page-subtitle" data-i18n="roles_subtitle">
         Athlead se adapta al rol que tengas en el fútbol. Ya seas jugador, entrenador o club, la
         plataforma te da las herramientas necesarias para encontrar oportunidades reales.
+      </p>
+      <p class="page-tagline" data-i18n="roles_tagline">
+        Diseñada para jugadores, entrenadores y clubes.
       </p>
 
       <section class="roles-grid">
@@ -242,10 +526,20 @@
     const i18n = {
       es: {
         page_title: 'Athlead – Roles de usuario',
-        back_link: '← Volver a Athlead',
+        // nav
+        nav_about: 'Quiénes somos',
+        nav_how: 'Cómo funciona',
+        nav_signup: 'Regístrate',
+        nav_features: 'Características',
+        nav_faq: 'FAQ',
+        nav_contact: 'Contacto',
+        // roles
+        back_link: 'Volver a Athlead',
+        roles_kicker: 'Roles de usuario',
         roles_title: 'Una experiencia Athlead para cada tipo de usuario',
         roles_subtitle:
           'Athlead se adapta al rol que tengas en el fútbol. Ya seas jugador, entrenador o club, la plataforma te da las herramientas necesarias para encontrar oportunidades reales.',
+        roles_tagline: 'Diseñada para jugadores, entrenadores y clubes.',
         players_tag: 'Para jugadores',
         players_title: 'Tu escaparate de fútbol en el bolsillo',
         players_lead:
@@ -269,10 +563,20 @@
       },
       en: {
         page_title: 'Athlead – User roles',
-        back_link: '← Back to Athlead',
+        // nav
+        nav_about: 'About',
+        nav_how: 'How it works',
+        nav_signup: 'Sign up',
+        nav_features: 'Features',
+        nav_faq: 'FAQ',
+        nav_contact: 'Contact',
+        // roles
+        back_link: 'Back to Athlead',
+        roles_kicker: 'User roles',
         roles_title: 'An Athlead experience for every type of user',
         roles_subtitle:
           'Athlead adapts to your role in football. Whether you are a player, coach or club, the platform gives you the tools you need to find real opportunities.',
+        roles_tagline: 'Built for players, coaches and clubs.',
         players_tag: 'For players',
         players_title: 'Your football showcase in your pocket',
         players_lead:
@@ -314,21 +618,118 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-      // Detectar idioma desde el resto de la web
+      // Idioma guardado
       const saved = localStorage.getItem('athlead_lang');
       const lang = saved === 'en' ? 'en' : 'es';
       applyTranslations(lang);
 
-      // Botón volver → vuelve exactamente a la página anterior
+      // Logo → home
+      const logo = document.getElementById('logo');
+      if (logo) {
+        logo.addEventListener('click', () => {
+          window.location.href = 'index.html';
+        });
+      }
+
+      // Botón volver → sección "roles" (cambia #roles si usas otro id en la home)
       const backBtn = document.getElementById('backBtn');
       if (backBtn) {
         backBtn.addEventListener('click', (e) => {
           e.preventDefault();
-          if (window.history.length > 1) {
-            window.history.back();
+          window.location.href = 'index.html#roles';
+        });
+      }
+
+      // Menú móvil
+      const menuToggle = document.getElementById('menuToggle');
+      const mobileMenu = document.getElementById('mobileMenu');
+
+      if (menuToggle && mobileMenu) {
+        menuToggle.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const isOpen = mobileMenu.classList.contains('active');
+          if (isOpen) {
+            mobileMenu.classList.remove('active');
+            menuToggle.textContent = '☰';
           } else {
-            // Fallback si no hay historial
-            window.location.href = 'index.html#how-it-works';
+            mobileMenu.classList.add('active');
+            menuToggle.textContent = '✕';
+          }
+        });
+
+        document.addEventListener('click', (e) => {
+          if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+            mobileMenu.classList.remove('active');
+            menuToggle.textContent = '☰';
+          }
+        });
+
+        document.querySelectorAll('.mobile-menu-links a').forEach((link) => {
+          link.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            menuToggle.textContent = '☰';
+          });
+        });
+      }
+
+      // Ocultar header en scroll
+      const header = document.querySelector('.header');
+      let lastScroll = 0;
+      if (header) {
+        window.addEventListener('scroll', () => {
+          const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+          if (currentScroll > lastScroll && currentScroll > 80) {
+            header.classList.add('hide-header');
+          } else if (currentScroll < lastScroll) {
+            header.classList.remove('hide-header');
+          }
+          lastScroll = currentScroll;
+        });
+      }
+
+      // Selector de idioma
+      const langSwitcher = document.getElementById('langSwitcher');
+      if (langSwitcher) {
+        const currentBtn = langSwitcher.querySelector('.lang-current');
+        const menu = document.getElementById('langMenu');
+        const currentFlag = currentBtn.querySelector('.lang-flag');
+        const currentLabel = currentBtn.querySelector('.lang-label');
+
+        function setCurrentLangUI(selected) {
+          if (selected === 'en') {
+            currentFlag.textContent = '🇬🇧';
+            currentLabel.textContent = 'EN';
+          } else {
+            currentFlag.textContent = '🇪🇸';
+            currentLabel.textContent = 'ES';
+          }
+        }
+
+        // Inicializar UI según idioma guardado
+        setCurrentLangUI(lang);
+
+        currentBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          menu.classList.toggle('open');
+          const expanded = currentBtn.getAttribute('aria-expanded') === 'true';
+          currentBtn.setAttribute('aria-expanded', (!expanded).toString());
+        });
+
+        menu.querySelectorAll('button[data-lang]').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const selected = btn.getAttribute('data-lang');
+            localStorage.setItem('athlead_lang', selected);
+            setCurrentLangUI(selected);
+            applyTranslations(selected);
+            menu.classList.remove('open');
+            currentBtn.setAttribute('aria-expanded', 'false');
+          });
+        });
+
+        document.addEventListener('click', (e) => {
+          if (!langSwitcher.contains(e.target)) {
+            menu.classList.remove('open');
+            currentBtn.setAttribute('aria-expanded', 'false');
           }
         });
       }
