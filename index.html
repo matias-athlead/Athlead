@@ -1486,6 +1486,33 @@
         width: 94%;
         padding: 10px 16px;
       }
+        /* Forzar que idioma + hamburguesa estén alineados en una sola fila */
+  .header-actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: nowrap;
+  }
+
+  /* Que el selector de idioma sea un poco más pequeño en móvil */
+  .lang-current {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+
+  .lang-switcher {
+    flex-shrink: 1;
+  }
+
+  .menu-toggle {
+    display: block;
+    flex-shrink: 0;
+    font-size: 22px;
+    padding: 0;
+    line-height: 1;
+  }
+
 
       .nav-links {
         display: none;
