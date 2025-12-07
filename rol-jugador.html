@@ -114,7 +114,7 @@
       gap: 12px;
     }
 
-    /* Botón idioma (como en la home) */
+    /* Botón idioma */
 
     .lang-toggle {
       display: inline-flex;
@@ -251,7 +251,6 @@
 
     /* IMAGEN DE FONDO PARA JUGADOR */
     .role-hero-jugador::before {
-      /* usa el nombre real del archivo en /images */
       background-image: url("images/rol-jugador-hero.jpg");
     }
 
@@ -438,7 +437,7 @@
         display: block;
       }
 
-      /* que el idioma + hamburguesa queden en la misma línea */
+      /* idioma + hamburguesa en la misma línea */
       .header-actions {
         display: flex;
         flex-direction: row;
@@ -490,7 +489,6 @@
     </nav>
 
     <div class="header-actions">
-      <!-- Indicador de idioma como en la página principal -->
       <button class="lang-toggle" type="button" id="langToggle">
         <span class="lang-flag">🇪🇸</span>
         <span class="lang-code">ES</span>
@@ -566,7 +564,6 @@
         </div>
 
         <div class="role-photo-wrapper">
-          <!-- Foto tipo primer plano / partido de jugador -->
           <img src="images/rol-jugador-01.jpg" alt="Perfil de jugador en Athlead" />
         </div>
       </div>
@@ -578,7 +575,6 @@
     <div class="section-inner">
       <div class="role-layout">
         <div class="role-photo-wrapper">
-          <!-- Foto de celebración / equipo / jugada clave -->
           <img src="images/rol-jugador-02.jpg" alt="Jugador celebrando un gol" />
         </div>
 
@@ -654,12 +650,12 @@
       });
     });
 
-    // Botón de idioma (de momento solo indicador, igual que en la home)
+    // Botón de idioma (solo indicador por ahora)
     const langToggle = document.getElementById("langToggle");
     if (langToggle) {
       langToggle.addEventListener("click", (e) => {
         e.stopPropagation();
-        // aquí puedes añadir la misma lógica de cambio de idioma que uses en la página principal
+        // Aquí podrías copiar la misma lógica de cambio de idioma de la página principal
       });
     }
   </script>
