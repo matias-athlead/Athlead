@@ -63,7 +63,6 @@
       overflow-x: hidden;
     }
 
-    /* Halo sutil al estilo Athlead */
     body::before {
       content: "";
       position: fixed;
@@ -76,55 +75,186 @@
       z-index: -1;
     }
 
-    .page-shell {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 32px 16px 72px;
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
-    /* Mini header */
-    .mini-header {
+    /* ===== HEADER PRINCIPAL ===== */
+
+    .header {
+      position: fixed;
+      top: 16px;
+      left: 50%;
+      transform: translate(-50%, 0);
+      width: min(1100px, 92%);
+      padding: 20px 28px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.78);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 22px 45px rgba(0, 0, 0, 0.65);
+      z-index: 1000;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 40px;
-      gap: 16px;
+      gap: 20px;
+      transition: transform 0.6s ease-in-out;
     }
 
-    .mini-logo {
+    .header.hide-header {
+      transform: translate(-50%, -180%);
+    }
+
+    .logo {
+      font-size: 24px;
       font-weight: 700;
       letter-spacing: 0.16em;
-      font-size: 18px;
+      cursor: pointer;
     }
 
-    .mini-meta {
+    .nav-links {
       display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 6px;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--text-muted);
+      gap: 20px;
+      align-items: center;
+      font-size: 16px;
     }
 
-    .mini-pill {
-      padding: 4px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.24);
-      background: rgba(0, 0, 0, 0.55);
+    .nav-links a {
+      opacity: 0.8;
+      padding: 4px 0;
+      border-bottom: 1px solid transparent;
+      transition: opacity 0.2s, border-bottom-color 0.2s;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+      border-bottom-color: rgba(255, 255, 255, 0.8);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    /* Selector de idioma */
+    .lang-switcher {
+      position: relative;
+    }
+
+    .lang-current {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-    }
-
-    .mini-dot {
-      width: 6px;
-      height: 6px;
+      gap: 8px;
+      padding: 8px 14px;
       border-radius: 999px;
-      background: var(--accent-alt);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      background: rgba(0, 0, 0, 0.45);
+      color: #ffffff;
+      font-size: 13px;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
     }
 
+    .lang-flag {
+      font-size: 16px;
+      line-height: 1;
+    }
+
+    .lang-label {
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .lang-arrow {
+      font-size: 10px;
+      opacity: 0.8;
+    }
+
+    .lang-menu {
+      position: absolute;
+      right: 0;
+      top: 110%;
+      min-width: 160px;
+      background: #000000;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.8);
+      padding: 6px;
+      display: none;
+      z-index: 1200;
+    }
+
+    .lang-menu.open {
+      display: block;
+    }
+
+    .lang-menu button {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      background: transparent;
+      border: none;
+      color: #ffffff;
+      font-size: 13px;
+      cursor: pointer;
+      border-radius: 999px;
+      text-align: left;
+    }
+
+    .lang-menu button:hover {
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: #ffffff;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 260px;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.96);
+      backdrop-filter: blur(14px);
+      z-index: 900;
+      padding: 80px 24px 24px;
+      transition: right 0.3s ease;
+    }
+
+    .mobile-menu.active {
+      right: 0;
+    }
+
+    .mobile-menu-links {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      font-size: 16px;
+    }
+
+    .mobile-menu-links a {
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    /* Layout general de la página */
+    .page-shell {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 120px 16px 72px; /* espacio para la barra fija */
+    }
+
+    /* Botón de volver dentro del contenido */
     .mini-back {
       font-size: 13px;
       padding: 8px 16px;
@@ -138,7 +268,8 @@
       align-items: center;
       gap: 6px;
       transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease,
-        transform 0.12s ease, box-shadow 0.18s ease;
+        transform 0.12s.ease, box-shadow 0.18s ease;
+      margin-bottom: 20px;
     }
 
     .mini-back span {
@@ -172,7 +303,7 @@
     .page-subtitle {
       font-size: 15px;
       color: var(--text-muted);
-      margin-bottom: 32px;
+      margin-bottom: 24px;
       max-width: 640px;
       line-height: 1.7;
     }
@@ -254,260 +385,4 @@
     .step-number {
       position: absolute;
       top: 12px;
-      right: 18px;
-      font-size: 32px;
-      font-weight: 700;
-      color: rgba(255, 255, 255, 0.08);
-    }
-
-    .step-title {
-      font-size: 18px;
-      margin-bottom: 4px;
-    }
-
-    .step-lead {
-      font-size: 14px;
-      color: var(--text-muted);
-      margin-bottom: 6px;
-      line-height: 1.6;
-    }
-
-    .step-detail {
-      font-size: 13px;
-      color: var(--text-muted);
-      line-height: 1.7;
-    }
-
-    .step-highlight {
-      margin-top: 8px;
-      font-size: 12px;
-      color: var(--accent-alt);
-      font-style: italic;
-    }
-
-    @media (max-width: 900px) {
-      .page-shell {
-        padding: 24px 16px 48px;
-      }
-
-      .mini-header {
-        flex-wrap: wrap;
-        align-items: flex-start;
-      }
-
-      .mini-meta {
-        align-items: flex-start;
-      }
-
-      .steps-list {
-        grid-template-columns: 1fr;
-      }
-
-      .step-card {
-        padding: 22px 18px 22px;
-      }
-    }
-  </style>
-</head>
-<body>
-  <div class="page-shell">
-    <header class="mini-header">
-      <div class="mini-logo">ATHLEAD</div>
-
-      <div class="mini-meta">
-        <div class="mini-pill">
-          <span class="mini-dot"></span>
-          <span data-i18n="meta_product">Producto · Athlead App</span>
-        </div>
-        <button type="button" class="mini-back" id="backBtn" data-i18n="back_link">
-          <span>←</span>
-          <span data-i18n="back_link_label">Volver a Athlead</span>
-        </button>
-      </div>
-    </header>
-
-    <main>
-      <p class="section-kicker" data-i18n="steps_kicker">Cómo funciona</p>
-      <h1 data-i18n="steps_title">Captura tu talento en tres pasos</h1>
-      <p class="page-subtitle" data-i18n="steps_subtitle">
-        Athlead está pensada para que, en pocos minutos, tu fútbol pueda verse desde cualquier parte.
-        Estos son los tres pasos clave para sacarle partido a la app.
-      </p>
-      <p class="page-tagline" data-i18n="steps_tagline">
-        De la cámara al radar de los clubes en minutos.
-      </p>
-
-      <section class="steps-list">
-        <article class="step-card">
-          <div class="step-number">01</div>
-          <div class="step-chip">
-            <span class="step-chip-dot"></span>
-            <span data-i18n="step1_chip">Paso 1 · Captura</span>
-          </div>
-          <h2 class="step-title" data-i18n="step1_title">Graba tus mejores jugadas</h2>
-          <p class="step-lead" data-i18n="step1_lead">
-            No necesitas una productora: con el móvil o la cámara del campo es suficiente.
-          </p>
-          <p class="step-detail" data-i18n="step1_detail">
-            Concéntrate en acciones claras: goles, asistencias, buenos desmarques, robos importantes,
-            salidas jugando desde atrás… Cuanto más definan tu estilo, mejor. Es preferible un clip
-            de 15 segundos muy claro que un vídeo de 3 minutos donde no se entiende qué aportas.
-          </p>
-          <p class="step-highlight" data-i18n="step1_highlight">
-            Tip: graba siempre en horizontal y asegúrate de que se vea el número de tu camiseta.
-          </p>
-        </article>
-
-        <article class="step-card">
-          <div class="step-number">02</div>
-          <div class="step-chip">
-            <span class="step-chip-dot"></span>
-            <span data-i18n="step2_chip">Paso 2 · Ordena</span>
-          </div>
-          <h2 class="step-title" data-i18n="step2_title">Súbelas a tu perfil Athlead</h2>
-          <p class="step-lead" data-i18n="step2_lead">
-            Ordena tus jugadas por tipo y posición para que cualquiera entienda rápido quién eres.
-          </p>
-          <p class="step-detail" data-i18n="step2_detail">
-            Cada vídeo se asocia a una categoría (gol, asistencia, defensa, liderazgo, etc.).
-            Así, cuando un entrenador entra en tu perfil puede filtrar lo que le interesa ver
-            y tener una idea real de tu rendimiento en muy poco tiempo.
-          </p>
-          <p class="step-highlight" data-i18n="step2_highlight">
-            Tip: sube pocos vídeos pero muy claros. Calidad &gt; cantidad.
-          </p>
-        </article>
-
-        <article class="step-card">
-          <div class="step-number">03</div>
-          <div class="step-chip">
-            <span class="step-chip-dot"></span>
-            <span data-i18n="step3_chip">Paso 3 · Muestra</span>
-          </div>
-          <h2 class="step-title" data-i18n="step3_title">Deja que te descubran</h2>
-          <p class="step-lead" data-i18n="step3_lead">
-            Entrenadores y clubes usan filtros para buscar perfiles como el tuyo.
-          </p>
-          <p class="step-detail" data-i18n="step3_detail">
-            Cuando tu perfil encaja con lo que un club está buscando, puede guardarte en su lista
-            de seguimiento, revisar tu evolución y contactarte directamente. Sin intermediarios,
-            sin comisiones y sin pagar por “ser visto”.
-          </p>
-          <p class="step-highlight" data-i18n="step3_highlight">
-            Tip: mantén tu perfil actualizado. Un buen vídeo nuevo puede cambiar tu temporada.
-          </p>
-        </article>
-      </section>
-    </main>
-  </div>
-
-  <script>
-    // Diccionario de traducciones
-    const i18n = {
-      es: {
-        page_title: 'Athlead – Cómo funciona',
-        steps_kicker: 'Cómo funciona',
-        meta_product: 'Producto · Athlead App',
-        back_link: '← Volver a Athlead',
-        back_link_label: 'Volver a Athlead',
-        steps_title: 'Captura tu talento en tres pasos',
-        steps_subtitle:
-          'Athlead está pensada para que, en pocos minutos, tu fútbol pueda verse desde cualquier parte. Estos son los tres pasos clave para sacarle partido a la app.',
-        steps_tagline: 'De la cámara al radar de los clubes en minutos.',
-        step1_chip: 'Paso 1 · Captura',
-        step1_title: 'Graba tus mejores jugadas',
-        step1_lead:
-          'No necesitas una productora: con el móvil o la cámara del campo es suficiente.',
-        step1_detail:
-          'Concéntrate en acciones claras: goles, asistencias, buenos desmarques, robos importantes, salidas jugando desde atrás… Cuanto más definan tu estilo, mejor. Es preferible un clip de 15 segundos muy claro que un vídeo de 3 minutos donde no se entiende qué aportas.',
-        step1_highlight:
-          'Tip: graba siempre en horizontal y asegúrate de que se vea el número de tu camiseta.',
-        step2_chip: 'Paso 2 · Ordena',
-        step2_title: 'Súbelas a tu perfil Athlead',
-        step2_lead:
-          'Ordena tus jugadas por tipo y posición para que cualquiera entienda rápido quién eres.',
-        step2_detail:
-          'Cada vídeo se asocia a una categoría (gol, asistencia, defensa, liderazgo, etc.). Así, cuando un entrenador entra en tu perfil puede filtrar lo que le interesa ver y tener una idea real de tu rendimiento en muy poco tiempo.',
-        step2_highlight:
-          'Tip: sube pocos vídeos pero muy claros. Calidad > cantidad.',
-        step3_chip: 'Paso 3 · Muestra',
-        step3_title: 'Deja que te descubran',
-        step3_lead:
-          'Entrenadores y clubes usan filtros para buscar perfiles como el tuyo.',
-        step3_detail:
-          'Cuando tu perfil encaja con lo que un club está buscando, puede guardarte en su lista de seguimiento, revisar tu evolución y contactarte directamente. Sin intermediarios, sin comisiones y sin pagar por “ser visto”.',
-        step3_highlight:
-          'Tip: mantén tu perfil actualizado. Un buen vídeo nuevo puede cambiar tu temporada.'
-      },
-      en: {
-        page_title: 'Athlead – How it works',
-        steps_kicker: 'How it works',
-        meta_product: 'Product · Athlead App',
-        back_link: '← Back to Athlead',
-        back_link_label: 'Back to Athlead',
-        steps_title: 'Capture your talent in three steps',
-        steps_subtitle:
-          'Athlead is designed so that in just a few minutes your football can be seen from anywhere. These are the three key steps to get the most out of the app.',
-        steps_tagline: 'From your camera to clubs’ radar in minutes.',
-        step1_chip: 'Step 1 · Capture',
-        step1_title: 'Record your best plays',
-        step1_lead:
-          'You don’t need a production company: your phone or the camera on the pitch is enough.',
-        step1_detail:
-          'Focus on clear actions: goals, assists, good runs, key tackles, playing out from the back… The more they define your style, the better. A clear 15-second clip is better than a 3-minute video where it’s not obvious what you bring to the team.',
-        step1_highlight:
-          'Tip: always record in landscape mode and make sure your shirt number is visible.',
-        step2_chip: 'Step 2 · Organise',
-        step2_title: 'Upload them to your Athlead profile',
-        step2_lead:
-          'Organise your plays by type and position so anyone can quickly understand who you are as a player.',
-        step2_detail:
-          'Each video is linked to a category (goal, assist, defensive action, leadership, etc.). That way, when a coach visits your profile they can filter what they want to see and get a real idea of your performance in very little time.',
-        step2_highlight:
-          'Tip: fewer but better clips. Quality > quantity.',
-        step3_chip: 'Step 3 · Show',
-        step3_title: 'Let them discover you',
-        step3_lead:
-          'Coaches and clubs use filters to search for profiles like yours.',
-        step3_detail:
-          'When your profile matches what a club is looking for, they can save you to their watchlist, follow your progress and contact you directly. No middlemen, no commissions and no pay-to-be-seen schemes.',
-        step3_highlight:
-          'Tip: keep your profile fresh. One strong new clip can change your season.'
-      }
-    };
-
-    function applyTranslations(lang) {
-      const dict = i18n[lang] || i18n.es;
-
-      document.querySelectorAll('[data-i18n]').forEach((el) => {
-        const key = el.getAttribute('data-i18n');
-        if (dict[key]) {
-          el.textContent = dict[key];
-        }
-      });
-
-      if (dict.page_title) {
-        document.title = dict.page_title;
-      }
-
-      document.documentElement.lang = lang === 'en' ? 'en' : 'es';
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      // Detectar idioma desde el resto de la web
-      const saved = localStorage.getItem('athlead_lang');
-      const lang = saved === 'en' ? 'en' : 'es';
-      applyTranslations(lang);
-
-      // Botón volver → lleva siempre a la sección "Captura tu talento en tres pasos"
-      const backBtn = document.getElementById('backBtn');
-      if (backBtn) {
-        backBtn.addEventListener('click', (e) => {
-          e.preventDefault();
-          window.location.href = 'index.html#how-steps';
-        });
-      }
-    });
-  </script>
-</body>
-</html>
+      right: 1
