@@ -23,12 +23,13 @@
       box-sizing: border-box;
     }
 
-    html, body {
+    html,
+    body {
       height: 100%;
       scroll-behavior: smooth;
       background: var(--bg-main);
       color: var(--text-main);
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, system-ui, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, system-ui, sans-serif;
     }
 
     img {
@@ -55,7 +56,7 @@
       margin-bottom: 6px;
     }
 
-    /* HEADER */
+    /* HEADER (igual que home) */
 
     .header {
       position: fixed;
@@ -63,7 +64,7 @@
       left: 50%;
       transform: translate(-50%, 0);
       width: min(1100px, 92%);
-      padding: 20px 28px;
+      padding: 14px 22px;
       border-radius: 999px;
       background: rgba(0, 0, 0, 0.78);
       backdrop-filter: blur(18px);
@@ -113,6 +114,38 @@
       gap: 12px;
     }
 
+    /* Botón idioma (como en la home) */
+
+    .lang-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      background: rgba(0, 0, 0, 0.95);
+      font-size: 13px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .lang-flag {
+      font-size: 16px;
+      line-height: 1;
+    }
+
+    .lang-code {
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      font-size: 11px;
+    }
+
+    .lang-caret {
+      font-size: 10px;
+      opacity: 0.7;
+      margin-left: 2px;
+    }
+
     .menu-toggle {
       display: none;
       background: none;
@@ -120,6 +153,7 @@
       color: #ffffff;
       font-size: 24px;
       cursor: pointer;
+      line-height: 1;
     }
 
     .mobile-menu {
@@ -151,7 +185,7 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.12);
     }
 
-    /* BOTONES */
+    /* BOTONES GENERALES */
 
     .btn {
       display: inline-flex;
@@ -164,7 +198,7 @@
       cursor: pointer;
       border: none;
       transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease,
-      color 0.15s ease;
+        color 0.15s ease;
       text-decoration: none;
       white-space: nowrap;
     }
@@ -206,7 +240,7 @@
     }
 
     .role-hero::before {
-      content: '';
+      content: "";
       position: absolute;
       inset: 0;
       background-size: cover;
@@ -217,7 +251,8 @@
 
     /* IMAGEN DE FONDO PARA JUGADOR */
     .role-hero-jugador::before {
-      background-image: url('images/rol-jugador-hero.jpg');
+      /* usa el nombre real del archivo en /images */
+      background-image: url("images/imagesrol-jugador-hero.jpg");
     }
 
     .role-hero-overlay {
@@ -403,7 +438,7 @@
         display: block;
       }
 
-      /* Alinear hamburguesa y que no salte de línea */
+      /* que el idioma + hamburguesa queden en la misma línea */
       .header-actions {
         display: flex;
         flex-direction: row;
@@ -442,164 +477,192 @@
   </style>
 </head>
 <body>
-<header class="header">
-  <div class="logo" id="logo">ATHLEAD</div>
+  <header class="header">
+    <div class="logo" id="logo">ATHLEAD</div>
 
-  <nav class="nav-links">
-    <a href="index.html#who-we-are">Quiénes somos</a>
-    <a href="index.html#how-steps">Cómo funciona</a>
-    <a href="rol-jugador.html" class="active">Rol jugador</a>
-    <a href="rol-club.html">Rol club</a>
-    <a href="rol-entrenador.html">Rol entrenador</a>
-    <a href="index.html#signup">Regístrate</a>
-  </nav>
-
-  <div class="header-actions">
-    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">☰</button>
-  </div>
-</header>
-
-<div class="mobile-menu" id="mobileMenu">
-  <div class="mobile-menu-links">
-    <a href="index.html#who-we-are">Quiénes somos</a>
-    <a href="index.html#how-steps">Cómo funciona</a>
-    <a href="rol-jugador.html">Rol jugador</a>
-    <a href="rol-club.html">Rol club</a>
-    <a href="rol-entrenador.html">Rol entrenador</a>
-    <a href="index.html#signup">Regístrate</a>
-  </div>
-</div>
-
-<!-- HERO JUGADOR -->
-<section class="role-hero role-hero-jugador">
-  <div class="role-hero-overlay"></div>
-  <div class="role-hero-content">
-    <p class="role-hero-kicker">Rol Athlead · Jugador</p>
-    <h1 class="role-hero-title">Convierte tu talento en tu mejor carta de presentación.</h1>
-    <p class="role-hero-subtitle">
-      Como jugador, Athlead es tu escaparate: un lugar donde tus jugadas, tu estilo de juego
-      y tu carácter hablan por ti, incluso cuando no estás en el campo.
-    </p>
-    <p class="role-hero-meta">
-      Crea tu perfil, sube tus mejores jugadas y deja que los entrenadores y clubes te encuentren
-      sin necesitar contactos ni intermediarios.
-    </p>
-    <div class="role-hero-buttons">
-      <a href="index.html#signup" class="btn btn-cta">Únete a la lista de espera</a>
-      <a href="index.html#highlight-videos" class="btn btn-secondary">Ver jugadas de ejemplo</a>
-    </div>
-  </div>
-</section>
-
-<!-- SECCIÓN 1: QUÉ HACE UN JUGADOR EN ATHLEAD -->
-<section class="role-section">
-  <div class="section-inner">
-    <div class="role-layout">
-      <div>
-        <p class="section-kicker">Tu perfil de jugador</p>
-        <h2 class="role-title">Un perfil que explica cómo juegas, no solo dónde juegas.</h2>
-        <p class="role-text">
-          En Athlead no eres solo un dorsal o una posición. Eres un conjunto de decisiones,
-          movimientos y momentos clave que pueden cambiar un partido. Tu perfil está pensado
-          para que cualquiera que sepa de fútbol entienda en segundos qué tipo de jugador eres.
-        </p>
-        <ul class="role-list">
-          <li><span>•</span><p>Datos básicos claros: posición, pie dominante, edad, equipo actual y zona geográfica.</p></li>
-          <li><span>•</span><p>Vídeos cortos ordenados por tipo de jugada: goles, asistencias, regates, robos, salidas jugando…</p></li>
-          <li><span>•</span><p>Descripción de tu estilo de juego para que el entrenador sepa dónde encajas antes incluso de llamarte.</p></li>
-          <li><span>•</span><p>Enlaces a tus redes (Instagram, TikTok, YouTube) para mostrar tu compromiso y tu día a día.</p></li>
-        </ul>
-      </div>
-
-      <div class="role-photo-wrapper">
-        <!-- Pon aquí una foto tipo primer plano / partido de jugador -->
-        <img src="images/rol-jugador-01.jpg" alt="Perfil de jugador en Athlead" />
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SECCIÓN 2: CÓMO TE AYUDA ATHLEAD -->
-<section class="role-section role-section-alt">
-  <div class="section-inner">
-    <div class="role-layout">
-      <div class="role-photo-wrapper">
-        <!-- Foto de celebración / equipo / jugada clave -->
-        <img src="images/rol-jugador-02.jpg" alt="Jugador celebrando un gol" />
-      </div>
-
-      <div>
-        <div class="role-badge">Ventajas para jugadores</div>
-        <h2 class="role-title">De jugador invisible a jugador encontrado.</h2>
-        <p class="role-text">
-          Tu realidad hoy puede ser jugar cada fin de semana sin saber si alguien te está mirando
-          de verdad. Con Athlead, cada jugada que subes queda disponible para entrenadores y clubes
-          que están buscando exactamente tu perfil.
-        </p>
-        <ul class="role-list">
-          <li><span>✔</span><p>Dejas de depender de que “te vea alguien” por casualidad en la grada.</p></li>
-          <li><span>✔</span><p>Te pueden descubrir clubes de otras ciudades sin que tengas que desplazarte.</p></li>
-          <li><span>✔</span><p>Recibes interés real: si un entrenador te escribe, es porque ya ha visto cómo juegas.</p></li>
-          <li><span>✔</span><p>Tú decides qué enseñar y con quién hablar. No hay representantes obligatorios ni comisiones ocultas.</p></li>
-        </ul>
-        <a href="index.html#signup" class="btn btn-cta" style="margin-top: 12px;">
-          Empieza a construir tu perfil
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-links">
+    <nav class="nav-links">
       <a href="index.html#who-we-are">Quiénes somos</a>
       <a href="index.html#how-steps">Cómo funciona</a>
+      <a href="rol-jugador.html" class="active">Rol jugador</a>
+      <a href="rol-club.html">Rol club</a>
+      <a href="rol-entrenador.html">Rol entrenador</a>
       <a href="index.html#signup">Regístrate</a>
-      <a href="index.html#faq">FAQ</a>
-      <a href="index.html#contact">Contacto</a>
+    </nav>
+
+    <div class="header-actions">
+      <!-- Indicador de idioma como en la página principal -->
+      <button class="lang-toggle" type="button" id="langToggle">
+        <span class="lang-flag">🇪🇸</span>
+        <span class="lang-code">ES</span>
+        <span class="lang-caret">▾</span>
+      </button>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">☰</button>
     </div>
-    <div>© 2025 Athlead. Todos los derechos reservados.</div>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-links">
+      <a href="index.html#who-we-are">Quiénes somos</a>
+      <a href="index.html#how-steps">Cómo funciona</a>
+      <a href="rol-jugador.html">Rol jugador</a>
+      <a href="rol-club.html">Rol club</a>
+      <a href="rol-entrenador.html">Rol entrenador</a>
+      <a href="index.html#signup">Regístrate</a>
+    </div>
   </div>
-</footer>
 
-<script>
-  // Logo → volver al home
-  document.getElementById('logo').addEventListener('click', function () {
-    window.location.href = 'index.html';
-  });
+  <!-- HERO JUGADOR -->
+  <section class="role-hero role-hero-jugador">
+    <div class="role-hero-overlay"></div>
+    <div class="role-hero-content">
+      <p class="role-hero-kicker">Rol Athlead · Jugador</p>
+      <h1 class="role-hero-title">Convierte tu talento en tu mejor carta de presentación.</h1>
+      <p class="role-hero-subtitle">
+        Como jugador, Athlead es tu escaparate: un lugar donde tus jugadas, tu estilo de juego
+        y tu carácter hablan por ti, incluso cuando no estás en el campo.
+      </p>
+      <p class="role-hero-meta">
+        Crea tu perfil, sube tus mejores jugadas y deja que los entrenadores y clubes te encuentren
+        sin necesitar contactos ni intermediarios.
+      </p>
+      <div class="role-hero-buttons">
+        <a href="index.html#signup" class="btn btn-cta">Únete a la lista de espera</a>
+        <a href="index.html#highlight-videos" class="btn btn-secondary">Ver jugadas de ejemplo</a>
+      </div>
+    </div>
+  </section>
 
-  // Menú móvil
-  const menuToggle = document.getElementById('menuToggle');
-  const mobileMenu = document.getElementById('mobileMenu');
+  <!-- SECCIÓN 1: QUÉ HACE UN JUGADOR EN ATHLEAD -->
+  <section class="role-section">
+    <div class="section-inner">
+      <div class="role-layout">
+        <div>
+          <p class="section-kicker">Tu perfil de jugador</p>
+          <h2 class="role-title">Un perfil que explica cómo juegas, no solo dónde juegas.</h2>
+          <p class="role-text">
+            En Athlead no eres solo un dorsal o una posición. Eres un conjunto de decisiones,
+            movimientos y momentos clave que pueden cambiar un partido. Tu perfil está pensado
+            para que cualquiera que sepa de fútbol entienda en segundos qué tipo de jugador eres.
+          </p>
+          <ul class="role-list">
+            <li>
+              <span>•</span>
+              <p>Datos básicos claros: posición, pie dominante, edad, equipo actual y zona geográfica.</p>
+            </li>
+            <li>
+              <span>•</span>
+              <p>Vídeos cortos ordenados por tipo de jugada: goles, asistencias, regates, robos, salidas jugando…</p>
+            </li>
+            <li>
+              <span>•</span>
+              <p>Descripción de tu estilo de juego para que el entrenador sepa dónde encajas antes incluso de llamarte.</p>
+            </li>
+            <li>
+              <span>•</span>
+              <p>Enlaces a tus redes (Instagram, TikTok, YouTube) para mostrar tu compromiso y tu día a día.</p>
+            </li>
+          </ul>
+        </div>
 
-  menuToggle.addEventListener('click', function (e) {
-    e.stopPropagation();
-    const isOpen = mobileMenu.classList.contains('active');
-    if (isOpen) {
-      mobileMenu.classList.remove('active');
-      menuToggle.textContent = '☰';
-    } else {
-      mobileMenu.classList.add('active');
-      menuToggle.textContent = '✕';
-    }
-  });
+        <div class="role-photo-wrapper">
+          <!-- Foto tipo primer plano / partido de jugador -->
+          <img src="images/imagesrol-jugador-01.jpg" alt="Perfil de jugador en Athlead" />
+        </div>
+      </div>
+    </div>
+  </section>
 
-  document.addEventListener('click', (e) => {
-    if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
-      mobileMenu.classList.remove('active');
-      menuToggle.textContent = '☰';
-    }
-  });
+  <!-- SECCIÓN 2: CÓMO TE AYUDA ATHLEAD -->
+  <section class="role-section role-section-alt">
+    <div class="section-inner">
+      <div class="role-layout">
+        <div class="role-photo-wrapper">
+          <!-- Foto de celebración / equipo / jugada clave -->
+          <img src="images/imagesrol-jugador-02.jpg" alt="Jugador celebrando un gol" />
+        </div>
 
-  // Cerrar menú al hacer click en un link
-  document.querySelectorAll('.mobile-menu-links a').forEach((link) => {
-    link.addEventListener('click', () => {
-      mobileMenu.classList.remove('active');
-      menuToggle.textContent = '☰';
+        <div>
+          <div class="role-badge">Ventajas para jugadores</div>
+          <h2 class="role-title">De jugador invisible a jugador encontrado.</h2>
+          <p class="role-text">
+            Tu realidad hoy puede ser jugar cada fin de semana sin saber si alguien te está mirando
+            de verdad. Con Athlead, cada jugada que subes queda disponible para entrenadores y clubes
+            que están buscando exactamente tu perfil.
+          </p>
+          <ul class="role-list">
+            <li><span>✔</span><p>Dejas de depender de que “te vea alguien” por casualidad en la grada.</p></li>
+            <li><span>✔</span><p>Te pueden descubrir clubes de otras ciudades sin que tengas que desplazarte.</p></li>
+            <li><span>✔</span><p>Recibes interés real: si un entrenador te escribe, es porque ya ha visto cómo juegas.</p></li>
+            <li><span>✔</span><p>Tú decides qué enseñar y con quién hablar. No hay representantes obligatorios ni comisiones ocultas.</p></li>
+          </ul>
+          <a href="index.html#signup" class="btn btn-cta" style="margin-top: 12px;">
+            Empieza a construir tu perfil
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-links">
+        <a href="index.html#who-we-are">Quiénes somos</a>
+        <a href="index.html#how-steps">Cómo funciona</a>
+        <a href="index.html#signup">Regístrate</a>
+        <a href="index.html#faq">FAQ</a>
+        <a href="index.html#contact">Contacto</a>
+      </div>
+      <div>© 2025 Athlead. Todos los derechos reservados.</div>
+    </div>
+  </footer>
+
+  <script>
+    // Logo → home
+    document.getElementById("logo").addEventListener("click", function () {
+      window.location.href = "index.html";
     });
-  });
-</script>
+
+    // Menú móvil
+    const menuToggle = document.getElementById("menuToggle");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    menuToggle.addEventListener("click", function (e) {
+      e.stopPropagation();
+      const isOpen = mobileMenu.classList.contains("active");
+      if (isOpen) {
+        mobileMenu.classList.remove("active");
+        menuToggle.textContent = "☰";
+      } else {
+        mobileMenu.classList.add("active");
+        menuToggle.textContent = "✕";
+      }
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+        mobileMenu.classList.remove("active");
+        menuToggle.textContent = "☰";
+      }
+    });
+
+    // Cerrar menú al hacer click en un link
+    document.querySelectorAll(".mobile-menu-links a").forEach((link) => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.remove("active");
+        menuToggle.textContent = "☰";
+      });
+    });
+
+    // Botón de idioma (de momento solo indicador, igual que en la home)
+    const langToggle = document.getElementById("langToggle");
+    if (langToggle) {
+      langToggle.addEventListener("click", (e) => {
+        e.stopPropagation();
+        // aquí puedes añadir la misma lógica de cambio de idioma que uses en la página principal
+      });
+    }
+  </script>
 </body>
 </html>
 
