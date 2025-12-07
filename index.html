@@ -1428,13 +1428,12 @@
         pointer-events: auto;
       }
 
-      /* 👉 Tarjetas algo más bajas que la pantalla
-         y foto entera visible a la primera */
-      #how-steps .how-step-card {
-        border-radius: 24px;
-        height: 70vh;
-        max-height: 520px;
-      }
+    #how-steps .how-step-card {
+  border-radius: 24px;
+  height: 60vh;      /* tarjetas más bajas en móvil */
+  max-height: 420px; /* límite para que no crezcan tanto */
+}
+
 
       #how-steps .how-step-image {
         width: 100%;
