@@ -3197,6 +3197,11 @@
           currentBtn.setAttribute('aria-expanded', 'false');
         }
       });
+     
+      if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'auto';
+}
+
 
       function setCurrentLang(lang) {
         ATHLEAD_LANG = lang === 'en' ? 'en' : 'es';
