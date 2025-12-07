@@ -592,31 +592,26 @@
       margin-top: 6px;
     }
 
- .how-step-cta {
-  margin-top: 14px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 22px;
-  border-radius: 999px;
-  border: 1px solid #ffffff;
-  background: #ffffff;        /* ✅ fondo blanco siempre */
-  color: #000000;             /* texto negro */
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  text-decoration: none;
-  transition: background 0.15s ease, color 0.15s ease,
-              transform 0.15s ease, box-shadow 0.15s ease;
-}
+    .how-step-cta {
+      margin-top: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      background: transparent;
+      color: #ffffff;
+      text-decoration: none;
+    }
 
-.how-step-cta:hover {
-  background: #f2f2f2;        /* blanco un poco más gris al pasar el ratón */
-  color: #000000;
-  transform: translateY(-1px);
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
-}
-
+    .how-step-cta:hover {
+      background: #ffffff;
+      color: #000000;
+    }
 
     .how-step-triggers {
       position: relative;
@@ -1354,11 +1349,10 @@
       }
 
       #how-steps .how-step-card-wrapper {
-    flex: 1;
-    position: relative;
-    /* más alto en desktop */
-    min-height: min(82vh, 760px);
-  }
+        flex: 1;
+        position: relative;
+        min-height: min(70vh, 620px);
+      }
 
       #how-steps .how-step-slide {
         position: absolute;
@@ -1374,13 +1368,11 @@
         pointer-events: auto;
       }
 
-       #how-steps .how-step-card {
-    border-radius: 24px;
-    /* tarjeta más grande en vertical */
-    height: 82vh;
-    max-height: 760px;
-  }
-
+      #how-steps .how-step-card {
+        border-radius: 24px;
+        height: 75vh;
+        max-height: 620px;
+      }
 
       #how-steps .how-step-image {
         width: 100%;
@@ -1389,37 +1381,14 @@
         display: block;
       }
 
-     /* Texto centrado verticalmente en desktop */
-  #how-steps .how-step-overlay {
-    display: flex;
-    align-items: center;       /* 👉 centra el bloque de texto en vertical */
-    justify-content: flex-start;
-    padding: 0 64px;           /* mete el texto hacia el centro de la tarjeta */
-    max-width: none;
-  }
-
-  #how-steps .how-step-overlay > div {
-    max-width: 480px;          /* ancho máximo del bloque de texto */
-  }
-  #how-steps .how-step-title {
-    font-size: 2.6rem;         /* más grande, estilo titular */
-    line-height: 1.15;
-    font-weight: 700;
-    margin-bottom: 12px;
-  }
-
-  #how-steps .how-step-sub {
-    font-size: 1.05rem;        /* un poco más grande que antes */
-    line-height: 1.6;
-    opacity: 0.9;
-  }
-
-  #how-steps .how-step-cta {
-    margin-top: 22px;
-    padding: 10px 22px;
-    font-size: 0.9rem;
-  }
-
+      #how-steps .how-step-overlay {
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-start;
+        padding: 32px 36px 36px;
+        max-width: 520px;
+      }
+    }
 
     /* Móvil y tablet: tarjetas verticales sin cortar la foto */
     @media (max-width: 1023px) {
