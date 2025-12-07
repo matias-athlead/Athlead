@@ -1,1 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Athlead · Rol Club</title>
+  <!-- MISMO CSS QUE ANTES, SOLO CAMBIA LA CLASE DEL HERO -->
+  <!-- Para no repetir, copia TODO el <style> del archivo rol-jugador.html -->
+  <!-- y pégalo aquí dentro, tal cual. Solo añade esta línea distinta: -->
+  <style>
+    /* COPIA AQUÍ EL MISMO <style> COMPLETO DE ROL-JUGADOR */
+    /* … */
+
+    /* Sustituye solo esta parte específica del hero para club: */
+    .role-hero-club::before {
+      background-image: url('imagesrol-club-hero.jpg');
+    }
+  </style>
+</head>
+<body>
+<header class="header">
+  <div class="logo" id="logo">ATHLEAD</div>
+
+  <nav class="nav-links">
+    <a href="index.html#who-we-are">Quiénes somos</a>
+    <a href="index.html#how-steps">Cómo funciona</a>
+    <a href="rol-jugador.html">Rol jugador</a>
+    <a href="rol-club.html" class="active">Rol club</a>
+    <a href="rol-entrenador.html">Rol entrenador</a>
+    <a href="index.html#signup">Regístrate</a>
+  </nav>
+
+  <div class="header-actions">
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">☰</button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-links">
+    <a href="index.html#who-we-are">Quiénes somos</a>
+    <a href="index.html#how-steps">Cómo funciona</a>
+    <a href="rol-jugador.html">Rol jugador</a>
+    <a href="rol-club.html">Rol club</a>
+    <a href="rol-entrenador.html">Rol entrenador</a>
+    <a href="index.html#signup">Regístrate</a>
+  </div>
+</div>
+
+<section class="role-hero role-hero-club">
+  <div class="role-hero-overlay"></div>
+  <div class="role-hero-content">
+    <p class="role-hero-kicker">Rol Athlead · Club / Academia</p>
+    <h1 class="role-hero-title">Encuentra talento que encaje con tu proyecto deportivo.</h1>
+    <p class="role-hero-subtitle">
+      Como club o academia, Athlead es tu herramienta para descubrir jugadores que se ajustan
+      a tu filosofía, categoría y presupuesto sin perder horas en vídeos desordenados.
+    </p>
+    <p class="role-hero-meta">
+      Filtra por edad, posición, nivel y zona geográfica. Guarda perfiles, crea listas de
+      seguimiento y contacta directamente con los jugadores que te interesan.
+    </p>
+    <div class="role-hero-buttons">
+      <a href="index.html#signup" class="btn btn-cta">Registra tu club</a>
+      <a href="index.html#features" class="btn btn-secondary">Ver cómo funciona</a>
+    </div>
+  </div>
+</section>
+
+<section class="role-section">
+  <div class="section-inner">
+    <div class="role-layout">
+      <div>
+        <p class="section-kicker">Panel para clubes</p>
+        <h2 class="role-title">Todo el talento en un solo lugar, filtrado a tu medida.</h2>
+        <p class="role-text">
+          En lugar de recibir decenas de mensajes con links sueltos, Athlead te ofrece una
+          vista clara y ordenada de los jugadores disponibles. Tú eliges qué buscar y cómo.
+        </p>
+        <ul class="role-list">
+          <li><span>•</span><p>Filtros avanzados por edad, posición, categoría, pie dominante y zona.</p></li>
+          <li><span>•</span><p>Perfiles completos con contexto: club actual, minutos jugados, tipo de jugador.</p></li>
+          <li><span>•</span><p>Jugadas organizadas para evaluar rápido sin tener que ver partidos enteros.</p></li>
+          <li><span>•</span><p>Posibilidad de guardar favoritos y crear listas por temporada o posición.</p></li>
+        </ul>
+      </div>
+
+      <div class="role-photo-wrapper">
+        <img src="imagesrol-club-01.jpg" alt="Panel de club en Athlead" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="role-section role-section-alt">
+  <div class="section-inner">
+    <div class="role-layout">
+      <div class="role-photo-wrapper">
+        <img src="imagesrol-club-02.jpg" alt="Reunión de staff técnico analizando jugadores" />
+      </div>
+
+      <div>
+        <div class="role-badge">Ventajas para clubes</div>
+        <h2 class="role-title">Fichar mejor, con más información y menos intuición.</h2>
+        <p class="role-text">
+          Athlead está pensado para ayudarte a tomar decisiones con más datos y menos improvisación.
+          No reemplaza al ojo del entrenador, lo potencia.
+        </p>
+        <ul class="role-list">
+          <li><span>✔</span><p>Acceso a jugadores que no pasan por los canales habituales de captación.</p></li>
+          <li><span>✔</span><p>Ahorro de tiempo: ves exactamente el tipo de jugadas que quieres evaluar.</p></li>
+          <li><span>✔</span><p>Mejor comunicación con jugador y entorno: todo empieza con un perfil claro.</p></li>
+          <li><span>✔</span><p>Herramienta ideal para clubes que quieren profesionalizar su área de scouting.</p></li>
+        </ul>
+        <a href="index.html#signup" class="btn btn-cta" style="margin-top: 12px;">
+          Apunta a tu club a Athlead
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-links">
+      <a href="index.html#who-we-are">Quiénes somos</a>
+      <a href="index.html#how-steps">Cómo funciona</a>
+      <a href="index.html#signup">Regístrate</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="index.html#contact">Contacto</a>
+    </div>
+    <div>© 2025 Athlead. Todos los derechos reservados.</div>
+  </div>
+</footer>
+
+<script>
+  // MISMO SCRIPT QUE EN ROL-JUGADOR
+  document.getElementById('logo').addEventListener('click', function () {
+    window.location.href = 'index.html';
+  });
+
+  const menuToggle = document.getElementById('menuToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  menuToggle.addEventListener('click', function (e) {
+    e.stopPropagation();
+    const isOpen = mobileMenu.classList.contains('active');
+    if (isOpen) {
+      mobileMenu.classList.remove('active');
+      menuToggle.textContent = '☰';
+    } else {
+      mobileMenu.classList.add('active');
+      menuToggle.textContent = '✕';
+    }
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+      mobileMenu.classList.remove('active');
+      menuToggle.textContent = '☰';
+    }
+  });
+
+  document.querySelectorAll('.mobile-menu-links a').forEach((link) => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('active');
+      menuToggle.textContent = '☰';
+    });
+  });
+</script>
+</body>
+</html>
 
