@@ -205,10 +205,68 @@
 }
 
 
-    .header-actions {
-      display: flex;
+      /* Dropdown "Rol" – escritorio */
+    .nav-item-role {
+      position: relative;
+    }
+
+    .nav-dropdown-toggle {
+      display: inline-flex;
       align-items: center;
-      gap: 14px;
+      gap: 6px;
+      opacity: 0.8;
+      padding: 4px 0;
+      border: none;
+      background: transparent;
+      color: #ffffff;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .nav-dropdown-toggle:hover {
+      opacity: 1;
+    }
+
+    .nav-dropdown-arrow {
+      font-size: 11px;
+    }
+
+    .nav-dropdown {
+      position: absolute;
+      top: 130%;
+      left: 50%;
+      transform: translateX(-50%);
+      min-width: 200px;
+      background: rgba(0, 0, 0, 0.96);
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.8);
+      padding: 10px 6px;
+      display: none;
+      z-index: 1200;
+    }
+
+    .nav-dropdown.open {
+      display: block;
+    }
+
+    .nav-dropdown a {
+      display: block;
+      padding: 8px 14px;
+      font-size: 14px;
+      border-radius: 999px;
+      border-bottom: none;
+    }
+
+    .nav-dropdown a:hover {
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    /* Mostrar dropdown al pasar el ratón en escritorio */
+    @media (hover: hover) {
+      .nav-item-role:hover .nav-dropdown {
+        display: block;
+      }
     }
 
     /* Selector de idioma en la barra */
@@ -554,6 +612,51 @@
         width: 100%;
       }
     }
+
+          /* Dropdown "Rol" en menú móvil */
+      .mobile-menu-role {
+        margin-top: 12px;
+      }
+
+      .mobile-role-title {
+        width: 100%;
+        padding: 10px 0;
+        background: none;
+        border: none;
+        color: #ffffff;
+        font-size: 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      .mobile-role-arrow {
+        font-size: 13px;
+        transition: transform 0.2s ease;
+      }
+
+      .mobile-role-submenu {
+        display: none;
+        padding-left: 8px;
+        border-left: 1px solid rgba(255, 255, 255, 0.12);
+      }
+
+      .mobile-role-submenu a {
+        display: block;
+        padding: 8px 0;
+        font-size: 15px;
+        border: none;
+      }
+
+      .mobile-role-submenu.open {
+        display: block;
+      }
+
+      .mobile-role-title.open .mobile-role-arrow {
+        transform: rotate(180deg);
+      }
+
 
     /* JUGADAS DESTACADAS */
 
@@ -1736,29 +1839,29 @@
   <header class="header">
     <div class="logo" id="logo">ATHLEAD</div>
 
-   <nav class="nav-links">
-  <a href="index.html#who-we-are" data-i18n="nav_about">Quiénes somos</a>
-  <a href="index.html#how-steps" data-i18n="nav_how">Cómo funciona</a>
+    <nav class="nav-links">
+      <a href="index.html#who-we-are" data-i18n="nav_about">Quiénes somos</a>
+      <a href="index.html#how-steps" data-i18n="nav_how">Cómo funciona</a>
 
-  <!-- NUEVO: Dropdown Rol -->
-  <div class="nav-item nav-role">
-    <button class="nav-role-toggle" type="button" data-i18n="nav_role">
-      Rol ▾
-    </button>
-    <div class="nav-role-dropdown">
-      <a href="rol-jugador.html" data-i18n="nav_role_player">Jugador</a>
-      <a href="rol-club.html" data-i18n="nav_role_club">Club</a>
-      <a href="rol-entrenador.html" data-i18n="nav_role_coach">Entrenador</a>
-    </div>
-  </div>
-  <!-- FIN NUEVO -->
+      <!-- Dropdown Rol -->
+      <div class="nav-item-role">
+        <button class="nav-dropdown-toggle" type="button">
+          <span data-i18n="nav_role">Rol</span>
+          <span class="nav-dropdown-arrow">▾</span>
+        </button>
+        <div class="nav-dropdown">
+          <a href="rol-jugador.html" data-i18n="nav_role_player">Jugador</a>
+          <a href="rol-club.html" data-i18n="nav_role_club">Club</a>
+          <a href="rol-entrenador.html" data-i18n="nav_role_coach">Entrenador</a>
+        </div>
+      </div>
+      <!-- Fin Dropdown Rol -->
 
-  <a href="index.html#signup" data-i18n="nav_signup">Regístrate</a>
-  <a href="index.html#features" data-i18n="nav_features">Características</a>
-  <a href="index.html#faq" data-i18n="nav_faq">FAQ</a>
-  <a href="index.html#contact" data-i18n="nav_contact">Contacto</a>
-</nav>
-
+      <a href="index.html#signup" data-i18n="nav_signup">Regístrate</a>
+      <a href="index.html#features" data-i18n="nav_features">Características</a>
+      <a href="index.html#faq" data-i18n="nav_faq">FAQ</a>
+      <a href="index.html#contact" data-i18n="nav_contact">Contacto</a>
+    </nav>
 
     <div class="header-actions">
       <!-- Selector de idioma -->
@@ -1784,29 +1887,32 @@
     </div>
   </header>
 
-  <div class="mobile-menu" id="mobileMenu">
-   <div class="mobile-menu-links">
-  <a href="index.html#who-we-are" data-i18n="nav_about">Quiénes somos</a>
-  <a href="index.html#how-steps" data-i18n="nav_how">Cómo funciona</a>
 
-  <!-- NUEVO: grupo Rol en móvil -->
-  <div class="mobile-role-group">
-    <button type="button" class="mobile-role-toggle" data-i18n="nav_role">
-      Rol ▾
-    </button>
-    <div class="mobile-role-dropdown">
-      <a href="rol-jugador.html" data-i18n="nav_role_player">Jugador</a>
-      <a href="rol-club.html" data-i18n="nav_role_club">Club</a>
-      <a href="rol-entrenador.html" data-i18n="nav_role_coach">Entrenador</a>
+   <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-links">
+      <a href="index.html#who-we-are" data-i18n="nav_about">Quiénes somos</a>
+      <a href="index.html#how-steps" data-i18n="nav_how">Cómo funciona</a>
+
+      <!-- Rol en móvil -->
+      <div class="mobile-menu-role">
+        <button type="button" class="mobile-role-title">
+          <span data-i18n="nav_role">Rol</span>
+          <span class="mobile-role-arrow">▾</span>
+        </button>
+        <div class="mobile-role-submenu">
+          <a href="rol-jugador.html" data-i18n="nav_role_player">Jugador</a>
+          <a href="rol-club.html" data-i18n="nav_role_club">Club</a>
+          <a href="rol-entrenador.html" data-i18n="nav_role_coach">Entrenador</a>
+        </div>
+      </div>
+      <!-- Fin Rol móvil -->
+
+      <a href="index.html#signup" data-i18n="nav_signup">Regístrate</a>
+      <a href="index.html#features" data-i18n="nav_features">Características</a>
+      <a href="index.html#faq" data-i18n="nav_faq">FAQ</a>
+      <a href="index.html#contact" data-i18n="nav_contact">Contacto</a>
     </div>
   </div>
-  <!-- FIN NUEVO -->
-
-  <a href="index.html#signup" data-i18n="nav_signup">Regístrate</a>
-  <a href="index.html#features" data-i18n="nav_features">Características</a>
-  <a href="index.html#faq" data-i18n="nav_faq">FAQ</a>
-  <a href="index.html#contact" data-i18n="nav_contact">Contacto</a>
-</div>
 
   </div>
 
@@ -3351,49 +3457,59 @@
         applyTranslations(ATHLEAD_LANG);
       }
     })();
-    // Dropdown "Rol" escritorio
-(function () {
-  const dropdown = document.querySelector('.role-dropdown');
-  if (!dropdown) return;
+    // Dropdown "Rol" escritorio (hover + click)
+    (function () {
+      const roleItem = document.querySelector('.nav-item-role');
+      if (!roleItem) return;
 
-  const menu = dropdown.querySelector('.role-menu');
-  const trigger = dropdown.querySelector('.role-link');
-  let hideTimeout;
+      const toggle = roleItem.querySelector('.nav-dropdown-toggle');
+      const menu = roleItem.querySelector('.nav-dropdown');
+      let hideTimeout;
 
-  function openMenu() {
-    clearTimeout(hideTimeout);
-    menu.classList.add('open');
-  }
+      function openMenu() {
+        clearTimeout(hideTimeout);
+        menu.classList.add('open');
+      }
 
-  function closeMenu() {
-    hideTimeout = setTimeout(() => {
-      menu.classList.remove('open');
-    }, 120);
-  }
+      function closeMenu() {
+        hideTimeout = setTimeout(() => {
+          menu.classList.remove('open');
+        }, 120);
+      }
 
-  // Desktop: hover
-  trigger.addEventListener('mouseenter', openMenu);
-  dropdown.addEventListener('mouseenter', openMenu);
-  dropdown.addEventListener('mouseleave', closeMenu);
+      // Mostrar al pasar el ratón (solo dispositivos con hover)
+      if (window.matchMedia('(hover: hover)').matches) {
+        roleItem.addEventListener('mouseenter', openMenu);
+        roleItem.addEventListener('mouseleave', closeMenu);
+      }
 
-  // Click (móvil / tablet / desktop)
-  trigger.addEventListener('click', (e) => {
-    e.preventDefault();
-    menu.classList.toggle('open');
-  });
-})();
+      // Toggle por click (útil también en táctiles)
+      toggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        menu.classList.toggle('open');
+      });
 
-// Dropdown "Rol" en menú móvil lateral
-(function () {
-  const toggle = document.getElementById('mobileRoleToggle');
-  const submenu = document.getElementById('mobileRoleSubmenu');
-  if (!toggle || !submenu) return;
+      // Cerrar al hacer click fuera
+      document.addEventListener('click', (e) => {
+        if (!roleItem.contains(e.target)) {
+          menu.classList.remove('open');
+        }
+      });
+    })();
 
-  toggle.addEventListener('click', () => {
-    submenu.classList.toggle('open');
-    toggle.classList.toggle('open');
-  });
-})();
+    // Dropdown "Rol" en menú móvil
+    (function () {
+      const toggle = document.querySelector('.mobile-role-title');
+      const submenu = document.querySelector('.mobile-role-submenu');
+      if (!toggle || !submenu) return;
+
+      toggle.addEventListener('click', () => {
+        submenu.classList.toggle('open');
+        toggle.classList.toggle('open');
+      });
+    })();
+
   </script>
 </body>
 </html>
