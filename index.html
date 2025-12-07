@@ -1620,11 +1620,25 @@
           <!-- Paso 1 -->
           <div class="how-step-slide active" data-step="0">
             <div class="how-step-card">
-              <img
-                src="images/how-step-1.jpg"
-                alt="Graba tus mejores jugadas"
-                class="how-step-image"
-              />
+             <picture>
+  <!-- Imagen vertical SOLO para móvil -->
+  <source
+    srcset="images/how-step-1-mobile.jpg"
+    media="(max-width: 768px)"
+  />
+  <!-- Imagen horizontal para escritorio/tablet -->
+  <source
+    srcset="images/how-step-1.jpg"
+    media="(min-width: 769px)"
+  />
+  <!-- Fallback -->
+  <img
+    src="images/how-step-1.jpg"
+    alt="Graba tus mejores jugadas"
+    class="how-step-image"
+  />
+</picture>
+
               <div class="how-step-overlay">
                 <div>
                   <h3 class="how-step-title">Graba tus mejores jugadas</h3>
@@ -1638,11 +1652,22 @@
           <!-- Paso 2 -->
           <div class="how-step-slide" data-step="1">
             <div class="how-step-card">
-              <img
-                src="images/how-step-2.jpg"
-                alt="Sube tus vídeos a Athlead"
-                class="how-step-image"
-              />
+            <picture>
+  <source
+    srcset="images/how-step-2-mobile.jpg"
+    media="(max-width: 768px)"
+  />
+  <source
+    srcset="images/how-step-2.jpg"
+    media="(min-width: 769px)"
+  />
+  <img
+    src="images/how-step-2.jpg"
+    alt="Sube tus vídeos a Athlead"
+    class="how-step-image"
+  />
+</picture>
+
               <div class="how-step-overlay">
                 <div>
                   <h3 class="how-step-title">Súbelas en segundos</h3>
@@ -1656,11 +1681,22 @@
           <!-- Paso 3 -->
           <div class="how-step-slide" data-step="2">
             <div class="how-step-card">
-              <img
-                src="images/how-step-3.jpg"
-                alt="Déjate descubrir por clubes y entrenadores"
-                class="how-step-image"
-              />
+             <picture>
+  <source
+    srcset="images/how-step-3-mobile.jpg"
+    media="(max-width: 768px)"
+  />
+  <source
+    srcset="images/how-step-3.jpg"
+    media="(min-width: 769px)"
+  />
+  <img
+    src="images/how-step-3.jpg"
+    alt="Déjate descubrir por clubes y entrenadores"
+    class="how-step-image"
+  />
+</picture>
+
               <div class="how-step-overlay">
                 <div>
                   <h3 class="how-step-title">Déjate descubrir</h3>
