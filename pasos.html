@@ -39,12 +39,19 @@
       align-items: center;
       justify-content: space-between;
       margin-bottom: 32px;
+      gap: 12px;
     }
 
     .mini-logo {
       font-weight: 700;
       letter-spacing: 0.16em;
       font-size: 18px;
+    }
+
+    .mini-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
     .mini-back {
@@ -54,11 +61,46 @@
       border: 1px solid rgba(255,255,255,0.4);
       text-decoration: none;
       color: #fff;
+      white-space: nowrap;
     }
 
     .mini-back:hover {
       background: #fff;
       color: #000;
+    }
+
+    /* Selector de idioma sencillo */
+    .lang-switcher {
+      display: inline-flex;
+      padding: 3px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.4);
+      background: rgba(0,0,0,0.5);
+    }
+
+    .lang-btn {
+      border: none;
+      background: transparent;
+      color: #ffffff;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 10px;
+      border-radius: 999px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .lang-btn span.flag {
+      font-size: 14px;
+      line-height: 1;
+    }
+
+    .lang-btn.active {
+      background: #ffffff;
+      color: #000000;
     }
 
     h1 {
@@ -124,6 +166,11 @@
       .page-shell {
         padding: 20px 16px 40px;
       }
+
+      .mini-header {
+        flex-wrap: wrap;
+        align-items: flex-start;
+      }
     }
   </style>
 </head>
@@ -131,24 +178,36 @@
   <div class="page-shell">
     <header class="mini-header">
       <div class="mini-logo">ATHLEAD</div>
-      <a href="index.html#how-it-works" class="mini-back">← Volver a Athlead</a>
+      <div class="mini-right">
+        <div class="lang-switcher" id="langSwitcher">
+          <button class="lang-btn" data-lang="es">
+            <span class="flag">🇪🇸</span><span>ES</span>
+          </button>
+          <button class="lang-btn" data-lang="en">
+            <span class="flag">🇬🇧</span><span>EN</span>
+          </button>
+        </div>
+        <a href="index.html#how-it-works" class="mini-back" data-i18n="back_link">
+          ← Volver a Athlead
+        </a>
+      </div>
     </header>
 
     <main>
-      <h1>Captura tu talento en tres pasos</h1>
-      <p class="page-subtitle">
-        Athlead está pensada para que, en pocos minutos, tu fútbol pueda verse desde cualquier parte. 
+      <h1 data-i18n="steps_title">Captura tu talento en tres pasos</h1>
+      <p class="page-subtitle" data-i18n="steps_subtitle">
+        Athlead está pensada para que, en pocos minutos, tu fútbol pueda verse desde cualquier parte.
         Estos son los tres pasos clave para sacarle partido a la app.
       </p>
 
       <section class="steps-list">
         <article class="step-card">
           <div class="step-number">01</div>
-          <h2 class="step-title">Graba tus mejores jugadas</h2>
-          <p class="step-lead">
+          <h2 class="step-title" data-i18n="step1_title">Graba tus mejores jugadas</h2>
+          <p class="step-lead" data-i18n="step1_lead">
             No necesitas una productora: con el móvil o la cámara del campo es suficiente.
           </p>
-          <p class="step-detail">
+          <p class="step-detail" data-i18n="step1_detail">
             Concéntrate en acciones claras: goles, asistencias, buenos desmarques, robos importantes,
             salidas jugando desde atrás… Cuanto más definan tu estilo, mejor. Es preferible un clip
             de 15 segundos muy claro que un vídeo de 3 minutos donde no se entiende qué aportas.
@@ -157,11 +216,11 @@
 
         <article class="step-card">
           <div class="step-number">02</div>
-          <h2 class="step-title">Súbelas a tu perfil Athlead</h2>
-          <p class="step-lead">
+          <h2 class="step-title" data-i18n="step2_title">Súbelas a tu perfil Athlead</h2>
+          <p class="step-lead" data-i18n="step2_lead">
             Ordena tus jugadas por tipo y posición para que cualquiera entienda rápido quién eres.
           </p>
-          <p class="step-detail">
+          <p class="step-detail" data-i18n="step2_detail">
             Cada vídeo se asocia a una categoría (gol, asistencia, defensa, liderazgo, etc.).
             Así, cuando un entrenador entra en tu perfil puede filtrar lo que le interesa ver
             y tener una idea real de tu rendimiento en muy poco tiempo.
@@ -170,11 +229,11 @@
 
         <article class="step-card">
           <div class="step-number">03</div>
-          <h2 class="step-title">Deja que te descubran</h2>
-          <p class="step-lead">
+          <h2 class="step-title" data-i18n="step3_title">Deja que te descubran</h2>
+          <p class="step-lead" data-i18n="step3_lead">
             Entrenadores y clubes usan filtros para buscar perfiles como el tuyo.
           </p>
-          <p class="step-detail">
+          <p class="step-detail" data-i18n="step3_detail">
             Cuando tu perfil encaja con lo que un club está buscando, puede guardarte en su lista
             de seguimiento, revisar tu evolución y contactarte directamente. Sin intermediarios,
             sin comisiones y sin pagar por “ser visto”.
@@ -183,5 +242,103 @@
       </section>
     </main>
   </div>
+
+  <script>
+    // Diccionario de traducciones
+    const i18n = {
+      es: {
+        page_title: 'Athlead – Cómo funciona',
+        back_link: '← Volver a Athlead',
+        steps_title: 'Captura tu talento en tres pasos',
+        steps_subtitle:
+          'Athlead está pensada para que, en pocos minutos, tu fútbol pueda verse desde cualquier parte. Estos son los tres pasos clave para sacarle partido a la app.',
+        step1_title: 'Graba tus mejores jugadas',
+        step1_lead:
+          'No necesitas una productora: con el móvil o la cámara del campo es suficiente.',
+        step1_detail:
+          'Concéntrate en acciones claras: goles, asistencias, buenos desmarques, robos importantes, salidas jugando desde atrás… Cuanto más definan tu estilo, mejor. Es preferible un clip de 15 segundos muy claro que un vídeo de 3 minutos donde no se entiende qué aportas.',
+        step2_title: 'Súbelas a tu perfil Athlead',
+        step2_lead:
+          'Ordena tus jugadas por tipo y posición para que cualquiera entienda rápido quién eres.',
+        step2_detail:
+          'Cada vídeo se asocia a una categoría (gol, asistencia, defensa, liderazgo, etc.). Así, cuando un entrenador entra en tu perfil puede filtrar lo que le interesa ver y tener una idea real de tu rendimiento en muy poco tiempo.',
+        step3_title: 'Deja que te descubran',
+        step3_lead:
+          'Entrenadores y clubes usan filtros para buscar perfiles como el tuyo.',
+        step3_detail:
+          'Cuando tu perfil encaja con lo que un club está buscando, puede guardarte en su lista de seguimiento, revisar tu evolución y contactarte directamente. Sin intermediarios, sin comisiones y sin pagar por “ser visto”.'
+      },
+      en: {
+        page_title: 'Athlead – How it works',
+        back_link: '← Back to Athlead',
+        steps_title: 'Capture your talent in three steps',
+        steps_subtitle:
+          'Athlead is designed so that in just a few minutes your football can be seen from anywhere. These are the three key steps to get the most out of the app.',
+        step1_title: 'Record your best plays',
+        step1_lead:
+          'You don’t need a production company: your phone or the camera on the pitch is enough.',
+        step1_detail:
+          'Focus on clear actions: goals, assists, good runs, key tackles, playing out from the back… The more they define your style, the better. A clear 15-second clip is better than a 3-minute video where it’s not obvious what you bring to the team.',
+        step2_title: 'Upload them to your Athlead profile',
+        step2_lead:
+          'Organise your plays by type and position so anyone can quickly understand who you are as a player.',
+        step2_detail:
+          'Each video is linked to a category (goal, assist, defensive action, leadership, etc.). That way, when a coach visits your profile they can filter what they want to see and get a real idea of your performance in very little time.',
+        step3_title: 'Let them discover you',
+        step3_lead:
+          'Coaches and clubs use filters to search for profiles like yours.',
+        step3_detail:
+          'When your profile matches what a club is looking for, they can save you to their watchlist, follow your progress and contact you directly. No middlemen, no commissions and no pay-to-be-seen schemes.'
+      }
+    };
+
+    let ATHLEAD_LANG = localStorage.getItem('athlead_lang') || 'es';
+
+    function applyTranslations(lang) {
+      const dict = i18n[lang] || i18n.es;
+
+      // Textos
+      document.querySelectorAll('[data-i18n]').forEach((el) => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key]) {
+          el.textContent = dict[key];
+        }
+      });
+
+      // Título de la pestaña
+      if (dict.page_title) {
+        document.title = dict.page_title;
+      }
+
+      // lang en <html>
+      document.documentElement.lang = lang === 'en' ? 'en' : 'es';
+    }
+
+    function setLanguage(lang) {
+      ATHLEAD_LANG = lang === 'en' ? 'en' : 'es';
+      localStorage.setItem('athlead_lang', ATHLEAD_LANG);
+      applyTranslations(ATHLEAD_LANG);
+
+      const buttons = document.querySelectorAll('.lang-btn');
+      buttons.forEach((btn) => {
+        btn.classList.toggle('active', btn.getAttribute('data-lang') === ATHLEAD_LANG);
+      });
+    }
+
+    // Inicializar
+    document.addEventListener('DOMContentLoaded', () => {
+      // Activar idioma inicial
+      setLanguage(ATHLEAD_LANG);
+
+      // Click en botones de idioma
+      document.querySelectorAll('.lang-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const lang = btn.getAttribute('data-lang');
+          setLanguage(lang);
+        });
+      });
+    });
+  </script>
 </body>
 </html>
+
