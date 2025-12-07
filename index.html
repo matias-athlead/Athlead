@@ -1349,10 +1349,11 @@
       }
 
       #how-steps .how-step-card-wrapper {
-        flex: 1;
-        position: relative;
-        min-height: min(70vh, 620px);
-      }
+    flex: 1;
+    position: relative;
+    /* más alto en desktop */
+    min-height: min(82vh, 760px);
+  }
 
       #how-steps .how-step-slide {
         position: absolute;
@@ -1368,11 +1369,13 @@
         pointer-events: auto;
       }
 
-      #how-steps .how-step-card {
-        border-radius: 24px;
-        height: 75vh;
-        max-height: 620px;
-      }
+       #how-steps .how-step-card {
+    border-radius: 24px;
+    /* tarjeta más grande en vertical */
+    height: 82vh;
+    max-height: 760px;
+  }
+
 
       #how-steps .how-step-image {
         width: 100%;
