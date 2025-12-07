@@ -1322,7 +1322,7 @@
 
     /* --- AJUSTE FINAL SECCIÓN "CAPTURA TU TALENTO EN TRES PASOS" --- */
 
-    /* Desktop: número grande a la izquierda + tarjeta gigante */
+    /* Desktop */
     @media (min-width: 1024px) {
       #how-steps .how-steps-inner {
         max-width: 1200px;
@@ -1386,17 +1386,17 @@
       }
     }
 
-    /* Móvil y tablet: tarjetas verticales grandes tipo story */
-   @media (max-width: 1023px) {
-  #how-steps {
-    padding: 0;
-  }
+    /* Móvil y tablet: tarjetas verticales sin cortar la foto */
+    @media (max-width: 1023px) {
+      #how-steps {
+        padding: 0;
+      }
 
-  #how-steps .how-steps-inner {
-    max-width: 430px;
-    padding: 0 16px;
-    margin: 0 auto;
-  }
+      #how-steps .how-steps-inner {
+        max-width: 430px;
+        padding: 0 16px 40px;
+        margin: 0 auto;
+      }
 
       #how-steps .how-steps-layout {
         position: static;
@@ -1428,18 +1428,18 @@
         pointer-events: auto;
       }
 
-       #how-steps .how-step-card {
-    border-radius: 24px;
-    height: 90vh;       /* la tarjeta ocupa casi toda la altura de pantalla */
-    max-height: 720px;  /* límite por si el móvil es muy alto */
-  }
+      /* 🔴 Aquí el cambio importante: altura automática y foto completa */
+      #how-steps .how-step-card {
+        border-radius: 24px;
+        height: auto;
+      }
 
-       #how-steps .how-step-image {
-    width: 100%;
-    height: 100%;       /* la imagen rellena toda la tarjeta */
-    object-fit: cover;
-    display: block;
-  }
+      #how-steps .how-step-image {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        display: block;
+      }
 
       #how-steps .how-step-overlay {
         align-items: flex-end;
@@ -1531,7 +1531,7 @@
     </div>
   </div>
 
-  <!-- HERO -->
+  <!-- HERO (pantalla principal) -->
   <section class="hero-section" id="home">
     <video class="hero-video" autoplay muted loop playsinline>
       <source src="videos/hero.mp4" type="video/mp4" />
@@ -1553,7 +1553,7 @@
     </div>
   </section>
 
-  <!-- COUNTDOWN -->
+  <!-- COUNTDOWN (2) -->
   <section class="countdown-section" id="countdown">
     <div class="section-inner" style="text-align: center;">
       <p class="countdown-title">Lanzamiento oficial en</p>
@@ -1584,7 +1584,7 @@
     </div>
   </section>
 
-  <!-- QUIÉNES SOMOS -->
+  <!-- QUIÉNES SOMOS (3) -->
   <section class="who-we-are" id="who-we-are">
     <div class="section-inner">
       <p class="section-kicker">Quiénes somos</p>
@@ -1607,51 +1607,7 @@
     </div>
   </section>
 
-  <!-- JUGADAS DESTACADAS -->
-  <section class="highlight-videos" id="highlight-videos">
-    <div class="section-inner">
-      <p class="section-kicker">Jugadas destacadas</p>
-      <h2>Mira cómo juegan los futuros fichajes</h2>
-      <p class="highlight-subtitle">
-        Vídeos reales de jugadores como tú. Lo que pasa cada fin de semana en los campos de barrio,
-        ahora en un solo lugar.
-      </p>
-
-      <div class="videos-carousel">
-        <button class="videos-arrow prev" aria-label="Vídeo anterior">‹</button>
-
-        <div class="videos-track">
-          <div class="video-card">
-            <video src="videos/highlight1.mp4" controls muted playsinline></video>
-            <div class="video-info">
-              <h3>Luqui Sorry · U17</h3>
-              <p>Pase filtrado del medio centro inofensivo.</p>
-            </div>
-          </div>
-
-          <div class="video-card">
-            <video src="videos/highlight2.mp4" controls muted playsinline></video>
-            <div class="video-info">
-              <h3>Luqui Sorry · U17</h3>
-              <p>El gol que nadie estaba esperando.</p>
-            </div>
-          </div>
-
-          <div class="video-card">
-            <video src="videos/highlight3.mp4" controls muted playsinline></video>
-            <div class="video-info">
-              <h3>Luqui Sorry · U17</h3>
-              <p>Golazo contra el equipo de campeones.</p>
-            </div>
-          </div>
-        </div>
-
-        <button class="videos-arrow next" aria-label="Siguiente vídeo">›</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- CÓMO FUNCIONA — TRES PASOS -->
+  <!-- CÓMO FUNCIONA — TRES PASOS (4) -->
   <section class="how-steps" id="how-steps">
     <div class="how-steps-inner">
       <p class="section-kicker">Cómo funciona</p>
@@ -1732,7 +1688,7 @@
     </div>
   </section>
 
-  <!-- CÓMO FUNCIONA – EXPERIENCIA POR TIPO DE USUARIO -->
+  <!-- CÓMO FUNCIONA – EXPERIENCIA POR TIPO DE USUARIO (5) -->
   <section class="how-it-works" id="how-it-works">
     <div class="section-inner">
       <p class="section-kicker">Elige tu rol</p>
@@ -1808,7 +1764,7 @@
     </div>
   </section>
 
-  <!-- SIGNUP -->
+  <!-- SIGNUP (6) -->
   <section class="signup-section" id="signup">
     <div class="section-inner">
       <p class="section-kicker">Acceso anticipado</p>
@@ -1914,6 +1870,50 @@
 
         <button type="submit" class="submit-btn">¡SÍ, QUIERO ACCESO ANTICIPADO!</button>
       </form>
+    </div>
+  </section>
+
+  <!-- JUGADAS DESTACADAS (7) -->
+  <section class="highlight-videos" id="highlight-videos">
+    <div class="section-inner">
+      <p class="section-kicker">Jugadas destacadas</p>
+      <h2>Mira cómo juegan los futuros fichajes</h2>
+      <p class="highlight-subtitle">
+        Vídeos reales de jugadores como tú. Lo que pasa cada fin de semana en los campos de barrio,
+        ahora en un solo lugar.
+      </p>
+
+      <div class="videos-carousel">
+        <button class="videos-arrow prev" aria-label="Vídeo anterior">‹</button>
+
+        <div class="videos-track">
+          <div class="video-card">
+            <video src="videos/highlight1.mp4" controls muted playsinline></video>
+            <div class="video-info">
+              <h3>Luqui Sorry · U17</h3>
+              <p>Pase filtrado del medio centro inofensivo.</p>
+            </div>
+          </div>
+
+          <div class="video-card">
+            <video src="videos/highlight2.mp4" controls muted playsinline></video>
+            <div class="video-info">
+              <h3>Luqui Sorry · U17</h3>
+              <p>El gol que nadie estaba esperando.</p>
+            </div>
+          </div>
+
+          <div class="video-card">
+            <video src="videos/highlight3.mp4" controls muted playsinline></video>
+            <div class="video-info">
+              <h3>Luqui Sorry · U17</h3>
+              <p>Golazo contra el equipo de campeones.</p>
+            </div>
+          </div>
+        </div>
+
+        <button class="videos-arrow next" aria-label="Siguiente vídeo">›</button>
+      </div>
     </div>
   </section>
 
@@ -2186,6 +2186,16 @@
   </footer>
 
   <script>
+    // 🔹 En móvil: al recargar, siempre volver al inicio
+    (function () {
+      if (window.innerWidth < 768) {
+        if ('scrollRestoration' in history) {
+          history.scrollRestoration = 'manual';
+        }
+        window.scrollTo(0, 0);
+      }
+    })();
+
     // Logo → top
     document.getElementById('logo').addEventListener('click', function () {
       window.scrollTo({ top: 0, behavior: 'smooth' });
