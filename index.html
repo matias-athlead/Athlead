@@ -1327,7 +1327,6 @@
     /* --- AJUSTE FINAL SECCIÓN "CAPTURA TU TALENTO EN TRES PASOS" --- */
 
     /* Desktop */
-       /* ----- CÓMO FUNCIONA: estilo carrusel tipo Veo (solo desktop) ----- */
     @media (min-width: 1024px) {
       #how-steps .how-steps-inner {
         max-width: 1200px;
@@ -1338,7 +1337,7 @@
         position: sticky;
         top: 120px;
         display: flex;
-        align-items: flex-start;
+        align-items: center;
         gap: 56px;
         min-height: 75vh;
       }
@@ -1349,32 +1348,30 @@
         line-height: 0.85;
       }
 
-      /* 👉 columna derecha tipo “carrusel vertical” */
       #how-steps .how-step-card-wrapper {
         flex: 1;
-        height: 540px;          /* ventana fija */
-        max-height: 70vh;
-        overflow-y: auto;       /* scroll solo dentro */
-        display: flex;
-        flex-direction: column;
-        gap: 24px;
-        padding-right: 8px;     /* pequeño margen para la barra de scroll */
+        position: relative;
+        min-height: min(70vh, 620px);
       }
 
-      /* todas las slides visibles y en columna */
       #how-steps .how-step-slide {
-        position: static;
-        opacity: 1 !important;
-        transform: none !important;
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transform: translateY(20px);
+        pointer-events: none;
+      }
+
+      #how-steps .how-step-slide.active {
+        opacity: 1;
+        transform: translateY(0);
         pointer-events: auto;
       }
 
-      /* tamaño de cada tarjeta → ajusta aquí si quieres más grande/pequeña */
       #how-steps .how-step-card {
         border-radius: 24px;
-        min-height: 320px;
-        max-height: 360px;      /* verás ~1,5–2 tarjetas a la vez */
-        overflow: hidden;
+        height: 75vh;
+        max-height: 620px;
       }
 
       #how-steps .how-step-image {
@@ -1384,10 +1381,12 @@
         display: block;
       }
 
-      /* ya no necesitamos triggers ni puntitos en desktop */
-      #how-steps .how-step-triggers,
-      #how-steps .how-steps-dots {
-        display: none;
+      #how-steps .how-step-overlay {
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-start;
+        padding: 32px 36px 36px;
+        max-width: 520px;
       }
     }
 
@@ -2434,67 +2433,42 @@
       });
     }
 
-// Bloque "Tres pasos" – carrusel con scroll vertical en escritorio
-(function () {
-  const stepsSection = document.getElementById('how-steps');
-  if (!stepsSection || window.innerWidth < 1024) return;
+    // Bloque "Tres pasos" – scroll solo escritorio
+    (function () {
+      const stepsSection = document.getElementById('how-steps');
+      if (!stepsSection || window.innerWidth < 1024) return;
 
-  const slides = stepsSection.querySelectorAll('.how-step-slide');
-  const numberEl = document.getElementById('howStepNumber');
+      const slides = stepsSection.querySelectorAll('.how-step-slide');
+      const numberEl = document.getElementById('howStepNumber');
+      const triggers = stepsSection.querySelectorAll('.how-step-trigger');
 
-  if (!slides.length || !numberEl) return;
+      if (!slides.length || !triggers.length || !numberEl) return;
 
-  let current = 0;
-  let isChanging = false;
+      const activate = (index) => {
+        slides.forEach((slide, i) => {
+          slide.classList.toggle('active', i === index);
+        });
+        numberEl.textContent = `0${index + 1}`;
+      };
 
-  function showSlide(index) {
-    if (index < 0 || index >= slides.length) return;
+      activate(0);
 
-    slides.forEach((slide, i) => {
-      slide.classList.toggle('active', i === index);
-    });
+      const stepObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const stepIndex = parseInt(entry.target.getAttribute('data-step'), 10) || 0;
+              activate(stepIndex);
+            }
+          });
+        },
+        {
+          threshold: 0.6
+        }
+      );
 
-    numberEl.textContent = `0${index + 1}`;
-    current = index;
-  }
-
-  // Empezamos en el paso 01
-  showSlide(0);
-
-  function onWheel(e) {
-    const delta = e.deltaY;
-
-    // Si estamos en el primer slide y se hace scroll hacia arriba,
-    // dejamos que la página se mueva normal
-    if (delta < 0 && current === 0) return;
-
-    // Si estamos en el último slide y se hace scroll hacia abajo,
-    // también dejamos que la página siga
-    if (delta > 0 && current === slides.length - 1) return;
-
-    // Dentro del carrusel: evitamos que se desplace la página
-    e.preventDefault();
-    if (isChanging) return;
-    isChanging = true;
-
-    if (delta > 0 && current < slides.length - 1) {
-      // siguiente slide
-      showSlide(current + 1);
-    } else if (delta < 0 && current > 0) {
-      // slide anterior
-      showSlide(current - 1);
-    }
-
-    // Tiempo similar a la transición CSS (0.5s aprox)
-    setTimeout(() => {
-      isChanging = false;
-    }, 600);
-  }
-
-  // Escuchamos el scroll solo dentro de la sección
-  stepsSection.addEventListener('wheel', onWheel, { passive: false });
-})();
-
+      triggers.forEach((trigger) => stepObserver.observe(trigger));
+    })();
 
     // Carrusel táctil en móvil para "Captura tu talento en tres pasos"
     (function () {
