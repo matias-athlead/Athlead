@@ -1364,18 +1364,18 @@
         pointer-events: auto;
       }
 
-    #how-steps .how-step-card {
-    border-radius: 24px;
-    height: 75vh;      /* tarjeta más pequeña que antes */
-    max-height: 620px; /* límite de altura en móviles grandes */
-  }
+      #how-steps .how-step-card {
+        border-radius: 24px;
+        height: 75vh;
+        max-height: 620px;
+      }
 
-    #how-steps .how-step-image {
-    width: 100%;
-    height: 100%;       /* la imagen rellena toda la tarjeta */
-    object-fit: cover;
-    display: block;
-  }
+      #how-steps .how-step-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
 
       #how-steps .how-step-overlay {
         display: flex;
@@ -1428,18 +1428,21 @@
         pointer-events: auto;
       }
 
+      /* 👉 Tarjetas algo más bajas que la pantalla
+         y foto entera visible a la primera */
       #how-steps .how-step-card {
-    border-radius: 24px;
-    height: 100vh;      /* marco un poco más grande que antes */
-    max-height: 860px;  /* si quieres aún más, sube este número o quítalo */
-  }
+        border-radius: 24px;
+        height: 70vh;
+        max-height: 520px;
+      }
 
-     #how-steps .how-step-image {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;  /* 👉 muestra la foto entera, sin recortarla */
-    display: block;
-  }
+      #how-steps .how-step-image {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: top center;
+        display: block;
+      }
 
       #how-steps .how-step-overlay {
         align-items: flex-end;
@@ -1620,24 +1623,24 @@
           <!-- Paso 1 -->
           <div class="how-step-slide active" data-step="0">
             <div class="how-step-card">
-             <picture>
-  <!-- Imagen vertical SOLO para móvil -->
-  <source
-    srcset="images/how-step-1-mobile.jpg"
-    media="(max-width: 768px)"
-  />
-  <!-- Imagen horizontal para escritorio/tablet -->
-  <source
-    srcset="images/how-step-1.jpg"
-    media="(min-width: 769px)"
-  />
-  <!-- Fallback -->
-  <img
-    src="images/how-step-1.jpg"
-    alt="Graba tus mejores jugadas"
-    class="how-step-image"
-  />
-</picture>
+              <picture>
+                <!-- Imagen vertical SOLO para móvil -->
+                <source
+                  srcset="images/how-step-1-mobile.jpg"
+                  media="(max-width: 768px)"
+                />
+                <!-- Imagen horizontal para escritorio/tablet -->
+                <source
+                  srcset="images/how-step-1.jpg"
+                  media="(min-width: 769px)"
+                />
+                <!-- Fallback -->
+                <img
+                  src="images/how-step-1.jpg"
+                  alt="Graba tus mejores jugadas"
+                  class="how-step-image"
+                />
+              </picture>
 
               <div class="how-step-overlay">
                 <div>
@@ -1652,21 +1655,21 @@
           <!-- Paso 2 -->
           <div class="how-step-slide" data-step="1">
             <div class="how-step-card">
-            <picture>
-  <source
-    srcset="images/how-step-2-mobile.jpg"
-    media="(max-width: 768px)"
-  />
-  <source
-    srcset="images/how-step-2.jpg"
-    media="(min-width: 769px)"
-  />
-  <img
-    src="images/how-step-2.jpg"
-    alt="Sube tus vídeos a Athlead"
-    class="how-step-image"
-  />
-</picture>
+              <picture>
+                <source
+                  srcset="images/how-step-2-mobile.jpg"
+                  media="(max-width: 768px)"
+                />
+                <source
+                  srcset="images/how-step-2.jpg"
+                  media="(min-width: 769px)"
+                />
+                <img
+                  src="images/how-step-2.jpg"
+                  alt="Sube tus vídeos a Athlead"
+                  class="how-step-image"
+                />
+              </picture>
 
               <div class="how-step-overlay">
                 <div>
@@ -1681,21 +1684,21 @@
           <!-- Paso 3 -->
           <div class="how-step-slide" data-step="2">
             <div class="how-step-card">
-             <picture>
-  <source
-    srcset="images/how-step-3-mobile.jpg"
-    media="(max-width: 768px)"
-  />
-  <source
-    srcset="images/how-step-3.jpg"
-    media="(min-width: 769px)"
-  />
-  <img
-    src="images/how-step-3.jpg"
-    alt="Déjate descubrir por clubes y entrenadores"
-    class="how-step-image"
-  />
-</picture>
+              <picture>
+                <source
+                  srcset="images/how-step-3-mobile.jpg"
+                  media="(max-width: 768px)"
+                />
+                <source
+                  srcset="images/how-step-3.jpg"
+                  media="(min-width: 769px)"
+                />
+                <img
+                  src="images/how-step-3.jpg"
+                  alt="Déjate descubrir por clubes y entrenadores"
+                  class="how-step-image"
+                />
+              </picture>
 
               <div class="how-step-overlay">
                 <div>
