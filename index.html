@@ -2433,42 +2433,67 @@
       });
     }
 
-    // Bloque "Tres pasos" – scroll solo escritorio
-    (function () {
-      const stepsSection = document.getElementById('how-steps');
-      if (!stepsSection || window.innerWidth < 1024) return;
+// Bloque "Tres pasos" – carrusel con scroll vertical en escritorio
+(function () {
+  const stepsSection = document.getElementById('how-steps');
+  if (!stepsSection || window.innerWidth < 1024) return;
 
-      const slides = stepsSection.querySelectorAll('.how-step-slide');
-      const numberEl = document.getElementById('howStepNumber');
-      const triggers = stepsSection.querySelectorAll('.how-step-trigger');
+  const slides = stepsSection.querySelectorAll('.how-step-slide');
+  const numberEl = document.getElementById('howStepNumber');
 
-      if (!slides.length || !triggers.length || !numberEl) return;
+  if (!slides.length || !numberEl) return;
 
-      const activate = (index) => {
-        slides.forEach((slide, i) => {
-          slide.classList.toggle('active', i === index);
-        });
-        numberEl.textContent = `0${index + 1}`;
-      };
+  let current = 0;
+  let isChanging = false;
 
-      activate(0);
+  function showSlide(index) {
+    if (index < 0 || index >= slides.length) return;
 
-      const stepObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              const stepIndex = parseInt(entry.target.getAttribute('data-step'), 10) || 0;
-              activate(stepIndex);
-            }
-          });
-        },
-        {
-          threshold: 0.6
-        }
-      );
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === index);
+    });
 
-      triggers.forEach((trigger) => stepObserver.observe(trigger));
-    })();
+    numberEl.textContent = `0${index + 1}`;
+    current = index;
+  }
+
+  // Empezamos en el paso 01
+  showSlide(0);
+
+  function onWheel(e) {
+    const delta = e.deltaY;
+
+    // Si estamos en el primer slide y se hace scroll hacia arriba,
+    // dejamos que la página se mueva normal
+    if (delta < 0 && current === 0) return;
+
+    // Si estamos en el último slide y se hace scroll hacia abajo,
+    // también dejamos que la página siga
+    if (delta > 0 && current === slides.length - 1) return;
+
+    // Dentro del carrusel: evitamos que se desplace la página
+    e.preventDefault();
+    if (isChanging) return;
+    isChanging = true;
+
+    if (delta > 0 && current < slides.length - 1) {
+      // siguiente slide
+      showSlide(current + 1);
+    } else if (delta < 0 && current > 0) {
+      // slide anterior
+      showSlide(current - 1);
+    }
+
+    // Tiempo similar a la transición CSS (0.5s aprox)
+    setTimeout(() => {
+      isChanging = false;
+    }, 600);
+  }
+
+  // Escuchamos el scroll solo dentro de la sección
+  stepsSection.addEventListener('wheel', onWheel, { passive: false });
+})();
+
 
     // Carrusel táctil en móvil para "Captura tu talento en tres pasos"
     (function () {
