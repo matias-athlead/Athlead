@@ -2,8 +2,40 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
+
+  <!-- Favicon (igual que la home) -->
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png" />
+  <link rel="shortcut icon" href="images/favicon.ico" />
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+  <link rel="manifest" href="images/site.webmanifest" />
+  <meta name="theme-color" content="#000000" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Athlead – Roles de usuario</title>
+  <meta
+    name="description"
+    content="Athlead se adapta a jugadores, entrenadores y clubes. Descubre qué ofrece la plataforma para cada tipo de usuario."
+  />
+  <meta
+    name="keywords"
+    content="roles de usuario Athlead, jugadores, entrenadores, clubes, plataforma fútbol"
+  />
+  <meta name="author" content="Athlead" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Athlead – Roles de usuario" />
+  <meta
+    property="og:description"
+    content="Athlead se adapta al rol que tengas en el fútbol: jugador, entrenador o club."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://athlead.es/roles.html" />
+  <meta
+    property="og:image"
+    content="https://placehold.co/1200x630/000/fff?text=Athlead+-+Deja+que+el+talento+hable+por+ti"
+  />
 
   <style>
     :root {
@@ -40,6 +72,7 @@
       align-items: center;
       justify-content: space-between;
       margin-bottom: 32px;
+      gap: 12px;
     }
 
     .mini-logo {
@@ -55,6 +88,9 @@
       border: 1px solid rgba(255,255,255,0.4);
       text-decoration: none;
       color: #fff;
+      background: transparent;
+      cursor: pointer;
+      white-space: nowrap;
     }
 
     .mini-back:hover {
@@ -147,16 +183,16 @@
 <body>
   <div class="page-shell">
     <header class="mini-header">
-  <div class="mini-logo">ATHLEAD</div>
-  <!-- Vuelve exactamente a la página anterior con el mismo scroll -->
-  <button type="button" class="mini-back" onclick="window.history.back()">
-    ← Volver a Athlead
-  </button>
-</header>
+      <div class="mini-logo">ATHLEAD</div>
+      <!-- Vuelve exactamente a la página anterior (con fallback) -->
+      <button type="button" class="mini-back" id="backBtn" data-i18n="back_link">
+        ← Volver a Athlead
+      </button>
+    </header>
 
     <main>
-      <h1>Una experiencia Athlead para cada tipo de usuario</h1>
-      <p class="page-subtitle">
+      <h1 data-i18n="roles_title">Una experiencia Athlead para cada tipo de usuario</h1>
+      <p class="page-subtitle" data-i18n="roles_subtitle">
         Athlead se adapta al rol que tengas en el fútbol. Ya seas jugador, entrenador o club, la
         plataforma te da las herramientas necesarias para encontrar oportunidades reales.
       </p>
@@ -164,42 +200,139 @@
       <section class="roles-grid">
         <!-- Bloque jugadores -->
         <article class="role-card" id="jugadores">
-          <p class="role-tag">Para jugadores</p>
-          <h2 class="role-title">Tu escaparate de fútbol en el bolsillo</h2>
-          <p class="role-lead">
+          <p class="role-tag" data-i18n="players_tag">Para jugadores</p>
+          <h2 class="role-title" data-i18n="players_title">Tu escaparate de fútbol en el bolsillo</h2>
+          <p class="role-lead" data-i18n="players_lead">
             Crea tu perfil en minutos, sube tus mejores jugadas y deja que tu talento llegue a entrenadores y clubes que todavía no te conocen.
           </p>
           <ul class="role-list">
-            <li>Perfil con posición, edad, equipo y datos clave.</li>
-            <li>Vídeos cortos ordenados por tipo de jugada (goles, asistencias, regates, robos...).</li>
-            <li>Visibilidad frente a entrenadores y scouts que ya buscan talento online.</li>
-            <li>Panel donde ves quién ha visitado tu perfil y qué jugadas miran más.</li>
+            <li data-i18n="players_item1">Perfil con posición, edad, equipo y datos clave.</li>
+            <li data-i18n="players_item2">Vídeos cortos ordenados por tipo de jugada (goles, asistencias, regates, robos...).</li>
+            <li data-i18n="players_item3">Visibilidad frente a entrenadores y scouts que ya buscan talento online.</li>
+            <li data-i18n="players_item4">Panel donde ves quién ha visitado tu perfil y qué jugadas miran más.</li>
           </ul>
-          <p class="role-highlight">
+          <p class="role-highlight" data-i18n="players_highlight">
             Objetivo: que cualquier entrenador pueda entender en 30 segundos qué tipo de jugador eres.
           </p>
         </article>
 
         <!-- Bloque clubes + entrenadores -->
         <article class="role-card" id="clubes">
-          <p class="role-tag">Para clubes y entrenadores</p>
-          <h2 class="role-title">Encuentra talento sin perder horas en vídeos sueltos</h2>
-          <p class="role-lead">
+          <p class="role-tag" data-i18n="clubs_tag">Para clubes y entrenadores</p>
+          <h2 class="role-title" data-i18n="clubs_title">Encuentra talento sin perder horas en vídeos sueltos</h2>
+          <p class="role-lead" data-i18n="clubs_lead">
             Un panel pensado para fichar mejor: filtros avanzados, rankings y listas de seguimiento para tener controlados a los jugadores que te interesan.
           </p>
           <ul class="role-list">
-            <li>Filtros por edad, posición, categoría y zona geográfica.</li>
-            <li>Perfiles con contexto y jugadas ordenadas para decidir rápido.</li>
-            <li>Listas de seguimiento para seguir la evolución de cada jugador.</li>
-            <li>Mensajes directos, sin intermediarios ni comisiones ocultas.</li>
+            <li data-i18n="clubs_item1">Filtros por edad, posición, categoría y zona geográfica.</li>
+            <li data-i18n="clubs_item2">Perfiles con contexto y jugadas ordenadas para decidir rápido.</li>
+            <li data-i18n="clubs_item3">Listas de seguimiento para seguir la evolución de cada jugador.</li>
+            <li data-i18n="clubs_item4">Mensajes directos, sin intermediarios ni comisiones ocultas.</li>
           </ul>
-          <p class="role-highlight">
+          <p class="role-highlight" data-i18n="clubs_highlight">
             Objetivo: que puedas descubrir jugadores que encajen con tu equipo sin salir del móvil.
           </p>
         </article>
       </section>
     </main>
   </div>
+
+  <script>
+    // Diccionario de traducciones
+    const i18n = {
+      es: {
+        page_title: 'Athlead – Roles de usuario',
+        back_link: '← Volver a Athlead',
+        roles_title: 'Una experiencia Athlead para cada tipo de usuario',
+        roles_subtitle:
+          'Athlead se adapta al rol que tengas en el fútbol. Ya seas jugador, entrenador o club, la plataforma te da las herramientas necesarias para encontrar oportunidades reales.',
+        players_tag: 'Para jugadores',
+        players_title: 'Tu escaparate de fútbol en el bolsillo',
+        players_lead:
+          'Crea tu perfil en minutos, sube tus mejores jugadas y deja que tu talento llegue a entrenadores y clubes que todavía no te conocen.',
+        players_item1: 'Perfil con posición, edad, equipo y datos clave.',
+        players_item2: 'Vídeos cortos ordenados por tipo de jugada (goles, asistencias, regates, robos...).',
+        players_item3: 'Visibilidad frente a entrenadores y scouts que ya buscan talento online.',
+        players_item4: 'Panel donde ves quién ha visitado tu perfil y qué jugadas miran más.',
+        players_highlight:
+          'Objetivo: que cualquier entrenador pueda entender en 30 segundos qué tipo de jugador eres.',
+        clubs_tag: 'Para clubes y entrenadores',
+        clubs_title: 'Encuentra talento sin perder horas en vídeos sueltos',
+        clubs_lead:
+          'Un panel pensado para fichar mejor: filtros avanzados, rankings y listas de seguimiento para tener controlados a los jugadores que te interesan.',
+        clubs_item1: 'Filtros por edad, posición, categoría y zona geográfica.',
+        clubs_item2: 'Perfiles con contexto y jugadas ordenadas para decidir rápido.',
+        clubs_item3: 'Listas de seguimiento para seguir la evolución de cada jugador.',
+        clubs_item4: 'Mensajes directos, sin intermediarios ni comisiones ocultas.',
+        clubs_highlight:
+          'Objetivo: que puedas descubrir jugadores que encajen con tu equipo sin salir del móvil.'
+      },
+      en: {
+        page_title: 'Athlead – User roles',
+        back_link: '← Back to Athlead',
+        roles_title: 'An Athlead experience for every type of user',
+        roles_subtitle:
+          'Athlead adapts to your role in football. Whether you are a player, coach or club, the platform gives you the tools you need to find real opportunities.',
+        players_tag: 'For players',
+        players_title: 'Your football showcase in your pocket',
+        players_lead:
+          'Create your profile in minutes, upload your best plays and let your talent reach coaches and clubs that still don’t know you.',
+        players_item1: 'Profile with position, age, team and key data.',
+        players_item2: 'Short videos organised by play type (goals, assists, dribbles, tackles...).',
+        players_item3: 'Visibility with coaches and scouts who already search for talent online.',
+        players_item4: 'Dashboard where you see who has visited your profile and which plays they watch the most.',
+        players_highlight:
+          'Goal: any coach can understand what kind of player you are in 30 seconds.',
+        clubs_tag: 'For clubs and coaches',
+        clubs_title: 'Find talent without wasting hours on random videos',
+        clubs_lead:
+          'A panel designed to help you sign better: advanced filters, rankings and watchlists so you can keep track of the players you’re interested in.',
+        clubs_item1: 'Filters by age, position, level and geographical area.',
+        clubs_item2: 'Profiles with context and ordered plays to decide quickly.',
+        clubs_item3: 'Watchlists to follow each player’s evolution.',
+        clubs_item4: 'Direct messages, with no middlemen and no hidden commissions.',
+        clubs_highlight:
+          'Goal: discover players who fit your team without leaving your phone.'
+      }
+    };
+
+    function applyTranslations(lang) {
+      const dict = i18n[lang] || i18n.es;
+
+      document.querySelectorAll('[data-i18n]').forEach((el) => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key]) {
+          el.textContent = dict[key];
+        }
+      });
+
+      if (dict.page_title) {
+        document.title = dict.page_title;
+      }
+
+      document.documentElement.lang = lang === 'en' ? 'en' : 'es';
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Detectar idioma desde el resto de la web
+      const saved = localStorage.getItem('athlead_lang');
+      const lang = saved === 'en' ? 'en' : 'es';
+      applyTranslations(lang);
+
+      // Botón volver → vuelve exactamente a la página anterior
+      const backBtn = document.getElementById('backBtn');
+      if (backBtn) {
+        backBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          if (window.history.length > 1) {
+            window.history.back();
+          } else {
+            // Fallback si no hay historial
+            window.location.href = 'index.html#how-it-works';
+          }
+        });
+      }
+    });
+  </script>
 </body>
 </html>
-
