@@ -592,26 +592,31 @@
       margin-top: 6px;
     }
 
-    .how-step-cta {
-      margin-top: 14px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 8px 18px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.85);
-      font-size: 13px;
-      font-weight: 600;
-      cursor: pointer;
-      background: transparent;
-      color: #ffffff;
-      text-decoration: none;
-    }
+ .how-step-cta {
+  margin-top: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 22px;
+  border-radius: 999px;
+  border: 1px solid #ffffff;
+  background: #ffffff;        /* ✅ fondo blanco siempre */
+  color: #000000;             /* texto negro */
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.15s ease, color 0.15s ease,
+              transform 0.15s ease, box-shadow 0.15s ease;
+}
 
-    .how-step-cta:hover {
-      background: #ffffff;
-      color: #000000;
-    }
+.how-step-cta:hover {
+  background: #f2f2f2;        /* blanco un poco más gris al pasar el ratón */
+  color: #000000;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+}
+
 
     .how-step-triggers {
       position: relative;
