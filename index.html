@@ -152,6 +152,84 @@
       gap: 14px;
     }
 
+        /* Selector de idioma en la barra */
+    .lang-switcher {
+      position: relative;
+    }
+
+    .lang-current {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      background: rgba(0, 0, 0, 0.45);
+      color: #ffffff;
+      font-size: 13px;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+    }
+
+    .lang-flag {
+      font-size: 16px;
+      line-height: 1;
+    }
+
+    .lang-label {
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .lang-arrow {
+      font-size: 10px;
+      opacity: 0.8;
+    }
+
+    .lang-menu {
+      position: absolute;
+      right: 0;
+      top: 110%;
+      min-width: 160px;
+      background: #000000;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.8);
+      padding: 6px;
+      display: none;
+      z-index: 1200;
+    }
+
+    .lang-menu.open {
+      display: block;
+    }
+
+    .lang-menu button {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      background: transparent;
+      border: none;
+      color: #ffffff;
+      font-size: 13px;
+      cursor: pointer;
+      border-radius: 999px;
+      text-align: left;
+    }
+
+    .lang-menu button:hover {
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    @media (max-width: 768px) {
+      .lang-current {
+        padding: 6px 10px;
+        font-size: 12px;
+      }
+    }
+
     .header-search {
       display: block;
     }
@@ -1573,20 +1651,28 @@
       <a href="#contact">Contacto</a>
     </nav>
 
-    <div class="header-actions">
-      <form
-        class="header-search"
-        action="https://www.google.com/search"
-        method="GET"
-        target="_blank"
-      >
-        <input
-          type="text"
-          name="q"
-          class="header-search-input"
-          placeholder="Buscar en Athlead..."
-        />
-      </form>
+     <div class="header-actions">
+  <!-- 🔵 Selector de idioma -->
+  <div class="lang-switcher" id="langSwitcher">
+    <button class="lang-current" type="button" aria-expanded="false">
+      <span class="lang-flag">🇪🇸</span>
+      <span class="lang-label">ES</span>
+      <span class="lang-arrow">▾</span>
+    </button>
+    <div class="lang-menu" id="langMenu">
+      <button type="button" data-lang="es">
+        <span class="lang-flag">🇪🇸</span>
+        <span>Español</span>
+      </button>
+      <button type="button" data-lang="en">
+        <span class="lang-flag">🇬🇧</span>
+        <span>English</span>
+      </button>
+    </div>
+  </div>
+
+  <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">☰</button>
+</div>
 
       <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">☰</button>
     </div>
@@ -2581,6 +2667,65 @@
 
         setActiveDot(activeIndex);
       });
+    })();
+        // Selector de idioma en la barra
+    (function () {
+      const langSwitcher = document.getElementById('langSwitcher');
+      if (!langSwitcher) return;
+
+      const currentBtn = langSwitcher.querySelector('.lang-current');
+      const menu = document.getElementById('langMenu');
+      const currentFlag = currentBtn.querySelector('.lang-flag');
+      const currentLabel = currentBtn.querySelector('.lang-label');
+
+      // Idioma guardado o español por defecto
+      const savedLang = localStorage.getItem('athlead_lang') || 'es';
+      setCurrentLang(savedLang);
+
+      // Abrir / cerrar menú
+      currentBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        menu.classList.toggle('open');
+        const expanded = currentBtn.getAttribute('aria-expanded') === 'true';
+        currentBtn.setAttribute('aria-expanded', (!expanded).toString());
+      });
+
+      // Selección de idioma
+      menu.querySelectorAll('button[data-lang]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const lang = btn.getAttribute('data-lang');
+          setCurrentLang(lang);
+          localStorage.setItem('athlead_lang', lang);
+          menu.classList.remove('open');
+          currentBtn.setAttribute('aria-expanded', 'false');
+
+          // 👉 Si algún día tienes URLs separadas por idioma,
+          // descomenta y adapta estas líneas:
+          //
+          // if (lang === 'es') window.location.href = '/';
+          // if (lang === 'en') window.location.href = '/en/';
+        });
+      });
+
+      // Cerrar al hacer click fuera
+      document.addEventListener('click', (e) => {
+        if (!langSwitcher.contains(e.target)) {
+          menu.classList.remove('open');
+          currentBtn.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      function setCurrentLang(lang) {
+        if (lang === 'en') {
+          currentFlag.textContent = '🇬🇧';
+          currentLabel.textContent = 'EN';
+          document.documentElement.lang = 'en';
+        } else {
+          currentFlag.textContent = '🇪🇸';
+          currentLabel.textContent = 'ES';
+          document.documentElement.lang = 'es';
+        }
+      }
     })();
   </script>
 </body>
