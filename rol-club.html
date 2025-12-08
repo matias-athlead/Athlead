@@ -2,8 +2,43 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png" />
+  <link rel="shortcut icon" href="images/favicon.ico" />
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+  <link rel="manifest" href="images/site.webmanifest" />
+  <meta name="theme-color" content="#000000" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Athlead · Rol Club</title>
+
+  <title>Athlead - Rol Club | Encuentra talento que encaje con tu proyecto</title>
+  <meta
+    name="description"
+    content="Descubre cómo funciona Athlead para clubes y academias: encuentra talento que encaje con tu proyecto deportivo filtrando por edad, posición, nivel y zona geográfica."
+  />
+  <meta
+    name="keywords"
+    content="athlead, rol club, scouting fútbol, clubes, academias, captación talento, fútbol amateur"
+  />
+  <meta name="author" content="Athlead" />
+
+  <!-- Open Graph -->
+  <meta
+    property="og:title"
+    content="Athlead - Rol Club | Encuentra talento que encaje con tu proyecto"
+  />
+  <meta
+    property="og:description"
+    content="Como club o academia, Athlead es tu herramienta para descubrir jugadores que encajan con tu filosofía, categoría y presupuesto."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://athlead.es/rol-club.html" />
+  <meta
+    property="og:image"
+    content="https://placehold.co/1200x630/000/fff?text=Athlead+-+Rol+Club"
+  />
 
   <style>
     :root {
@@ -32,7 +67,8 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, system-ui, sans-serif;
     }
 
-    img {
+    img,
+    video {
       max-width: 100%;
       display: block;
     }
@@ -56,7 +92,7 @@
       margin-bottom: 6px;
     }
 
-    /* HEADER (igual que en rol-jugador) */
+    /* HEADER */
 
     .header {
       position: fixed;
@@ -64,7 +100,7 @@
       left: 50%;
       transform: translate(-50%, 0);
       width: min(1100px, 92%);
-      padding: 14px 22px;
+      padding: 20px 28px;
       border-radius: 999px;
       background: rgba(0, 0, 0, 0.78);
       backdrop-filter: blur(18px);
@@ -73,7 +109,13 @@
       z-index: 1000;
       display: flex;
       align-items: center;
-      gap: 24px;
+      justify-content: space-between;
+      gap: 20px;
+      transition: transform 0.6s ease-in-out;
+    }
+
+    .header.hide-header {
+      transform: translate(-50%, -180%);
     }
 
     .logo {
@@ -87,7 +129,7 @@
       display: flex;
       gap: 20px;
       align-items: center;
-      font-size: 15px;
+      font-size: 16px;
     }
 
     .nav-links a {
@@ -107,11 +149,150 @@
       border-bottom-color: rgba(255, 255, 255, 0.8);
     }
 
+    /* Dropdown "Rol" – escritorio */
+    .nav-item-role {
+      position: relative;
+    }
+
+    .nav-dropdown-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      opacity: 0.8;
+      padding: 4px 0;
+      border: none;
+      background: transparent;
+      color: #ffffff;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .nav-dropdown-toggle:hover {
+      opacity: 1;
+    }
+
+    .nav-dropdown-arrow {
+      font-size: 11px;
+    }
+
+    .nav-dropdown {
+      position: absolute;
+      top: 130%;
+      left: 50%;
+      transform: translateX(-50%);
+      min-width: 200px;
+      background: rgba(0, 0, 0, 0.96);
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.8);
+      padding: 10px 6px;
+      display: none;
+      z-index: 1200;
+    }
+
+    .nav-dropdown.open {
+      display: block;
+    }
+
+    .nav-dropdown a {
+      display: block;
+      padding: 8px 14px;
+      font-size: 14px;
+      border-radius: 999px;
+      border-bottom: none;
+    }
+
+    .nav-dropdown a:hover {
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .nav-dropdown a.active {
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    @media (hover: hover) {
+      .nav-item-role:hover .nav-dropdown {
+        display: block;
+      }
+    }
+
     .header-actions {
       margin-left: auto;
       display: flex;
       align-items: center;
       gap: 12px;
+    }
+
+    /* Selector de idioma en la barra */
+    .lang-switcher {
+      position: relative;
+    }
+
+    .lang-current {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      background: rgba(0, 0, 0, 0.45);
+      color: #ffffff;
+      font-size: 13px;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+    }
+
+    .lang-flag {
+      font-size: 16px;
+      line-height: 1;
+    }
+
+    .lang-label {
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 11px;
+    }
+
+    .lang-arrow {
+      font-size: 10px;
+      opacity: 0.8;
+    }
+
+    .lang-menu {
+      position: absolute;
+      right: 0;
+      top: 110%;
+      min-width: 160px;
+      background: #000000;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.8);
+      padding: 6px;
+      display: none;
+      z-index: 1200;
+    }
+
+    .lang-menu.open {
+      display: block;
+    }
+
+    .lang-menu button {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      background: transparent;
+      border: none;
+      color: #ffffff;
+      font-size: 13px;
+      cursor: pointer;
+      border-radius: 999px;
+      text-align: left;
+    }
+
+    .lang-menu button:hover {
+      background: rgba(255, 255, 255, 0.08);
     }
 
     .menu-toggle {
@@ -151,6 +332,50 @@
     .mobile-menu-links a {
       padding-bottom: 10px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    /* Dropdown "Rol" en menú móvil */
+    .mobile-menu-role {
+      margin-top: 12px;
+    }
+
+    .mobile-role-title {
+      width: 100%;
+      padding: 10px 0;
+      background: none;
+      border: none;
+      color: #ffffff;
+      font-size: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .mobile-role-arrow {
+      font-size: 13px;
+      transition: transform 0.2s ease;
+    }
+
+    .mobile-role-submenu {
+      display: none;
+      padding-left: 8px;
+      border-left: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .mobile-role-submenu a {
+      display: block;
+      padding: 8px 0;
+      font-size: 15px;
+      border: none;
+    }
+
+    .mobile-role-submenu.open {
+      display: block;
+    }
+
+    .mobile-role-title.open .mobile-role-arrow {
+      transform: rotate(180deg);
     }
 
     /* BOTONES GENERALES */
@@ -360,26 +585,47 @@
     .footer-inner {
       max-width: 1100px;
       margin: 0 auto;
-      padding: 30px 16px 24px;
-      font-size: 12px;
-      opacity: 0.75;
+      padding: 36px 16px 26px;
     }
 
     .footer-links {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 14px;
-      margin-bottom: 8px;
+      gap: 16px;
+      font-size: 13px;
+      margin-bottom: 16px;
     }
 
     .footer-links a {
-      opacity: 0.8;
-      font-size: 12px;
+      opacity: 0.7;
     }
 
     .footer-links a:hover {
       opacity: 1;
+    }
+
+    .copyright {
+      font-size: 12px;
+      opacity: 0.6;
+      margin-bottom: 10px;
+    }
+
+    .privacy-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+      font-size: 12px;
+      opacity: 0.7;
+      margin-bottom: 10px;
+    }
+
+    .footer-tagline {
+      font-style: italic;
+      font-size: 15px;
+      opacity: 0.85;
+      margin-top: 4px;
     }
 
     /* RESPONSIVE */
@@ -388,6 +634,10 @@
       .role-layout {
         grid-template-columns: minmax(0, 1fr);
         gap: 26px;
+      }
+
+      .section-inner {
+        padding: 64px 18px;
       }
     }
 
@@ -405,12 +655,29 @@
         display: block;
       }
 
+      /* idioma + hamburguesa en la misma línea */
       .header-actions {
         display: flex;
         flex-direction: row;
         align-items: center;
         gap: 8px;
         flex-wrap: nowrap;
+      }
+
+      .lang-current {
+        padding: 6px 10px;
+        font-size: 11px;
+      }
+
+      .lang-switcher {
+        flex-shrink: 1;
+      }
+
+      .menu-toggle {
+        flex-shrink: 0;
+        font-size: 22px;
+        padding: 0;
+        line-height: 1;
       }
 
       .role-hero {
@@ -443,154 +710,553 @@
   </style>
 </head>
 <body>
-<header class="header">
-  <div class="logo" id="logo">ATHLEAD</div>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo" id="logo">ATHLEAD</div>
 
-  <nav class="nav-links">
-    <a href="index.html#who-we-are">Quiénes somos</a>
-    <a href="index.html#how-steps">Cómo funciona</a>
-    <a href="rol-jugador.html">Rol jugador</a>
-    <a href="rol-club.html" class="active">Rol club</a>
-    <a href="rol-entrenador.html">Rol entrenador</a>
-    <a href="index.html#signup">Regístrate</a>
-  </nav>
+    <nav class="nav-links">
+      <a href="index.html#who-we-are" data-i18n="nav_about">Quiénes somos</a>
+      <a href="index.html#how-steps" data-i18n="nav_how">Cómo funciona</a>
 
-  <div class="header-actions">
-    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">☰</button>
-  </div>
-</header>
+      <!-- Dropdown Rol -->
+      <div class="nav-item-role">
+        <button class="nav-dropdown-toggle" type="button">
+          <span data-i18n="nav_role">Rol</span>
+          <span class="nav-dropdown-arrow">▾</span>
+        </button>
+        <div class="nav-dropdown">
+          <a href="rol-jugador.html" data-i18n="nav_role_player">Jugador</a>
+          <a href="rol-club.html" class="active" data-i18n="nav_role_club">Club</a>
+          <a href="rol-entrenador.html" data-i18n="nav_role_coach">Entrenador</a>
+        </div>
+      </div>
+      <!-- Fin Dropdown Rol -->
 
-<div class="mobile-menu" id="mobileMenu">
-  <div class="mobile-menu-links">
-    <a href="index.html#who-we-are">Quiénes somos</a>
-    <a href="index.html#how-steps">Cómo funciona</a>
-    <a href="rol-jugador.html">Rol jugador</a>
-    <a href="rol-club.html">Rol club</a>
-    <a href="rol-entrenador.html">Rol entrenador</a>
-    <a href="index.html#signup">Regístrate</a>
-  </div>
-</div>
+      <a href="index.html#signup" data-i18n="nav_signup">Regístrate</a>
+      <a href="index.html#features" data-i18n="nav_features">Características</a>
+      <a href="index.html#faq" data-i18n="nav_faq">FAQ</a>
+      <a href="index.html#contact" data-i18n="nav_contact">Contacto</a>
+    </nav>
 
-<section class="role-hero role-hero-club">
-  <div class="role-hero-overlay"></div>
-  <div class="role-hero-content">
-    <p class="role-hero-kicker">Rol Athlead · Club / Academia</p>
-    <h1 class="role-hero-title">Encuentra talento que encaje con tu proyecto deportivo.</h1>
-    <p class="role-hero-subtitle">
-      Como club o academia, Athlead es tu herramienta para descubrir jugadores que se ajustan
-      a tu filosofía, categoría y presupuesto sin perder horas en vídeos desordenados.
-    </p>
-    <p class="role-hero-meta">
-      Filtra por edad, posición, nivel y zona geográfica. Guarda perfiles, crea listas de
-      seguimiento y contacta directamente con los jugadores que te interesan.
-    </p>
-    <div class="role-hero-buttons">
-      <a href="index.html#signup" class="btn btn-cta">Registra tu club</a>
-      <a href="index.html#features" class="btn btn-secondary">Ver cómo funciona</a>
+    <div class="header-actions">
+      <!-- Selector de idioma -->
+      <div class="lang-switcher" id="langSwitcher">
+        <button class="lang-current" type="button" aria-expanded="false">
+          <span class="lang-flag">🇪🇸</span>
+          <span class="lang-label">ES</span>
+          <span class="lang-arrow">▾</span>
+        </button>
+        <div class="lang-menu" id="langMenu">
+          <button type="button" data-lang="es">
+            <span class="lang-flag">🇪🇸</span>
+            <span>Español</span>
+          </button>
+          <button type="button" data-lang="en">
+            <span class="lang-flag">🇬🇧</span>
+            <span>English</span>
+          </button>
+        </div>
+      </div>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">☰</button>
+    </div>
+  </header>
+
+  <!-- MENÚ MÓVIL -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-links">
+      <a href="index.html#who-we-are" data-i18n="nav_about">Quiénes somos</a>
+      <a href="index.html#how-steps" data-i18n="nav_how">Cómo funciona</a>
+
+      <!-- Rol en móvil -->
+      <div class="mobile-menu-role">
+        <button type="button" class="mobile-role-title">
+          <span data-i18n="nav_role">Rol</span>
+          <span class="mobile-role-arrow">▾</span>
+        </button>
+        <div class="mobile-role-submenu">
+          <a href="rol-jugador.html" data-i18n="nav_role_player">Jugador</a>
+          <a href="rol-club.html" data-i18n="nav_role_club">Club</a>
+          <a href="rol-entrenador.html" data-i18n="nav_role_coach">Entrenador</a>
+        </div>
+      </div>
+      <!-- Fin Rol móvil -->
+
+      <a href="index.html#signup" data-i18n="nav_signup">Regístrate</a>
+      <a href="index.html#features" data-i18n="nav_features">Características</a>
+      <a href="index.html#faq" data-i18n="nav_faq">FAQ</a>
+      <a href="index.html#contact" data-i18n="nav_contact">Contacto</a>
     </div>
   </div>
-</section>
 
-<section class="role-section">
-  <div class="section-inner">
-    <div class="role-layout">
-      <div>
-        <p class="section-kicker">Panel para clubes</p>
-        <h2 class="role-title">Todo el talento en un solo lugar, filtrado a tu medida.</h2>
-        <p class="role-text">
-          En lugar de recibir decenas de mensajes con links sueltos, Athlead te ofrece una
-          vista clara y ordenada de los jugadores disponibles. Tú eliges qué buscar y cómo.
-        </p>
-        <ul class="role-list">
-          <li><span>•</span><p>Filtros avanzados por edad, posición, categoría, pie dominante y zona.</p></li>
-          <li><span>•</span><p>Perfiles completos con contexto: club actual, minutos jugados, tipo de jugador.</p></li>
-          <li><span>•</span><p>Jugadas organizadas para evaluar rápido sin tener que ver partidos enteros.</p></li>
-          <li><span>•</span><p>Posibilidad de guardar favoritos y crear listas por temporada o posición.</p></li>
-        </ul>
-      </div>
-
-      <div class="role-photo-wrapper">
-        <img src="images/rol-club-01.jpg" alt="Panel de club en Athlead" />
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="role-section role-section-alt">
-  <div class="section-inner">
-    <div class="role-layout">
-      <div class="role-photo-wrapper">
-        <img src="images/rol-club-02.jpg" alt="Reunión de staff técnico analizando jugadores" />
-      </div>
-
-      <div>
-        <div class="role-badge">Ventajas para clubes</div>
-        <h2 class="role-title">Fichar mejor, con más información y menos intuición.</h2>
-        <p class="role-text">
-          Athlead está pensado para ayudarte a tomar decisiones con más datos y menos improvisación.
-          No reemplaza al ojo del entrenador, lo potencia.
-        </p>
-        <ul class="role-list">
-          <li><span>✔</span><p>Acceso a jugadores que no pasan por los canales habituales de captación.</p></li>
-          <li><span>✔</span><p>Ahorro de tiempo: ves exactamente el tipo de jugadas que quieres evaluar.</p></li>
-          <li><span>✔</span><p>Mejor comunicación con jugador y entorno: todo empieza con un perfil claro.</p></li>
-          <li><span>✔</span><p>Herramienta ideal para clubes que quieren profesionalizar su área de scouting.</p></li>
-        </ul>
-        <a href="index.html#signup" class="btn btn-cta" style="margin-top: 12px;">
-          Apunta a tu club a Athlead
+  <!-- HERO CLUB -->
+  <section class="role-hero role-hero-club">
+    <div class="role-hero-overlay"></div>
+    <div class="role-hero-content">
+      <p class="role-hero-kicker" data-i18n="role_club_kicker">Rol Athlead · Club / Academia</p>
+      <h1 class="role-hero-title" data-i18n="role_club_title">
+        Encuentra talento que encaje con tu proyecto deportivo.
+      </h1>
+      <p class="role-hero-subtitle" data-i18n="role_club_subtitle">
+        Como club o academia, Athlead es tu herramienta para descubrir jugadores que se ajustan
+        a tu filosofía, categoría y presupuesto sin perder horas en vídeos desordenados.
+      </p>
+      <p class="role-hero-meta" data-i18n="role_club_meta">
+        Filtra por edad, posición, nivel y zona geográfica. Guarda perfiles, crea listas de
+        seguimiento y contacta directamente con los jugadores que te interesan.
+      </p>
+      <div class="role-hero-buttons">
+        <a href="index.html#signup" class="btn btn-cta" data-i18n="role_club_cta_register">
+          Registra tu club
+        </a>
+        <a href="index.html#features" class="btn btn-secondary" data-i18n="role_club_cta_how">
+          Ver cómo funciona
         </a>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-links">
-      <a href="index.html#who-we-are">Quiénes somos</a>
-      <a href="index.html#how-steps">Cómo funciona</a>
-      <a href="index.html#signup">Regístrate</a>
-      <a href="index.html#faq">FAQ</a>
-      <a href="index.html#contact">Contacto</a>
+  <!-- SECCIÓN 1: PANEL PARA CLUBES -->
+  <section class="role-section">
+    <div class="section-inner">
+      <div class="role-layout">
+        <div>
+          <p class="section-kicker" data-i18n="role_club_section1_kicker">Panel para clubes</p>
+          <h2 class="role-title" data-i18n="role_club_section1_title">
+            Todo el talento en un solo lugar, filtrado a tu medida.
+          </h2>
+          <p class="role-text" data-i18n="role_club_section1_p">
+            En lugar de recibir decenas de mensajes con links sueltos, Athlead te ofrece una
+            vista clara y ordenada de los jugadores disponibles. Tú eliges qué buscar y cómo.
+          </p>
+          <ul class="role-list">
+            <li>
+              <span>•</span>
+              <p data-i18n="role_club_section1_li1">
+                Filtros avanzados por edad, posición, categoría, pie dominante y zona.
+              </p>
+            </li>
+            <li>
+              <span>•</span>
+              <p data-i18n="role_club_section1_li2">
+                Perfiles completos con contexto: club actual, minutos jugados, tipo de jugador.
+              </p>
+            </li>
+            <li>
+              <span>•</span>
+              <p data-i18n="role_club_section1_li3">
+                Jugadas organizadas para evaluar rápido sin tener que ver partidos enteros.
+              </p>
+            </li>
+            <li>
+              <span>•</span>
+              <p data-i18n="role_club_section1_li4">
+                Posibilidad de guardar favoritos y crear listas por temporada o posición.
+              </p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="role-photo-wrapper">
+          <img src="images/rol-club-01.jpg" alt="Panel de club en Athlead" />
+        </div>
+      </div>
     </div>
-    <div>© 2025 Athlead. Todos los derechos reservados.</div>
-  </div>
-</footer>
+  </section>
 
-<script>
-  // Logo → home
-  document.getElementById('logo').addEventListener('click', function () {
-    window.location.href = 'index.html';
-  });
+  <!-- SECCIÓN 2: VENTAJAS PARA CLUBES -->
+  <section class="role-section role-section-alt">
+    <div class="section-inner">
+      <div class="role-layout">
+        <div class="role-photo-wrapper">
+          <img src="images/rol-club-02.jpg" alt="Reunión de staff técnico analizando jugadores" />
+        </div>
 
-  const menuToggle = document.getElementById('menuToggle');
-  const mobileMenu = document.getElementById('mobileMenu');
+        <div>
+          <div class="role-badge" data-i18n="role_club_section2_badge">Ventajas para clubes</div>
+          <h2 class="role-title" data-i18n="role_club_section2_title">
+            Fichar mejor, con más información y menos intuición.
+          </h2>
+          <p class="role-text" data-i18n="role_club_section2_p">
+            Athlead está pensado para ayudarte a tomar decisiones con más datos y menos improvisación.
+            No reemplaza al ojo del entrenador, lo potencia.
+          </p>
+          <ul class="role-list">
+            <li>
+              <span>✔</span>
+              <p data-i18n="role_club_section2_li1">
+                Acceso a jugadores que no pasan por los canales habituales de captación.
+              </p>
+            </li>
+            <li>
+              <span>✔</span>
+              <p data-i18n="role_club_section2_li2">
+                Ahorro de tiempo: ves exactamente el tipo de jugadas que quieres evaluar.
+              </p>
+            </li>
+            <li>
+              <span>✔</span>
+              <p data-i18n="role_club_section2_li3">
+                Mejor comunicación con jugador y entorno: todo empieza con un perfil claro.
+              </p>
+            </li>
+            <li>
+              <span>✔</span>
+              <p data-i18n="role_club_section2_li4">
+                Herramienta ideal para clubes que quieren profesionalizar su área de scouting.
+              </p>
+            </li>
+          </ul>
+          <a
+            href="index.html#signup"
+            class="btn btn-cta"
+            style="margin-top: 12px;"
+            data-i18n="role_club_section2_cta"
+          >
+            Apunta a tu club a Athlead
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  menuToggle.addEventListener('click', function (e) {
-    e.stopPropagation();
-    const isOpen = mobileMenu.classList.contains('active');
-    if (isOpen) {
-      mobileMenu.classList.remove('active');
-      menuToggle.textContent = '☰';
-    } else {
-      mobileMenu.classList.add('active');
-      menuToggle.textContent = '✕';
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-links">
+        <a href="index.html#who-we-are" data-i18n="nav_about">Quiénes somos</a>
+        <a href="index.html#how-steps" data-i18n="nav_how">Cómo funciona</a>
+        <a href="index.html#signup" data-i18n="nav_signup">Regístrate</a>
+        <a href="index.html#features" data-i18n="nav_features">Características</a>
+        <a href="index.html#problem-section" data-i18n="nav_problem">Jugadores invisibles</a>
+        <a href="index.html#faq" data-i18n="nav_faq">FAQ</a>
+        <a href="index.html#contact" data-i18n="nav_contact">Contacto</a>
+      </div>
+
+      <div class="copyright" data-i18n="footer_copyright">
+        © 2025 Athlead. Todos los derechos reservados.
+      </div>
+
+      <div class="privacy-links">
+        <a href="#privacy" data-i18n="privacy_privacy">Política de Privacidad</a>
+        <a href="#terms" data-i18n="privacy_terms">Términos y Condiciones</a>
+        <a href="#cookies" data-i18n="privacy_cookies">Política de Cookies</a>
+        <a href="#data" data-i18n="privacy_data">Protección de Datos</a>
+      </div>
+
+      <div class="footer-tagline" data-i18n="footer_tagline">
+        Deja que el talento hable por ti.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Idioma global
+    let ATHLEAD_LANG = 'es';
+
+    // Diccionario de traducciones (nav + footer + rol club)
+    const i18n = {
+      es: {
+        page_title: 'Athlead - Rol Club | Encuentra talento que encaje con tu proyecto',
+
+        nav_about: 'Quiénes somos',
+        nav_how: 'Cómo funciona',
+        nav_signup: 'Regístrate',
+        nav_features: 'Características',
+        nav_faq: 'FAQ',
+        nav_contact: 'Contacto',
+        nav_problem: 'Jugadores invisibles',
+        nav_role: 'Rol',
+        nav_role_player: 'Jugador',
+        nav_role_club: 'Club',
+        nav_role_coach: 'Entrenador',
+
+        footer_copyright: '© 2025 Athlead. Todos los derechos reservados.',
+        privacy_privacy: 'Política de Privacidad',
+        privacy_terms: 'Términos y Condiciones',
+        privacy_cookies: 'Política de Cookies',
+        privacy_data: 'Protección de Datos',
+        footer_tagline: 'Deja que el talento hable por ti.',
+
+        role_club_kicker: 'Rol Athlead · Club / Academia',
+        role_club_title: 'Encuentra talento que encaje con tu proyecto deportivo.',
+        role_club_subtitle:
+          'Como club o academia, Athlead es tu herramienta para descubrir jugadores que se ajustan a tu filosofía, categoría y presupuesto sin perder horas en vídeos desordenados.',
+        role_club_meta:
+          'Filtra por edad, posición, nivel y zona geográfica. Guarda perfiles, crea listas de seguimiento y contacta directamente con los jugadores que te interesan.',
+        role_club_cta_register: 'Registra tu club',
+        role_club_cta_how: 'Ver cómo funciona',
+
+        role_club_section1_kicker: 'Panel para clubes',
+        role_club_section1_title:
+          'Todo el talento en un solo lugar, filtrado a tu medida.',
+        role_club_section1_p:
+          'En lugar de recibir decenas de mensajes con links sueltos, Athlead te ofrece una vista clara y ordenada de los jugadores disponibles. Tú eliges qué buscar y cómo.',
+        role_club_section1_li1:
+          'Filtros avanzados por edad, posición, categoría, pie dominante y zona.',
+        role_club_section1_li2:
+          'Perfiles completos con contexto: club actual, minutos jugados, tipo de jugador.',
+        role_club_section1_li3:
+          'Jugadas organizadas para evaluar rápido sin tener que ver partidos enteros.',
+        role_club_section1_li4:
+          'Posibilidad de guardar favoritos y crear listas por temporada o posición.',
+
+        role_club_section2_badge: 'Ventajas para clubes',
+        role_club_section2_title:
+          'Fichar mejor, con más información y menos intuición.',
+        role_club_section2_p:
+          'Athlead está pensado para ayudarte a tomar decisiones con más datos y menos improvisación. No reemplaza al ojo del entrenador, lo potencia.',
+        role_club_section2_li1:
+          'Acceso a jugadores que no pasan por los canales habituales de captación.',
+        role_club_section2_li2:
+          'Ahorro de tiempo: ves exactamente el tipo de jugadas que quieres evaluar.',
+        role_club_section2_li3:
+          'Mejor comunicación con jugador y entorno: todo empieza con un perfil claro.',
+        role_club_section2_li4:
+          'Herramienta ideal para clubes que quieren profesionalizar su área de scouting.',
+        role_club_section2_cta: 'Apunta a tu club a Athlead'
+      },
+
+      en: {
+        page_title: 'Athlead - Club Role | Find talent that fits your project',
+
+        nav_about: 'About',
+        nav_how: 'How it works',
+        nav_signup: 'Sign up',
+        nav_features: 'Features',
+        nav_faq: 'FAQ',
+        nav_contact: 'Contact',
+        nav_problem: 'Invisible players',
+        nav_role: 'Role',
+        nav_role_player: 'Player',
+        nav_role_club: 'Club',
+        nav_role_coach: 'Coach',
+
+        footer_copyright: '© 2025 Athlead. All rights reserved.',
+        privacy_privacy: 'Privacy Policy',
+        privacy_terms: 'Terms & Conditions',
+        privacy_cookies: 'Cookie Policy',
+        privacy_data: 'Data Protection',
+        footer_tagline: 'Let your talent speak for you.',
+
+        role_club_kicker: 'Athlead role · Club / Academy',
+        role_club_title: 'Find talent that fits your sporting project.',
+        role_club_subtitle:
+          'As a club or academy, Athlead is your tool to discover players who match your philosophy, level and budget, without wasting hours on random videos.',
+        role_club_meta:
+          'Filter by age, position, level and area. Save profiles, create watchlists and contact directly the players you are interested in.',
+        role_club_cta_register: 'Register your club',
+        role_club_cta_how: 'See how it works',
+
+        role_club_section1_kicker: 'Club dashboard',
+        role_club_section1_title:
+          'All the talent in one place, filtered your way.',
+        role_club_section1_p:
+          'Instead of receiving dozens of messages with random links, Athlead gives you a clear and organised view of available players. You decide what to search and how.',
+        role_club_section1_li1:
+          'Advanced filters by age, position, category, dominant foot and area.',
+        role_club_section1_li2:
+          'Full profiles with context: current club, minutes played, player type.',
+        role_club_section1_li3:
+          'Organised highlights to evaluate quickly without watching entire matches.',
+        role_club_section1_li4:
+          'Option to save favourites and create lists by season or position.',
+
+        role_club_section2_badge: 'Benefits for clubs',
+        role_club_section2_title:
+          'Sign better, with more information and less guesswork.',
+        role_club_section2_p:
+          'Athlead is designed to help you make decisions with more data and less improvisation. It doesn’t replace the coach’s eye – it amplifies it.',
+        role_club_section2_li1:
+          'Access to players who don’t go through the usual scouting channels.',
+        role_club_section2_li2:
+          'Time saving: you see exactly the type of plays you want to evaluate.',
+        role_club_section2_li3:
+          'Better communication with the player and their environment: everything starts from a clear profile.',
+        role_club_section2_li4:
+          'Ideal tool for clubs that want to professionalise their scouting department.',
+        role_club_section2_cta: 'Sign your club up to Athlead'
+      }
+    };
+
+    function applyTranslations(lang) {
+      const dict = i18n[lang] || i18n.es;
+
+      document.querySelectorAll('[data-i18n]').forEach((el) => {
+        const key = el.getAttribute('data-i18n');
+        const translation = dict[key];
+        if (translation) {
+          el.innerHTML = translation;
+        }
+      });
+
+      if (dict.page_title) {
+        document.title = dict.page_title;
+      }
     }
-  });
 
-  document.addEventListener('click', (e) => {
-    if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
-      mobileMenu.classList.remove('active');
-      menuToggle.textContent = '☰';
+    function t(key) {
+      const dict = i18n[ATHLEAD_LANG] || i18n.es;
+      return dict[key] || (i18n.es && i18n.es[key]) || '';
     }
-  });
 
-  document.querySelectorAll('.mobile-menu-links a').forEach((link) => {
-    link.addEventListener('click', () => {
-      mobileMenu.classList.remove('active');
-      menuToggle.textContent = '☰';
+    // Logo → home
+    document.getElementById('logo').addEventListener('click', function () {
+      window.location.href = 'index.html';
     });
-  });
-</script>
+
+    // Menú móvil
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    menuToggle.addEventListener('click', function (e) {
+      e.stopPropagation();
+      const isOpen = mobileMenu.classList.contains('active');
+      if (isOpen) {
+        mobileMenu.classList.remove('active');
+        menuToggle.textContent = '☰';
+      } else {
+        mobileMenu.classList.add('active');
+        menuToggle.textContent = '✕';
+      }
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+        mobileMenu.classList.remove('active');
+        menuToggle.textContent = '☰';
+      }
+    });
+
+    // Cerrar menú al hacer click en un link
+    document.querySelectorAll('.mobile-menu-links a').forEach((link) => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+        menuToggle.textContent = '☰';
+      });
+    });
+
+    // Dropdown "Rol" escritorio
+    (function () {
+      const roleItem = document.querySelector('.nav-item-role');
+      if (!roleItem) return;
+
+      const toggle = roleItem.querySelector('.nav-dropdown-toggle');
+      const menu = roleItem.querySelector('.nav-dropdown');
+      let hideTimeout;
+
+      function openMenu() {
+        clearTimeout(hideTimeout);
+        menu.classList.add('open');
+      }
+
+      function closeMenu() {
+        hideTimeout = setTimeout(() => {
+          menu.classList.remove('open');
+        }, 120);
+      }
+
+      if (window.matchMedia('(hover: hover)').matches) {
+        roleItem.addEventListener('mouseenter', openMenu);
+        roleItem.addEventListener('mouseleave', closeMenu);
+      }
+
+      toggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        menu.classList.toggle('open');
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!roleItem.contains(e.target)) {
+          menu.classList.remove('open');
+        }
+      });
+    })();
+
+    // Dropdown "Rol" en menú móvil
+    (function () {
+      const toggle = document.querySelector('.mobile-role-title');
+      const submenu = document.querySelector('.mobile-role-submenu');
+      if (!toggle || !submenu) return;
+
+      toggle.addEventListener('click', () => {
+        submenu.classList.toggle('open');
+        toggle.classList.toggle('open');
+      });
+    })();
+
+    // Ocultar header en scroll
+    let lastScroll = 0;
+    const header = document.querySelector('.header');
+
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+      if (currentScroll > lastScroll && currentScroll > 80) {
+        header.classList.add('hide-header');
+      } else if (currentScroll < lastScroll) {
+        header.classList.remove('hide-header');
+      }
+      lastScroll = currentScroll;
+    });
+
+    // Selector de idioma
+    (function () {
+      const langSwitcher = document.getElementById('langSwitcher');
+      if (!langSwitcher) return;
+
+      const currentBtn = langSwitcher.querySelector('.lang-current');
+      const menu = document.getElementById('langMenu');
+      const currentFlag = currentBtn.querySelector('.lang-flag');
+      const currentLabel = currentBtn.querySelector('.lang-label');
+
+      const savedLang = localStorage.getItem('athlead_lang') || 'es';
+      setCurrentLang(savedLang);
+
+      currentBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        menu.classList.toggle('open');
+        const expanded = currentBtn.getAttribute('aria-expanded') === 'true';
+        currentBtn.setAttribute('aria-expanded', (!expanded).toString());
+      });
+
+      menu.querySelectorAll('button[data-lang]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const lang = btn.getAttribute('data-lang') || 'es';
+          localStorage.setItem('athlead_lang', lang);
+          setCurrentLang(lang);
+          menu.classList.remove('open');
+          currentBtn.setAttribute('aria-expanded', 'false');
+        });
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!langSwitcher.contains(e.target)) {
+          menu.classList.remove('open');
+          currentBtn.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'auto';
+      }
+
+      function setCurrentLang(lang) {
+        ATHLEAD_LANG = lang === 'en' ? 'en' : 'es';
+
+        if (ATHLEAD_LANG === 'en') {
+          currentFlag.textContent = '🇬🇧';
+          currentLabel.textContent = 'EN';
+          document.documentElement.lang = 'en';
+        } else {
+          currentFlag.textContent = '🇪🇸';
+          currentLabel.textContent = 'ES';
+          document.documentElement.lang = 'es';
+        }
+
+        applyTranslations(ATHLEAD_LANG);
+      }
+    })();
+  </script>
 </body>
 </html>
