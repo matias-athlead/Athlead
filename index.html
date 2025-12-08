@@ -1119,6 +1119,66 @@
       transform: translateY(-1px);
       box-shadow: 0 16px 30px rgba(0, 0, 0, 0.7);
     }
+    /* Teléfono con prefijo */
+.phone-row {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+}
+
+.field-helper {
+  display: block;
+  margin-top: 4px;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* Modal de éxito */
+.signup-modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1300;
+}
+
+.signup-modal.open {
+  display: flex;
+}
+
+.signup-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(6px);
+}
+
+.signup-modal-box {
+  position: relative;
+  max-width: 420px;
+  margin: 0 16px;
+  background: #111318;
+  border-radius: 24px;
+  padding: 26px 24px 22px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 22px 55px rgba(0, 0, 0, 0.9);
+  text-align: center;
+  z-index: 1;
+}
+
+.signup-modal-box h3 {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.signup-modal-box p {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 18px;
+}
+
 
     /* FOOTBALL STATS */
 
@@ -2250,97 +2310,126 @@
       </div>
 
       <form
-        class="signup-form"
-        action="https://script.google.com/macros/s/AKfycbzJLa15-mvHbZZ4MLDJ9asjBTHCcYdMXwvs4k2DuSxOQyMej1ZhVQRjxWD9b4zhDf5aSQ/exec"
-        method="POST"
-      >
-        <div class="form-group">
-          <label for="role" data-i18n="signup_label_role">¿Eres?</label>
-          <select id="role" name="role" class="form-select" required>
-            <option value="" data-i18n="signup_option_role_placeholder">Selecciona tu rol</option>
-            <option value="jugador" data-i18n="signup_option_role_player">Jugador de fútbol</option>
-            <option value="entrenador" data-i18n="signup_option_role_coach">Entrenador</option>
-            <option value="club" data-i18n="signup_option_role_club">Club / Academia</option>
-          </select>
-        </div>
+  id="signup-form"
+  class="signup-form"
+  action="https://script.google.com/macros/s/AKfycbzJLa15-mvHbZZ4MLDJ9asjBTHCcYdMXwvs4k2DuSxOQyMej1ZhVQRjxWD9b4zhDf5aSQ/exec"
+  method="POST"
+>
+  <!-- Wrapper para organizar los campos en grid (opcional, pero recomendado) -->
+  <div class="signup-grid">
 
-        <div class="form-group">
-          <label for="signup-name" data-i18n="signup_label_name">Nombre y Apellido</label>
-          <input
-            type="text"
-            id="signup-name"
-            name="name"
-            class="form-control"
-            data-i18n-placeholder="signup_placeholder_name"
-            placeholder="Tu nombre completo"
-            required
-          />
-        </div>
+    <div class="form-group">
+      <label for="role" data-i18n="signup_label_role">¿Eres?</label>
+      <select id="role" name="role" class="form-select" required>
+        <option value="" data-i18n="signup_option_role_placeholder">Selecciona tu rol</option>
+        <option value="jugador" data-i18n="signup_option_role_player">Jugador de fútbol</option>
+        <option value="entrenador" data-i18n="signup_option_role_coach">Entrenador</option>
+        <option value="club" data-i18n="signup_option_role_club">Club / Academia</option>
+      </select>
+    </div>
 
-        <div class="form-group">
-          <label for="signup-email" data-i18n="signup_label_email">Email</label>
-          <input
-            type="email"
-            id="signup-email"
-            name="email"
-            class="form-control"
-            data-i18n-placeholder="signup_placeholder_email"
-            placeholder="tu@email.com"
-            required
-          />
-        </div>
+    <div class="form-group">
+      <label for="signup-name" data-i18n="signup_label_name">Nombre y Apellido</label>
+      <input
+        type="text"
+        id="signup-name"
+        name="name"
+        class="form-control"
+        data-i18n-placeholder="signup_placeholder_name"
+        placeholder="Tu nombre completo"
+        required
+      />
+    </div>
 
-        <div class="form-group">
-          <label for="source" data-i18n="signup_label_source">¿Por dónde nos conociste?</label>
-          <select id="source" name="source" class="form-select" required>
-            <option value="" data-i18n="signup_option_source_placeholder">Selecciona una opción</option>
-            <option value="red social" data-i18n="signup_option_source_social">Red social</option>
-            <option value="recomendacion" data-i18n="signup_option_source_recommendation">Recomendación</option>
-            <option value="ia" data-i18n="signup_option_source_ai">Inteligencia Artificial</option>
-            <option value="internet" data-i18n="signup_option_source_internet">Internet</option>
-          </select>
-        </div>
+    <div class="form-group">
+      <label for="signup-email" data-i18n="signup_label_email">Email</label>
+      <input
+        type="email"
+        id="signup-email"
+        name="email"
+        class="form-control"
+        data-i18n-placeholder="signup_placeholder_email"
+        placeholder="tu@email.com"
+        required
+      />
+    </div>
 
-        <div class="form-group">
-          <label for="recommend" data-i18n="signup_label_recommend">
-            Del 1 al 10, ¿cuánto recomendarías la aplicación a un amigo?
-          </label>
-          <select id="recommend" name="recommend" class="form-select" required>
-            <option value="" data-i18n="signup_recommend_placeholder">Selecciona una puntuación</option>
-            <option value="1" data-i18n="signup_recommend_1">1 - No la recomendaría</option>
-            <option value="2" data-i18n="signup_recommend_2">2</option>
-            <option value="3" data-i18n="signup_recommend_3">3</option>
-            <option value="4" data-i18n="signup_recommend_4">4</option>
-            <option value="5" data-i18n="signup_recommend_5">5 - Neutral</option>
-            <option value="6" data-i18n="signup_recommend_6">6</option>
-            <option value="7" data-i18n="signup_recommend_7">7</option>
-            <option value="8" data-i18n="signup_recommend_8">8</option>
-            <option value="9" data-i18n="signup_recommend_9">9</option>
-            <option value="10" data-i18n="signup_recommend_10">10 - La recomendaría mucho</option>
-          </select>
-        </div>
+    <!-- País -->
+    <div class="form-group">
+      <label for="country" data-i18n="signup_label_country">País</label>
+      <select id="country" name="country" class="form-select" required>
+        <option value="" disabled selected>Selecciona tu país</option>
+        <option value="ES">España</option>
+        <option value="FR">Francia</option>
+        <option value="PT">Portugal</option>
+        <option value="IT">Italia</option>
+        <option value="UK">Reino Unido</option>
+        <option value="DE">Alemania</option>
+        <option value="OTHER">Otro</option>
+      </select>
+    </div>
 
-        <div class="form-group">
-          <label for="idea" data-i18n="signup_label_idea">Del 1 al 10, ¿qué te parece esta idea?</label>
-          <select id="idea" name="idea" class="form-select" required>
-            <option value="" data-i18n="signup_idea_placeholder">Selecciona una puntuación</option>
-            <option value="1" data-i18n="signup_idea_1">1 - Muy mala idea</option>
-            <option value="2" data-i18n="signup_idea_2">2</option>
-            <option value="3" data-i18n="signup_idea_3">3</option>
-            <option value="4" data-i18n="signup_idea_4">4</option>
-            <option value="5" data-i18n="signup_idea_5">5 - Neutral</option>
-            <option value="6" data-i18n="signup_idea_6">6</option>
-            <option value="7" data-i18n="signup_idea_7">7</option>
-            <option value="8" data-i18n="signup_idea_8">8</option>
-            <option value="9" data-i18n="signup_idea_9">9</option>
-            <option value="10" data-i18n="signup_idea_10">10 - Excelente idea</option>
-          </select>
-        </div>
+    <!-- Comunidad autónoma (solo España) -->
+    <div class="form-group" id="region-wrapper" style="display:none;">
+      <label for="region" data-i18n="signup_label_region">
+        Comunidad Autónoma (si vives en España)
+      </label>
+      <select id="region" name="region" class="form-select">
+        <option value="" disabled selected>Selecciona tu comunidad</option>
+        <option value="Andalucía">Andalucía</option>
+        <option value="Aragón">Aragón</option>
+        <option value="Asturias">Asturias</option>
+        <option value="Baleares">Islas Baleares</option>
+        <option value="Canarias">Canarias</option>
+        <option value="Cantabria">Cantabria</option>
+        <option value="Castilla-La Mancha">Castilla-La Mancha</option>
+        <option value="Castilla y León">Castilla y León</option>
+        <option value="Cataluña">Cataluña</option>
+        <option value="Comunidad Valenciana">Comunidad Valenciana</option>
+        <option value="Extremadura">Extremadura</option>
+        <option value="Galicia">Galicia</option>
+        <option value="La Rioja">La Rioja</option>
+        <option value="Madrid">Comunidad de Madrid</option>
+        <option value="Murcia">Región de Murcia</option>
+        <option value="Navarra">Navarra</option>
+        <option value="País Vasco">País Vasco</option>
+        <option value="Ceuta">Ceuta</option>
+        <option value="Melilla">Melilla</option>
+      </select>
+    </div>
 
-        <button type="submit" class="submit-btn" data-i18n="signup_submit">
-          ¡SÍ, QUIERO ACCESO ANTICIPADO!
-        </button>
-      </form>
+    <!-- Teléfono opcional -->
+    <div class="form-group">
+      <label for="phone" data-i18n="signup_label_phone">Teléfono (opcional)</label>
+      <div class="phone-row">
+        <select id="phoneCode" name="phoneCode" class="form-select">
+          <option value="+34">🇪🇸 +34</option>
+          <option value="+33">🇫🇷 +33</option>
+          <option value="+351">🇵🇹 +351</option>
+          <option value="+39">🇮🇹 +39</option>
+          <option value="+44">🇬🇧 +44</option>
+          <option value="+49">🇩🇪 +49</option>
+          <option value="+1">🇺🇸 +1</option>
+        </select>
+        <input
+          type="tel"
+          id="phone"
+          name="phone"
+          class="form-control"
+          placeholder="Número de teléfono"
+        />
+      </div>
+      <small class="field-helper" data-i18n="signup_phone_help">
+        Solo lo usaremos para contactarte sobre Athlead.
+      </small>
+    </div>
+
+  </div> <!-- cierre .signup-grid -->
+
+  <button type="submit" class="submit-btn" data-i18n="signup_submit">
+    ¡SÍ, QUIERO ACCESO ANTICIPADO!
+  </button>
+</form>
     </div>
   </section>
 
@@ -2770,37 +2859,13 @@
         signup_placeholder_name: 'Tu nombre completo',
         signup_label_email: 'Email',
         signup_placeholder_email: 'tu@email.com',
-        signup_label_source: '¿Por dónde nos conociste?',
-        signup_option_source_placeholder: 'Selecciona una opción',
-        signup_option_source_social: 'Red social',
-        signup_option_source_recommendation: 'Recomendación',
-        signup_option_source_ai: 'Inteligencia Artificial',
-        signup_option_source_internet: 'Internet',
-        signup_label_recommend:
-          'Del 1 al 10, ¿cuánto recomendarías la aplicación a un amigo?',
-        signup_recommend_placeholder: 'Selecciona una puntuación',
-        signup_recommend_1: '1 - No la recomendaría',
-        signup_recommend_2: '2',
-        signup_recommend_3: '3',
-        signup_recommend_4: '4',
-        signup_recommend_5: '5 - Neutral',
-        signup_recommend_6: '6',
-        signup_recommend_7: '7',
-        signup_recommend_8: '8',
-        signup_recommend_9: '9',
-        signup_recommend_10: '10 - La recomendaría mucho',
-        signup_label_idea: 'Del 1 al 10, ¿qué te parece esta idea?',
-        signup_idea_placeholder: 'Selecciona una puntuación',
-        signup_idea_1: '1 - Muy mala idea',
-        signup_idea_2: '2',
-        signup_idea_3: '3',
-        signup_idea_4: '4',
-        signup_idea_5: '5 - Neutral',
-        signup_idea_6: '6',
-        signup_idea_7: '7',
-        signup_idea_8: '8',
-        signup_idea_9: '9',
-        signup_idea_10: '10 - Excelente idea',
+signup_label_country: 'País',
+signup_label_region: 'Comunidad Autónoma (si vives en España)',
+signup_label_phone: 'Teléfono (opcional)',
+signup_phone_help: 'Solo lo usaremos para contactarte sobre Athlead.',
+signup_success_title: '¡Formulario enviado!',
+signup_success_body: 'Gracias por registrarte en Athlead. Te avisaremos por email cuando la app esté lista en tu zona.',
+signup_success_close: 'Cerrar',
         signup_submit: '¡SÍ, QUIERO ACCESO ANTICIPADO!',
 
         highlights_kicker: 'Jugadas destacadas',
@@ -2993,37 +3058,14 @@
         signup_placeholder_name: 'Your full name',
         signup_label_email: 'Email',
         signup_placeholder_email: 'your@email.com',
-        signup_label_source: 'How did you hear about us?',
-        signup_option_source_placeholder: 'Choose an option',
-        signup_option_source_social: 'Social media',
-        signup_option_source_recommendation: 'Recommendation',
-        signup_option_source_ai: 'Artificial Intelligence',
-        signup_option_source_internet: 'Internet',
-        signup_label_recommend:
-          'From 1 to 10, how likely are you to recommend this app to a friend?',
-        signup_recommend_placeholder: 'Choose a score',
-        signup_recommend_1: '1 - I would not recommend it',
-        signup_recommend_2: '2',
-        signup_recommend_3: '3',
-        signup_recommend_4: '4',
-        signup_recommend_5: '5 - Neutral',
-        signup_recommend_6: '6',
-        signup_recommend_7: '7',
-        signup_recommend_8: '8',
-        signup_recommend_9: '9',
-        signup_recommend_10: '10 - I would highly recommend it',
-        signup_label_idea: 'From 1 to 10, what do you think of this idea?',
-        signup_idea_placeholder: 'Choose a score',
-        signup_idea_1: '1 - Very bad idea',
-        signup_idea_2: '2',
-        signup_idea_3: '3',
-        signup_idea_4: '4',
-        signup_idea_5: '5 - Neutral',
-        signup_idea_6: '6',
-        signup_idea_7: '7',
-        signup_idea_8: '8',
-        signup_idea_9: '9',
-        signup_idea_10: '10 - Excellent idea',
+     signup_label_country: 'Country',
+signup_label_region: 'Region (if you live in Spain)',
+signup_label_phone: 'Phone (optional)',
+signup_phone_help: 'We will only use it to contact you about Athlead.',
+signup_success_title: 'Form sent!',
+signup_success_body: 'Thanks for signing up to Athlead. We will email you when the app is ready in your area.',
+signup_success_close: 'Close',
+
         signup_submit: 'YES, I WANT EARLY ACCESS!',
 
         highlights_kicker: 'Highlights',
@@ -3546,6 +3588,100 @@
         toggle.classList.toggle('open');
       });
     })();
+// ==== LÓGICA PAÍS / COMUNIDAD Y PREFIJO TELÉFONO ====
+(function () {
+  const countrySelect = document.getElementById('country');
+  const regionWrapper = document.getElementById('region-wrapper');
+  const regionSelect = document.getElementById('region');
+  const phoneCodeSelect = document.getElementById('phoneCode');
+
+  if (!countrySelect) return;
+
+  const phoneCodesByCountry = {
+    ES: '+34',
+    FR: '+33',
+    PT: '+351',
+    IT: '+39',
+    UK: '+44',
+    DE: '+49',
+    OTHER: '+1'
+  };
+
+  function updateCountryRelatedFields() {
+    const country = countrySelect.value;
+
+    // Mostrar / ocultar comunidad
+    if (country === 'ES') {
+      regionWrapper.style.display = '';
+      if (regionSelect) regionSelect.required = true;
+    } else {
+      regionWrapper.style.display = 'none';
+      if (regionSelect) {
+        regionSelect.required = false;
+        regionSelect.value = '';
+      }
+    }
+
+    // Cambiar prefijo telefónico
+    if (phoneCodeSelect && phoneCodesByCountry[country]) {
+      phoneCodeSelect.value = phoneCodesByCountry[country];
+    }
+  }
+
+  countrySelect.addEventListener('change', updateCountryRelatedFields);
+
+  // Estado inicial
+  updateCountryRelatedFields();
+})();
+// ==== ENVÍO DEL FORMULARIO + MODAL DE ÉXITO ====
+(function () {
+  const form = document.getElementById('signup-form');
+  const modal = document.getElementById('signupModal');
+  const closeBtn = document.getElementById('closeSignupModal');
+  const backdrop = document.querySelector('.signup-modal-backdrop');
+
+  if (!form || !modal) return;
+
+  const endpoint = form.getAttribute('action'); // usa tu URL de Google Script
+
+  function openModal() {
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+  if (backdrop) backdrop.addEventListener('click', closeModal);
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault(); // evita recarga de página
+
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          Accept: 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        form.reset();
+        openModal();
+      } else {
+        openModal(); // si falla el script, igualmente mostramos el modal
+      }
+    } catch (err) {
+      openModal(); // error de red
+    }
+  });
+})();
 
   </script>
 </body>
