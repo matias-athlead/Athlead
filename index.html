@@ -2551,147 +2551,202 @@
     </div>
   </section>
 
-  <!-- SIGNUP -->
-  <section class="signup-section" id="signup">
-    <div class="section-inner">
+<section id="signup" class="section section-signup">
+  <div class="container signup-grid">
+    <!-- COLUMNA DE TEXTO -->
+    <div class="signup-copy">
       <p class="section-kicker" data-i18n="signup_kicker">Acceso anticipado</p>
-      <h2 data-i18n="signup_title">Regístrate para entrar en la primera generación Athlead</h2>
-      <p data-i18n="signup_p">
-        Únete a los primeros jugadores que van a dejar de ser invisibles. Completa este formulario y
-        recibe una guía gratuita para que tu perfil destaque desde el primer día.
+      <h2 class="section-title" data-i18n="signup_title">
+        Regístrate para entrar en la primera generación Athlead
+      </h2>
+      <p class="section-text" data-i18n="signup_p">
+        Únete a los primeros jugadores que van a dejar de ser invisibles. Completa este formulario y recibe una guía gratuita para que tu perfil destaque desde el primer día.
       </p>
 
-      <div class="premium-offer" data-i18n="signup_offer_main">
-        ¿Quieres más visibilidad?
-        <br />
-        Regístrate hoy y llévate 1 mes Premium GRATIS + una guía personalizada para que tu perfil
-        destaque desde el primer día.
-        <small data-i18n="signup_offer_small">*Oferta válida para los primeros 500 registrados.</small>
+      <div class="signup-offer-card">
+        <p class="signup-offer-main" data-i18n="signup_offer_main">
+          ¿Quieres más visibilidad?<br />
+          Regístrate hoy y llévate 1 mes Premium GRATIS + una guía personalizada para que tu perfil destaque desde el primer día.
+        </p>
+        <p class="signup-offer-small" data-i18n="signup_offer_small">
+          *Oferta válida para los primeros 500 registrados.
+        </p>
       </div>
+    </div>
 
+    <!-- COLUMNA DEL FORMULARIO -->
+    <div class="signup-card">
+      <!-- IMPORTANTE: pon aquí tu endpoint real de Google Forms / Apps Script -->
       <form
-  id="signup-form"
-  class="signup-form"
-  action="https://script.google.com/macros/s/AKfycbzJLa15-mvHbZZ4MLDJ9asjBTHCcYdMXwvs4k2DuSxOQyMej1ZhVQRjxWD9b4zhDf5aSQ/exec"
-  method="POST"
->
-  <!-- Wrapper para organizar los campos en grid (opcional, pero recomendado) -->
-  <div class="signup-grid">
+        id="signup-form"
+        class="form"
+        action="TU_ENDPOINT_SIGNUP_AQUI"
+        method="POST"
+      >
+        <!-- ROL -->
+        <div class="form-group">
+          <label for="role" data-i18n="signup_label_role">¿Eres?</label>
+          <select id="role" name="role" required>
+            <option value="" data-i18n="signup_option_role_placeholder">
+              Selecciona tu rol
+            </option>
+            <option value="player" data-i18n="signup_option_role_player">
+              Jugador de fútbol
+            </option>
+            <option value="coach" data-i18n="signup_option_role_coach">
+              Entrenador
+            </option>
+            <option value="club" data-i18n="signup_option_role_club">
+              Club / Academia
+            </option>
+          </select>
+        </div>
 
-    <div class="form-group">
-      <label for="role" data-i18n="signup_label_role">¿Eres?</label>
-      <select id="role" name="role" class="form-select" required>
-        <option value="" data-i18n="signup_option_role_placeholder">Selecciona tu rol</option>
-        <option value="jugador" data-i18n="signup_option_role_player">Jugador de fútbol</option>
-        <option value="entrenador" data-i18n="signup_option_role_coach">Entrenador</option>
-        <option value="club" data-i18n="signup_option_role_club">Club / Academia</option>
-      </select>
+        <!-- NOMBRE -->
+        <div class="form-group">
+          <label for="name" data-i18n="signup_label_name">Nombre y Apellido</label>
+          <input
+            id="name"
+            type="text"
+            name="name"
+            required
+            data-i18n-placeholder="signup_placeholder_name"
+            placeholder="Tu nombre completo"
+          />
+        </div>
+
+        <!-- EMAIL -->
+        <div class="form-group">
+          <label for="email" data-i18n="signup_label_email">Email</label>
+          <input
+            id="email"
+            type="email"
+            name="email"
+            required
+            data-i18n-placeholder="signup_placeholder_email"
+            placeholder="tu@email.com"
+          />
+        </div>
+
+        <!-- PAÍS -->
+        <div class="form-group">
+          <label for="country" data-i18n="signup_label_country">País</label>
+          <select id="country" name="country" required>
+            <option value="ES">España</option>
+            <option value="FR">Francia</option>
+            <option value="PT">Portugal</option>
+            <option value="IT">Italia</option>
+            <option value="UK">Reino Unido</option>
+            <option value="DE">Alemania</option>
+            <option value="OTHER">Otro</option>
+          </select>
+        </div>
+
+        <!-- COMUNIDAD (SOLO SI ES ESPAÑA) -->
+        <div class="form-group" id="region-wrapper">
+          <label for="region" data-i18n="signup_label_region">
+            Comunidad Autónoma (si vives en España)
+          </label>
+          <select id="region" name="region">
+            <option value="">Selecciona una opción</option>
+            <option value="andalucia">Andalucía</option>
+            <option value="aragon">Aragón</option>
+            <option value="asturias">Asturias</option>
+            <option value="baleares">Islas Baleares</option>
+            <option value="canarias">Islas Canarias</option>
+            <option value="cantabria">Cantabria</option>
+            <option value="castilla_la_mancha">Castilla-La Mancha</option>
+            <option value="castilla_y_leon">Castilla y León</option>
+            <option value="cataluna">Cataluña</option>
+            <option value="ceuta">Ceuta</option>
+            <option value="c_valenciana">Comunidad Valenciana</option>
+            <option value="extremadura">Extremadura</option>
+            <option value="galicia">Galicia</option>
+            <option value="la_rioja">La Rioja</option>
+            <option value="madrid">Comunidad de Madrid</option>
+            <option value="melilla">Melilla</option>
+            <option value="murcia">Región de Murcia</option>
+            <option value="navarra">Navarra</option>
+            <option value="pais_vasco">País Vasco</option>
+          </select>
+        </div>
+
+        <!-- TELÉFONO (OPCIONAL) -->
+        <div class="form-group form-group-inline">
+          <div class="form-group small">
+            <label for="phoneCode">Prefijo</label>
+            <select id="phoneCode" name="phoneCode">
+              <option value="+34">+34</option>
+              <option value="+33">+33</option>
+              <option value="+351">+351</option>
+              <option value="+39">+39</option>
+              <option value="+44">+44</option>
+              <option value="+49">+49</option>
+              <option value="+1">+1</option>
+            </select>
+          </div>
+          <div class="form-group flex-1">
+            <label for="phone" data-i18n="signup_label_phone">
+              Teléfono (opcional)
+            </label>
+            <input
+              id="phone"
+              type="tel"
+              name="phone"
+              placeholder=""
+            />
+            <p class="form-help" data-i18n="signup_phone_help">
+              Solo lo usaremos para contactarte sobre Athlead.
+            </p>
+          </div>
+        </div>
+
+        <!-- CONSENTIMIENTO LEGAL -->
+        <div class="form-group form-group-legal">
+          <label class="checkbox">
+            <input type="checkbox" name="privacy" required />
+            <span>
+              Acepto la
+              <button
+                type="button"
+                class="link legal-link"
+                data-modal="privacy"
+                data-i18n="privacy_privacy"
+              >
+                Política de Privacidad
+              </button>,
+              los
+              <button
+                type="button"
+                class="link legal-link"
+                data-modal="terms"
+                data-i18n="privacy_terms"
+              >
+                Términos y Condiciones
+              </button>
+              y la
+              <button
+                type="button"
+                class="link legal-link"
+                data-modal="cookies"
+                data-i18n="privacy_cookies"
+              >
+                Política de Cookies
+              </button>.
+            </span>
+          </label>
+        </div>
+
+        <!-- BOTÓN -->
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary btn-full" data-i18n="signup_submit">
+            ¡SÍ, QUIERO ACCESO ANTICIPADO!
+          </button>
+        </div>
+      </form>
     </div>
-
-    <div class="form-group">
-      <label for="signup-name" data-i18n="signup_label_name">Nombre y Apellido</label>
-      <input
-        type="text"
-        id="signup-name"
-        name="name"
-        class="form-control"
-        data-i18n-placeholder="signup_placeholder_name"
-        placeholder="Tu nombre completo"
-        required
-      />
-    </div>
-
-    <div class="form-group">
-      <label for="signup-email" data-i18n="signup_label_email">Email</label>
-      <input
-        type="email"
-        id="signup-email"
-        name="email"
-        class="form-control"
-        data-i18n-placeholder="signup_placeholder_email"
-        placeholder="tu@email.com"
-        required
-      />
-    </div>
-
-    <!-- País -->
-    <div class="form-group">
-      <label for="country" data-i18n="signup_label_country">País</label>
-      <select id="country" name="country" class="form-select" required>
-        <option value="" disabled selected>Selecciona tu país</option>
-        <option value="ES">España</option>
-        <option value="FR">Francia</option>
-        <option value="PT">Portugal</option>
-        <option value="IT">Italia</option>
-        <option value="UK">Reino Unido</option>
-        <option value="DE">Alemania</option>
-        <option value="OTHER">Otro</option>
-      </select>
-    </div>
-
-    <!-- Comunidad autónoma (solo España) -->
-    <div class="form-group" id="region-wrapper" style="display:none;">
-      <label for="region" data-i18n="signup_label_region">
-        Comunidad Autónoma (si vives en España)
-      </label>
-      <select id="region" name="region" class="form-select">
-        <option value="" disabled selected>Selecciona tu comunidad</option>
-        <option value="Andalucía">Andalucía</option>
-        <option value="Aragón">Aragón</option>
-        <option value="Asturias">Asturias</option>
-        <option value="Baleares">Islas Baleares</option>
-        <option value="Canarias">Canarias</option>
-        <option value="Cantabria">Cantabria</option>
-        <option value="Castilla-La Mancha">Castilla-La Mancha</option>
-        <option value="Castilla y León">Castilla y León</option>
-        <option value="Cataluña">Cataluña</option>
-        <option value="Comunidad Valenciana">Comunidad Valenciana</option>
-        <option value="Extremadura">Extremadura</option>
-        <option value="Galicia">Galicia</option>
-        <option value="La Rioja">La Rioja</option>
-        <option value="Madrid">Comunidad de Madrid</option>
-        <option value="Murcia">Región de Murcia</option>
-        <option value="Navarra">Navarra</option>
-        <option value="País Vasco">País Vasco</option>
-        <option value="Ceuta">Ceuta</option>
-        <option value="Melilla">Melilla</option>
-      </select>
-    </div>
-
-    <!-- Teléfono opcional -->
-    <div class="form-group">
-      <label for="phone" data-i18n="signup_label_phone">Teléfono (opcional)</label>
-      <div class="phone-row">
-        <select id="phoneCode" name="phoneCode" class="form-select">
-          <option value="+34">🇪🇸 +34</option>
-          <option value="+33">🇫🇷 +33</option>
-          <option value="+351">🇵🇹 +351</option>
-          <option value="+39">🇮🇹 +39</option>
-          <option value="+44">🇬🇧 +44</option>
-          <option value="+49">🇩🇪 +49</option>
-          <option value="+1">🇺🇸 +1</option>
-        </select>
-        <input
-          type="tel"
-          id="phone"
-          name="phone"
-          class="form-control"
-          placeholder="Número de teléfono"
-        />
-      </div>
-      <small class="field-helper" data-i18n="signup_phone_help">
-        Solo lo usaremos para contactarte sobre Athlead.
-      </small>
-    </div>
-
-  </div> <!-- cierre .signup-grid -->
-
-  <button type="submit" class="submit-btn" data-i18n="signup_submit">
-    ¡SÍ, QUIERO ACCESO ANTICIPADO!
-  </button>
-</form>
-    </div>
-  </section>
+  </div>
+</section>
 
   <!-- JUGADAS DESTACADAS -->
   <section class="highlight-videos" id="highlight-videos">
