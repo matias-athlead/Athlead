@@ -2572,7 +2572,7 @@
     <form
       id="signup-form"
       class="signup-form"
-      action="TU_ENDPOINT_DE_GOOGLE_SCRIPT_AQUI"
+      action="https://script.google.com/macros/s/AKfycbzJLa15-mvHbZZ4MLDJ9asjBTHCcYdMXwvs4k2DuSxOQyMej1ZhVQRjxWD9b4zhDf5aSQ/exec"
       method="POST"
     >
       <!-- Rol -->
@@ -2683,6 +2683,31 @@
           Solo lo usaremos para contactarte sobre Athlead.
         </small>
       </div>
+        <!-- Consentimiento políticas -->
+  <div class="form-group">
+    <label style="font-size:13px; line-height:1.6;">
+      <input
+        type="checkbox"
+        id="signup-consent"
+        name="consent"
+        required
+        style="margin-right:6px;"
+      />
+      <span data-i18n="signup_consent_text">
+        Acepto la
+        <a href="#" class="legal-link" data-modal="privacy">Política de Privacidad</a>,
+        los
+        <a href="#" class="legal-link" data-modal="terms">Términos y Condiciones</a>
+        y la
+        <a href="#" class="legal-link" data-modal="cookies">Política de Cookies</a>.
+      </span>
+    </label>
+  </div>
+  <button type="submit" class="submit-btn" data-i18n="signup_submit">
+    ¡SÍ, QUIERO ACCESO ANTICIPADO!
+  </button>
+</form>
+
 
       <button type="submit" class="submit-btn" data-i18n="signup_submit">
         ¡SÍ, QUIERO ACCESO ANTICIPADO!
@@ -3140,6 +3165,8 @@ signup_label_country: 'País',
 signup_label_region: 'Comunidad Autónoma (si vives en España)',
 signup_label_phone: 'Teléfono (opcional)',
 signup_phone_help: 'Solo lo usaremos para contactarte sobre Athlead.',
+            signup_consent_text: 'Acepto la Política de Privacidad, los Términos y Condiciones y la Política de Cookies.',
+    signup_consent_error: 'Debes aceptar las políticas para poder registrarte.',
 signup_success_title: '¡Formulario enviado!',
 signup_success_body: 'Gracias por registrarte en Athlead. Te avisaremos por email cuando la app esté lista en tu zona.',
 signup_success_close: 'Cerrar',
@@ -3339,6 +3366,8 @@ signup_success_close: 'Cerrar',
 signup_label_region: 'Region (if you live in Spain)',
 signup_label_phone: 'Phone (optional)',
 signup_phone_help: 'We will only use it to contact you about Athlead.',
+            signup_consent_text: 'I accept the Privacy Policy, the Terms & Conditions and the Cookie Policy.',
+    signup_consent_error: 'You must accept the policies to sign up.',
 signup_success_title: 'Form sent!',
 signup_success_body: 'Thanks for signing up to Athlead. We will email you when the app is ready in your area.',
 signup_success_close: 'Close',
@@ -3554,6 +3583,15 @@ signup_success_close: 'Close',
 
     contactForm.addEventListener('submit', function (e) {
       e.preventDefault();
+      
+      form.addEventListener('submit', async (e) => {
+    e.preventDefault(); // evita recarga de página
+
+    const consentCheckbox = document.getElementById('signup-consent');
+    if (consentCheckbox && !consentCheckbox.checked) {
+      alert(t('signup_consent_error') || 'Debes aceptar las políticas para poder registrarte.');
+      return;
+    }
       const formData = new FormData(contactForm);
 
       fetch(CONTACT_SCRIPT_URL, {
