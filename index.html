@@ -1919,6 +1919,104 @@
         display: none;
       }
     }
+    /* ===== MODAL LEGAL ===== */
+
+.legal-modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.legal-modal.open {
+  display: flex;
+}
+
+.legal-modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(4px);
+}
+
+.legal-modal-content {
+  position: relative;
+  max-width: 720px;
+  width: 92%;
+  max-height: 80vh;
+  background: rgba(0, 0, 0, 0.9);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.9);
+  padding: 24px 24px 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.legal-modal-content::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background:
+    radial-gradient(circle at 0 0, rgba(78, 205, 196, 0.18), transparent 55%),
+    radial-gradient(circle at 100% 100%, rgba(255, 255, 255, 0.08), transparent 60%);
+  opacity: 0.9;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.legal-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.legal-modal-close:hover {
+  opacity: 1;
+}
+
+#legal-modal-title {
+  font-size: 20px;
+  margin-bottom: 10px;
+  letter-spacing: -0.02em;
+}
+
+.legal-modal-body {
+  font-size: 13px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.8);
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.legal-modal-body p + p {
+  margin-top: 10px;
+}
+
+@media (max-width: 600px) {
+  .legal-modal-content {
+    padding: 20px 16px 16px;
+    border-radius: 18px;
+  }
+
+  #legal-modal-title {
+    font-size: 18px;
+  }
+
+  .legal-modal-body {
+    font-size: 12px;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -2749,17 +2847,35 @@
         © 2025 Athlead. Todos los derechos reservados.
       </div>
 
-      <div class="privacy-links">
-        <a href="#privacy" data-i18n="privacy_privacy">Política de Privacidad</a>
-        <a href="#terms" data-i18n="privacy_terms">Términos y Condiciones</a>
-        <a href="#cookies" data-i18n="privacy_cookies">Política de Cookies</a>
-        <a href="#data" data-i18n="privacy_data">Protección de Datos</a>
-      </div>
+   <div class="privacy-links">
+  <a href="#" class="legal-link" data-modal="privacy" data-i18n="privacy_privacy">
+    Política de Privacidad
+  </a>
+  <a href="#" class="legal-link" data-modal="terms" data-i18n="privacy_terms">
+    Términos y Condiciones
+  </a>
+  <a href="#" class="legal-link" data-modal="cookies" data-i18n="privacy_cookies">
+    Política de Cookies
+  </a>
+  <a href="#" class="legal-link" data-modal="data" data-i18n="privacy_data">
+    Protección de Datos
+  </a>
+</div>
+
 
       <div class="footer-tagline" data-i18n="footer_tagline">Deja que el talento hable por ti.</div>
     </div>
   </footer>
+<!-- MODAL LEGAL -->
+<div id="legal-modal" class="legal-modal">
+  <div class="legal-modal-overlay"></div>
 
+  <div class="legal-modal-content" role="dialog" aria-modal="true" aria-labelledby="legal-modal-title">
+    <button class="legal-modal-close" type="button" aria-label="Cerrar">×</button>
+    <h2 id="legal-modal-title">Título legal</h2>
+    <div id="legal-modal-body" class="legal-modal-body"></div>
+  </div>
+</div>
   <script>
     // Estado global de idioma
     let ATHLEAD_LANG = 'es';
@@ -3574,6 +3690,105 @@ signup_success_close: 'Close',
         if (!roleItem.contains(e.target)) {
           menu.classList.remove('open');
         }
+          // ===== MODAL LEGAL =====
+  const legalTexts = {
+    privacy: {
+      title: 'Política de Privacidad',
+      body: `
+        <p>En Athlead tratamos tus datos personales únicamente para gestionar tu registro, 
+        mantenerte informado sobre el lanzamiento de la aplicación y, en su caso, 
+        ponernos en contacto contigo para oportunidades relacionadas con la plataforma.</p>
+
+        <p>No compartimos tus datos con terceros ajenos a Athlead salvo obligación legal. 
+        Puedes solicitar en cualquier momento el acceso, rectificación o eliminación de 
+        tu información escribiendo a nuestro correo de contacto.</p>
+
+        <p>El uso de la web implica la aceptación de esta política de privacidad.</p>
+      `
+    },
+    terms: {
+      title: 'Términos y Condiciones',
+      body: `
+        <p>El acceso a esta web es gratuito y tiene como objetivo presentarte Athlead y 
+        recopilar registros de interés en la aplicación.</p>
+
+        <p>Al inscribirte, te comprometes a proporcionar información veraz y a utilizar la 
+        plataforma de forma responsable y respetuosa. Athlead podrá modificar o interrumpir 
+        temporalmente la web o funcionalidades sin previo aviso.</p>
+
+        <p>Estos términos podrán actualizarse en cualquier momento. Te recomendamos revisarlos 
+        de forma periódica.</p>
+      `
+    },
+    cookies: {
+      title: 'Política de Cookies',
+      body: `
+        <p>Podemos utilizar cookies técnicas y de analítica básica para mejorar la experiencia 
+        de navegación y entender de forma agregada cómo se utiliza la web.</p>
+
+        <p>En ningún caso utilizamos cookies para elaborar perfiles individuales ni para mostrar 
+        publicidad personalizada. Puedes configurar o bloquear las cookies desde los ajustes 
+        de tu navegador.</p>
+      `
+    },
+    data: {
+      title: 'Protección de Datos',
+      body: `
+        <p>Los datos que nos facilitas se almacenan de forma segura y se conservan únicamente 
+        durante el tiempo necesario para la finalidad con la que fueron recogidos.</p>
+
+        <p>Como persona usuaria tienes derecho a acceder, rectificar, suprimir, limitar u 
+        oponerte al tratamiento de tus datos, así como a solicitar la portabilidad cuando 
+        corresponda.</p>
+
+        <p>Si tienes cualquier duda sobre cómo protegemos tu información, puedes escribirnos 
+        al correo de contacto indicado en la web.</p>
+      `
+    }
+  };
+
+  const legalModal    = document.getElementById('legal-modal');
+  const legalTitleEl  = document.getElementById('legal-modal-title');
+  const legalBodyEl   = document.getElementById('legal-modal-body');
+  const legalCloseBtn = legalModal ? legalModal.querySelector('.legal-modal-close') : null;
+  const legalOverlay  = legalModal ? legalModal.querySelector('.legal-modal-overlay') : null;
+
+  function openLegalModal(key) {
+    if (!legalModal || !legalTexts[key]) return;
+    legalTitleEl.textContent = legalTexts[key].title;
+    legalBodyEl.innerHTML    = legalTexts[key].body;
+    legalModal.classList.add('open');
+  }
+
+  function closeLegalModal() {
+    if (!legalModal) return;
+    legalModal.classList.remove('open');
+  }
+
+  // Enlaces del footer
+  document.querySelectorAll('.legal-link').forEach((link) => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const key = link.getAttribute('data-modal');
+      openLegalModal(key);
+    });
+  });
+
+  // Cerrar modal
+  if (legalCloseBtn) {
+    legalCloseBtn.addEventListener('click', closeLegalModal);
+  }
+  if (legalOverlay) {
+    legalOverlay.addEventListener('click', closeLegalModal);
+  }
+
+  // Cerrar con ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeLegalModal();
+    }
+  });
+
       });
     })();
 
