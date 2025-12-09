@@ -3012,6 +3012,24 @@
           ¡Gracias por contactarnos! Te responderemos en menos de 48 horas.
         </div>
       </form>
+      <!-- MODAL DE ÉXITO FORMULARIO -->
+<div id="successModal" class="signup-modal">
+  <div class="signup-modal-backdrop"></div>
+
+  <div class="signup-modal-box">
+    <h3>¡Gracias!</h3>
+    <p>Su solicitud se ha enviado correctamente.</p>
+    <button
+      type="button"
+      id="closeSuccessModal"
+      class="submit-btn"
+      style="max-width: 220px; margin: 0 auto;"
+    >
+      Cerrar
+    </button>
+  </div>
+</div>
+
     </div>
   </section>
 
@@ -4150,6 +4168,51 @@ signup_success_close: 'Close',
       }
     } catch (err) {
       openModal(); // error de red
+    }
+  });
+})();
+// ==== MODAL DE ÉXITO AL ENVIAR EL FORMULARIO ====
+(function () {
+  const form = document.getElementById('signup-form');
+  const iframe = document.getElementById('hidden_iframe');
+  const modal = document.getElementById('successModal');
+  const closeBtn = document.getElementById('closeSuccessModal');
+  const backdrop = modal ? modal.querySelector('.signup-modal-backdrop') : null;
+
+  if (!form || !iframe || !modal) return;
+
+  let formWasSubmitted = false;
+
+  // Marcamos que se ha enviado el formulario
+  form.addEventListener('submit', function () {
+    formWasSubmitted = true;
+  });
+
+  // Cuando el iframe cargue la respuesta del script, mostramos el modal
+  iframe.addEventListener('load', function () {
+    if (!formWasSubmitted) return; // evita que se dispare al cargar la página
+    formWasSubmitted = false;
+
+    form.reset();              // limpia el formulario
+    modal.classList.add('open'); // muestra la ventana emergente
+  });
+
+  function closeModal() {
+    modal.classList.remove('open');
+  }
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeModal);
+  }
+
+  if (backdrop) {
+    backdrop.addEventListener('click', closeModal);
+  }
+
+  // Cerrar con ESC
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      closeModal();
     }
   });
 })();
