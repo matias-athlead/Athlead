@@ -2016,10 +2016,172 @@
     font-size: 12px;
   }
 }
+/* ===== BANNER COOKIES ===== */
+
+.cookie-banner {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 16px;
+  z-index: 1900;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  transform: translateY(110%);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.cookie-banner.visible {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.cookie-banner-inner {
+  max-width: 900px;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.92);
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.9);
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cookie-title {
+  font-size: 15px;
+  margin-bottom: 2px;
+}
+
+.cookie-text {
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.cookie-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.cookie-btn {
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-size: 13px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.cookie-btn-primary {
+  background: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+}
+
+.cookie-btn-primary:hover {
+  background: #f2f2f2;
+}
+
+.cookie-btn-secondary {
+  background: transparent;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.cookie-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.cookie-btn-text {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.8);
+  border-color: transparent;
+}
+
+.cookie-btn-text:hover {
+  color: #ffffff;
+}
+
+.cookie-more {
+  margin-top: 4px;
+  align-self: flex-start;
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.cookie-more:hover {
+  color: #ffffff;
+}
+
+@media (max-width: 600px) {
+  .cookie-banner-inner {
+    padding: 14px 14px 12px;
+  }
+
+  .cookie-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cookie-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
 
   </style>
 </head>
 <body>
+<body>
+  <!-- BANNER COOKIES -->
+  <div id="cookie-banner" class="cookie-banner">
+    <div class="cookie-banner-inner">
+      <h3 class="cookie-title">Tu privacidad es importante</h3>
+      <p class="cookie-text">
+        Usamos cookies esenciales para que la web funcione correctamente y, de forma opcional,
+        cookies de analítica para entender cómo se usa Athlead y mejorar la experiencia.
+        Puedes aceptar todas, solo las esenciales o rechazarlas.
+      </p>
+
+      <div class="cookie-buttons">
+        <button type="button" id="cookie-accept-all" class="cookie-btn cookie-btn-primary">
+          Aceptar todas
+        </button>
+        <button
+          type="button"
+          id="cookie-accept-essential"
+          class="cookie-btn cookie-btn-secondary"
+        >
+          Aceptar solo esenciales
+        </button>
+        <button type="button" id="cookie-reject" class="cookie-btn cookie-btn-text">
+          Rechazar
+        </button>
+      </div>
+
+      <!-- Enlace a tu política de cookies (usa el modal legal que ya creaste) -->
+      <button
+        type="button"
+        class="cookie-more legal-link"
+        data-modal="cookies"
+      >
+        Más información sobre cookies
+      </button>
+    </div>
+  </div>
+  <!-- FIN BANNER COOKIES -->
   <!-- HEADER -->
   <header class="header">
     <div class="logo" id="logo">ATHLEAD</div>
@@ -3684,6 +3846,87 @@ signup_success_close: 'Close',
         e.stopPropagation();
         menu.classList.toggle('open');
       });
+        // ===== GESTIÓN DE COOKIES =====
+  const COOKIE_KEY = 'athlead_cookie_consent';
+  const cookieBanner = document.getElementById('cookie-banner');
+  const btnAcceptAll = document.getElementById('cookie-accept-all');
+  const btnAcceptEssential = document.getElementById('cookie-accept-essential');
+  const btnReject = document.getElementById('cookie-reject');
+
+  // Aquí activarías tus cookies NO esenciales (ej: analítica)
+  function enableNonEssentialCookies() {
+    // EJEMPLO con Google Analytics (solo si lo usas):
+    // if (window.athleadAnalyticsLoaded) return;
+    // window.athleadAnalyticsLoaded = true;
+
+    // const gaScript = document.createElement('script');
+    // gaScript.async = true;
+    // gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=TU_ID_GA';
+    // document.head.appendChild(gaScript);
+
+    // window.dataLayer = window.dataLayer || [];
+    // function gtag(){dataLayer.push(arguments);}
+    // gtag('js', new Date());
+    // gtag('config', 'TU_ID_GA');
+  }
+
+  // Aquí podrías desactivar analítica si ya estaba cargada (opcional)
+  function disableNonEssentialCookies() {
+    // Por ejemplo, dejar de enviar eventos a GA,
+    // o borrar cookies no esenciales si lo implementas.
+  }
+
+  function applyCookieConsent(choice) {
+    if (choice === 'all') {
+      enableNonEssentialCookies();
+    } else {
+      disableNonEssentialCookies();
+    }
+  }
+
+  function hideCookieBanner() {
+    if (!cookieBanner) return;
+    cookieBanner.classList.remove('visible');
+  }
+
+  function showCookieBanner() {
+    if (!cookieBanner) return;
+    cookieBanner.classList.add('visible');
+  }
+
+  // Comprobar si ya existe una elección guardada
+  const storedConsent = localStorage.getItem(COOKIE_KEY);
+  if (storedConsent) {
+    applyCookieConsent(storedConsent);
+  } else {
+    showCookieBanner();
+  }
+
+  // Eventos de los botones
+  if (btnAcceptAll) {
+    btnAcceptAll.addEventListener('click', () => {
+      localStorage.setItem(COOKIE_KEY, 'all');
+      applyCookieConsent('all');
+      hideCookieBanner();
+    });
+  }
+
+  if (btnAcceptEssential) {
+    btnAcceptEssential.addEventListener('click', () => {
+      localStorage.setItem(COOKIE_KEY, 'essential');
+      applyCookieConsent('essential');
+      hideCookieBanner();
+    });
+  }
+
+  if (btnReject) {
+    btnReject.addEventListener('click', () => {
+      localStorage.setItem(COOKIE_KEY, 'reject');
+      applyCookieConsent('reject');
+      hideCookieBanner();
+    });
+  }
+
 
       // Cerrar al hacer click fuera
       document.addEventListener('click', (e) => {
