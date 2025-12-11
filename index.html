@@ -2140,13 +2140,13 @@
     text-align: center;
   }
 }
-    /* ===== Sección PENSADO PARA TI con fondo tipo diapositivas ===== */
+/* ===== Sección PENSADO PARA TI con carrusel de fondo ===== */
 
 .hero-pensado-para-ti {
   position: relative;
   overflow: hidden;
   color: #ffffff;
-  padding: 120px 0 100px;
+  padding: 120px 0 110px;
 }
 
 /* Contenedor del fondo */
@@ -2176,7 +2176,7 @@
 .hero-pensado-overlay {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at center, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.85));
+  background: radial-gradient(circle at center, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.9));
   z-index: -1;
 }
 
@@ -2236,10 +2236,32 @@
   opacity: 0.9;
 }
 
+/* Dots del carrusel */
+.hero-pensado-dots {
+  margin-top: 26px;
+  display: flex;
+  gap: 10px;
+}
+
+.hero-pensado-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  border: none;
+  background: rgba(255, 255, 255, 0.25);
+  cursor: pointer;
+  padding: 0;
+}
+
+.hero-pensado-dot.active {
+  width: 26px;
+  background: #ffffff;
+}
+
 /* Responsive */
 @media (max-width: 900px) {
   .hero-pensado-para-ti {
-    padding: 90px 0 70px;
+    padding: 90px 0 80px;
   }
 
   .hero-pensado-cards {
@@ -2250,6 +2272,7 @@
     font-size: 2rem;
   }
 }
+
 
   </style>
 </head>
@@ -2909,47 +2932,62 @@
     </div>
   </section>
 
-<!-- PENSADO PARA TI -->
 <section id="pensado-para-ti" class="hero-pensado-para-ti">
-  <!-- Fondo con diapositivas -->
+  <!-- Fondo tipo carrusel -->
   <div class="hero-pensado-bg">
-    <div class="hero-pensado-slide active" style="background-image: url('images/pensado1.jpg');"></div>
-    <div class="hero-pensado-slide" style="background-image: url('images/pensado2.jpg');"></div>
-    <div class="hero-pensado-slide" style="background-image: url('images/pensado3.jpg');"></div>
+    <div class="hero-pensado-slide active"
+      style="background-image: url('images/athlead-slide1.jpg');"></div>
+    <div class="hero-pensado-slide"
+      style="background-image: url('images/athlead-slide2.jpg');"></div>
+    <div class="hero-pensado-slide"
+      style="background-image: url('images/athlead-slide3.jpg');"></div>
+
+    <!-- Capa oscura encima de las fotos -->
+    <div class="hero-pensado-overlay"></div>
   </div>
 
-  <!-- Capa oscura para que se lea bien el texto -->
-  <div class="hero-pensado-overlay"></div>
-
-  <!-- Contenido que ya tenías -->
-  <div class="hero-pensado-content container">
+  <!-- Contenido -->
+  <div class="hero-pensado-content">
     <p class="hero-pensado-kicker">PENSADO PARA TI</p>
+
     <h2 class="hero-pensado-title">
       Tu talento merece un escaparate mejor que un grupo de WhatsApp
     </h2>
+
     <p class="hero-pensado-subtitle">
       Athlead convierte tus jugadas en un perfil claro, ordenado y fácil de entender para cualquiera que sepa de fútbol.
     </p>
 
-    <!-- Tus 3 tarjetas -->
     <div class="hero-pensado-cards">
       <div class="hero-pensado-card">
         <h3>Sube tus jugadas 🕺</h3>
-        <p>Comparte tus mejores momentos: goles, asistencias, regates, robos o salidas jugando. En vídeos cortos que van directos al grano.</p>
+        <p>
+          Comparte tus mejores momentos: goles, asistencias, regates, robos o salidas jugando. En vídeos cortos que van directos al grano.
+        </p>
       </div>
-
       <div class="hero-pensado-card">
         <h3>Conecta con el mundo 🌍</h3>
-        <p>Vincula tu Instagram, TikTok o YouTube para que se vea tu evolución, tu carácter y tu trabajo fuera de los 90 minutos.</p>
+        <p>
+          Vincula tu Instagram, TikTok o YouTube para que se vea tu evolución, tu carácter y tu trabajo fuera de los 90 minutos.
+        </p>
       </div>
-
       <div class="hero-pensado-card">
         <h3>Visibilidad real 🏆</h3>
-        <p>Entrenadores, scouts y clubes pueden encontrarte usando filtros por edad, posición y zona. Tú decides qué muestras y cómo.</p>
+        <p>
+          Entrenadores, scouts y clubes pueden encontrarte usando filtros por edad, posición y zona. Tú decides qué muestras y cómo.
+        </p>
       </div>
+    </div>
+
+    <!-- Puntos del carrusel (opcionales) -->
+    <div class="hero-pensado-dots">
+      <button class="hero-pensado-dot active" data-slide="0"></button>
+      <button class="hero-pensado-dot" data-slide="1"></button>
+      <button class="hero-pensado-dot" data-slide="2"></button>
     </div>
   </div>
 </section>
+
 
 
   <!-- PROBLEM / SOLUTION -->
@@ -4349,6 +4387,44 @@ signup_success_close: 'Close',
       // Activar la nueva
       slides[current].classList.add("active");
     }, 6000); // cambia cada 6 segundos (ajusta si quieres)
+  });
+</script>
+  <script>
+  // Carrusel de fondo en "PENSADO PARA TI"
+  document.addEventListener('DOMContentLoaded', function () {
+    const slides = document.querySelectorAll('.hero-pensado-slide');
+    const dots = document.querySelectorAll('.hero-pensado-dot');
+    if (!slides.length) return;
+
+    let current = 0;
+    const changeSlide = (index) => {
+      slides.forEach((s, i) => {
+        s.classList.toggle('active', i === index);
+      });
+      dots.forEach((d, i) => {
+        d.classList.toggle('active', i === index);
+      });
+      current = index;
+    };
+
+    // Auto cambio cada 6 segundos
+    let interval = setInterval(() => {
+      const next = (current + 1) % slides.length;
+      changeSlide(next);
+    }, 6000);
+
+    // Click en los puntos
+    dots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        const index = Number(dot.dataset.slide);
+        changeSlide(index);
+        clearInterval(interval);
+        interval = setInterval(() => {
+          const next = (current + 1) % slides.length;
+          changeSlide(next);
+        }, 6000);
+      });
+    });
   });
 </script>
 </body>
