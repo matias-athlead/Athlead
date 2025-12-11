@@ -2272,6 +2272,146 @@
     font-size: 2rem;
   }
 }
+/* ====== CARRUSEL VERTICAL "PENSADO PARA TI" ====== */
+
+.ppt-hero {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  color: #ffffff;
+  background: #000000;
+}
+
+/* Contenedor de todas las diapositivas */
+.ppt-slides {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;      /* una debajo de otra */
+  transition: transform 0.8s ease-in-out;
+}
+
+/* Cada diapositiva ocupa toda la pantalla */
+.ppt-slide {
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10vw;
+  text-align: left;
+}
+
+/* Capa interior para limitar ancho del texto */
+.ppt-inner {
+  max-width: 800px;
+}
+
+/* Fondo de cada slide (pon tus fotos aquí) */
+.ppt-slide::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  z-index: -2;
+}
+
+/* Oscurecer un poco para que se lea bien el texto */
+.ppt-slide::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(0,0,0,0.15), rgba(0,0,0,0.85));
+  z-index: -1;
+}
+
+/* Asigna una imagen distinta a cada slide */
+.ppt-slide-1::before {
+  background-image: url("images/athlead-slide1.jpg");
+}
+
+.ppt-slide-2::before {
+  background-image: url("images/athlead-slide2.jpg");
+}
+
+.ppt-slide-3::before {
+  background-image: url("images/athlead-slide3.jpg");
+}
+
+.ppt-slide-4::before {
+  background-image: url("images/athlead-slide4.jpg");
+}
+
+/* Tipos de letra y tamaños */
+.ppt-kicker {
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin-bottom: 16px;
+}
+
+.ppt-title {
+  font-size: clamp(2.4rem, 3.5vw, 3.2rem);
+  line-height: 1.1;
+  margin-bottom: 18px;
+  font-weight: 800;
+}
+
+.ppt-text {
+  font-size: 1.05rem;
+  opacity: 0.9;
+}
+
+/* Puntos de navegación a la derecha */
+.ppt-dots {
+  position: absolute;
+  top: 50%;
+  right: 32px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 10;
+}
+
+.ppt-dots button {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  border: none;
+  background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  padding: 0;
+}
+
+.ppt-dots button.active {
+  height: 26px;
+  background: #ffffff;
+}
+
+/* Responsive: en móvil reducimos márgenes y tamaño */
+@media (max-width: 768px) {
+  .ppt-slide {
+    padding: 0 20px;
+  }
+
+  .ppt-title {
+    font-size: 1.9rem;
+  }
+
+  .ppt-text {
+    font-size: 0.98rem;
+  }
+
+  .ppt-dots {
+    right: 16px;
+  }
+}
 
 
   </style>
@@ -2946,47 +3086,65 @@
     <div class="hero-pensado-overlay"></div>
   </div>
 
-  <!-- Contenido -->
-  <div class="hero-pensado-content">
-    <p class="hero-pensado-kicker">PENSADO PARA TI</p>
-
-    <h2 class="hero-pensado-title">
-      Tu talento merece un escaparate mejor que un grupo de WhatsApp
-    </h2>
-
-    <p class="hero-pensado-subtitle">
-      Athlead convierte tus jugadas en un perfil claro, ordenado y fácil de entender para cualquiera que sepa de fútbol.
-    </p>
-
-    <div class="hero-pensado-cards">
-      <div class="hero-pensado-card">
-        <h3>Sube tus jugadas 🕺</h3>
-        <p>
-          Comparte tus mejores momentos: goles, asistencias, regates, robos o salidas jugando. En vídeos cortos que van directos al grano.
+<section id="pensado-para-ti" class="ppt-hero">
+  <div class="ppt-slides">
+    <!-- SLIDE 1 -->
+    <section class="ppt-slide ppt-slide-1">
+      <div class="ppt-inner">
+        <p class="ppt-kicker">PENSADO PARA TI</p>
+        <h2 class="ppt-title">
+          Tu talento merece un escaparate mejor que un grupo de WhatsApp
+        </h2>
+        <p class="ppt-text">
+          Athlead convierte tus jugadas en un perfil claro, ordenado y fácil de entender
+          para cualquiera que sepa de fútbol.
         </p>
       </div>
-      <div class="hero-pensado-card">
-        <h3>Conecta con el mundo 🌍</h3>
-        <p>
-          Vincula tu Instagram, TikTok o YouTube para que se vea tu evolución, tu carácter y tu trabajo fuera de los 90 minutos.
-        </p>
-      </div>
-      <div class="hero-pensado-card">
-        <h3>Visibilidad real 🏆</h3>
-        <p>
-          Entrenadores, scouts y clubes pueden encontrarte usando filtros por edad, posición y zona. Tú decides qué muestras y cómo.
-        </p>
-      </div>
-    </div>
+    </section>
 
-    <!-- Puntos del carrusel (opcionales) -->
-    <div class="hero-pensado-dots">
-      <button class="hero-pensado-dot active" data-slide="0"></button>
-      <button class="hero-pensado-dot" data-slide="1"></button>
-      <button class="hero-pensado-dot" data-slide="2"></button>
-    </div>
+    <!-- SLIDE 2 -->
+    <section class="ppt-slide ppt-slide-2">
+      <div class="ppt-inner">
+        <h2 class="ppt-title">Sube tus jugadas 🕺</h2>
+        <p class="ppt-text">
+          Comparte tus mejores momentos: goles, asistencias, regates, robos o salidas jugando.
+          Todo en vídeos cortos que van directos al grano para que cualquiera vea rápido de qué eres capaz.
+        </p>
+      </div>
+    </section>
+
+    <!-- SLIDE 3 -->
+    <section class="ppt-slide ppt-slide-3">
+      <div class="ppt-inner">
+        <h2 class="ppt-title">Conecta con el mundo 🌍</h2>
+        <p class="ppt-text">
+          Vincula tu Instagram, TikTok o YouTube para enseñar tu evolución, tu carácter y tu trabajo
+          fuera de los 90 minutos. Tu perfil en Athlead es tu carta de presentación como jugador.
+        </p>
+      </div>
+    </section>
+
+    <!-- SLIDE 4 -->
+    <section class="ppt-slide ppt-slide-4">
+      <div class="ppt-inner">
+        <h2 class="ppt-title">Visibilidad real 🏆</h2>
+        <p class="ppt-text">
+          Entrenadores, scouts y clubes pueden encontrarte usando filtros por edad, posición y zona.
+          Tú decides qué muestras y cómo. Athlead convierte tu talento en algo fácil de ver y de fichar.
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <!-- Puntos de navegación del carrusel vertical -->
+  <div class="ppt-dots">
+    <button data-slide="0" class="active"></button>
+    <button data-slide="1"></button>
+    <button data-slide="2"></button>
+    <button data-slide="3"></button>
   </div>
 </section>
+
 
 
 
@@ -4425,6 +4583,51 @@ signup_success_close: 'Close',
         }, 6000);
       });
     });
+  });
+</script>
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const slidesContainer = document.querySelector('.ppt-slides');
+    const slides = document.querySelectorAll('.ppt-slide');
+    const dots = document.querySelectorAll('.ppt-dots button');
+
+    if (!slidesContainer || !slides.length) return;
+
+    let current = 0;
+
+    function goToSlide(index) {
+      if (index < 0) index = slides.length - 1;
+      if (index >= slides.length) index = 0;
+
+      slidesContainer.style.transform = 'translateY(-' + (index * 100) + 'vh)';
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+      });
+
+      current = index;
+    }
+
+    // Auto-cambio cada 7 segundos
+    let interval = setInterval(() => {
+      goToSlide(current + 1);
+    }, 7000);
+
+    // Click en los puntos
+    dots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        const index = Number(dot.dataset.slide);
+        goToSlide(index);
+
+        // Reiniciar el intervalo para que no cambie justo después de hacer click
+        clearInterval(interval);
+        interval = setInterval(() => {
+          goToSlide(current + 1);
+        }, 7000);
+      });
+    });
+
+    // Por si acaso, empezamos en la slide 0
+    goToSlide(0);
   });
 </script>
 </body>
