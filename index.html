@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -2140,356 +2140,6 @@
     text-align: center;
   }
 }
-/* ===== Sección PENSADO PARA TI con carrusel de fondo ===== */
-
-.hero-pensado-para-ti {
-  position: relative;
-  overflow: hidden;
-  color: #ffffff;
-  padding: 120px 0 110px;
-}
-
-/* Contenedor del fondo */
-.hero-pensado-bg {
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-}
-
-/* Cada diapositiva */
-.hero-pensado-slide {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-}
-
-/* La que se ve */
-.hero-pensado-slide.active {
-  opacity: 1;
-}
-
-/* Capa oscura encima de las fotos para que el texto se lea bien */
-.hero-pensado-overlay {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at center, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.9));
-  z-index: -1;
-}
-
-/* Contenido centrado y ancho máx. */
-.hero-pensado-content {
-  position: relative;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 24px;
-  text-align: left;
-}
-
-.hero-pensado-kicker {
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  font-size: 0.9rem;
-  opacity: 0.8;
-  margin-bottom: 16px;
-}
-
-.hero-pensado-title {
-  font-size: clamp(2.4rem, 3.5vw, 3.2rem);
-  line-height: 1.1;
-  margin-bottom: 20px;
-  font-weight: 800;
-}
-
-.hero-pensado-subtitle {
-  font-size: 1.05rem;
-  max-width: 680px;
-  opacity: 0.9;
-  margin-bottom: 40px;
-}
-
-/* Cards */
-.hero-pensado-cards {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px;
-}
-
-.hero-pensado-card {
-  background: rgba(0, 0, 0, 0.65);
-  border-radius: 24px;
-  padding: 28px 24px;
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-.hero-pensado-card h3 {
-  font-size: 1.2rem;
-  margin-bottom: 10px;
-}
-
-.hero-pensado-card p {
-  font-size: 0.98rem;
-  opacity: 0.9;
-}
-
-/* Dots del carrusel */
-.hero-pensado-dots {
-  margin-top: 26px;
-  display: flex;
-  gap: 10px;
-}
-
-.hero-pensado-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 999px;
-  border: none;
-  background: rgba(255, 255, 255, 0.25);
-  cursor: pointer;
-  padding: 0;
-}
-
-.hero-pensado-dot.active {
-  width: 26px;
-  background: #ffffff;
-}
-
-/* Responsive */
-@media (max-width: 900px) {
-  .hero-pensado-para-ti {
-    padding: 90px 0 80px;
-  }
-
-  .hero-pensado-cards {
-    grid-template-columns: 1fr;
-  }
-
-  .hero-pensado-title {
-    font-size: 2rem;
-  }
-}
-/* ====== CARRUSEL VERTICAL "PENSADO PARA TI" ====== */
-
-.ppt-hero {
-  position: relative;
-  height: 100vh;
-  overflow: hidden;
-  color: #ffffff;
-  background: #000000;
-}
-
-    html, body {
-  height: 100%;
-  scroll-behavior: smooth;
-  scroll-snap-type: y mandatory;   /* el scroll se fija en bloques verticales */
-}
-
-/* Contenedor de todas las diapositivas */
-.ppt-slides {
-  position: relative;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;      /* una debajo de otra */
-  transition: transform 0.8s ease-in-out;
-
-}
-
-/* Cada diapositiva ocupa toda la pantalla */
-.ppt-slide {
-  height: 100vh;
-  width: 100%;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 10vw;
-  text-align: left;
-  scroll-snap-align: start;   /* cada slide ocupa toda la pantalla al parar el scroll */
-}
-    
-
-/* Capa interior para limitar ancho del texto */
-.ppt-inner {
-  max-width: 800px;
-}
-
-/* Fondo de cada slide (pon tus fotos aquí) */
-.ppt-slide::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  z-index: -2;
-}
-
-/* Oscurecer un poco para que se lea bien el texto */
-.ppt-slide::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at center, rgba(0,0,0,0.15), rgba(0,0,0,0.85));
-  z-index: -1;
-}
-
-/* Fondo de cada diapositiva: CAMBIA los nombres de archivo por los tuyos */
-.ppt-slide-1::before {
-  background-image: url("images/slide-1.jpg");
-}
-
-.ppt-slide-2::before {
-  background-image: url("images/slide-2.jpg");
-}
-
-.ppt-slide-3::before {
-  background-image: url("images/slide-3.jpg");
-}
-
-/* Tipos de letra y tamaños */
-.ppt-kicker {
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  font-size: 0.9rem;
-  opacity: 0.8;
-  margin-bottom: 16px;
-}
-
-.ppt-title {
-  font-size: clamp(2.4rem, 3.5vw, 3.2rem);
-  line-height: 1.1;
-  margin-bottom: 18px;
-  font-weight: 800;
-}
-
-.ppt-text {
-  font-size: 1.05rem;
-  opacity: 0.9;
-}
-
-/* Puntos de navegación a la derecha */
-.ppt-dots {
-  position: absolute;
-  top: 50%;
-  right: 32px;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  z-index: 10;
-}
-
-.ppt-dots button {
-  width: 10px;
-  height: 10px;
-  border-radius: 999px;
-  border: none;
-  background: rgba(255, 255, 255, 0.3);
-  cursor: pointer;
-  padding: 0;
-}
-
-.ppt-dots button.active {
-  height: 26px;
-  background: #ffffff;
-}
-
-/* Responsive: en móvil reducimos márgenes y tamaño */
-@media (max-width: 768px) {
-  .ppt-slide {
-    padding: 0 20px;
-  }
-
-  .ppt-title {
-    font-size: 1.9rem;
-  }
-
-  .ppt-text {
-    font-size: 0.98rem;
-  }
-
-  .ppt-dots {
-    right: 16px;
-  }
-}
-/* Sección de las diapositivas */
-.ppt-section {
-  position: relative;
-}
-
-/* Cada diapositiva ocupa el alto de la ventana */
-.ppt-slide {
-  position: relative;
-  min-height: 100vh;          /* ocupa toda la pantalla */
-  display: flex;
-  align-items: center;        /* centra verticalmente el texto */
-  justify-content: center;    /* centra horizontalmente el contenedor de texto */
-  padding: 0 10%;
-  color: #ffffff;
-  overflow: hidden;
-}
-
-/* Fondo de foto de cada slide */
-.ppt-slide::before {
-  content: "";
-  position: absolute;
-  inset: 0;                   /* top:0; right:0; bottom:0; left:0; */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  filter: brightness(0.35);   /* oscurece un poco la foto para leer bien el texto */
-  z-index: -2;
-}
-
-/* Capa de degradado oscuro encima de la foto (opcional, ayuda a que se lea mejor) */
-.ppt-slide::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at center, rgba(0,0,0,0.2), rgba(0,0,0,0.8));
-  z-index: -1;
-}
-
-/* Contenido de texto encima del fondo */
-.ppt-slide-content {
-  position: relative;
-  max-width: 900px;
-}
-
-/* Tagline “Pensado para ti” */
-.ppt-tagline {
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  font-size: 0.9rem;
-  opacity: 0.8;
-  margin-bottom: 1rem;
-}
-
-/* Títulos grandes */
-.ppt-slide-content h2 {
-  font-size: clamp(2rem, 4vw, 3rem);
-  margin-bottom: 1.5rem;
-}
-
-/* Texto */
-.ppt-slide-content p {
-  font-size: clamp(1rem, 1.5vw, 1.2rem);
-  line-height: 1.6;
-}
-
-/* RESPONSIVE móvil: un poco más de padding */
-@media (max-width: 768px) {
-  .ppt-slide {
-    padding: 0 1.5rem;
-    text-align: left;
-  }
-}
-
 
   </style>
 </head>
@@ -3149,42 +2799,43 @@
     </div>
   </section>
 
-<section id="pensado-para-ti" class="ppt-section">
-  <div class="ppt-slide ppt-slide-1">
-    <div class="ppt-slide-content">
-      <p class="ppt-tagline">PENSADO PARA TI</p>
-      <h2>Sube tus jugadas 🕺</h2>
-      <p>
-        Comparte tus mejores momentos: goles, asistencias, regates, robos o salidas jugando.
-        En vídeos cortos que van directos al grano.
+  <!-- FEATURES -->
+  <section class="features" id="features">
+    <div class="section-inner">
+      <p class="section-kicker" data-i18n="features_kicker">Pensado para ti</p>
+      <h2 data-i18n="features_title">
+        Tu talento merece un escaparate mejor que un grupo de WhatsApp
+      </h2>
+      <p data-i18n="features_p">
+        Athlead convierte tus jugadas en un perfil claro, ordenado y fácil de entender para
+        cualquiera que sepa de fútbol.
       </p>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <h3 data-i18n="features1_title">Sube tus jugadas 🕺</h3>
+          <p data-i18n="features1_p">
+            Comparte tus mejores momentos: goles, asistencias, regates, robos o salidas jugando. En
+            vídeos cortos que van directos al grano.
+          </p>
+        </div>
+        <div class="feature-card">
+          <h3 data-i18n="features2_title">Conecta con el mundo 🌎</h3>
+          <p data-i18n="features2_p">
+            Vincula tu Instagram, TikTok o YouTube para que se vea tu evolución, tu carácter y tu
+            trabajo fuera de los 90 minutos.
+          </p>
+        </div>
+        <div class="feature-card">
+          <h3 data-i18n="features3_title">Visibilidad real 🏆</h3>
+          <p data-i18n="features3_p">
+            Entrenadores, scouts y clubes pueden encontrarte usando filtros por edad, posición y
+            zona. Tú decides qué muestras y cómo.
+          </p>
+        </div>
+      </div>
     </div>
-  </div>
-
-  <div class="ppt-slide ppt-slide-2">
-    <div class="ppt-slide-content">
-      <p class="ppt-tagline">PENSADO PARA TI</p>
-      <h2>Conecta con el mundo 🌍</h2>
-      <p>
-        Vincula tu Instagram, TikTok o YouTube para que se vea tu evolución,
-        tu carácter y tu trabajo fuera de los 90 minutos.
-      </p>
-    </div>
-  </div>
-
-  <div class="ppt-slide ppt-slide-3">
-    <div class="ppt-slide-content">
-      <p class="ppt-tagline">PENSADO PARA TI</p>
-      <h2>Visibilidad real 🏆</h2>
-      <p>
-        Entrenadores, scouts y clubes pueden encontrarte usando filtros por edad,
-        posición y zona. Tú decides qué muestras y cómo.
-      </p>
-    </div>
-  </div>
-</section>
-
-
+  </section>
 
   <!-- PROBLEM / SOLUTION -->
   <section class="problem-section" id="problem-section">
@@ -4567,106 +4218,5 @@ signup_success_close: 'Close',
 })();
 
   </script>
-  <script>
-  // Slider de fondo para "Pensado para ti"
-  document.addEventListener("DOMContentLoaded", function () {
-    const slides = document.querySelectorAll(".hero-pensado-slide");
-    if (!slides.length) return;
-
-    let current = 0;
-
-    setInterval(() => {
-      // Quitar active de la actual
-      slides[current].classList.remove("active");
-      // Pasar a la siguiente
-      current = (current + 1) % slides.length;
-      // Activar la nueva
-      slides[current].classList.add("active");
-    }, 6000); // cambia cada 6 segundos (ajusta si quieres)
-  });
-</script>
-  <script>
-  // Carrusel de fondo en "PENSADO PARA TI"
-  document.addEventListener('DOMContentLoaded', function () {
-    const slides = document.querySelectorAll('.hero-pensado-slide');
-    const dots = document.querySelectorAll('.hero-pensado-dot');
-    if (!slides.length) return;
-
-    let current = 0;
-    const changeSlide = (index) => {
-      slides.forEach((s, i) => {
-        s.classList.toggle('active', i === index);
-      });
-      dots.forEach((d, i) => {
-        d.classList.toggle('active', i === index);
-      });
-      current = index;
-    };
-
-    // Auto cambio cada 6 segundos
-    let interval = setInterval(() => {
-      const next = (current + 1) % slides.length;
-      changeSlide(next);
-    }, 6000);
-
-    // Click en los puntos
-    dots.forEach((dot) => {
-      dot.addEventListener('click', () => {
-        const index = Number(dot.dataset.slide);
-        changeSlide(index);
-        clearInterval(interval);
-        interval = setInterval(() => {
-          const next = (current + 1) % slides.length;
-          changeSlide(next);
-        }, 6000);
-      });
-    });
-  });
-</script>
-  <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const slidesContainer = document.querySelector('.ppt-slides');
-    const slides = document.querySelectorAll('.ppt-slide');
-    const dots = document.querySelectorAll('.ppt-dots button');
-
-    if (!slidesContainer || !slides.length) return;
-
-    let current = 0;
-
-    function goToSlide(index) {
-      if (index < 0) index = slides.length - 1;
-      if (index >= slides.length) index = 0;
-
-      slidesContainer.style.transform = 'translateY(-' + (index * 100) + 'vh)';
-      dots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === index);
-      });
-
-      current = index;
-    }
-
-    // Auto-cambio cada 7 segundos
-    let interval = setInterval(() => {
-      goToSlide(current + 1);
-    }, 7000);
-
-    // Click en los puntos
-    dots.forEach((dot) => {
-      dot.addEventListener('click', () => {
-        const index = Number(dot.dataset.slide);
-        goToSlide(index);
-
-        // Reiniciar el intervalo para que no cambie justo después de hacer click
-        clearInterval(interval);
-        interval = setInterval(() => {
-          goToSlide(current + 1);
-        }, 7000);
-      });
-    });
-
-    // Por si acaso, empezamos en la slide 0
-    goToSlide(0);
-  });
-</script>
 </body>
 </html>
