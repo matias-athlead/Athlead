@@ -2329,18 +2329,18 @@
   z-index: -1;
 }
 
+/* Fondo de cada diapositiva: CAMBIA los nombres de archivo por los tuyos */
 .ppt-slide-1::before {
-  background-image: url("images/campo1.jpg");
+  background-image: url("images/slide-1.jpg");
 }
 
 .ppt-slide-2::before {
-  background-image: url("images/jugadas2.png");
+  background-image: url("images/slide-2.jpg");
 }
 
 .ppt-slide-3::before {
-  background-image: url("images/celebracion3.jpg");
+  background-image: url("images/slide-3.jpg");
 }
-
 
 /* Tipos de letra y tamaños */
 .ppt-kicker {
@@ -2406,6 +2406,78 @@
 
   .ppt-dots {
     right: 16px;
+  }
+}
+/* Sección de las diapositivas */
+.ppt-section {
+  position: relative;
+}
+
+/* Cada diapositiva ocupa el alto de la ventana */
+.ppt-slide {
+  position: relative;
+  min-height: 100vh;          /* ocupa toda la pantalla */
+  display: flex;
+  align-items: center;        /* centra verticalmente el texto */
+  justify-content: center;    /* centra horizontalmente el contenedor de texto */
+  padding: 0 10%;
+  color: #ffffff;
+  overflow: hidden;
+}
+
+/* Fondo de foto de cada slide */
+.ppt-slide::before {
+  content: "";
+  position: absolute;
+  inset: 0;                   /* top:0; right:0; bottom:0; left:0; */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: brightness(0.35);   /* oscurece un poco la foto para leer bien el texto */
+  z-index: -2;
+}
+
+/* Capa de degradado oscuro encima de la foto (opcional, ayuda a que se lea mejor) */
+.ppt-slide::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(0,0,0,0.2), rgba(0,0,0,0.8));
+  z-index: -1;
+}
+
+/* Contenido de texto encima del fondo */
+.ppt-slide-content {
+  position: relative;
+  max-width: 900px;
+}
+
+/* Tagline “Pensado para ti” */
+.ppt-tagline {
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin-bottom: 1rem;
+}
+
+/* Títulos grandes */
+.ppt-slide-content h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 1.5rem;
+}
+
+/* Texto */
+.ppt-slide-content p {
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  line-height: 1.6;
+}
+
+/* RESPONSIVE móvil: un poco más de padding */
+@media (max-width: 768px) {
+  .ppt-slide {
+    padding: 0 1.5rem;
+    text-align: left;
   }
 }
 
@@ -3068,51 +3140,40 @@
     </div>
   </section>
 
-<section id="pensado-para-ti" class="ppt-hero">
-  <div class="ppt-slides">
-    <!-- SLIDE 1 – SUBE TUS JUGADAS -->
-    <section class="ppt-slide ppt-slide-1">
-      <div class="ppt-inner">
-        <h2 class="ppt-title">Sube tus jugadas 🕺</h2>
-        <p class="ppt-text">
-          Comparte tus mejores momentos: goles, asistencias, regates, robos o salidas jugando.
-          En vídeos cortos que van directos al grano.
-        </p>
-      </div>
-    </section>
-
-    <!-- SLIDE 2 – CONECTA CON EL MUNDO -->
-    <section class="ppt-slide ppt-slide-2">
-      <div class="ppt-inner">
-        <h2 class="ppt-title">Conecta con el mundo 🌍</h2>
-        <p class="ppt-text">
-          Vincula tu Instagram, TikTok o YouTube para que se vea tu evolución, tu carácter
-          y tu trabajo fuera de los 90 minutos.
-        </p>
-      </div>
-    </section>
-
-    <!-- SLIDE 3 – VISIBILIDAD REAL -->
-    <section class="ppt-slide ppt-slide-3">
-      <div class="ppt-inner">
-        <h2 class="ppt-title">Visibilidad real 🏆</h2>
-        <p class="ppt-text">
-          Entrenadores, scouts y clubes pueden encontrarte usando filtros por edad, posición y zona.
-          Tú decides qué muestras y cómo.
-        </p>
-      </div>
-    </section>
+<section id="pensado-para-ti" class="ppt-section">
+  <div class="ppt-slide ppt-slide-1">
+    <div class="ppt-slide-content">
+      <p class="ppt-tagline">PENSADO PARA TI</p>
+      <h2>Sube tus jugadas 🕺</h2>
+      <p>
+        Comparte tus mejores momentos: goles, asistencias, regates, robos o salidas jugando.
+        En vídeos cortos que van directos al grano.
+      </p>
+    </div>
   </div>
 
-  <!-- Puntos de navegación del carrusel vertical -->
-  <div class="ppt-dots">
-    <button data-slide="0" class="active"></button>
-    <button data-slide="1"></button>
-    <button data-slide="2"></button>
+  <div class="ppt-slide ppt-slide-2">
+    <div class="ppt-slide-content">
+      <p class="ppt-tagline">PENSADO PARA TI</p>
+      <h2>Conecta con el mundo 🌍</h2>
+      <p>
+        Vincula tu Instagram, TikTok o YouTube para que se vea tu evolución,
+        tu carácter y tu trabajo fuera de los 90 minutos.
+      </p>
+    </div>
+  </div>
+
+  <div class="ppt-slide ppt-slide-3">
+    <div class="ppt-slide-content">
+      <p class="ppt-tagline">PENSADO PARA TI</p>
+      <h2>Visibilidad real 🏆</h2>
+      <p>
+        Entrenadores, scouts y clubes pueden encontrarte usando filtros por edad,
+        posición y zona. Tú decides qué muestras y cómo.
+      </p>
+    </div>
   </div>
 </section>
-
-
 
 
 
