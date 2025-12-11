@@ -2140,6 +2140,116 @@
     text-align: center;
   }
 }
+    /* ===== Sección PENSADO PARA TI con fondo tipo diapositivas ===== */
+
+.hero-pensado-para-ti {
+  position: relative;
+  overflow: hidden;
+  color: #ffffff;
+  padding: 120px 0 100px;
+}
+
+/* Contenedor del fondo */
+.hero-pensado-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+
+/* Cada diapositiva */
+.hero-pensado-slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+/* La que se ve */
+.hero-pensado-slide.active {
+  opacity: 1;
+}
+
+/* Capa oscura encima de las fotos para que el texto se lea bien */
+.hero-pensado-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.85));
+  z-index: -1;
+}
+
+/* Contenido centrado y ancho máx. */
+.hero-pensado-content {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  text-align: left;
+}
+
+.hero-pensado-kicker {
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin-bottom: 16px;
+}
+
+.hero-pensado-title {
+  font-size: clamp(2.4rem, 3.5vw, 3.2rem);
+  line-height: 1.1;
+  margin-bottom: 20px;
+  font-weight: 800;
+}
+
+.hero-pensado-subtitle {
+  font-size: 1.05rem;
+  max-width: 680px;
+  opacity: 0.9;
+  margin-bottom: 40px;
+}
+
+/* Cards */
+.hero-pensado-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.hero-pensado-card {
+  background: rgba(0, 0, 0, 0.65);
+  border-radius: 24px;
+  padding: 28px 24px;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.hero-pensado-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.hero-pensado-card p {
+  font-size: 0.98rem;
+  opacity: 0.9;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .hero-pensado-para-ti {
+    padding: 90px 0 70px;
+  }
+
+  .hero-pensado-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-pensado-title {
+    font-size: 2rem;
+  }
+}
 
   </style>
 </head>
@@ -2799,43 +2909,48 @@
     </div>
   </section>
 
-  <!-- FEATURES -->
-  <section class="features" id="features">
-    <div class="section-inner">
-      <p class="section-kicker" data-i18n="features_kicker">Pensado para ti</p>
-      <h2 data-i18n="features_title">
-        Tu talento merece un escaparate mejor que un grupo de WhatsApp
-      </h2>
-      <p data-i18n="features_p">
-        Athlead convierte tus jugadas en un perfil claro, ordenado y fácil de entender para
-        cualquiera que sepa de fútbol.
-      </p>
+<!-- PENSADO PARA TI -->
+<section id="pensado-para-ti" class="hero-pensado-para-ti">
+  <!-- Fondo con diapositivas -->
+  <div class="hero-pensado-bg">
+    <div class="hero-pensado-slide active" style="background-image: url('images/pensado1.jpg');"></div>
+    <div class="hero-pensado-slide" style="background-image: url('images/pensado2.jpg');"></div>
+    <div class="hero-pensado-slide" style="background-image: url('images/pensado3.jpg');"></div>
+  </div>
 
-      <div class="features-grid">
-        <div class="feature-card">
-          <h3 data-i18n="features1_title">Sube tus jugadas 🕺</h3>
-          <p data-i18n="features1_p">
-            Comparte tus mejores momentos: goles, asistencias, regates, robos o salidas jugando. En
-            vídeos cortos que van directos al grano.
-          </p>
-        </div>
-        <div class="feature-card">
-          <h3 data-i18n="features2_title">Conecta con el mundo 🌎</h3>
-          <p data-i18n="features2_p">
-            Vincula tu Instagram, TikTok o YouTube para que se vea tu evolución, tu carácter y tu
-            trabajo fuera de los 90 minutos.
-          </p>
-        </div>
-        <div class="feature-card">
-          <h3 data-i18n="features3_title">Visibilidad real 🏆</h3>
-          <p data-i18n="features3_p">
-            Entrenadores, scouts y clubes pueden encontrarte usando filtros por edad, posición y
-            zona. Tú decides qué muestras y cómo.
-          </p>
-        </div>
+  <!-- Capa oscura para que se lea bien el texto -->
+  <div class="hero-pensado-overlay"></div>
+
+  <!-- Contenido que ya tenías -->
+  <div class="hero-pensado-content container">
+    <p class="hero-pensado-kicker">PENSADO PARA TI</p>
+    <h2 class="hero-pensado-title">
+      Tu talento merece un escaparate mejor que un grupo de WhatsApp
+    </h2>
+    <p class="hero-pensado-subtitle">
+      Athlead convierte tus jugadas en un perfil claro, ordenado y fácil de entender para cualquiera que sepa de fútbol.
+    </p>
+
+    <!-- Tus 3 tarjetas -->
+    <div class="hero-pensado-cards">
+      <div class="hero-pensado-card">
+        <h3>Sube tus jugadas 🕺</h3>
+        <p>Comparte tus mejores momentos: goles, asistencias, regates, robos o salidas jugando. En vídeos cortos que van directos al grano.</p>
+      </div>
+
+      <div class="hero-pensado-card">
+        <h3>Conecta con el mundo 🌍</h3>
+        <p>Vincula tu Instagram, TikTok o YouTube para que se vea tu evolución, tu carácter y tu trabajo fuera de los 90 minutos.</p>
+      </div>
+
+      <div class="hero-pensado-card">
+        <h3>Visibilidad real 🏆</h3>
+        <p>Entrenadores, scouts y clubes pueden encontrarte usando filtros por edad, posición y zona. Tú decides qué muestras y cómo.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
 
   <!-- PROBLEM / SOLUTION -->
   <section class="problem-section" id="problem-section">
@@ -4218,5 +4333,23 @@ signup_success_close: 'Close',
 })();
 
   </script>
+  <script>
+  // Slider de fondo para "Pensado para ti"
+  document.addEventListener("DOMContentLoaded", function () {
+    const slides = document.querySelectorAll(".hero-pensado-slide");
+    if (!slides.length) return;
+
+    let current = 0;
+
+    setInterval(() => {
+      // Quitar active de la actual
+      slides[current].classList.remove("active");
+      // Pasar a la siguiente
+      current = (current + 1) % slides.length;
+      // Activar la nueva
+      slides[current].classList.add("active");
+    }, 6000); // cambia cada 6 segundos (ajusta si quieres)
+  });
+</script>
 </body>
 </html>
