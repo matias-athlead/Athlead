@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -613,7 +613,96 @@
       }
     }
 
-          /* Dropdown "Rol" en menú móvil */
+          
+/* Dropdown App (desktop) */
+.nav-item-app {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-item-app .nav-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 210px;
+  margin-top: 10px;
+  background: rgba(15, 23, 42, 0.98);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 14px;
+  padding: 10px;
+  display: none;
+  z-index: 1200;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.35);
+}
+
+.nav-item-app .nav-dropdown a {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 10px;
+  color: rgba(255,255,255,0.92);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.nav-item-app .nav-dropdown a:hover {
+  background: rgba(255,255,255,0.08);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .nav-item-app:hover .nav-dropdown {
+    display: block;
+  }
+}
+
+/* Dropdown App (móvil) */
+.mobile-menu-app {
+  margin-top: 12px;
+}
+
+.mobile-app-title {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  font-weight: 800;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  text-align: left;
+}
+
+.mobile-app-arrow {
+  transition: transform 0.2s ease;
+}
+
+.mobile-app-submenu {
+  display: none;
+  padding: 6px 0 12px;
+}
+
+.mobile-app-submenu a {
+  display: block;
+  padding: 10px 0;
+  text-decoration: none;
+  color: rgba(255,255,255,0.92);
+  font-weight: 700;
+}
+
+.mobile-menu-app.open .mobile-app-submenu {
+  display: block;
+}
+
+.mobile-menu-app.open .mobile-app-arrow {
+  transform: rotate(180deg);
+}
+
+
+/* Dropdown "Rol" en menú móvil */
       .mobile-menu-role {
         margin-top: 12px;
       }
@@ -2147,11 +2236,15 @@
   <!-- BANNER COOKIES -->
   <div id="cookie-banner" class="cookie-banner">
     <div class="cookie-banner-inner">
-      <h3 class="cookie-title" data-i18n="cookie_title">Tu privacidad es importante</h3>
-      <p class="cookie-text" data-i18n="cookie_text">Usamos cookies esenciales para que la web funcione correctamente y, de forma opcional, cookies de analítica para entender cómo se usa Athlead y mejorar la experiencia. Puedes aceptar todas, solo las esenciales o rechazarlas.</p>
+      <h3 class="cookie-title">Tu privacidad es importante</h3>
+      <p class="cookie-text">
+        Usamos cookies esenciales para que la web funcione correctamente y, de forma opcional,
+        cookies de analítica para entender cómo se usa Athlead y mejorar la experiencia.
+        Puedes aceptar todas, solo las esenciales o rechazarlas.
+      </p>
 
       <div class="cookie-buttons">
-        <button type="button" id="cookie-accept-all" class="cookie-btn cookie-btn-primary" data-i18n="cookie_acceptAll">
+        <button type="button" id="cookie-accept-all" class="cookie-btn cookie-btn-primary">
           Aceptar todas
         </button>
         <button
@@ -2161,7 +2254,7 @@
         >
           Aceptar solo esenciales
         </button>
-        <button type="button" id="cookie-reject" class="cookie-btn cookie-btn-text" data-i18n="cookie_reject">
+        <button type="button" id="cookie-reject" class="cookie-btn cookie-btn-text">
           Rechazar
         </button>
       </div>
@@ -2171,7 +2264,6 @@
         type="button"
         class="cookie-more legal-link"
         data-modal="cookies"
-        data-i18n="cookie_more"
       >
         Más información sobre cookies
       </button>
@@ -2201,7 +2293,33 @@
       <!-- Fin Dropdown Rol -->
 
       <a href="index.html#signup" data-i18n="nav_signup">Regístrate</a>
+      <!-- Dropdown App -->
+      <div class="nav-item-app">
+        <button class="nav-dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false">
+          <span data-i18n="nav_app">App</span>
+          <span class="role-arrow">▾</span>
+        </button>
+        <div class="nav-dropdown">
+          <a href="caracteristicas-app.html" data-i18n="nav_app_features">Características</a>
+          <a href="nuestro-deporte.html" data-i18n="nav_app_sport">Nuestro deporte</a>
+          <a href="subscripciones.html" data-i18n="nav_app_subscriptions">Subscripciones</a>
+        </div>
+      </div>
+
       <a href="index.html#features" data-i18n="nav_features">Características</a>
+      <!-- App en móvil -->
+      <div class="mobile-menu-app" id="mobileAppMenu">
+        <button type="button" class="mobile-app-title">
+          <span data-i18n="nav_app">App</span>
+          <span class="mobile-app-arrow">▾</span>
+        </button>
+        <div class="mobile-app-submenu">
+          <a href="caracteristicas-app.html" data-i18n="nav_app_features">Características</a>
+          <a href="nuestro-deporte.html" data-i18n="nav_app_sport">Nuestro deporte</a>
+          <a href="subscripciones.html" data-i18n="nav_app_subscriptions">Subscripciones</a>
+        </div>
+      </div>
+
       <a href="index.html#faq" data-i18n="nav_faq">FAQ</a>
       <a href="index.html#contact" data-i18n="nav_contact">Contacto</a>
     </nav>
@@ -3095,7 +3213,11 @@
         nav_role: 'Rol',
         nav_role_player: 'Jugador',
        nav_role_club: 'Club',
-       nav_role_coach: 'Entrenador',
+               nav_app: 'App',
+        nav_app_features: 'Características',
+        nav_app_sport: 'Nuestro deporte',
+        nav_app_subscriptions: 'Subscripciones',
+nav_role_coach: 'Entrenador',
 
 
         hero_badge: 'Fútbol amateur · España',
@@ -3276,19 +3398,7 @@ signup_success_close: 'Cerrar',
         footer_copyright: '© 2025 Athlead. Todos los derechos reservados.',
         privacy_privacy: 'Política de Privacidad',
         privacy_terms: 'Términos y Condiciones',
-        privacy_cookies: 'Política de Cookies',
-        privacy_data: 'Protección de Datos',
-
-        footer_tagline: 'Deja que el talento hable por ti.'
-      cookie_title: "Tu privacidad es importante",
-      cookie_text: "Usamos cookies para mejorar tu experiencia, analizar el tráfico y personalizar el contenido. Puedes aceptar todas, rechazar o quedarte solo con las esenciales.",
-      cookie_acceptAll: "Aceptar todas",
-      cookie_acceptEssential: "Solo esenciales",
-      cookie_reject: "Rechazar",
-      cookie_more: "Más información sobre cookies",
-
-    },
-    en: {
+        pren: {
         page_title: 'Athlead - Football App | Let your talent speak for you',
 
         nav_about: 'About',
@@ -3301,7 +3411,11 @@ signup_success_close: 'Cerrar',
         nav_role: 'Role',
         nav_role_player: 'Player',
         nav_role_club: 'Club',
-        nav_role_coach: 'Coach',
+                nav_app: 'App',
+        nav_app_features: 'App features',
+        nav_app_sport: 'Our sport',
+        nav_app_subscriptions: 'Subscriptions',
+nav_role_coach: 'Coach',
 
 
         hero_badge: 'Amateur football · Spain',
@@ -3488,15 +3602,14 @@ signup_success_close: 'Close',
         privacy_data: 'Data Protection',
 
         footer_tagline: 'Let your talent speak for you.'
-      cookie_title: "Your privacy matters",
-      cookie_text: "We use cookies to improve your experience, analyze traffic and personalize content. You can accept all, reject, or keep only essential cookies.",
-      cookie_acceptAll: "Accept all",
-      cookie_acceptEssential: "Essential only",
-      cookie_reject: "Reject",
-      cookie_more: "More information about cookies",
+      }
+    ions',
+        privacy_cookies: 'Cookie Policy',
+        privacy_data: 'Data Protection',
 
-    }
-  };
+        footer_tagline: 'Let your talent speak for you.'
+      }
+    };
 
     function applyTranslations(lang) {
       const dict = i18n[lang] || i18n.es;
@@ -3660,17 +3773,11 @@ signup_success_close: 'Close',
       setInterval(updateCountdown, 1000);
     })();
 
-    // Ocultar header en scroll (solo desktop para evitar molestias en móvil)
+    // Ocultar header en scroll
     let lastScroll = 0;
     const header = document.querySelector('.header');
 
     window.addEventListener('scroll', () => {
-      if (!header) return;
-      // En móvil/tablet mantenemos el header estable
-      if (window.innerWidth < 1024) {
-        header.classList.remove('hide-header');
-        return;
-      }
       const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
       if (currentScroll > lastScroll && currentScroll > 80) {
         header.classList.add('hide-header');
@@ -3680,7 +3787,7 @@ signup_success_close: 'Close',
       lastScroll = currentScroll;
     });
 
-// Carrusel de vídeos desktop
+    // Carrusel de vídeos desktop
     const videosTrack = document.querySelector('.videos-track');
     const prevBtn = document.querySelector('.videos-arrow.prev');
     const nextBtn = document.querySelector('.videos-arrow.next');
@@ -3973,125 +4080,60 @@ signup_success_close: 'Close',
         }
           // ===== MODAL LEGAL =====
   const legalTexts = {
-      es: {
-        legal: `
-          <h3>Aviso legal</h3>
-          <p><strong>Titular del sitio web:</strong> Athlead (en adelante, “Athlead”).</p>
-          <p><strong>Contacto:</strong> <a href="mailto:info@athlead.app">info@athlead.app</a></p>
-          <p>Este sitio web tiene carácter informativo y promocional sobre la aplicación Athlead.</p>
-          <h4>Condiciones de uso</h4>
-          <p>El acceso y uso de este sitio web atribuye la condición de usuario e implica la aceptación de estas condiciones. El usuario se compromete a un uso diligente, lícito y respetuoso.</p>
-          <h4>Propiedad intelectual</h4>
-          <p>Los contenidos, marcas, logotipos, diseños, textos, imágenes y código fuente están protegidos por la normativa de propiedad intelectual e industrial. Queda prohibida su reproducción, distribución o comunicación pública sin autorización.</p>
-          <h4>Responsabilidad</h4>
-          <p>Athlead no garantiza la ausencia de errores ni la disponibilidad continua del sitio web. No se hace responsable de daños derivados del uso del sitio, salvo en los casos legalmente exigibles.</p>
-        `,
-        privacy: `
-          <h3>Política de privacidad</h3>
-          <p><strong>Responsable del tratamiento:</strong> Athlead.</p>
-          <p><strong>Contacto:</strong> <a href="mailto:info@athlead.app">info@athlead.app</a></p>
-          <h4>Datos que tratamos</h4>
-          <ul>
-            <li>Datos de contacto (por ejemplo, correo electrónico) si nos escribes o te registras en lista de espera.</li>
-            <li>Datos técnicos (IP, navegador, eventos de navegación) para seguridad y analítica.</li>
-          </ul>
-          <h4>Finalidades</h4>
-          <ul>
-            <li>Atender solicitudes enviadas a través de formularios.</li>
-            <li>Gestionar la lista de espera y comunicaciones relacionadas con el lanzamiento.</li>
-            <li>Mejorar el sitio web y medir su rendimiento (analítica).</li>
-          </ul>
-          <h4>Base jurídica</h4>
-          <ul>
-            <li><strong>Consentimiento</strong> (por ejemplo, suscripción a la lista de espera).</li>
-            <li><strong>Interés legítimo</strong> en seguridad, prevención de fraude y mejora del servicio.</li>
-          </ul>
-          <h4>Conservación</h4>
-          <p>Conservaremos los datos el tiempo necesario para la finalidad correspondiente y, posteriormente, durante los plazos legales aplicables.</p>
-          <h4>Destinatarios y encargados</h4>
-          <p>Podemos utilizar proveedores de alojamiento, analítica y correo. Dichos proveedores actúan como encargados del tratamiento bajo contrato.</p>
-          <h4>Derechos</h4>
-          <p>Puedes ejercer tus derechos de acceso, rectificación, supresión, oposición, limitación y portabilidad escribiendo a <a href="mailto:info@athlead.app">info@athlead.app</a>. También puedes reclamar ante la autoridad de control competente.</p>
-        `,
-        terms: `
-          <h3>Términos y condiciones</h3>
-          <p>Estos términos regulan el acceso y uso del sitio web y los formularios asociados.</p>
-          <h4>Uso permitido</h4>
-          <p>El usuario se compromete a no utilizar el sitio con fines ilícitos, ni a introducir contenido malicioso.</p>
-          <h4>Enlaces a terceros</h4>
-          <p>El sitio puede contener enlaces a sitios de terceros. Athlead no es responsable de sus contenidos o políticas.</p>
-          <h4>Modificaciones</h4>
-          <p>Athlead puede modificar estos términos cuando sea necesario. La versión vigente será la publicada en el sitio.</p>
-        `,
-        cookies: `
-          <h3>Política de cookies</h3>
-          <p>Utilizamos cookies y tecnologías similares para: (i) funcionamiento básico del sitio, (ii) seguridad, y (iii) analítica, cuando proceda.</p>
-          <h4>¿Qué son las cookies?</h4>
-          <p>Son pequeños archivos que se almacenan en tu dispositivo y permiten reconocer tu navegador o recordar preferencias.</p>
-          <h4>Gestión de cookies</h4>
-          <p>Puedes aceptar, rechazar o configurar cookies desde este aviso y también desde la configuración de tu navegador.</p>
-        `
-      },
-      en: {
-        legal: `
-          <h3>Legal notice</h3>
-          <p><strong>Website owner:</strong> Athlead (“Athlead”).</p>
-          <p><strong>Contact:</strong> <a href="mailto:info@athlead.app">info@athlead.app</a></p>
-          <p>This website is for informational and promotional purposes regarding the Athlead application.</p>
-          <h4>Terms of use</h4>
-          <p>Accessing and using this website grants you “user” status and implies acceptance of these terms. You agree to use the site lawfully and respectfully.</p>
-          <h4>Intellectual property</h4>
-          <p>Content, trademarks, logos, designs, text, images and source code are protected by intellectual property laws. No reproduction or redistribution without permission.</p>
-          <h4>Liability</h4>
-          <p>Athlead does not guarantee error-free operation or uninterrupted availability. Athlead is not liable for damages arising from use of the website except where legally required.</p>
-        `,
-        privacy: `
-          <h3>Privacy policy</h3>
-          <p><strong>Data controller:</strong> Athlead.</p>
-          <p><strong>Contact:</strong> <a href="mailto:info@athlead.app">info@athlead.app</a></p>
-          <h4>Data we process</h4>
-          <ul>
-            <li>Contact data (e.g., email) when you contact us or join the waitlist.</li>
-            <li>Technical data (IP, browser, navigation events) for security and analytics.</li>
-          </ul>
-          <h4>Purposes</h4>
-          <ul>
-            <li>Respond to requests submitted through forms.</li>
-            <li>Manage the waitlist and launch-related communications.</li>
-            <li>Improve the website and measure performance (analytics).</li>
-          </ul>
-          <h4>Legal bases</h4>
-          <ul>
-            <li><strong>Consent</strong> (e.g., joining the waitlist).</li>
-            <li><strong>Legitimate interests</strong> for security, fraud prevention and service improvement.</li>
-          </ul>
-          <h4>Retention</h4>
-          <p>We keep data as long as needed for the relevant purpose and afterwards for applicable legal retention periods.</p>
-          <h4>Recipients / processors</h4>
-          <p>We may use hosting, analytics and email providers acting as processors under appropriate agreements.</p>
-          <h4>Your rights</h4>
-          <p>You may exercise your rights of access, rectification, erasure, objection, restriction and portability by emailing <a href="mailto:info@athlead.app">info@athlead.app</a>. You may also lodge a complaint with the competent supervisory authority.</p>
-        `,
-        terms: `
-          <h3>Terms &amp; Conditions</h3>
-          <p>These terms govern access to and use of the website and related forms.</p>
-          <h4>Acceptable use</h4>
-          <p>You agree not to use the website for unlawful purposes or to submit malicious content.</p>
-          <h4>Third-party links</h4>
-          <p>The website may contain links to third-party sites. Athlead is not responsible for their content or policies.</p>
-          <h4>Changes</h4>
-          <p>Athlead may update these terms as needed. The current version is the one published on the website.</p>
-        `,
-        cookies: `
-          <h3>Cookie policy</h3>
-          <p>We use cookies and similar technologies for: (i) essential website functionality, (ii) security, and (iii) analytics where applicable.</p>
-          <h4>What are cookies?</h4>
-          <p>Small files stored on your device that help recognize your browser or remember preferences.</p>
-          <h4>Managing cookies</h4>
-          <p>You can accept, reject or configure cookies from this banner and also via your browser settings.</p>
-        `
-      }
-    };
+    privacy: {
+      title: 'Política de Privacidad',
+      body: `
+        <p>En Athlead tratamos tus datos personales únicamente para gestionar tu registro, 
+        mantenerte informado sobre el lanzamiento de la aplicación y, en su caso, 
+        ponernos en contacto contigo para oportunidades relacionadas con la plataforma.</p>
+
+        <p>No compartimos tus datos con terceros ajenos a Athlead salvo obligación legal. 
+        Puedes solicitar en cualquier momento el acceso, rectificación o eliminación de 
+        tu información escribiendo a nuestro correo de contacto.</p>
+
+        <p>El uso de la web implica la aceptación de esta política de privacidad.</p>
+      `
+    },
+    terms: {
+      title: 'Términos y Condiciones',
+      body: `
+        <p>El acceso a esta web es gratuito y tiene como objetivo presentarte Athlead y 
+        recopilar registros de interés en la aplicación.</p>
+
+        <p>Al inscribirte, te comprometes a proporcionar información veraz y a utilizar la 
+        plataforma de forma responsable y respetuosa. Athlead podrá modificar o interrumpir 
+        temporalmente la web o funcionalidades sin previo aviso.</p>
+
+        <p>Estos términos podrán actualizarse en cualquier momento. Te recomendamos revisarlos 
+        de forma periódica.</p>
+      `
+    },
+    cookies: {
+      title: 'Política de Cookies',
+      body: `
+        <p>Podemos utilizar cookies técnicas y de analítica básica para mejorar la experiencia 
+        de navegación y entender de forma agregada cómo se utiliza la web.</p>
+
+        <p>En ningún caso utilizamos cookies para elaborar perfiles individuales ni para mostrar 
+        publicidad personalizada. Puedes configurar o bloquear las cookies desde los ajustes 
+        de tu navegador.</p>
+      `
+    },
+    data: {
+      title: 'Protección de Datos',
+      body: `
+        <p>Los datos que nos facilitas se almacenan de forma segura y se conservan únicamente 
+        durante el tiempo necesario para la finalidad con la que fueron recogidos.</p>
+
+        <p>Como persona usuaria tienes derecho a acceder, rectificar, suprimir, limitar u 
+        oponerte al tratamiento de tus datos, así como a solicitar la portabilidad cuando 
+        corresponda.</p>
+
+        <p>Si tienes cualquier duda sobre cómo protegemos tu información, puedes escribirnos 
+        al correo de contacto indicado en la web.</p>
+      `
+    }
+  };
 
   const legalModal    = document.getElementById('legal-modal');
   const legalTitleEl  = document.getElementById('legal-modal-title');
@@ -4100,14 +4142,9 @@ signup_success_close: 'Close',
   const legalOverlay  = legalModal ? legalModal.querySelector('.legal-modal-overlay') : null;
 
   function openLegalModal(key) {
-    if (!legalModal) return;
-    const dict = (legalTexts[lang] || legalTexts.es);
-    const titles = (lang === 'en')
-      ? { legal: 'Legal notice', privacy: 'Privacy policy', terms: 'Terms & Conditions', cookies: 'Cookie policy' }
-      : { legal: 'Aviso legal', privacy: 'Política de privacidad', terms: 'Términos y condiciones', cookies: 'Política de cookies' };
-
-    legalTitleEl.textContent = titles[key] || titles.legal;
-    legalBodyEl.innerHTML    = dict[key] || '<p>Contenido no disponible.</p>';
+    if (!legalModal || !legalTexts[key]) return;
+    legalTitleEl.textContent = legalTexts[key].title;
+    legalBodyEl.innerHTML    = legalTexts[key].body;
     legalModal.classList.add('open');
   }
 
@@ -4153,6 +4190,51 @@ signup_success_close: 'Close',
         submenu.classList.toggle('open');
         toggle.classList.toggle('open');
       });
+
+    // -----------------------------
+    // Dropdown "App" (desktop) - igual que Rol
+    // -----------------------------
+    (function () {
+      const appItem = document.querySelector('.nav-item-app');
+      if (!appItem) return;
+
+      const toggle = appItem.querySelector('.nav-dropdown-toggle');
+      const menu = appItem.querySelector('.nav-dropdown');
+      if (!toggle || !menu) return;
+
+      const close = () => {
+        menu.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      };
+      const open = () => {
+        menu.classList.add('open');
+        toggle.setAttribute('aria-expanded', 'true');
+      };
+
+      toggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        menu.classList.contains('open') ? close() : open();
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!appItem.contains(e.target)) close();
+      });
+    })();
+
+    // -----------------------------
+    // Dropdown "App" en menú móvil
+    // -----------------------------
+    (function () {
+      const title = document.querySelector('#mobileAppMenu .mobile-app-title');
+      const wrapper = document.getElementById('mobileAppMenu');
+      if (!title || !wrapper) return;
+
+      title.addEventListener('click', () => {
+        wrapper.classList.toggle('open');
+      });
+    })();
+
     })();
 // ==== LÓGICA PAÍS / COMUNIDAD Y PREFIJO TELÉFONO ====
 (function () {
@@ -4200,6 +4282,63 @@ signup_success_close: 'Close',
   updateCountryRelatedFields();
 })();
 // ==== ENVÍO DEL FORMULARIO + MODAL DE ÉXITO ====
+(function () {
+  const form = document.getElementById('signup-form');
+  const modal = document.getElementById('signupModal');
+  const closeBtn = document.getElementById('closeSignupModal');
+  const backdrop = document.querySelector('.signup-modal-backdrop');
+
+  if (!form || !modal) return;
+
+  const endpoint = form.getAttribute('action'); // usa tu URL de Google Script
+
+  function openModal() {
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+  if (backdrop) backdrop.addEventListener('click', closeModal);
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault(); // evita recarga de página
+        const consentCheckbox = document.getElementById('signup-consent');
+    if (consentCheckbox && !consentCheckbox.checked) {
+      alert(
+        t('signup_consent_error') ||
+          'Debes aceptar las políticas para poder registrarte.'
+      );
+      return;
+    }
+
+
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          Accept: 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        form.reset();
+        openModal();
+      } else {
+        openModal(); // si falla el script, igualmente mostramos el modal
+      }
+    } catch (err) {
+      openModal(); // error de red
+    }
+  });
+})();
 // ==== MODAL DE ÉXITO AL ENVIAR EL FORMULARIO ====
 (function () {
   const form = document.getElementById('signup-form');
