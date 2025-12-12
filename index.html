@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -263,11 +263,13 @@
     }
 
     /* Mostrar dropdown al pasar el ratón en escritorio */
-    @media (hover: hover) {
-      .nav-item-role:hover .nav-dropdown {
-        display: block;
-      }
-    }
+@media (hover: hover) {
+  .nav-item-role:hover .nav-dropdown,
+  .nav-item-app:hover .nav-dropdown {
+    display: block;
+  }
+}
+
 
     /* Selector de idioma en la barra */
     .lang-switcher {
@@ -1673,7 +1675,53 @@
       .who-we-are p {
         font-size: 15px;
       }
+   
+      /* Dropdown "App" en menú móvil */
+.mobile-menu-app {
+  margin-top: 12px;
+}
+
+.mobile-app-title {
+  width: 100%;
+  padding: 10px 0;
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.mobile-app-arrow {
+  font-size: 13px;
+  transition: transform 0.2s ease;
+}
+
+.mobile-app-submenu {
+  display: none;
+  padding-left: 8px;
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.mobile-app-submenu a {
+  display: block;
+  padding: 8px 0;
+  font-size: 15px;
+  border: none;
+}
+
+.mobile-app-submenu.open {
+  display: block;
+}
+
+.mobile-app-title.open .mobile-app-arrow {
+  transform: rotate(180deg);
+}
+
     }
+    
 
     @media (min-width: 1024px) {
       .hero-section {
@@ -2208,6 +2256,20 @@
       <a href="index.html#faq" data-i18n="nav_faq">FAQ</a>
       <a href="index.html#contact" data-i18n="nav_contact">Contacto</a>
     </nav>
+    <!-- Dropdown App -->
+<div class="nav-item-app">
+  <button class="nav-dropdown-toggle" type="button">
+    <span data-i18n="nav_app">App</span>
+    <span class="nav-dropdown-arrow">▾</span>
+  </button>
+  <div class="nav-dropdown">
+    <a href="caracteristicas-app.html" data-i18n="nav_app_features">Características</a>
+    <a href="nuestro-deporte.html" data-i18n="nav_app_sport">Nuestro deporte</a>
+    <a href="subscripciones.html" data-i18n="nav_app_subscriptions">Suscripciones</a>
+  </div>
+</div>
+<!-- Fin Dropdown App -->
+
 
     <div class="header-actions">
       <!-- Selector de idioma -->
@@ -2252,6 +2314,21 @@
         </div>
       </div>
       <!-- Fin Rol móvil -->
+
+      <!-- App en móvil -->
+<div class="mobile-menu-app">
+  <button type="button" class="mobile-app-title">
+    <span data-i18n="nav_app">App</span>
+    <span class="mobile-app-arrow">▾</span>
+  </button>
+  <div class="mobile-app-submenu">
+    <a href="caracteristicas-app.html" data-i18n="nav_app_features">Características</a>
+    <a href="nuestro-deporte.html" data-i18n="nav_app_sport">Nuestro deporte</a>
+    <a href="subscripciones.html" data-i18n="nav_app_subscriptions">Suscripciones</a>
+  </div>
+</div>
+<!-- Fin App móvil -->
+
 
       <a href="index.html#signup" data-i18n="nav_signup">Regístrate</a>
       <a href="index.html#features" data-i18n="nav_features">Características</a>
@@ -3099,6 +3176,11 @@
         nav_role_player: 'Jugador',
        nav_role_club: 'Club',
        nav_role_coach: 'Entrenador',
+        nav_app: 'App',
+        nav_app_features: 'Características',
+        nav_app_sport: 'Nuestro deporte',
+        nav_app_subscriptions: 'Suscripciones',
+
 
 
         hero_badge: 'Fútbol amateur · España',
@@ -3299,6 +3381,10 @@ signup_success_close: 'Cerrar',
         nav_role_player: 'Player',
         nav_role_club: 'Club',
         nav_role_coach: 'Coach',
+        nav_app: 'App',
+        nav_app_features: 'Features',
+        nav_app_sport: 'Our sport',
+        nav_app_subscriptions: 'Subscriptions',
 
 
         hero_badge: 'Amateur football · Spain',
@@ -3868,6 +3954,48 @@ signup_success_close: 'Close',
         e.stopPropagation();
         menu.classList.toggle('open');
       });
+
+      // Dropdown "App" escritorio (hover + click)
+(function () {
+  const appItem = document.querySelector('.nav-item-app');
+  if (!appItem) return;
+
+  const toggle = appItem.querySelector('.nav-dropdown-toggle');
+  const menu = appItem.querySelector('.nav-dropdown');
+  let hideTimeout;
+
+  function openMenu() {
+    clearTimeout(hideTimeout);
+    menu.classList.add('open');
+  }
+
+  function closeMenu() {
+    hideTimeout = setTimeout(() => {
+      menu.classList.remove('open');
+    }, 120);
+  }
+
+  // Mostrar al pasar el ratón (solo dispositivos con hover)
+  if (window.matchMedia('(hover: hover)').matches) {
+    appItem.addEventListener('mouseenter', openMenu);
+    appItem.addEventListener('mouseleave', closeMenu);
+  }
+
+  // Toggle por click (útil también en táctiles)
+  toggle.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    menu.classList.toggle('open');
+  });
+
+  // Cerrar al hacer click fuera
+  document.addEventListener('click', (e) => {
+    if (!appItem.contains(e.target)) {
+      menu.classList.remove('open');
+    }
+  });
+})();
+
         // ===== GESTIÓN DE COOKIES =====
   const COOKIE_KEY = 'athlead_cookie_consent';
   const cookieBanner = document.getElementById('cookie-banner');
@@ -4068,6 +4196,19 @@ signup_success_close: 'Close',
         toggle.classList.toggle('open');
       });
     })();
+
+    // Dropdown "App" en menú móvil
+(function () {
+  const toggle = document.querySelector('.mobile-app-title');
+  const submenu = document.querySelector('.mobile-app-submenu');
+  if (!toggle || !submenu) return;
+
+  toggle.addEventListener('click', () => {
+    submenu.classList.toggle('open');
+    toggle.classList.toggle('open');
+  });
+})();
+
 // ==== LÓGICA PAÍS / COMUNIDAD Y PREFIJO TELÉFONO ====
 (function () {
   const countrySelect = document.getElementById('country');
