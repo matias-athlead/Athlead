@@ -613,96 +613,7 @@
       }
     }
 
-          
-/* Dropdown App (desktop) */
-.nav-item-app {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.nav-item-app .nav-dropdown {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  min-width: 210px;
-  margin-top: 10px;
-  background: rgba(15, 23, 42, 0.98);
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 14px;
-  padding: 10px;
-  display: none;
-  z-index: 1200;
-  box-shadow: 0 16px 40px rgba(0,0,0,0.35);
-}
-
-.nav-item-app .nav-dropdown a {
-  display: block;
-  padding: 10px 12px;
-  border-radius: 10px;
-  color: rgba(255,255,255,0.92);
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.nav-item-app .nav-dropdown a:hover {
-  background: rgba(255,255,255,0.08);
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .nav-item-app:hover .nav-dropdown {
-    display: block;
-  }
-}
-
-/* Dropdown App (móvil) */
-.mobile-menu-app {
-  margin-top: 12px;
-}
-
-.mobile-app-title {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 0;
-  font-weight: 800;
-  cursor: pointer;
-  background: transparent;
-  border: 0;
-  color: inherit;
-  text-align: left;
-}
-
-.mobile-app-arrow {
-  transition: transform 0.2s ease;
-}
-
-.mobile-app-submenu {
-  display: none;
-  padding: 6px 0 12px;
-}
-
-.mobile-app-submenu a {
-  display: block;
-  padding: 10px 0;
-  text-decoration: none;
-  color: rgba(255,255,255,0.92);
-  font-weight: 700;
-}
-
-.mobile-menu-app.open .mobile-app-submenu {
-  display: block;
-}
-
-.mobile-menu-app.open .mobile-app-arrow {
-  transform: rotate(180deg);
-}
-
-
-/* Dropdown "Rol" en menú móvil */
+          /* Dropdown "Rol" en menú móvil */
       .mobile-menu-role {
         margin-top: 12px;
       }
@@ -2293,33 +2204,7 @@
       <!-- Fin Dropdown Rol -->
 
       <a href="index.html#signup" data-i18n="nav_signup">Regístrate</a>
-      <!-- Dropdown App -->
-      <div class="nav-item-app">
-        <button class="nav-dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false">
-          <span data-i18n="nav_app">App</span>
-          <span class="role-arrow">▾</span>
-        </button>
-        <div class="nav-dropdown">
-          <a href="caracteristicas-app.html" data-i18n="nav_app_features">Características</a>
-          <a href="nuestro-deporte.html" data-i18n="nav_app_sport">Nuestro deporte</a>
-          <a href="subscripciones.html" data-i18n="nav_app_subscriptions">Subscripciones</a>
-        </div>
-      </div>
-
       <a href="index.html#features" data-i18n="nav_features">Características</a>
-      <!-- App en móvil -->
-      <div class="mobile-menu-app" id="mobileAppMenu">
-        <button type="button" class="mobile-app-title">
-          <span data-i18n="nav_app">App</span>
-          <span class="mobile-app-arrow">▾</span>
-        </button>
-        <div class="mobile-app-submenu">
-          <a href="caracteristicas-app.html" data-i18n="nav_app_features">Características</a>
-          <a href="nuestro-deporte.html" data-i18n="nav_app_sport">Nuestro deporte</a>
-          <a href="subscripciones.html" data-i18n="nav_app_subscriptions">Subscripciones</a>
-        </div>
-      </div>
-
       <a href="index.html#faq" data-i18n="nav_faq">FAQ</a>
       <a href="index.html#contact" data-i18n="nav_contact">Contacto</a>
     </nav>
@@ -3213,11 +3098,7 @@
         nav_role: 'Rol',
         nav_role_player: 'Jugador',
        nav_role_club: 'Club',
-               nav_app: 'App',
-        nav_app_features: 'Características',
-        nav_app_sport: 'Nuestro deporte',
-        nav_app_subscriptions: 'Subscripciones',
-nav_role_coach: 'Entrenador',
+       nav_role_coach: 'Entrenador',
 
 
         hero_badge: 'Fútbol amateur · España',
@@ -3398,7 +3279,13 @@ signup_success_close: 'Cerrar',
         footer_copyright: '© 2025 Athlead. Todos los derechos reservados.',
         privacy_privacy: 'Política de Privacidad',
         privacy_terms: 'Términos y Condiciones',
-        pren: {
+        privacy_cookies: 'Política de Cookies',
+        privacy_data: 'Protección de Datos',
+
+        footer_tagline: 'Deja que el talento hable por ti.'
+      },
+
+      en: {
         page_title: 'Athlead - Football App | Let your talent speak for you',
 
         nav_about: 'About',
@@ -3411,11 +3298,7 @@ signup_success_close: 'Cerrar',
         nav_role: 'Role',
         nav_role_player: 'Player',
         nav_role_club: 'Club',
-                nav_app: 'App',
-        nav_app_features: 'App features',
-        nav_app_sport: 'Our sport',
-        nav_app_subscriptions: 'Subscriptions',
-nav_role_coach: 'Coach',
+        nav_role_coach: 'Coach',
 
 
         hero_badge: 'Amateur football · Spain',
@@ -3598,12 +3481,6 @@ signup_success_close: 'Close',
         footer_copyright: '© 2025 Athlead. All rights reserved.',
         privacy_privacy: 'Privacy Policy',
         privacy_terms: 'Terms & Conditions',
-        privacy_cookies: 'Cookie Policy',
-        privacy_data: 'Data Protection',
-
-        footer_tagline: 'Let your talent speak for you.'
-      }
-    ions',
         privacy_cookies: 'Cookie Policy',
         privacy_data: 'Data Protection',
 
@@ -4190,51 +4067,6 @@ signup_success_close: 'Close',
         submenu.classList.toggle('open');
         toggle.classList.toggle('open');
       });
-
-    // -----------------------------
-    // Dropdown "App" (desktop) - igual que Rol
-    // -----------------------------
-    (function () {
-      const appItem = document.querySelector('.nav-item-app');
-      if (!appItem) return;
-
-      const toggle = appItem.querySelector('.nav-dropdown-toggle');
-      const menu = appItem.querySelector('.nav-dropdown');
-      if (!toggle || !menu) return;
-
-      const close = () => {
-        menu.classList.remove('open');
-        toggle.setAttribute('aria-expanded', 'false');
-      };
-      const open = () => {
-        menu.classList.add('open');
-        toggle.setAttribute('aria-expanded', 'true');
-      };
-
-      toggle.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        menu.classList.contains('open') ? close() : open();
-      });
-
-      document.addEventListener('click', (e) => {
-        if (!appItem.contains(e.target)) close();
-      });
-    })();
-
-    // -----------------------------
-    // Dropdown "App" en menú móvil
-    // -----------------------------
-    (function () {
-      const title = document.querySelector('#mobileAppMenu .mobile-app-title');
-      const wrapper = document.getElementById('mobileAppMenu');
-      if (!title || !wrapper) return;
-
-      title.addEventListener('click', () => {
-        wrapper.classList.toggle('open');
-      });
-    })();
-
     })();
 // ==== LÓGICA PAÍS / COMUNIDAD Y PREFIJO TELÉFONO ====
 (function () {
