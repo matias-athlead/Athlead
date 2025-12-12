@@ -2190,7 +2190,7 @@
       <a href="index.html#how-steps" data-i18n="nav_how">Cómo funciona</a>
 
       <!-- Dropdown App -->
-<div class="nav-item nav-item-app">
+<div class="nav-item nav-item-app nav-item-has-dropdown">
   <button class="nav-dropdown-toggle" type="button">
     <span>App</span>
     <span class="nav-dropdown-arrow">▼</span>
@@ -2204,9 +2204,8 @@
 </div>
 <!-- Fin Dropdown App -->
 
-
       <!-- Dropdown Rol -->
-      <div class="nav-item-role">
+      <div class="nav-item-role nav-item-has-dropdown">
         <button class="nav-dropdown-toggle" type="button">
           <span data-i18n="nav_role">Rol</span>
           <span class="nav-dropdown-arrow">▾</span>
@@ -2594,7 +2593,6 @@
       action="https://script.google.com/macros/s/AKfycbzJLa15-mvHbZZ4MLDJ9asjBTHCcYdMXwvs4k2DuSxOQyMej1ZhVQRjxWD9b4zhDf5aSQ/exec"
       method="POST"
       target="hidden_iframe">
-    >
       <!-- Rol -->
       <div class="form-group">
         <label for="role" data-i18n="signup_label_role">¿Eres?</label>
@@ -3853,37 +3851,49 @@ signup_success_close: 'Close',
       }
     })();
     // Dropdown "Rol" escritorio (hover + click)
-    (function () {
-      const roleItem = document.querySelector('.nav-item-role');
-      if (!roleItem) return;
+  // Dropdowns escritorio (hover + click) - Rol + App
+(function () {
+  const dropdownItems = document.querySelectorAll('.nav-item-has-dropdown');
+  if (!dropdownItems.length) return;
 
-      const toggle = roleItem.querySelector('.nav-dropdown-toggle');
-      const menu = roleItem.querySelector('.nav-dropdown');
-      let hideTimeout;
+  dropdownItems.forEach((item) => {
+    const toggle = item.querySelector('.nav-dropdown-toggle');
+    const menu = item.querySelector('.nav-dropdown');
+    if (!toggle || !menu) return;
 
-      function openMenu() {
-        clearTimeout(hideTimeout);
-        menu.classList.add('open');
-      }
+    let hideTimeout;
 
-      function closeMenu() {
-        hideTimeout = setTimeout(() => {
-          menu.classList.remove('open');
-        }, 120);
-      }
+    function openMenu() {
+      clearTimeout(hideTimeout);
+      menu.classList.add('open');
+    }
 
-      // Mostrar al pasar el ratón (solo dispositivos con hover)
-      if (window.matchMedia('(hover: hover)').matches) {
-        roleItem.addEventListener('mouseenter', openMenu);
-        roleItem.addEventListener('mouseleave', closeMenu);
-      }
+    function closeMenu() {
+      hideTimeout = setTimeout(() => {
+        menu.classList.remove('open');
+      }, 120);
+    }
 
-      // Toggle por click (útil también en táctiles)
-      toggle.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        menu.classList.toggle('open');
-      });
+    // Hover solo en dispositivos con hover
+    if (window.matchMedia('(hover: hover)').matches) {
+      item.addEventListener('mouseenter', openMenu);
+      item.addEventListener('mouseleave', closeMenu);
+    }
+
+    // Click toggle (útil también táctil)
+    toggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      menu.classList.toggle('open');
+    });
+  });
+
+  // Cerrar si clic fuera
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.nav-dropdown.open').forEach((m) => m.classList.remove('open'));
+  });
+})();
+
         // ===== GESTIÓN DE COOKIES =====
   const COOKIE_KEY = 'athlead_cookie_consent';
   const cookieBanner = document.getElementById('cookie-banner');
