@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
 
-  <!-- Favicon -->
+  <!-- Favicon (igual que index) -->
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png" />
   <link rel="shortcut icon" href="images/favicon.ico" />
@@ -13,288 +13,570 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Athlead – Nuestro deporte</title>
+  <meta name="description" content="Athlead trabaja actualmente con fútbol 11 y futsal. Dos deportes, una misma filosofía: talento real, visibilidad real." />
 
-  <meta
-    name="description"
-    content="Athlead trabaja actualmente con fútbol 11 y futsal. Dos deportes, una misma filosofía: talento real, visibilidad real."
-  />
+  <!-- Si tu index usa un CSS externo, enlázalo aquí (recomendado) -->
+  <!-- <link rel="stylesheet" href="styles.css" /> -->
 
   <style>
-    /* === ESTILOS BASE (idénticos a características-app) === */
-    :root {
-      --bg-main:#000;
-      --bg-soft:#050509;
-      --bg-card:rgba(255,255,255,.04);
-      --border-soft:rgba(255,255,255,.12);
-      --text-main:#fff;
-      --text-muted:rgba(255,255,255,.75);
+    /* ✅ Estilo compatible con un index oscuro premium.
+       Usa variables si tu index ya las tiene; si no, mantiene look Athlead. */
+    :root{
+      --bg:#000;
+      --panel: rgba(255,255,255,.04);
+      --panel2: rgba(255,255,255,.06);
+      --stroke: rgba(255,255,255,.12);
+      --text: #fff;
+      --muted: rgba(255,255,255,.78);
+      --muted2: rgba(255,255,255,.65);
+      --radius: 22px;
+      --shadow: 0 20px 60px rgba(0,0,0,.55);
+      --accent: rgba(78,205,196,.22);
+      --accent2: rgba(255,214,102,.18);
     }
 
-    * { box-sizing:border-box; margin:0; padding:0; }
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
-      background:var(--bg-main);
-      color:var(--text-main);
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      background: var(--bg);
+      color: var(--text);
     }
+    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%}
 
-    a { color:inherit; text-decoration:none; }
-    img { max-width:100%; display:block; }
+    /* Layout helpers */
+    .wrap{max-width:1100px;margin:0 auto;padding:0 16px}
 
-    /* ===== HEADER (MISMO QUE INDEX) ===== */
-    /* ⬇️ IMPORTANTE: NO LO MODIFICO PARA QUE SEA IDÉNTICO */
-    /* (asume que ya lo tienes probado y funcional) */
-
-    /* === HERO === */
-    .hero {
-      min-height:85vh;
-      padding:140px 16px 80px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      position:relative;
+    /* Hero */
+    .hero{
+      padding: 130px 0 34px;
+      position: relative;
+      overflow:hidden;
     }
-
-    .hero::before {
+    .hero::before{
       content:"";
       position:absolute;
       inset:-40%;
       background:
-        radial-gradient(circle at 10% 10%, rgba(255,255,255,.10), transparent 55%),
-        radial-gradient(circle at 90% 90%, rgba(78,205,196,.18), transparent 60%);
+        radial-gradient(circle at 15% 20%, rgba(255,255,255,.10), transparent 55%),
+        radial-gradient(circle at 85% 70%, var(--accent), transparent 60%),
+        radial-gradient(circle at 70% 15%, var(--accent2), transparent 55%);
+      filter: blur(0px);
       z-index:0;
     }
-
-    .hero-inner {
-      position:relative;
-      z-index:1;
-      max-width:900px;
-    }
-
-    .hero h1 {
-      font-size:clamp(2.4rem,4vw,3.2rem);
-      letter-spacing:-.04em;
+    .hero .wrap{position:relative;z-index:1}
+    .kicker{
+      display:inline-flex;gap:10px;align-items:center;
+      padding:10px 12px;border:1px solid var(--stroke);
+      border-radius:999px;background:rgba(255,255,255,.03);
+      color:var(--muted);font-size:13px;
       margin-bottom:14px;
     }
-
-    .hero p {
-      font-size:1.2rem;
-      opacity:.85;
-      font-style:italic;
+    .kicker .dot{
+      width:8px;height:8px;border-radius:999px;background:rgba(255,255,255,.65);
+      box-shadow: 0 0 0 6px rgba(255,255,255,.08);
+    }
+    h1{
+      font-size: clamp(2.1rem, 3.6vw, 3.1rem);
+      letter-spacing: -.04em;
+      line-height:1.08;
+      margin-bottom:12px;
+    }
+    .lead{
+      max-width: 820px;
+      font-size: 1.08rem;
+      color: var(--muted);
+      line-height: 1.7;
     }
 
-    /* === DEPORTES === */
-    .sports-section {
-      background:var(--bg-soft);
-      padding:90px 16px;
+    /* Sticky sport switcher */
+    .switcher{
+      position: sticky;
+      top: 82px; /* si tu header es más alto, sube este valor */
+      z-index: 5;
+      padding: 14px 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,.92), rgba(0,0,0,.55), transparent);
+      backdrop-filter: blur(8px);
+    }
+    .tabs{
+      display:flex;gap:10px;flex-wrap:wrap;
+      border:1px solid var(--stroke);
+      background:rgba(255,255,255,.03);
+      border-radius:999px;
+      padding:6px;
+      width: fit-content;
+      box-shadow: 0 14px 40px rgba(0,0,0,.35);
+    }
+    .tab{
+      appearance:none;border:0;cursor:pointer;
+      padding:10px 14px;border-radius:999px;
+      background:transparent;color:var(--muted);
+      font-weight:600;font-size:13px;
+      display:flex;gap:8px;align-items:center;
+      transition: .18s ease;
+    }
+    .tab:hover{background:rgba(255,255,255,.06); color: rgba(255,255,255,.9)}
+    .tab[aria-selected="true"]{
+      background:rgba(255,255,255,.10);
+      color: #fff;
+      border:1px solid rgba(255,255,255,.18);
     }
 
-    .sports-grid {
-      max-width:1100px;
-      margin:0 auto;
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:28px;
-    }
-
-    .sport-card {
-      background:var(--bg-card);
-      border:1px solid var(--border-soft);
-      border-radius:26px;
+    /* Panels */
+    .panel{
+      margin-top:18px;
+      border:1px solid var(--stroke);
+      background: var(--panel);
+      border-radius: var(--radius);
       overflow:hidden;
-      display:flex;
-      flex-direction:column;
+      box-shadow: var(--shadow);
+    }
+    .panel-head{
+      padding: 18px 18px 0;
+      display:flex;justify-content:space-between;align-items:flex-start;gap:14px;
+    }
+    .badge{
+      font-size:12px;
+      color: rgba(255,255,255,.86);
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.14);
+      padding: 8px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+    .panel-body{
+      padding: 18px;
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 18px;
+      align-items: stretch;
     }
 
-    .sport-media {
-      height:260px;
-      background:#111;
+    .media{
+      border-radius: 18px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      min-height: 320px;
       position:relative;
     }
-
-    .sport-media img {
+    .media img{
       width:100%;
       height:100%;
       object-fit:cover;
-      opacity:.9;
+      opacity:.92;
+      transform: scale(1.01);
+    }
+    .media::after{
+      content:"";
+      position:absolute;inset:0;
+      background: linear-gradient(to top, rgba(0,0,0,.65), transparent 55%);
+      pointer-events:none;
     }
 
-    .sport-body {
-      padding:26px 24px 30px;
+    .content h2{
+      font-size: 22px;
+      letter-spacing:-.02em;
+      margin-bottom: 10px;
+    }
+    .content p{
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 14px;
+      font-size: 14.7px;
     }
 
-    .sport-body h2 {
-      font-size:24px;
-      margin-bottom:10px;
+    .cards{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .card{
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      border-radius: 18px;
+      padding: 14px;
+      transition: .18s ease;
+    }
+    .card:hover{
+      transform: translateY(-2px);
+      background: rgba(255,255,255,.05);
+      border-color: rgba(255,255,255,.18);
+    }
+    .card h3{
+      font-size: 14px;
+      margin-bottom: 6px;
+      letter-spacing:-.01em;
+    }
+    .card p{
+      margin:0;
+      font-size: 13px;
+      color: var(--muted2);
+      line-height: 1.65;
+    }
+
+    .tags{
+      display:flex;flex-wrap:wrap;gap:8px;margin-top: 10px;
+    }
+    .tag{
+      font-size: 12px;
+      color: rgba(255,255,255,.86);
+      background: rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.14);
+      padding: 7px 9px;
+      border-radius: 999px;
+    }
+
+    /* FAQ */
+    .faq{
+      margin: 34px 0 70px;
+    }
+    .faq h2{
+      font-size: 22px;
+      margin: 0 0 14px;
       letter-spacing:-.02em;
     }
-
-    .sport-body p {
-      font-size:15px;
-      line-height:1.7;
-      color:var(--text-muted);
-      margin-bottom:14px;
+    .accordion{
+      border:1px solid var(--stroke);
+      background: var(--panel);
+      border-radius: var(--radius);
+      overflow:hidden;
+    }
+    details{
+      border-top:1px solid rgba(255,255,255,.10);
+      padding: 0 14px;
+    }
+    details:first-child{border-top:0}
+    summary{
+      list-style:none;
+      cursor:pointer;
+      padding: 16px 6px;
+      display:flex;justify-content:space-between;gap:12px;
+      font-weight:700;
+    }
+    summary::-webkit-details-marker{display:none}
+    .chev{
+      opacity:.8;
+      transform: rotate(0deg);
+      transition:.18s ease;
+    }
+    details[open] .chev{transform: rotate(180deg); opacity:1}
+    .ans{
+      padding: 0 6px 16px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 14px;
     }
 
-    .sport-tags {
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-    }
-
-    .tag {
-      padding:7px 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.2);
-      font-size:12px;
-      opacity:.85;
-    }
-
-    @media(max-width:900px){
-      .sports-grid { grid-template-columns:1fr; }
-    }
-
-    /* === VISIÓN === */
-    .vision {
-      padding:90px 16px;
-      max-width:900px;
-      margin:0 auto;
-      text-align:center;
-    }
-
-    .vision h2 {
-      font-size:30px;
-      letter-spacing:-.03em;
-      margin-bottom:14px;
-    }
-
-    .vision p {
-      font-size:16px;
-      opacity:.85;
-      line-height:1.8;
-    }
-
-    /* === FOOTER === */
-    footer {
+    /* Footer */
+    footer{
       border-top:1px solid rgba(255,255,255,.12);
+      padding: 34px 16px;
       text-align:center;
-      padding:40px 16px 30px;
-      font-size:13px;
-      opacity:.75;
+      color: rgba(255,255,255,.7);
+      font-size: 13px;
+    }
+
+    /* Responsive */
+    @media (max-width: 920px){
+      .panel-body{grid-template-columns: 1fr}
+      .media{min-height: 260px}
+      .switcher{top: 70px}
     }
   </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
-<!-- 👉 PEGA AQUÍ EXACTAMENTE EL MISMO HEADER + MENÚ MÓVIL QUE EN index.html -->
+  <!-- HEADER: pega aquí tu header de index.html (igual, sin tocar) -->
+  <!-- Ejemplo: <header>...</header> -->
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-inner">
-    <h1 data-i18n="hero_title">Nuestro deporte</h1>
-    <p data-i18n="hero_p">
-      No todos los deportes se evalúan igual. Athlead nace donde el talento necesita visibilidad real.
-    </p>
-  </div>
-</section>
 
-<!-- DEPORTES -->
-<section class="sports-section">
-  <div class="sports-grid">
-
-    <!-- FÚTBOL 11 -->
-    <div class="sport-card">
-      <div class="sport-media">
-        <img src="images/futbol11.jpg" alt="Fútbol 11 Athlead">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="kicker">
+        <span class="dot"></span>
+        <span data-i18n="kicker">Enfoque actual</span>
       </div>
-      <div class="sport-body">
-        <h2 data-i18n="f11_title">Fútbol 11</h2>
-        <p data-i18n="f11_p">
-          El fútbol 11 concentra la mayor parte del talento amateur y semiprofesional. Athlead estructura jugadas, perfiles y contexto para que entrenadores y clubes puedan evaluar en segundos.
-        </p>
-        <div class="sport-tags">
-          <span class="tag">⚽ Amateur</span>
-          <span class="tag">📍 Regional / Nacional</span>
-          <span class="tag">📊 Scouting</span>
-          <span class="tag">🎥 Jugadas reales</span>
-        </div>
+      <h1 data-i18n="title">Nuestro deporte</h1>
+      <p class="lead" data-i18n="subtitle">
+        Athlead trabaja hoy con dos entornos donde el talento es real y la visibilidad marca la diferencia:
+        <strong>Fútbol 11</strong> y <strong>Futsal</strong>.
+      </p>
+    </div>
+  </section>
+
+  <!-- SWITCHER -->
+  <div class="switcher">
+    <div class="wrap">
+      <div class="tabs" role="tablist" aria-label="Selector de deporte">
+        <button class="tab" role="tab" aria-selected="true" aria-controls="panel-f11" id="tab-f11">
+          ⚽ <span data-i18n="tab_f11">Fútbol 11</span>
+        </button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="panel-futsal" id="tab-futsal">
+          🏟️ <span data-i18n="tab_futsal">Futsal</span>
+        </button>
       </div>
     </div>
+  </div>
 
-    <!-- FUTSAL -->
-    <div class="sport-card">
-      <div class="sport-media">
-        <img src="images/futsal.jpg" alt="Futsal Athlead">
+  <!-- PANEL: FÚTBOL 11 -->
+  <section class="wrap" style="padding-bottom: 18px;">
+    <article class="panel" id="panel-f11" role="tabpanel" aria-labelledby="tab-f11">
+      <div class="panel-head">
+        <div>
+          <h2 style="font-size:20px;letter-spacing:-.02em;" data-i18n="f11_head">Fútbol 11</h2>
+          <p style="color:var(--muted);line-height:1.7;margin-top:6px;font-size:14px;" data-i18n="f11_intro">
+            Para scouting real, necesitas contexto + jugadas claras. Athlead organiza tu perfil para que un club entienda tu nivel rápido.
+          </p>
+        </div>
+        <div class="badge" data-i18n="badge_f11">Visibilidad + scouting</div>
       </div>
-      <div class="sport-body">
-        <h2 data-i18n="futsal_title">Futsal</h2>
-        <p data-i18n="futsal_p">
-          El futsal es talento puro: velocidad, técnica y toma de decisiones. Athlead permite mostrar acciones clave en espacios reducidos, donde el detalle marca la diferencia.
-        </p>
-        <div class="sport-tags">
-          <span class="tag">🔥 Intensidad</span>
-          <span class="tag">⚡ Técnica</span>
-          <span class="tag">🧠 Decisión</span>
-          <span class="tag">🏟️ Indoor</span>
+
+      <div class="panel-body">
+        <div class="media">
+          <!-- Usa tus imágenes reales (mismo estilo que index) -->
+          <img src="images/futbol11.jpg" alt="Fútbol 11 Athlead" />
+        </div>
+
+        <div class="content">
+          <div class="cards">
+            <div class="card">
+              <h3 data-i18n="f11_c1_t">Clips útiles, no largos</h3>
+              <p data-i18n="f11_c1_p">Jugadas cortas y decisivas para evaluar: conducción, pase, finalización, duelos, visión.</p>
+            </div>
+            <div class="card">
+              <h3 data-i18n="f11_c2_t">Perfil claro</h3>
+              <p data-i18n="f11_c2_p">Posición, edad, zona y estilo de juego bien ordenado para facilitar búsqueda y contacto.</p>
+            </div>
+            <div class="card">
+              <h3 data-i18n="f11_c3_t">Menos ruido</h3>
+              <p data-i18n="f11_c3_p">Que se vea lo importante: tus mejores acciones, en el orden correcto, sin distracciones.</p>
+            </div>
+          </div>
+
+          <div class="tags">
+            <span class="tag" data-i18n="f11_tag1">⚡ Acciones clave</span>
+            <span class="tag" data-i18n="f11_tag2">📍 Contexto</span>
+            <span class="tag" data-i18n="f11_tag3">💬 Contacto</span>
+            <span class="tag" data-i18n="f11_tag4">🔎 Descubrimiento</span>
+          </div>
         </div>
       </div>
+    </article>
+  </section>
+
+  <!-- PANEL: FUTSAL -->
+  <section class="wrap" style="padding-bottom: 26px;">
+    <article class="panel" id="panel-futsal" role="tabpanel" aria-labelledby="tab-futsal" hidden>
+      <div class="panel-head">
+        <div>
+          <h2 style="font-size:20px;letter-spacing:-.02em;" data-i18n="futsal_head">Futsal</h2>
+          <p style="color:var(--muted);line-height:1.7;margin-top:6px;font-size:14px;" data-i18n="futsal_intro">
+            En futsal todo pasa rápido. Athlead destaca técnica y decisión en espacios reducidos: donde se ve el talento real.
+          </p>
+        </div>
+        <div class="badge" data-i18n="badge_futsal">Técnica + decisión</div>
+      </div>
+
+      <div class="panel-body">
+        <div class="media">
+          <img src="images/futsal.jpg" alt="Futsal Athlead" />
+        </div>
+
+        <div class="content">
+          <div class="cards">
+            <div class="card">
+              <h3 data-i18n="futsal_c1_t">Detalles que importan</h3>
+              <p data-i18n="futsal_c1_p">Control orientado, cambios de ritmo, giro, pase tenso, lectura de presión.</p>
+            </div>
+            <div class="card">
+              <h3 data-i18n="futsal_c2_t">Acciones en espacio corto</h3>
+              <p data-i18n="futsal_c2_p">Cuando hay poco tiempo y poco espacio, la calidad se nota más.</p>
+            </div>
+            <div class="card">
+              <h3 data-i18n="futsal_c3_t">Perfil con identidad</h3>
+              <p data-i18n="futsal_c3_p">Que tu estilo se entienda rápido: 1v1, pausa, finalización, defensa, intensidad.</p>
+            </div>
+          </div>
+
+          <div class="tags">
+            <span class="tag" data-i18n="futsal_tag1">🔥 Intensidad</span>
+            <span class="tag" data-i18n="futsal_tag2">🧠 Decisión</span>
+            <span class="tag" data-i18n="futsal_tag3">⚡ Técnica</span>
+            <span class="tag" data-i18n="futsal_tag4">🏟️ Indoor</span>
+          </div>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- FAQ -->
+  <section class="wrap faq">
+    <h2 data-i18n="faq_title">Preguntas rápidas</h2>
+    <div class="accordion">
+      <details>
+        <summary>
+          <span data-i18n="faq_q1">¿Por qué empezar solo con fútbol 11 y futsal?</span>
+          <span class="chev">▾</span>
+        </summary>
+        <div class="ans" data-i18n="faq_a1">
+          Porque queremos hacerlo perfecto: estructura, visibilidad y contacto real. Dos deportes con muchísima base de talento y necesidad de scouting.
+        </div>
+      </details>
+
+      <details>
+        <summary>
+          <span data-i18n="faq_q2">¿Se añadirán más deportes?</span>
+          <span class="chev">▾</span>
+        </summary>
+        <div class="ans" data-i18n="faq_a2">
+          Sí, pero cuando el sistema esté sólido. Athlead crece por calidad, no por prisa.
+        </div>
+      </details>
+
+      <details>
+        <summary>
+          <span data-i18n="faq_q3">¿Qué tipo de jugadas son mejores?</span>
+          <span class="chev">▾</span>
+        </summary>
+        <div class="ans" data-i18n="faq_a3">
+          Clips cortos, claros y repetibles: acciones que un entrenador pueda evaluar en segundos (decisión, técnica, ejecución).
+        </div>
+      </details>
     </div>
+  </section>
 
-  </div>
-</section>
+  <footer>
+    <span data-i18n="footer">© 2025 Athlead · Deja que el talento hable por ti</span>
+  </footer>
 
-<!-- VISIÓN -->
-<section class="vision">
-  <h2 data-i18n="vision_title">Un mismo objetivo</h2>
-  <p data-i18n="vision_p">
-    Fútbol 11 o futsal, la filosofía es la misma: menos ruido, más señal. Athlead empieza donde el talento existe pero no siempre se ve.
-    <br><br>
-    En el futuro, la plataforma crecerá. Hoy, se enfoca en hacerlo bien.
-  </p>
-</section>
+  <script>
+    // ===== Tabs (Fútbol 11 / Futsal) =====
+    const tabs = Array.from(document.querySelectorAll(".tab"));
+    const panels = {
+      "tab-f11": document.getElementById("panel-f11"),
+      "tab-futsal": document.getElementById("panel-futsal"),
+    };
 
-<!-- FOOTER -->
-<footer>
-  <div data-i18n="footer">© 2025 Athlead · Deja que el talento hable por ti</div>
-</footer>
-
-<script>
-  const i18n = {
-    es: {
-      hero_title: "Nuestro deporte",
-      hero_p: "No todos los deportes se evalúan igual. Athlead nace donde el talento necesita visibilidad real.",
-      f11_title: "Fútbol 11",
-      f11_p: "El fútbol 11 concentra la mayor parte del talento amateur y semiprofesional. Athlead estructura jugadas, perfiles y contexto para que entrenadores y clubes puedan evaluar en segundos.",
-      futsal_title: "Futsal",
-      futsal_p: "El futsal es talento puro: velocidad, técnica y toma de decisiones. Athlead permite mostrar acciones clave en espacios reducidos.",
-      vision_title: "Un mismo objetivo",
-      vision_p: "Fútbol 11 o futsal, la filosofía es la misma: menos ruido, más señal. Athlead empieza donde el talento existe pero no siempre se ve.",
-      footer: "© 2025 Athlead · Deja que el talento hable por ti"
-    },
-    en: {
-      hero_title: "Our sport",
-      hero_p: "Not all sports are evaluated the same. Athlead starts where talent needs real visibility.",
-      f11_title: "11-a-side football",
-      f11_p: "11-a-side football concentrates most amateur and semi-professional talent. Athlead structures clips and profiles so scouts can decide in seconds.",
-      futsal_title: "Futsal",
-      futsal_p: "Futsal is pure talent: speed, technique and decision-making. Athlead highlights key actions where details matter.",
-      vision_title: "One goal",
-      vision_p: "11-a-side football or futsal, the philosophy is the same: less noise, more signal. Athlead starts where talent exists but is not always seen.",
-      footer: "© 2025 Athlead · Let your talent speak for you"
+    function activate(tabId){
+      tabs.forEach(t => t.setAttribute("aria-selected", String(t.id === tabId)));
+      Object.entries(panels).forEach(([id, panel]) => {
+        const isActive = id === tabId;
+        panel.hidden = !isActive;
+      });
     }
-  };
 
-  const lang = localStorage.getItem("athlead_lang") || "es";
-  document.documentElement.lang = lang;
+    tabs.forEach(t => {
+      t.addEventListener("click", () => activate(t.id));
+      t.addEventListener("keydown", (e) => {
+        if(e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+        const idx = tabs.indexOf(t);
+        const next = e.key === "ArrowRight" ? tabs[idx + 1] : tabs[idx - 1];
+        if(next){ next.focus(); activate(next.id); }
+      });
+    });
 
-  document.querySelectorAll("[data-i18n]").forEach(el => {
-    const key = el.dataset.i18n;
-    if (i18n[lang][key]) el.innerHTML = i18n[lang][key];
-  });
-</script>
+    // ===== i18n simple (ES/EN) =====
+    // Usa localStorage "athlead_lang" (igual que tu web, si ya lo usas)
+    const i18n = {
+      es: {
+        kicker:"Enfoque actual",
+        title:"Nuestro deporte",
+        subtitle:"Athlead trabaja hoy con dos entornos donde el talento es real y la visibilidad marca la diferencia: <strong>Fútbol 11</strong> y <strong>Futsal</strong>.",
+        tab_f11:"Fútbol 11",
+        tab_futsal:"Futsal",
+        f11_head:"Fútbol 11",
+        f11_intro:"Para scouting real, necesitas contexto + jugadas claras. Athlead organiza tu perfil para que un club entienda tu nivel rápido.",
+        badge_f11:"Visibilidad + scouting",
+        f11_c1_t:"Clips útiles, no largos",
+        f11_c1_p:"Jugadas cortas y decisivas para evaluar: conducción, pase, finalización, duelos, visión.",
+        f11_c2_t:"Perfil claro",
+        f11_c2_p:"Posición, edad, zona y estilo de juego bien ordenado para facilitar búsqueda y contacto.",
+        f11_c3_t:"Menos ruido",
+        f11_c3_p:"Que se vea lo importante: tus mejores acciones, en el orden correcto, sin distracciones.",
+        f11_tag1:"⚡ Acciones clave",
+        f11_tag2:"📍 Contexto",
+        f11_tag3:"💬 Contacto",
+        f11_tag4:"🔎 Descubrimiento",
+
+        futsal_head:"Futsal",
+        futsal_intro:"En futsal todo pasa rápido. Athlead destaca técnica y decisión en espacios reducidos: donde se ve el talento real.",
+        badge_futsal:"Técnica + decisión",
+        futsal_c1_t:"Detalles que importan",
+        futsal_c1_p:"Control orientado, cambios de ritmo, giro, pase tenso, lectura de presión.",
+        futsal_c2_t:"Acciones en espacio corto",
+        futsal_c2_p:"Cuando hay poco tiempo y poco espacio, la calidad se nota más.",
+        futsal_c3_t:"Perfil con identidad",
+        futsal_c3_p:"Que tu estilo se entienda rápido: 1v1, pausa, finalización, defensa, intensidad.",
+        futsal_tag1:"🔥 Intensidad",
+        futsal_tag2:"🧠 Decisión",
+        futsal_tag3:"⚡ Técnica",
+        futsal_tag4:"🏟️ Indoor",
+
+        faq_title:"Preguntas rápidas",
+        faq_q1:"¿Por qué empezar solo con fútbol 11 y futsal?",
+        faq_a1:"Porque queremos hacerlo perfecto: estructura, visibilidad y contacto real. Dos deportes con muchísima base de talento y necesidad de scouting.",
+        faq_q2:"¿Se añadirán más deportes?",
+        faq_a2:"Sí, pero cuando el sistema esté sólido. Athlead crece por calidad, no por prisa.",
+        faq_q3:"¿Qué tipo de jugadas son mejores?",
+        faq_a3:"Clips cortos, claros y repetibles: acciones que un entrenador pueda evaluar en segundos (decisión, técnica, ejecución).",
+        footer:"© 2025 Athlead · Deja que el talento hable por ti"
+      },
+      en: {
+        kicker:"Current focus",
+        title:"Our sport",
+        subtitle:"Athlead currently works in two environments where talent is real and visibility makes the difference: <strong>11-a-side football</strong> and <strong>Futsal</strong>.",
+        tab_f11:"11-a-side",
+        tab_futsal:"Futsal",
+        f11_head:"11-a-side football",
+        f11_intro:"For real scouting, you need context + clear actions. Athlead structures your profile so clubs understand your level fast.",
+        badge_f11:"Visibility + scouting",
+        f11_c1_t:"Useful clips, not long videos",
+        f11_c1_p:"Short decisive actions to evaluate: carrying, passing, finishing, duels, vision.",
+        f11_c2_t:"Clear profile",
+        f11_c2_p:"Position, age, area and play style organized for fast search and contact.",
+        f11_c3_t:"Less noise",
+        f11_c3_p:"Show what matters: your best actions, in the right order, no distractions.",
+        f11_tag1:"⚡ Key actions",
+        f11_tag2:"📍 Context",
+        f11_tag3:"💬 Contact",
+        f11_tag4:"🔎 Discovery",
+
+        futsal_head:"Futsal",
+        futsal_intro:"In futsal everything happens fast. Athlead highlights technique and decision-making in tight spaces—where real talent shows.",
+        badge_futsal:"Technique + decisions",
+        futsal_c1_t:"Details matter",
+        futsal_c1_p:"First touch, quick turns, sharp passing, reading pressure.",
+        futsal_c2_t:"Short-space actions",
+        futsal_c2_p:"When time and space are limited, quality stands out more.",
+        futsal_c3_t:"Profile with identity",
+        futsal_c3_p:"Make your style clear fast: 1v1, pause, finishing, defending, intensity.",
+        futsal_tag1:"🔥 Intensity",
+        futsal_tag2:"🧠 Decisions",
+        futsal_tag3:"⚡ Technique",
+        futsal_tag4:"🏟️ Indoor",
+
+        faq_title:"Quick questions",
+        faq_q1:"Why start only with 11-a-side and futsal?",
+        faq_a1:"Because we want to do it perfectly: structure, visibility, and real contact. Two sports with huge talent and real scouting needs.",
+        faq_q2:"Will you add more sports?",
+        faq_a2:"Yes—when the system is solid. Athlead grows through quality, not speed.",
+        faq_q3:"What kind of clips work best?",
+        faq_a3:"Short, clear, repeatable actions that a coach can evaluate in seconds (decision, technique, execution).",
+        footer:"© 2025 Athlead · Let your talent speak for you"
+      }
+    };
+
+    const lang = localStorage.getItem("athlead_lang") || "es";
+    document.documentElement.lang = lang;
+
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+      const key = el.dataset.i18n;
+      if(i18n[lang] && i18n[lang][key]) el.innerHTML = i18n[lang][key];
+    });
+  </script>
 
 </body>
 </html>
-
