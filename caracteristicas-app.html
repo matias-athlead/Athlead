@@ -2,16 +2,878 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
+
+  <!-- Favicon (igual que index.html) -->
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png" />
+  <link rel="shortcut icon" href="images/favicon.ico" />
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+  <link rel="manifest" href="images/site.webmanifest" />
+  <meta name="theme-color" content="#000000" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Athlead - Nuestro deporte</title>
+  <title>Athlead | Características de la App</title>
+
+  <!-- Reutiliza tu CSS global -->
   <link rel="stylesheet" href="styles.css" />
+
+  <!-- Estilos extra SOLO para esta página (sin romper tu esencia) -->
+  <style>
+    :root{
+      --bg: #0b0f17;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.10);
+      --border: rgba(255,255,255,.10);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --shadow: 0 18px 50px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 22px;
+    }
+
+    body{
+      background: radial-gradient(1200px 700px at 15% 10%, rgba(255,210,0,.14), transparent 55%),
+                  radial-gradient(900px 600px at 85% 15%, rgba(30,144,255,.12), transparent 55%),
+                  var(--bg);
+      color: var(--text);
+    }
+
+    .page-wrap{ padding-top: 86px; } /* deja espacio para tu header fijo si lo es */
+
+    .container{
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .hero-features{
+      padding: 42px 0 18px;
+    }
+
+    .hero-grid{
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 22px;
+      align-items: center;
+    }
+
+    @media (max-width: 980px){
+      .hero-grid{ grid-template-columns: 1fr; }
+    }
+
+    .kicker{
+      display:inline-flex; gap:10px; align-items:center;
+      padding: 8px 12px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .title{
+      font-size: clamp(30px, 3.2vw, 48px);
+      line-height: 1.05;
+      margin: 14px 0 10px;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle{
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.55;
+      margin: 0 0 18px;
+      max-width: 58ch;
+    }
+
+    .hero-ctas{
+      display:flex; gap: 12px; flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 12px 16px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.08);
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+      cursor: pointer;
+      user-select:none;
+    }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.18); }
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(255,210,0,.95), rgba(255,210,0,.65));
+      color: #101318;
+      border-color: rgba(255,210,0,.55);
+    }
+    .btn.primary:hover{ background: linear-gradient(135deg, rgba(255,220,40,.98), rgba(255,210,0,.72)); }
+
+    .hero-card{
+      border-radius: var(--radius2);
+      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.04));
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+
+    .hero-card-top{
+      padding: 16px 16px 0;
+      display:flex;
+      justify-content: space-between;
+      align-items:center;
+      gap: 10px;
+    }
+
+    .pill{
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(0,0,0,.35);
+      border: 1px solid rgba(255,255,255,.12);
+      color: var(--muted);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .mock{
+      padding: 14px 16px 18px;
+      display:grid;
+      gap: 12px;
+    }
+
+    .mock img{
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+    }
+
+    @media (max-width: 980px){
+      .mock img{ height: 320px; }
+    }
+
+    .section{
+      padding: 26px 0;
+    }
+
+    .section h2{
+      font-size: 22px;
+      margin: 0 0 12px;
+      letter-spacing: -0.01em;
+    }
+
+    .section p.lead{
+      margin: 0 0 18px;
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 75ch;
+    }
+
+    .grid-3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    @media (max-width: 980px){ .grid-3{ grid-template-columns: 1fr; } }
+
+    .card{
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: 0 14px 40px rgba(0,0,0,.22);
+    }
+
+    .card .card-title{
+      display:flex;
+      justify-content: space-between;
+      align-items:center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+    .card .card-title strong{ font-size: 16px; }
+    .card small{ color: var(--muted); }
+
+    .mini{
+      display:grid;
+      grid-template-columns: 64px 1fr;
+      gap: 12px;
+      align-items:start;
+    }
+
+    .icon{
+      width: 56px; height: 56px;
+      border-radius: 16px;
+      background: rgba(255,210,0,.10);
+      border: 1px solid rgba(255,210,0,.24);
+      display:flex; align-items:center; justify-content:center;
+      font-size: 20px;
+    }
+
+    /* Tabs */
+    .tabs{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 16px 0;
+    }
+    .tab{
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      cursor:pointer;
+      transition: .18s ease;
+      font-weight: 600;
+      font-size: 13px;
+    }
+    .tab[aria-selected="true"]{
+      background: rgba(255,210,0,.16);
+      border-color: rgba(255,210,0,.30);
+      color: var(--text);
+    }
+
+    .tab-panels{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      align-items: stretch;
+    }
+    @media (max-width: 980px){ .tab-panels{ grid-template-columns: 1fr; } }
+
+    .panel{
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius2);
+      overflow:hidden;
+    }
+    .panel-body{
+      padding: 16px;
+    }
+    .panel-body ul{
+      margin: 10px 0 0;
+      padding-left: 16px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+    .panel-media img{
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      display:block;
+      border-top: 1px solid var(--border);
+      background: rgba(255,255,255,.04);
+    }
+    @media (max-width: 980px){ .panel-media img{ height: 260px; } }
+
+    /* Acordeón */
+    .accordion{
+      display:grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .acc-item{
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+      overflow:hidden;
+    }
+    .acc-btn{
+      width: 100%;
+      text-align:left;
+      padding: 14px 14px;
+      background: transparent;
+      border: 0;
+      color: var(--text);
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 12px;
+      cursor:pointer;
+      font-weight: 700;
+    }
+    .acc-btn span{ color: var(--muted); font-weight: 600; }
+    .acc-panel{
+      max-height: 0;
+      overflow:hidden;
+      transition: max-height .22s ease;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+    .acc-panel-inner{
+      padding: 12px 14px 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* Galería + Lightbox */
+    .gallery{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    @media (max-width: 980px){ .gallery{ grid-template-columns: repeat(2, 1fr);} }
+
+    .shot{
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      overflow:hidden;
+      background: rgba(255,255,255,.04);
+      cursor: pointer;
+      transition: transform .18s ease;
+    }
+    .shot:hover{ transform: translateY(-1px); }
+    .shot img{ width: 100%; height: 170px; object-fit: cover; display:block; }
+    @media (max-width: 980px){ .shot img{ height: 150px; } }
+
+    .modal{
+      position: fixed;
+      inset: 0;
+      display:none;
+      place-items:center;
+      background: rgba(0,0,0,.72);
+      z-index: 9999;
+      padding: 20px;
+    }
+    .modal.open{ display:grid; }
+    .modal-card{
+      width: min(980px, 100%);
+      border-radius: 18px;
+      background: rgba(10,12,16,.92);
+      border: 1px solid rgba(255,255,255,.14);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .modal-top{
+      padding: 12px 14px;
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 10px;
+      border-bottom: 1px solid rgba(255,255,255,.10);
+    }
+    .modal-top strong{ font-size: 14px; }
+    .modal-close{
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      border-radius: 12px;
+      padding: 8px 10px;
+      cursor:pointer;
+      font-weight: 700;
+    }
+    .modal-img{
+      width: 100%;
+      height: min(70vh, 620px);
+      object-fit: contain;
+      background: rgba(0,0,0,.35);
+      display:block;
+    }
+
+    /* Footer simple */
+    .simple-footer{
+      padding: 28px 0 44px;
+      color: var(--muted);
+      border-top: 1px solid rgba(255,255,255,.08);
+      margin-top: 24px;
+    }
+    .simple-footer a{ color: var(--text); text-decoration:none; }
+    .simple-footer a:hover{ text-decoration: underline; }
+  </style>
 </head>
+
 <body>
-  <!-- aquí copia tu navbar si la tienes repetida en todas -->
-  <main style="padding:120px 20px;">
-    <h1>Nuestro deporte</h1>
-    <p>Contenido…</p>
+
+  <!-- HEADER / NAV (si tu index tiene otro, copia el tuyo y reemplaza este bloque) -->
+  <header class="site-header">
+    <div class="container" style="display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px 0;">
+      <a href="index.html" class="logo" style="display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--text); font-weight:800;">
+        <img src="images/logo.png" alt="Athlead" style="height:34px; width:auto;" />
+        <span>Athlead</span>
+      </a>
+
+      <nav class="nav-desktop" style="display:flex; gap:18px; align-items:center;">
+        <a href="index.html#home" data-i18n="nav_home" style="color:var(--muted); text-decoration:none; font-weight:700;">Inicio</a>
+        <a href="caracteristicas-app.html" data-i18n="nav_app_features" style="color:var(--text); text-decoration:none; font-weight:800;">Características</a>
+        <a href="roles.html" data-i18n="nav_roles" style="color:var(--muted); text-decoration:none; font-weight:700;">Roles</a>
+        <a href="suscripciones.html" data-i18n="nav_subscriptions" style="color:var(--muted); text-decoration:none; font-weight:700;">Suscripciones</a>
+        <a href="index.html#contact" data-i18n="nav_contact" style="color:var(--muted); text-decoration:none; font-weight:700;">Contacto</a>
+
+        <button class="btn" id="langToggle" type="button" style="padding:10px 12px;">
+          🌍 <span id="langLabel">ES</span>
+        </button>
+
+        <a class="btn primary" href="index.html#download" data-i18n="cta_download">Descargar</a>
+      </nav>
+
+      <!-- Botón menú móvil -->
+      <button class="btn" id="mobileMenuBtn" type="button" aria-expanded="false" aria-controls="mobileMenu" style="display:none;">
+        ☰ <span data-i18n="nav_menu">Menú</span>
+      </button>
+    </div>
+
+    <!-- Menú móvil -->
+    <div id="mobileMenu" style="display:none; border-top:1px solid rgba(255,255,255,.08); background: rgba(0,0,0,.25);">
+      <div class="container" style="padding: 10px 0 14px; display:grid; gap:10px;">
+        <a href="index.html#home" data-i18n="nav_home" style="color:var(--text); text-decoration:none; font-weight:800;">Inicio</a>
+        <a href="caracteristicas-app.html" data-i18n="nav_app_features" style="color:var(--text); text-decoration:none; font-weight:800;">Características</a>
+        <a href="roles.html" data-i18n="nav_roles" style="color:var(--text); text-decoration:none; font-weight:800;">Roles</a>
+        <a href="suscripciones.html" data-i18n="nav_subscriptions" style="color:var(--text); text-decoration:none; font-weight:800;">Suscripciones</a>
+        <a href="index.html#contact" data-i18n="nav_contact" style="color:var(--text); text-decoration:none; font-weight:800;">Contacto</a>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <button class="btn" id="langToggleMobile" type="button">🌍 <span id="langLabelMobile">ES</span></button>
+          <a class="btn primary" href="index.html#download" data-i18n="cta_download">Descargar</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-wrap">
+
+    <!-- HERO -->
+    <section class="hero-features">
+      <div class="container hero-grid">
+        <div>
+          <span class="kicker">⚡ <span data-i18n="features_kicker">Todo Athlead explicado en 3 minutos</span></span>
+          <h1 class="title" data-i18n="features_title">La app donde el talento habla por ti</h1>
+          <p class="subtitle" data-i18n="features_subtitle">
+            Athlead es una plataforma tipo Instagram para futbolistas: subes tus mejores jugadas, ganas visibilidad y conectas con entrenadores y clubes.
+            Todo con un perfil profesional, filtros potentes y mensajería directa.
+          </p>
+          <div class="hero-ctas">
+            <a class="btn primary" href="index.html#download" data-i18n="cta_download">Descargar</a>
+            <a class="btn" href="#explore" data-i18n="cta_explore">Ver características</a>
+            <a class="btn" href="#screens" data-i18n="cta_screens">Ver pantallas</a>
+          </div>
+        </div>
+
+        <div class="hero-card" aria-label="Vista previa de pantallas">
+          <div class="hero-card-top">
+            <div class="pill">📱 <span data-i18n="preview_pill">Vista previa</span></div>
+            <div class="pill">🔎 <span data-i18n="preview_pill2">Interactivo</span></div>
+          </div>
+          <div class="mock">
+            <!-- Pon aquí una imagen real (mockup) -->
+            <img src="images/features/hero-mock.jpg" alt="Mockup Athlead" />
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+              <button class="btn" type="button" data-jump-tab="players">👟 <span data-i18n="tab_players">Jugadores</span></button>
+              <button class="btn" type="button" data-jump-tab="clubs">🏟️ <span data-i18n="tab_clubs">Clubes</span></button>
+              <button class="btn" type="button" data-jump-tab="coaches">🎓 <span data-i18n="tab_coaches">Entrenadores</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUICK VALUE -->
+    <section class="section" id="explore">
+      <div class="container">
+        <h2 data-i18n="features_quick_title">Lo esencial en una mirada</h2>
+        <p class="lead" data-i18n="features_quick_lead">
+          Una experiencia profesional pero simple: grabas, subes, destacas, te descubren.
+        </p>
+
+        <div class="grid-3">
+          <div class="card mini">
+            <div class="icon">🎥</div>
+            <div>
+              <div class="card-title"><strong data-i18n="card_upload_title">Sube jugadas</strong></div>
+              <small data-i18n="card_upload_desc">Vídeos cortos, calidad, y contexto (posición, edad, ubicación).</small>
+            </div>
+          </div>
+
+          <div class="card mini">
+            <div class="icon">📈</div>
+            <div>
+              <div class="card-title"><strong data-i18n="card_rank_title">Rankings y visibilidad</strong></div>
+              <small data-i18n="card_rank_desc">Likes + rendimiento: tu perfil destaca y gana confianza.</small>
+            </div>
+          </div>
+
+          <div class="card mini">
+            <div class="icon">💬</div>
+            <div>
+              <div class="card-title"><strong data-i18n="card_msg_title">Mensajería directa</strong></div>
+              <small data-i18n="card_msg_desc">Entrenadores/clubes contactan contigo sin intermediarios.</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TABS (INTERACTIVO) -->
+    <section class="section">
+      <div class="container">
+        <h2 data-i18n="tabs_title">Elige tu rol y mira qué puedes hacer</h2>
+        <p class="lead" data-i18n="tabs_lead">
+          Athlead adapta la experiencia según seas jugador, club o entrenador.
+        </p>
+
+        <div class="tabs" role="tablist" aria-label="Roles Athlead">
+          <button class="tab" role="tab" id="tab-players" aria-controls="panel-players" aria-selected="true" data-tab="players">
+            👟 <span data-i18n="tab_players">Jugadores</span>
+          </button>
+          <button class="tab" role="tab" id="tab-clubs" aria-controls="panel-clubs" aria-selected="false" data-tab="clubs">
+            🏟️ <span data-i18n="tab_clubs">Clubes</span>
+          </button>
+          <button class="tab" role="tab" id="tab-coaches" aria-controls="panel-coaches" aria-selected="false" data-tab="coaches">
+            🎓 <span data-i18n="tab_coaches">Entrenadores</span>
+          </button>
+        </div>
+
+        <div class="tab-panels">
+          <!-- Players -->
+          <article class="panel" id="panel-players" role="tabpanel" aria-labelledby="tab-players">
+            <div class="panel-body">
+              <strong data-i18n="panel_players_title">Perfil profesional + highlights</strong>
+              <p style="margin:8px 0 0; color:var(--muted); line-height:1.6" data-i18n="panel_players_desc">
+                Crea un perfil con datos clave (edad, posición, ciudad) y sube tus mejores clips.
+                Mira quién vio tu perfil y mejora tu visibilidad con constancia.
+              </p>
+              <ul>
+                <li data-i18n="panel_players_li1">Feed con vídeos y métricas (likes / visualizaciones)</li>
+                <li data-i18n="panel_players_li2">Perfil con info deportiva y seguimiento de visitas</li>
+                <li data-i18n="panel_players_li3">Rankings y descubrimiento por rendimiento</li>
+              </ul>
+            </div>
+            <div class="panel-media">
+              <img src="images/features/tab-players.jpg" alt="Pantalla jugadores Athlead" />
+            </div>
+          </article>
+
+          <!-- Clubs -->
+          <article class="panel" id="panel-clubs" role="tabpanel" aria-labelledby="tab-clubs" hidden>
+            <div class="panel-body">
+              <strong data-i18n="panel_clubs_title">Scouting rápido, con filtros potentes</strong>
+              <p style="margin:8px 0 0; color:var(--muted); line-height:1.6" data-i18n="panel_clubs_desc">
+                Encuentra talento por edad, posición, ubicación y características.
+                Guarda búsquedas y contacta directamente desde la app.
+              </p>
+              <ul>
+                <li data-i18n="panel_clubs_li1">Buscador con filtros (edad, posición, localización, etc.)</li>
+                <li data-i18n="panel_clubs_li2">Guardar búsquedas y shortlist de jugadores</li>
+                <li data-i18n="panel_clubs_li3">Mensajes y seguimiento de conversaciones</li>
+              </ul>
+            </div>
+            <div class="panel-media">
+              <img src="images/features/tab-clubs.jpg" alt="Pantalla clubes Athlead" />
+            </div>
+          </article>
+
+          <!-- Coaches -->
+          <article class="panel" id="panel-coaches" role="tabpanel" aria-labelledby="tab-coaches" hidden>
+            <div class="panel-body">
+              <strong data-i18n="panel_coaches_title">Descubre talento y evalúa con contexto</strong>
+              <p style="margin:8px 0 0; color:var(--muted); line-height:1.6" data-i18n="panel_coaches_desc">
+                Ve jugadas, compara perfiles y contacta cuando detectes potencial.
+                Una herramienta de scouting fácil y profesional.
+              </p>
+              <ul>
+                <li data-i18n="panel_coaches_li1">Feed curado con jugadas destacadas</li>
+                <li data-i18n="panel_coaches_li2">Comparación rápida de perfiles</li>
+                <li data-i18n="panel_coaches_li3">Contacto directo con jugadores</li>
+              </ul>
+            </div>
+            <div class="panel-media">
+              <img src="images/features/tab-coaches.jpg" alt="Pantalla entrenadores Athlead" />
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="section">
+      <div class="container">
+        <h2 data-i18n="how_title">Cómo funciona (paso a paso)</h2>
+        <p class="lead" data-i18n="how_lead">
+          La experiencia Athlead está pensada para ser rápida: menos fricción, más visibilidad.
+        </p>
+
+        <div class="grid-3">
+          <div class="card">
+            <div class="card-title">
+              <strong>1) <span data-i18n="how_1_title">Crea tu perfil</span></strong>
+              <span class="pill" data-i18n="how_1_pill">30 segundos</span>
+            </div>
+            <p style="margin:0; color:var(--muted); line-height:1.6" data-i18n="how_1_desc">
+              Elige tu rol, completa lo básico y empieza a construir credibilidad.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card-title">
+              <strong>2) <span data-i18n="how_2_title">Sube tus mejores jugadas</span></strong>
+              <span class="pill" data-i18n="how_2_pill">Fácil</span>
+            </div>
+            <p style="margin:0; color:var(--muted); line-height:1.6" data-i18n="how_2_desc">
+              Vídeos cortos, claros, con información útil (posición, edad, ubicación).
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card-title">
+              <strong>3) <span data-i18n="how_3_title">Te descubren y te contactan</span></strong>
+              <span class="pill" data-i18n="how_3_pill">Directo</span>
+            </div>
+            <p style="margin:0; color:var(--muted); line-height:1.6" data-i18n="how_3_desc">
+              Clubes y entrenadores filtran talento, guardan perfiles y escriben por chat.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACCORDION FAQ/DETAILS -->
+    <section class="section">
+      <div class="container">
+        <h2 data-i18n="detail_title">Detalles importantes (sin humo)</h2>
+        <p class="lead" data-i18n="detail_lead">
+          Lo que hace Athlead diferente: profesionalidad, claridad y enfoque en scouting real.
+        </p>
+
+        <div class="accordion" id="acc">
+          <div class="acc-item">
+            <button class="acc-btn" type="button" aria-expanded="false">
+              <div>
+                <strong data-i18n="acc_1_title">Perfil del jugador</strong><br />
+                <span data-i18n="acc_1_sub">Nombre, edad, posición, ciudad + quién vio tu perfil</span>
+              </div>
+              <span>＋</span>
+            </button>
+            <div class="acc-panel">
+              <div class="acc-panel-inner" data-i18n="acc_1_body">
+                Tu perfil está diseñado para ser “scouteable”: datos esenciales visibles, vídeos fijados, y señales de interés (visitas)
+                para que puedas medir tracción y mejorar tu contenido.
+              </div>
+            </div>
+          </div>
+
+          <div class="acc-item">
+            <button class="acc-btn" type="button" aria-expanded="false">
+              <div>
+                <strong data-i18n="acc_2_title">Buscador con filtros</strong><br />
+                <span data-i18n="acc_2_sub">Edad, posición, localización y más</span>
+              </div>
+              <span>＋</span>
+            </button>
+            <div class="acc-panel">
+              <div class="acc-panel-inner" data-i18n="acc_2_body">
+                Para clubes y entrenadores: búsqueda rápida, guardado de búsquedas y shortlist.
+                Esto convierte la app en una herramienta real de scouting, no solo “likes”.
+              </div>
+            </div>
+          </div>
+
+          <div class="acc-item">
+            <button class="acc-btn" type="button" aria-expanded="false">
+              <div>
+                <strong data-i18n="acc_3_title">Mensajes seguros</strong><br />
+                <span data-i18n="acc_3_sub">Contacto directo dentro de Athlead</span>
+              </div>
+              <span>＋</span>
+            </button>
+            <div class="acc-panel">
+              <div class="acc-panel-inner" data-i18n="acc_3_body">
+                Mensajería integrada para conversaciones claras. En el futuro, Athlead podrá añadir verificación de perfiles (clubes/academias)
+                para aumentar fiabilidad y seguridad.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREENS GALLERY -->
+    <section class="section" id="screens">
+      <div class="container">
+        <h2 data-i18n="screens_title">Pantallas de la app</h2>
+        <p class="lead" data-i18n="screens_lead">
+          Haz click para abrir en grande (modo lightbox).
+        </p>
+
+        <div class="gallery">
+          <div class="shot" data-shot="images/features/screen-feed.jpg" data-title="Feed (Inicio)">
+            <img src="images/features/screen-feed.jpg" alt="Pantalla Feed Athlead" />
+          </div>
+          <div class="shot" data-shot="images/features/screen-profile.jpg" data-title="Perfil jugador">
+            <img src="images/features/screen-profile.jpg" alt="Pantalla Perfil Athlead" />
+          </div>
+          <div class="shot" data-shot="images/features/screen-search.jpg" data-title="Buscador y filtros">
+            <img src="images/features/screen-search.jpg" alt="Pantalla Buscador Athlead" />
+          </div>
+          <div class="shot" data-shot="images/features/screen-chat.jpg" data-title="Mensajes">
+            <img src="images/features/screen-chat.jpg" alt="Pantalla Mensajes Athlead" />
+          </div>
+        </div>
+
+        <div style="margin-top: 14px; display:flex; gap:12px; flex-wrap:wrap;">
+          <a class="btn" href="roles.html" data-i18n="cta_roles">Ver roles</a>
+          <a class="btn" href="suscripciones.html" data-i18n="cta_subscriptions">Ver suscripciones</a>
+          <a class="btn primary" href="index.html#download" data-i18n="cta_download">Descargar</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modal lightbox -->
+    <div class="modal" id="shotModal" aria-hidden="true">
+      <div class="modal-card" role="dialog" aria-modal="true" aria-label="Vista previa de pantalla">
+        <div class="modal-top">
+          <strong id="modalTitle">Pantalla</strong>
+          <button class="modal-close" id="modalClose" type="button">Cerrar ✕</button>
+        </div>
+        <img class="modal-img" id="modalImg" src="" alt="Pantalla Athlead ampliada" />
+      </div>
+    </div>
+
+    <footer class="simple-footer">
+      <div class="container">
+        <div style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+          <div>© <span id="year"></span> Athlead</div>
+          <div style="display:flex; gap:14px; flex-wrap:wrap;">
+            <a href="index.html#contact" data-i18n="footer_contact">Contacto</a>
+            <a href="index.html#privacy" data-i18n="footer_privacy">Privacidad</a>
+            <a href="index.html#terms" data-i18n="footer_terms">Términos</a>
+          </div>
+        </div>
+      </div>
+    </footer>
   </main>
+
+  <script>
+    // Año footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Responsive navbar (si tu index usa otro sistema, puedes quitar esto)
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    function syncMobileBtn(){
+      const isMobile = window.matchMedia('(max-width: 980px)').matches;
+      mobileBtn.style.display = isMobile ? 'inline-flex' : 'none';
+      document.querySelector('.nav-desktop').style.display = isMobile ? 'none' : 'flex';
+      if(!isMobile){
+        mobileMenu.style.display = 'none';
+        mobileBtn.setAttribute('aria-expanded','false');
+      }
+    }
+    window.addEventListener('resize', syncMobileBtn);
+    syncMobileBtn();
+
+    mobileBtn?.addEventListener('click', () => {
+      const open = mobileMenu.style.display === 'block';
+      mobileMenu.style.display = open ? 'none' : 'block';
+      mobileBtn.setAttribute('aria-expanded', String(!open));
+    });
+
+    // Tabs
+    const tabs = document.querySelectorAll('.tab');
+    const panels = {
+      players: document.getElementById('panel-players'),
+      clubs: document.getElementById('panel-clubs'),
+      coaches: document.getElementById('panel-coaches')
+    };
+
+    function setTab(key){
+      tabs.forEach(t => t.setAttribute('aria-selected', String(t.dataset.tab === key)));
+      Object.entries(panels).forEach(([k, panel]) => {
+        panel.hidden = k !== key;
+      });
+      // scroll suave a la zona tabs en mobile si venías del hero
+      if (window.matchMedia('(max-width: 980px)').matches){
+        document.getElementById('tab-' + key)?.scrollIntoView({behavior:'smooth', block:'center'});
+      }
+    }
+
+    tabs.forEach(t => t.addEventListener('click', () => setTab(t.dataset.tab)));
+
+    // Botones del hero para saltar a tab
+    document.querySelectorAll('[data-jump-tab]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const key = btn.getAttribute('data-jump-tab');
+        document.getElementById('explore')?.scrollIntoView({behavior:'smooth'});
+        setTimeout(() => setTab(key), 350);
+      });
+    });
+
+    // Accordion
+    document.querySelectorAll('.acc-item').forEach(item => {
+      const btn = item.querySelector('.acc-btn');
+      const panel = item.querySelector('.acc-panel');
+
+      btn.addEventListener('click', () => {
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+
+        // Cierra otros (modo "solo uno abierto")
+        document.querySelectorAll('.acc-item .acc-btn').forEach(b => b.setAttribute('aria-expanded','false'));
+        document.querySelectorAll('.acc-item .acc-panel').forEach(p => p.style.maxHeight = '0px');
+
+        if(!expanded){
+          btn.setAttribute('aria-expanded','true');
+          panel.style.maxHeight = panel.scrollHeight + 'px';
+        }
+      });
+    });
+
+    // Lightbox gallery
+    const modal = document.getElementById('shotModal');
+    const modalImg = document.getElementById('modalImg');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalClose = document.getElementById('modalClose');
+
+    function openModal(src, title){
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden','false');
+      modalImg.src = src;
+      modalTitle.textContent = title || 'Pantalla';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(){
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden','true');
+      modalImg.src = '';
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.shot').forEach(el => {
+      el.addEventListener('click', () => {
+        openModal(el.dataset.shot, el.dataset.title);
+      });
+    });
+
+    modalClose.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+      if(e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+      if(e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+    });
+
+    // Idioma (placeholder): si tu index ya tiene i18n, conecta esto con tu script real
+    function toggleLang(){
+      const current = (document.getElementById('langLabel')?.textContent || 'ES').toUpperCase();
+      const next = current === 'ES' ? 'EN' : 'ES';
+      const lbl = document.getElementById('langLabel');
+      const lblM = document.getElementById('langLabelMobile');
+      if(lbl) lbl.textContent = next;
+      if(lblM) lblM.textContent = next;
+
+      // Si tu index usa un sistema de traducciones, aquí deberías llamar a tu función:
+      // setLanguage(next.toLowerCase());
+    }
+
+    document.getElementById('langToggle')?.addEventListener('click', toggleLang);
+    document.getElementById('langToggleMobile')?.addEventListener('click', toggleLang);
+  </script>
 </body>
 </html>
+
 
