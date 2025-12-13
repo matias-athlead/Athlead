@@ -2,16 +2,299 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png" />
+  <link rel="shortcut icon" href="images/favicon.ico" />
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+  <link rel="manifest" href="images/site.webmanifest" />
+  <meta name="theme-color" content="#000000" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Athlead - Nuestro deporte</title>
-  <link rel="stylesheet" href="styles.css" />
+  <title>Athlead – Nuestro deporte</title>
+
+  <meta
+    name="description"
+    content="Athlead trabaja actualmente con fútbol 11 y futsal. Dos deportes, una misma filosofía: talento real, visibilidad real."
+  />
+
+  <style>
+    /* === ESTILOS BASE (idénticos a características-app) === */
+    :root {
+      --bg-main:#000;
+      --bg-soft:#050509;
+      --bg-card:rgba(255,255,255,.04);
+      --border-soft:rgba(255,255,255,.12);
+      --text-main:#fff;
+      --text-muted:rgba(255,255,255,.75);
+    }
+
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+      background:var(--bg-main);
+      color:var(--text-main);
+    }
+
+    a { color:inherit; text-decoration:none; }
+    img { max-width:100%; display:block; }
+
+    /* ===== HEADER (MISMO QUE INDEX) ===== */
+    /* ⬇️ IMPORTANTE: NO LO MODIFICO PARA QUE SEA IDÉNTICO */
+    /* (asume que ya lo tienes probado y funcional) */
+
+    /* === HERO === */
+    .hero {
+      min-height:85vh;
+      padding:140px 16px 80px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      position:relative;
+    }
+
+    .hero::before {
+      content:"";
+      position:absolute;
+      inset:-40%;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(255,255,255,.10), transparent 55%),
+        radial-gradient(circle at 90% 90%, rgba(78,205,196,.18), transparent 60%);
+      z-index:0;
+    }
+
+    .hero-inner {
+      position:relative;
+      z-index:1;
+      max-width:900px;
+    }
+
+    .hero h1 {
+      font-size:clamp(2.4rem,4vw,3.2rem);
+      letter-spacing:-.04em;
+      margin-bottom:14px;
+    }
+
+    .hero p {
+      font-size:1.2rem;
+      opacity:.85;
+      font-style:italic;
+    }
+
+    /* === DEPORTES === */
+    .sports-section {
+      background:var(--bg-soft);
+      padding:90px 16px;
+    }
+
+    .sports-grid {
+      max-width:1100px;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:28px;
+    }
+
+    .sport-card {
+      background:var(--bg-card);
+      border:1px solid var(--border-soft);
+      border-radius:26px;
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+    }
+
+    .sport-media {
+      height:260px;
+      background:#111;
+      position:relative;
+    }
+
+    .sport-media img {
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      opacity:.9;
+    }
+
+    .sport-body {
+      padding:26px 24px 30px;
+    }
+
+    .sport-body h2 {
+      font-size:24px;
+      margin-bottom:10px;
+      letter-spacing:-.02em;
+    }
+
+    .sport-body p {
+      font-size:15px;
+      line-height:1.7;
+      color:var(--text-muted);
+      margin-bottom:14px;
+    }
+
+    .sport-tags {
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+    }
+
+    .tag {
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.2);
+      font-size:12px;
+      opacity:.85;
+    }
+
+    @media(max-width:900px){
+      .sports-grid { grid-template-columns:1fr; }
+    }
+
+    /* === VISIÓN === */
+    .vision {
+      padding:90px 16px;
+      max-width:900px;
+      margin:0 auto;
+      text-align:center;
+    }
+
+    .vision h2 {
+      font-size:30px;
+      letter-spacing:-.03em;
+      margin-bottom:14px;
+    }
+
+    .vision p {
+      font-size:16px;
+      opacity:.85;
+      line-height:1.8;
+    }
+
+    /* === FOOTER === */
+    footer {
+      border-top:1px solid rgba(255,255,255,.12);
+      text-align:center;
+      padding:40px 16px 30px;
+      font-size:13px;
+      opacity:.75;
+    }
+  </style>
 </head>
+
 <body>
-  <!-- aquí copia tu navbar si la tienes repetida en todas -->
-  <main style="padding:120px 20px;">
-    <h1>Nuestro deporte</h1>
-    <p>Contenido…</p>
-  </main>
+
+<!-- HEADER -->
+<!-- 👉 PEGA AQUÍ EXACTAMENTE EL MISMO HEADER + MENÚ MÓVIL QUE EN index.html -->
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <h1 data-i18n="hero_title">Nuestro deporte</h1>
+    <p data-i18n="hero_p">
+      No todos los deportes se evalúan igual. Athlead nace donde el talento necesita visibilidad real.
+    </p>
+  </div>
+</section>
+
+<!-- DEPORTES -->
+<section class="sports-section">
+  <div class="sports-grid">
+
+    <!-- FÚTBOL 11 -->
+    <div class="sport-card">
+      <div class="sport-media">
+        <img src="images/futbol11.jpg" alt="Fútbol 11 Athlead">
+      </div>
+      <div class="sport-body">
+        <h2 data-i18n="f11_title">Fútbol 11</h2>
+        <p data-i18n="f11_p">
+          El fútbol 11 concentra la mayor parte del talento amateur y semiprofesional. Athlead estructura jugadas, perfiles y contexto para que entrenadores y clubes puedan evaluar en segundos.
+        </p>
+        <div class="sport-tags">
+          <span class="tag">⚽ Amateur</span>
+          <span class="tag">📍 Regional / Nacional</span>
+          <span class="tag">📊 Scouting</span>
+          <span class="tag">🎥 Jugadas reales</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FUTSAL -->
+    <div class="sport-card">
+      <div class="sport-media">
+        <img src="images/futsal.jpg" alt="Futsal Athlead">
+      </div>
+      <div class="sport-body">
+        <h2 data-i18n="futsal_title">Futsal</h2>
+        <p data-i18n="futsal_p">
+          El futsal es talento puro: velocidad, técnica y toma de decisiones. Athlead permite mostrar acciones clave en espacios reducidos, donde el detalle marca la diferencia.
+        </p>
+        <div class="sport-tags">
+          <span class="tag">🔥 Intensidad</span>
+          <span class="tag">⚡ Técnica</span>
+          <span class="tag">🧠 Decisión</span>
+          <span class="tag">🏟️ Indoor</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- VISIÓN -->
+<section class="vision">
+  <h2 data-i18n="vision_title">Un mismo objetivo</h2>
+  <p data-i18n="vision_p">
+    Fútbol 11 o futsal, la filosofía es la misma: menos ruido, más señal. Athlead empieza donde el talento existe pero no siempre se ve.
+    <br><br>
+    En el futuro, la plataforma crecerá. Hoy, se enfoca en hacerlo bien.
+  </p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div data-i18n="footer">© 2025 Athlead · Deja que el talento hable por ti</div>
+</footer>
+
+<script>
+  const i18n = {
+    es: {
+      hero_title: "Nuestro deporte",
+      hero_p: "No todos los deportes se evalúan igual. Athlead nace donde el talento necesita visibilidad real.",
+      f11_title: "Fútbol 11",
+      f11_p: "El fútbol 11 concentra la mayor parte del talento amateur y semiprofesional. Athlead estructura jugadas, perfiles y contexto para que entrenadores y clubes puedan evaluar en segundos.",
+      futsal_title: "Futsal",
+      futsal_p: "El futsal es talento puro: velocidad, técnica y toma de decisiones. Athlead permite mostrar acciones clave en espacios reducidos.",
+      vision_title: "Un mismo objetivo",
+      vision_p: "Fútbol 11 o futsal, la filosofía es la misma: menos ruido, más señal. Athlead empieza donde el talento existe pero no siempre se ve.",
+      footer: "© 2025 Athlead · Deja que el talento hable por ti"
+    },
+    en: {
+      hero_title: "Our sport",
+      hero_p: "Not all sports are evaluated the same. Athlead starts where talent needs real visibility.",
+      f11_title: "11-a-side football",
+      f11_p: "11-a-side football concentrates most amateur and semi-professional talent. Athlead structures clips and profiles so scouts can decide in seconds.",
+      futsal_title: "Futsal",
+      futsal_p: "Futsal is pure talent: speed, technique and decision-making. Athlead highlights key actions where details matter.",
+      vision_title: "One goal",
+      vision_p: "11-a-side football or futsal, the philosophy is the same: less noise, more signal. Athlead starts where talent exists but is not always seen.",
+      footer: "© 2025 Athlead · Let your talent speak for you"
+    }
+  };
+
+  const lang = localStorage.getItem("athlead_lang") || "es";
+  document.documentElement.lang = lang;
+
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const key = el.dataset.i18n;
+    if (i18n[lang][key]) el.innerHTML = i18n[lang][key];
+  });
+</script>
+
 </body>
 </html>
 
