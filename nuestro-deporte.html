@@ -3,780 +3,445 @@
 <head>
   <meta charset="UTF-8" />
 
-  <!-- Favicon (igual que tu base) -->
+  <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png" />
   <link rel="shortcut icon" href="images/favicon.ico" />
   <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
   <link rel="manifest" href="images/site.webmanifest" />
   <meta name="theme-color" content="#000000" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <title>Athlead - Nuestro deporte | Fútbol 11 y Futsal</title>
-  <meta
-    name="description"
-    content="Athlead trabaja con Fútbol 11 y Futsal: estructura, categorías, contenidos, y enfoque legal (imagen, menores, derechos de vídeo)."
-  />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Athlead - Nuestro deporte | Fútbol 11 y Futsal" />
-  <meta
-    property="og:description"
-    content="Cómo trabajamos Fútbol 11 y Futsal: qué pedimos, cómo organizamos clips, y cómo protegemos a jugadores (incluyendo menores)."
-  />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://athlead.es/nuestro-deporte.html" />
-  <meta
-    property="og:image"
-    content="https://placehold.co/1200x630/000/fff?text=Athlead+-+Nuestro+Deporte"
-  />
 
   <style>
-    :root {
-      --bg-main: #000000;
-      --bg-soft: #050509;
-      --bg-card: rgba(255, 255, 255, 0.04);
-      --border-soft: rgba(255, 255, 255, 0.1);
-      --text-main: #ffffff;
-      --text-muted: rgba(255, 255, 255, 0.7);
-      --accent: #ffffff;
-      --accent-soft: #f2f2f2;
-      --accent-alt: #4ecdc4;
-      --danger: #ff6b6b;
+    :root{
+      --bg:#000;
+      --bg2:#050509;
+      --card:rgba(255,255,255,.04);
+      --border:rgba(255,255,255,.12);
+      --text:#fff;
+      --muted:rgba(255,255,255,.72);
+      --muted2:rgba(255,255,255,.58);
+      --glass:rgba(0,0,0,.78);
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,system-ui,sans-serif;scroll-behavior:smooth}
+    a{text-decoration:none;color:inherit}
+    img,video{max-width:100%;display:block}
+
+    /* ===== HEADER (misma estética) ===== */
+    .header{
+      position:fixed;top:16px;left:50%;transform:translateX(-50%);
+      width:min(1100px,92%);
+      padding:18px 26px;
+      border-radius:999px;
+      background:var(--glass);
+      backdrop-filter:blur(18px);
+      border:1px solid rgba(255,255,255,.15);
+      box-shadow:0 22px 45px rgba(0,0,0,.65);
+      z-index:1000;
+      display:flex;align-items:center;justify-content:space-between;gap:18px;
+      transition:transform .55s ease;
+    }
+    .header.hide{transform:translate(-50%,-180%)}
+    .logo{
+      font-size:24px;font-weight:700;letter-spacing:.16em;cursor:pointer;white-space:nowrap
+    }
+    .nav-links{display:flex;gap:18px;align-items:center;font-size:16px}
+    .nav-links a{opacity:.82;padding:4px 0;border-bottom:1px solid transparent;transition:opacity .2s,border-bottom-color .2s}
+    .nav-links a:hover{opacity:1;border-bottom-color:rgba(255,255,255,.8)}
+    .nav-item{position:relative}
+    .nav-toggle{
+      display:inline-flex;align-items:center;gap:6px;
+      opacity:.82;padding:4px 0;border:none;background:transparent;color:#fff;font-size:16px;cursor:pointer
+    }
+    .nav-toggle:hover{opacity:1}
+    .nav-arrow{font-size:11px}
+    .nav-dropdown{
+      position:absolute;top:130%;left:50%;transform:translateX(-50%);
+      min-width:210px;background:rgba(0,0,0,.96);
+      border-radius:18px;border:1px solid rgba(255,255,255,.18);
+      box-shadow:0 18px 40px rgba(0,0,0,.8);
+      padding:10px 6px;display:none;z-index:1200;
+    }
+    .nav-dropdown.open{display:block}
+    .nav-dropdown a{display:block;padding:8px 14px;font-size:14px;border-radius:999px;border-bottom:none}
+    .nav-dropdown a:hover{background:rgba(255,255,255,.08)}
+    @media (hover:hover){
+      .nav-item:hover .nav-dropdown{display:block}
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body {
-      height: 100%;
-      scroll-behavior: smooth;
-      background: var(--bg-main);
-      color: var(--text-main);
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, system-ui, sans-serif;
-    }
-    img, video { max-width: 100%; display: block; }
-    a { color: inherit; text-decoration: none; }
+    .header-actions{display:flex;align-items:center;gap:10px}
 
-    .section-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 80px 16px;
+    /* Language switch */
+    .lang-switcher{position:relative}
+    .lang-current{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:8px 14px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.35);
+      background:rgba(0,0,0,.45);
+      color:#fff;font-size:13px;cursor:pointer;backdrop-filter:blur(10px);
     }
-    .section-kicker {
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      font-size: 12px;
-      opacity: 0.7;
-      margin-bottom: 6px;
+    .lang-flag{font-size:16px;line-height:1}
+    .lang-label{letter-spacing:.08em;text-transform:uppercase}
+    .lang-menu{
+      position:absolute;right:0;top:110%;min-width:160px;
+      background:#000;border-radius:14px;border:1px solid rgba(255,255,255,.2);
+      box-shadow:0 18px 40px rgba(0,0,0,.8);
+      padding:6px;display:none;z-index:1200;
     }
+    .lang-menu.open{display:block}
+    .lang-menu button{
+      width:100%;display:flex;align-items:center;gap:8px;
+      padding:8px 10px;background:transparent;border:none;color:#fff;font-size:13px;
+      cursor:pointer;border-radius:999px;text-align:left
+    }
+    .lang-menu button:hover{background:rgba(255,255,255,.08)}
 
-    /* HEADER (igual estética) */
-    .header {
-      position: fixed;
-      top: 16px;
-      left: 50%;
-      transform: translate(-50%, 0);
-      width: min(1100px, 92%);
-      padding: 20px 28px;
-      border-radius: 999px;
-      background: rgba(0, 0, 0, 0.78);
-      backdrop-filter: blur(18px);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      box-shadow: 0 22px 45px rgba(0, 0, 0, 0.65);
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      transition: transform 0.6s ease-in-out;
-    }
-    .header.hide-header { transform: translate(-50%, -180%); }
+    .menu-toggle{display:none;background:none;border:none;color:#fff;font-size:24px;cursor:pointer}
 
-    .logo {
-      font-size: 24px;
-      font-weight: 700;
-      letter-spacing: 0.16em;
-      cursor: pointer;
+    /* Mobile menu */
+    .mobile-menu{
+      position:fixed;top:0;right:-100%;
+      width:270px;height:100vh;background:rgba(0,0,0,.96);
+      backdrop-filter:blur(14px);
+      z-index:900;padding:80px 24px 24px;transition:right .3s ease;
     }
-
-    .nav-links {
-      display: flex;
-      gap: 20px;
-      align-items: center;
-      font-size: 16px;
+    .mobile-menu.active{right:0}
+    .mobile-links{display:flex;flex-direction:column;gap:16px;font-size:16px}
+    .mobile-links a{padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.12)}
+    .mobile-group{margin-top:10px}
+    .mobile-title{
+      width:100%;padding:10px 0;background:none;border:none;color:#fff;font-size:16px;
+      display:flex;justify-content:space-between;align-items:center;cursor:pointer
     }
-    .nav-links a {
-      opacity: 0.8;
-      padding: 4px 0;
-      border-bottom: 1px solid transparent;
-      transition: opacity 0.2s, border-bottom-color 0.2s;
-    }
-    .nav-links a:hover {
-      opacity: 1;
-      border-bottom-color: rgba(255, 255, 255, 0.8);
+    .mobile-arrow{font-size:13px;transition:transform .2s ease}
+    .mobile-sub{display:none;padding-left:8px;border-left:1px solid rgba(255,255,255,.12)}
+    .mobile-sub.open{display:block}
+    .mobile-title.open .mobile-arrow{transform:rotate(180deg)}
+    @media(max-width:768px){
+      .header{width:94%;padding:10px 16px}
+      .nav-links{display:none}
+      .menu-toggle{display:block}
+      .lang-current{padding:6px 10px;font-size:11px}
     }
 
-    .nav-item-role,
-    .nav-item-app { position: relative; }
-
-    .nav-dropdown-toggle {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      opacity: 0.8;
-      padding: 4px 0;
-      border: none;
-      background: transparent;
-      color: #ffffff;
-      font-size: 16px;
-      cursor: pointer;
+    /* ===== HERO ===== */
+    .hero{
+      position:relative;min-height:92vh;
+      padding:120px 16px 70px;
+      display:flex;align-items:center;justify-content:center;overflow:hidden;background:#000
     }
-    .nav-dropdown-toggle:hover { opacity: 1; }
-    .nav-dropdown-arrow { font-size: 11px; }
-
-    .nav-dropdown {
-      position: absolute;
-      top: 130%;
-      left: 50%;
-      transform: translateX(-50%);
-      min-width: 200px;
-      background: rgba(0, 0, 0, 0.96);
-      border-radius: 18px;
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.8);
-      padding: 10px 6px;
-      display: none;
-      z-index: 1200;
+    .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.78}
+    .hero-overlay{position:absolute;inset:0;background:rgba(0,0,0,.28)}
+    .hero-content{position:relative;z-index:2;max-width:980px;text-align:center}
+    .badge{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 12px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.18);
+      font-size:12px;text-transform:uppercase;letter-spacing:.1em;
+      background:rgba(0,0,0,.65);opacity:.95;margin-bottom:18px
     }
-    .nav-dropdown.open { display: block; }
-    .nav-dropdown a {
-      display: block;
-      padding: 8px 14px;
-      font-size: 14px;
-      border-radius: 999px;
-      border-bottom: none;
+    .hero h1{font-size:clamp(2.2rem,4vw,3.2rem);line-height:1.1;letter-spacing:-.04em;margin-bottom:12px}
+    .hero p{font-size:clamp(1.05rem,2vw,1.35rem);font-style:italic;opacity:.92;margin-bottom:26px}
+    .hero-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:12px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:12px 30px;border-radius:999px;
+      font-weight:600;font-size:15px;cursor:pointer;border:none;
+      transition:transform .15s ease, box-shadow .15s ease, background-color .15s ease, color .15s ease;
+      white-space:nowrap
     }
-    .nav-dropdown a:hover { background: rgba(255, 255, 255, 0.08); }
-
-    @media (hover: hover) {
-      .nav-item-role:hover .nav-dropdown,
-      .nav-item-app:hover .nav-dropdown { display: block; }
+    .btn-primary{background:#fff;color:#000;box-shadow:0 14px 30px rgba(0,0,0,.6)}
+    .btn-primary:hover{background:#f2f2f2;transform:translateY(-1px);box-shadow:0 20px 40px rgba(0,0,0,.75)}
+    .btn-secondary{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.7)}
+    .btn-secondary:hover{background:#fff;color:#000;transform:translateY(-1px)}
+    @media(max-width:768px){
+      .hero{padding-top:112px;min-height:88vh}
+      .hero h1{font-size:2rem}
+      .hero p{font-size:1rem}
     }
 
-    /* Selector idioma */
-    .lang-switcher { position: relative; }
-    .lang-current {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.35);
-      background: rgba(0, 0, 0, 0.45);
-      color: #ffffff;
-      font-size: 13px;
-      cursor: pointer;
-      backdrop-filter: blur(10px);
-    }
-    .lang-flag { font-size: 16px; line-height: 1; }
-    .lang-label { letter-spacing: 0.08em; text-transform: uppercase; }
-    .lang-arrow { font-size: 10px; opacity: 0.8; }
+    /* ===== CONTENT SHELL ===== */
+    .section{background:#000}
+    .section.alt{background:var(--bg2)}
+    .inner{max-width:1100px;margin:0 auto;padding:80px 16px}
+    .kicker{text-transform:uppercase;letter-spacing:.16em;font-size:12px;opacity:.7;margin-bottom:6px}
+    .title{font-size:32px;letter-spacing:-.03em;margin-bottom:12px}
+    .lead{font-size:16px;line-height:1.7;color:var(--muted);max-width:920px;margin-bottom:24px}
 
-    .lang-menu {
-      position: absolute;
-      right: 0;
-      top: 110%;
-      min-width: 160px;
-      background: #000000;
-      border-radius: 14px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.8);
-      padding: 6px;
-      display: none;
-      z-index: 1200;
+    /* ===== INTERACTIVE: Sport Switch + Search/Filters ===== */
+    .sport-shell{
+      background:rgba(255,255,255,.03);
+      border:1px solid var(--border);
+      border-radius:26px;
+      padding:18px;
+      box-shadow:0 22px 55px rgba(0,0,0,.55);
     }
-    .lang-menu.open { display: block; }
-    .lang-menu button {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 10px;
-      background: transparent;
-      border: none;
-      color: #ffffff;
-      font-size: 13px;
-      cursor: pointer;
-      border-radius: 999px;
-      text-align: left;
+    .toolbar{
+      display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;
+      margin-bottom:14px;
     }
-    .lang-menu button:hover { background: rgba(255, 255, 255, 0.08); }
+    .tabs{
+      display:inline-flex;gap:8px;flex-wrap:wrap;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.12);
+      padding:6px;border-radius:999px;
+    }
+    .tab{
+      padding:10px 14px;border-radius:999px;border:1px solid transparent;
+      background:transparent;color:#fff;opacity:.8;cursor:pointer;font-weight:600;font-size:13px;
+      transition:background .15s, opacity .15s, transform .15s;
+    }
+    .tab:hover{opacity:1;transform:translateY(-1px)}
+    .tab.active{background:#fff;color:#000;opacity:1}
+    .controls{
+      display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:flex-end;
+    }
+    .search{
+      width:min(320px,100%);
+      display:flex;align-items:center;gap:10px;
+      padding:10px 14px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(0,0,0,.35);
+    }
+    .search input{
+      width:100%;background:transparent;border:none;outline:none;color:#fff;font-size:13px;
+    }
+    .pill{
+      padding:10px 12px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(0,0,0,.35);
+      color:#fff;font-size:13px;cursor:pointer;opacity:.85;
+    }
+    .pill:hover{opacity:1}
+    .pill.active{background:rgba(255,255,255,.1)}
+    .ghost{
+      padding:10px 12px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.35);
+      background:transparent;color:#fff;font-size:13px;cursor:pointer;
+    }
+    .ghost:hover{background:rgba(255,255,255,.08)}
 
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
+    /* ===== Cards + Carousel ===== */
+    .grid{
+      display:grid;grid-template-columns:1.2fr .8fr;gap:16px;align-items:start;
     }
+    @media(max-width:950px){ .grid{grid-template-columns:1fr} }
 
-    .menu-toggle {
-      display: none;
-      background: none;
-      border: none;
-      color: #ffffff;
-      font-size: 24px;
-      cursor: pointer;
+    .carousel{
+      position:relative;
+      border-radius:22px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.12);
+      background:#0b0b10;
+      min-height:320px;
     }
+    .carousel-media{
+      height:320px;
+      background:#0b0b10;
+    }
+    .carousel-media img{
+      width:100%;height:100%;object-fit:cover;opacity:.95;
+    }
+    .carousel-overlay{
+      position:absolute;inset:auto 0 0 0;padding:16px 16px 14px;
+      background:linear-gradient(to top, rgba(0,0,0,.8), rgba(0,0,0,0));
+    }
+    .carousel-overlay h3{font-size:18px;margin-bottom:6px;letter-spacing:-.02em}
+    .carousel-overlay p{font-size:13px;color:rgba(255,255,255,.75);line-height:1.6}
+    .carousel-controls{
+      position:absolute;inset:12px 12px auto auto;display:flex;gap:8px;
+    }
+    .icon-btn{
+      width:38px;height:38px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.22);
+      background:rgba(0,0,0,.4);
+      color:#fff;cursor:pointer;
+      display:flex;align-items:center;justify-content:center;
+      backdrop-filter:blur(8px);
+      transition:transform .15s, background .15s;
+    }
+    .icon-btn:hover{transform:translateY(-1px);background:rgba(255,255,255,.08)}
+    .dots{
+      position:absolute;left:16px;top:14px;display:flex;gap:6px;
+    }
+    .dot{
+      width:8px;height:8px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.35);
+      background:transparent;opacity:.8;cursor:pointer;
+    }
+    .dot.active{background:#fff;opacity:1}
 
-    /* Menú móvil */
-    .mobile-menu {
-      position: fixed;
-      top: 0;
-      right: -100%;
-      width: 260px;
-      height: 100vh;
-      background: rgba(0, 0, 0, 0.96);
-      backdrop-filter: blur(14px);
-      z-index: 900;
-      padding: 80px 24px 24px;
-      transition: right 0.3s ease;
+    /* ===== Right panel: Actions list (clickable) ===== */
+    .panel{
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:22px;
+      padding:14px;
     }
-    .mobile-menu.active { right: 0; }
-    .mobile-menu-links {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      font-size: 16px;
+    .panel-head{
+      display:flex;justify-content:space-between;align-items:flex-end;gap:10px;margin-bottom:10px;
     }
-    .mobile-menu-links a {
-      padding-bottom: 10px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    .panel-head h3{font-size:16px;letter-spacing:-.01em}
+    .panel-head span{font-size:12px;color:rgba(255,255,255,.6)}
+    .list{display:flex;flex-direction:column;gap:8px}
+    .item{
+      padding:12px 12px;border-radius:16px;
+      border:1px solid rgba(255,255,255,.1);
+      background:rgba(0,0,0,.25);
+      cursor:pointer;
+      transition:transform .12s, background .12s, border-color .12s;
     }
+    .item:hover{transform:translateY(-1px);background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.18)}
+    .item.active{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.22)}
+    .item-top{display:flex;justify-content:space-between;gap:10px;align-items:center}
+    .tag{
+      font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:.72
+    }
+    .item-title{font-size:14px;font-weight:650;letter-spacing:-.01em}
+    .item-desc{font-size:12px;color:rgba(255,255,255,.68);line-height:1.6;margin-top:6px}
 
-    .mobile-menu-role,
-    .mobile-menu-app { margin-top: 12px; }
+    /* ===== Accordion (no repetición: data-driven) ===== */
+    .accordion{margin-top:14px;display:flex;flex-direction:column;gap:10px}
+    details{
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:18px;
+      padding:12px 14px;
+    }
+    summary{
+      cursor:pointer;list-style:none;
+      display:flex;justify-content:space-between;align-items:center;gap:10px;
+      font-weight:650;font-size:14px;
+    }
+    summary::-webkit-details-marker{display:none}
+    .sum-muted{font-weight:500;font-size:12px;color:rgba(255,255,255,.62)}
+    .acc-body{
+      margin-top:10px;font-size:13px;line-height:1.7;color:rgba(255,255,255,.75)
+    }
+    .acc-bullets{margin-top:8px;padding-left:16px;color:rgba(255,255,255,.72);font-size:13px;line-height:1.7}
+    .acc-bullets li+li{margin-top:4px}
 
-    .mobile-role-title,
-    .mobile-app-title {
-      width: 100%;
-      padding: 10px 0;
-      background: none;
-      border: none;
-      color: #ffffff;
-      font-size: 16px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      cursor: pointer;
+    /* ===== Modal (interactivo) ===== */
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:2000}
+    .modal.open{display:flex}
+    .modal-overlay{position:absolute;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(4px)}
+    .modal-box{
+      position:relative;max-width:760px;width:92%;max-height:82vh;
+      background:rgba(0,0,0,.9);
+      border-radius:24px;border:1px solid rgba(255,255,255,.18);
+      box-shadow:0 28px 80px rgba(0,0,0,.9);
+      padding:22px 22px 18px;
+      overflow:hidden;display:flex;flex-direction:column
     }
-    .mobile-role-arrow,
-    .mobile-app-arrow {
-      font-size: 13px;
-      transition: transform 0.2s ease;
-    }
-    .mobile-role-submenu,
-    .mobile-app-submenu {
-      display: none;
-      padding-left: 8px;
-      border-left: 1px solid rgba(255, 255, 255, 0.12);
-    }
-    .mobile-role-submenu a,
-    .mobile-app-submenu a {
-      display: block;
-      padding: 8px 0;
-      font-size: 15px;
-      border: none;
-    }
-    .mobile-role-submenu.open,
-    .mobile-app-submenu.open { display: block; }
-    .mobile-role-title.open .mobile-role-arrow,
-    .mobile-app-title.open .mobile-app-arrow { transform: rotate(180deg); }
-
-    /* HERO (misma vibe) */
-    .hero-section {
-      position: relative;
-      min-height: 92vh;
-      padding: 120px 16px 70px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      background: #000000;
-      z-index: 0;
-    }
-    .hero-video {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.78;
-      z-index: 0;
-    }
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.25);
-      z-index: 1;
-    }
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 980px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      opacity: 0.9;
-      margin-bottom: 18px;
-      background: rgba(0, 0, 0, 0.65);
-    }
-    .hero-title {
-      font-size: clamp(2.2rem, 4vw, 3.2rem);
-      line-height: 1.1;
-      letter-spacing: -0.04em;
-      margin-bottom: 12px;
-    }
-    .hero-subtitle {
-      font-size: clamp(1.05rem, 2vw, 1.35rem);
-      font-style: italic;
-      opacity: 0.9;
-      margin-bottom: 26px;
-    }
-    .hero-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 12px;
-    }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 12px 30px;
-      border-radius: 999px;
-      font-weight: 600;
-      font-size: 15px;
-      cursor: pointer;
-      border: none;
-      transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease,
-        color 0.15s ease;
-      text-decoration: none;
-      white-space: nowrap;
-    }
-    .btn-cta {
-      background: #ffffff;
-      color: #000000;
-      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.6);
-    }
-    .btn-cta:hover {
-      background: #f2f2f2;
-      transform: translateY(-1px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.75);
-    }
-    .btn-secondary {
-      background: transparent;
-      color: #ffffff;
-      border: 1px solid rgba(255, 255, 255, 0.7);
-    }
-    .btn-secondary:hover {
-      background: #ffffff;
-      color: #000000;
-      transform: translateY(-1px);
-    }
-
-    /* SECCIONES */
-    .overview { background: #000000; }
-    .overview h2 { font-size: 32px; margin-bottom: 12px; letter-spacing: -0.03em; }
-    .overview p {
-      font-size: 16px;
-      line-height: 1.7;
-      color: var(--text-muted);
-      margin-bottom: 18px;
-      max-width: 900px;
-    }
-
-    .sports-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 24px;
-      margin-top: 28px;
-    }
-    .sport-card {
-      background: var(--bg-card);
-      border-radius: 22px;
-      border: 1px solid var(--border-soft);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      min-height: 100%;
-    }
-    .sport-card-media {
-      position: relative;
-      height: 240px;
-      overflow: hidden;
-      background: #0b0b0f;
-    }
-    .sport-card-media img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.95;
-    }
-    .sport-card-body { padding: 22px 22px 20px; }
-    .sport-label {
-      font-size: 11px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      opacity: 0.75;
-      margin-bottom: 8px;
-    }
-    .sport-card h3 { font-size: 20px; margin-bottom: 10px; }
-    .sport-card p {
-      font-size: 14px;
-      color: var(--text-muted);
-      line-height: 1.7;
-      margin-bottom: 12px;
-    }
-    .bullets {
-      list-style: none;
-      padding-left: 0;
-      margin: 0;
-      font-size: 13px;
-      color: rgba(255, 255, 255, 0.75);
-    }
-    .bullets li + li { margin-top: 6px; }
-
-    /* BLOQUES OSCUROS ALTERNADOS */
-    .alt { background: #050509; }
-
-    /* LEGAL / SAFETY */
-    .legal-section h2 {
-      font-size: 32px;
-      letter-spacing: -0.03em;
-      margin-bottom: 10px;
-      text-align: center;
-    }
-    .legal-section > .section-inner > p {
-      font-size: 15px;
-      opacity: 0.85;
-      max-width: 760px;
-      margin: 0 auto 30px;
-      text-align: center;
-      color: var(--text-muted);
-    }
-    .legal-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-      margin-top: 18px;
-    }
-    .legal-card {
-      background: rgba(0,0,0,0.55);
-      border: 1px solid rgba(255,255,255,0.14);
-      border-radius: 18px;
-      padding: 18px 16px;
-      text-align: left;
-      min-height: 150px;
-    }
-    .legal-card h3 {
-      font-size: 15px;
-      margin-bottom: 8px;
-      letter-spacing: -0.01em;
-    }
-    .legal-card p {
-      font-size: 13px;
-      line-height: 1.7;
-      color: rgba(255,255,255,0.72);
-    }
-    .legal-actions {
-      margin-top: 18px;
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    /* FOOTER */
-    .footer {
-      background: #000000;
-      border-top: 1px solid rgba(255, 255, 255, 0.12);
-      text-align: center;
-    }
-    .footer-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 36px 16px 26px;
-    }
-    .footer-links {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 16px;
-      font-size: 13px;
-      margin-bottom: 16px;
-    }
-    .footer-links a { opacity: 0.7; }
-    .footer-links a:hover { opacity: 1; }
-    .copyright {
-      font-size: 12px;
-      opacity: 0.6;
-      margin-bottom: 10px;
-    }
-    .privacy-links {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 14px;
-      font-size: 12px;
-      opacity: 0.7;
-      margin-bottom: 10px;
-    }
-    .footer-tagline {
-      font-style: italic;
-      font-size: 15px;
-      opacity: 0.85;
-      margin-top: 4px;
-    }
-
-    /* ===== MODAL LEGAL (igual) ===== */
-    .legal-modal {
-      position: fixed;
-      inset: 0;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 2000;
-    }
-    .legal-modal.open { display: flex; }
-    .legal-modal-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.75);
-      backdrop-filter: blur(4px);
-    }
-    .legal-modal-content {
-      position: relative;
-      max-width: 720px;
-      width: 92%;
-      max-height: 80vh;
-      background: rgba(0, 0, 0, 0.9);
-      border-radius: 24px;
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      box-shadow: 0 28px 80px rgba(0, 0, 0, 0.9);
-      padding: 24px 24px 20px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-    .legal-modal-content::before {
-      content: "";
-      position: absolute;
-      inset: -40%;
+    .modal-box::before{
+      content:"";position:absolute;inset:-40%;
       background:
-        radial-gradient(circle at 0 0, rgba(78, 205, 196, 0.18), transparent 55%),
-        radial-gradient(circle at 100% 100%, rgba(255, 255, 255, 0.08), transparent 60%);
-      opacity: 0.9;
-      pointer-events: none;
-      z-index: -1;
+        radial-gradient(circle at 0 0, rgba(78,205,196,.18), transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(255,255,255,.08), transparent 60%);
+      opacity:.9;pointer-events:none;z-index:-1
     }
-    .legal-modal-close {
-      position: absolute;
-      top: 12px;
-      right: 14px;
-      background: none;
-      border: none;
-      color: #ffffff;
-      font-size: 20px;
-      cursor: pointer;
-      opacity: 0.8;
+    .modal-close{
+      position:absolute;top:12px;right:14px;background:none;border:none;color:#fff;
+      font-size:20px;cursor:pointer;opacity:.8
     }
-    .legal-modal-close:hover { opacity: 1; }
-    #legal-modal-title {
-      font-size: 20px;
-      margin-bottom: 10px;
-      letter-spacing: -0.02em;
-    }
-    .legal-modal-body {
-      font-size: 13px;
-      line-height: 1.7;
-      color: rgba(255, 255, 255, 0.8);
-      overflow-y: auto;
-      padding-right: 4px;
-    }
-    .legal-modal-body p + p { margin-top: 10px; }
+    .modal-close:hover{opacity:1}
+    .modal-title{font-size:18px;letter-spacing:-.02em;margin-bottom:10px}
+    .modal-body{font-size:13px;line-height:1.7;color:rgba(255,255,255,.8);overflow:auto;padding-right:4px}
+    .modal-body p+p{margin-top:10px}
+    .modal-body ul{margin-top:8px;padding-left:18px}
+    .modal-body li+li{margin-top:4px}
 
-    /* ===== BANNER COOKIES (igual) ===== */
-    .cookie-banner {
-      position: fixed;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      padding: 16px;
-      z-index: 1900;
-      display: flex;
-      justify-content: center;
-      pointer-events: none;
-      transform: translateY(110%);
-      opacity: 0;
-      transition: transform 0.3s ease, opacity 0.3s ease;
-    }
-    .cookie-banner.visible {
-      transform: translateY(0);
-      opacity: 1;
-      pointer-events: auto;
-    }
-    .cookie-banner-inner {
-      max-width: 900px;
-      width: 100%;
-      background: rgba(0, 0, 0, 0.92);
-      border-radius: 18px;
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.9);
-      padding: 18px 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .cookie-title { font-size: 15px; margin-bottom: 2px; }
-    .cookie-text {
-      font-size: 13px;
-      line-height: 1.6;
-      color: rgba(255, 255, 255, 0.8);
-    }
-    .cookie-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 6px;
-    }
-    .cookie-btn {
-      border-radius: 999px;
-      padding: 8px 16px;
-      font-size: 13px;
-      border: 1px solid transparent;
-      cursor: pointer;
-      white-space: nowrap;
-    }
-    .cookie-btn-primary { background: #ffffff; color: #000000; border-color: #ffffff; }
-    .cookie-btn-primary:hover { background: #f2f2f2; }
-    .cookie-btn-secondary { background: transparent; color: #ffffff; border-color: rgba(255, 255, 255, 0.6); }
-    .cookie-btn-secondary:hover { background: rgba(255, 255, 255, 0.08); }
-    .cookie-btn-text { background: transparent; color: rgba(255, 255, 255, 0.8); border-color: transparent; }
-    .cookie-btn-text:hover { color: #ffffff; }
-    .cookie-more {
-      margin-top: 4px;
-      align-self: flex-start;
-      background: none;
-      border: none;
-      padding: 0;
-      font-size: 12px;
-      color: rgba(255, 255, 255, 0.7);
-      text-decoration: underline;
-      cursor: pointer;
-    }
-    .cookie-more:hover { color: #ffffff; }
+    /* ===== Footer ===== */
+    .footer{background:#000;border-top:1px solid rgba(255,255,255,.12);text-align:center}
+    .footer-inner{max-width:1100px;margin:0 auto;padding:34px 16px 26px}
+    .footer-links{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;font-size:13px;margin-bottom:12px}
+    .footer-links a{opacity:.72}
+    .footer-links a:hover{opacity:1}
+    .copy{font-size:12px;opacity:.6}
+    .tagline{font-style:italic;font-size:15px;opacity:.85;margin-top:8px}
 
-    /* RESPONSIVE */
-    @media (max-width: 900px) {
-      .sports-grid { grid-template-columns: 1fr; }
-      .legal-grid { grid-template-columns: 1fr; }
-      .section-inner { padding: 64px 18px; }
-      .sport-card-media { height: 220px; }
+    /* Cookies banner */
+    .cookie-banner{
+      position:fixed;left:0;right:0;bottom:0;padding:16px;z-index:1900;
+      display:flex;justify-content:center;pointer-events:none;
+      transform:translateY(110%);opacity:0;transition:transform .3s ease, opacity .3s ease;
     }
-
-    @media (max-width: 768px) {
-      .header { width: 94%; padding: 10px 16px; }
-      .nav-links { display: none; }
-      .menu-toggle { display: block; }
-      .header-actions { gap: 8px; flex-wrap: nowrap; }
-      .lang-current { padding: 6px 10px; font-size: 11px; }
-      .hero-section { padding-top: 112px; min-height: 88vh; }
-      .hero-title { font-size: 2rem; }
-      .hero-subtitle { font-size: 1rem; }
+    .cookie-banner.visible{transform:translateY(0);opacity:1;pointer-events:auto}
+    .cookie-inner{
+      max-width:900px;width:100%;
+      background:rgba(0,0,0,.92);
+      border-radius:18px;border:1px solid rgba(255,255,255,.18);
+      box-shadow:0 18px 50px rgba(0,0,0,.9);
+      padding:18px 20px;display:flex;flex-direction:column;gap:10px;
+      text-align:left
     }
-
-    @media (max-width: 600px) {
-      .legal-modal-content { padding: 20px 16px 16px; border-radius: 18px; }
-      #legal-modal-title { font-size: 18px; }
-      .legal-modal-body { font-size: 12px; }
-      .cookie-buttons { flex-direction: column; align-items: stretch; }
-      .cookie-btn { width: 100%; text-align: center; }
+    .cookie-inner h3{font-size:15px}
+    .cookie-inner p{font-size:13px;line-height:1.6;color:rgba(255,255,255,.8)}
+    .cookie-btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+    .cookie-btn{border-radius:999px;padding:8px 16px;font-size:13px;border:1px solid transparent;cursor:pointer;white-space:nowrap}
+    .cookie-yes{background:#fff;color:#000;border-color:#fff}
+    .cookie-yes:hover{background:#f2f2f2}
+    .cookie-mid{background:transparent;color:#fff;border-color:rgba(255,255,255,.6)}
+    .cookie-mid:hover{background:rgba(255,255,255,.08)}
+    .cookie-no{background:transparent;color:rgba(255,255,255,.8);border-color:transparent}
+    .cookie-no:hover{color:#fff}
+    @media(max-width:600px){
+      .cookie-btns{flex-direction:column;align-items:stretch}
+      .cookie-btn{width:100%;text-align:center}
+      .modal-box{padding:20px 16px 16px;border-radius:18px}
     }
   </style>
 </head>
 
 <body>
-  <!-- BANNER COOKIES -->
+
+  <!-- Cookies -->
   <div id="cookie-banner" class="cookie-banner">
-    <div class="cookie-banner-inner">
-      <h3 class="cookie-title" data-i18n="cookie_title">Tu privacidad es importante</h3>
-      <p class="cookie-text" data-i18n="cookie_text">
-        Usamos cookies esenciales para que la web funcione correctamente y, de forma opcional,
-        cookies de analítica para entender cómo se usa Athlead y mejorar la experiencia.
-        Puedes aceptar todas, solo las esenciales o rechazarlas.
+    <div class="cookie-inner">
+      <h3 data-i18n="cookie_title">Tu privacidad es importante</h3>
+      <p data-i18n="cookie_text">
+        Usamos cookies esenciales para que la web funcione y, opcionalmente, analítica agregada para mejorar la experiencia.
       </p>
-
-      <div class="cookie-buttons">
-        <button type="button" id="cookie-accept-all" class="cookie-btn cookie-btn-primary" data-i18n="cookie_accept_all">
-          Aceptar todas
-        </button>
-        <button type="button" id="cookie-accept-essential" class="cookie-btn cookie-btn-secondary" data-i18n="cookie_accept_essential">
-          Aceptar solo esenciales
-        </button>
-        <button type="button" id="cookie-reject" class="cookie-btn cookie-btn-text" data-i18n="cookie_reject">
-          Rechazar
-        </button>
+      <div class="cookie-btns">
+        <button class="cookie-btn cookie-yes" id="cookie-all" data-i18n="cookie_all">Aceptar todas</button>
+        <button class="cookie-btn cookie-mid" id="cookie-essential" data-i18n="cookie_essential">Solo esenciales</button>
+        <button class="cookie-btn cookie-no" id="cookie-reject" data-i18n="cookie_reject">Rechazar</button>
       </div>
-
-      <button type="button" class="cookie-more legal-link" data-modal="cookies" data-i18n="cookie_more">
-        Más información sobre cookies
-      </button>
     </div>
   </div>
-  <!-- FIN BANNER COOKIES -->
 
-  <!-- HEADER -->
-  <header class="header">
+  <!-- Header -->
+  <header class="header" id="header">
     <div class="logo" id="logo">ATHLEAD</div>
 
     <nav class="nav-links">
       <a href="index.html#who-we-are" data-i18n="nav_about">Quiénes somos</a>
       <a href="index.html#how-steps" data-i18n="nav_how">Cómo funciona</a>
 
-      <!-- Dropdown Rol -->
-      <div class="nav-item-role">
-        <button class="nav-dropdown-toggle" type="button">
+      <div class="nav-item">
+        <button class="nav-toggle" type="button" id="roleToggle">
           <span data-i18n="nav_role">Rol</span>
-          <span class="nav-dropdown-arrow">▾</span>
+          <span class="nav-arrow">▾</span>
         </button>
-        <div class="nav-dropdown">
+        <div class="nav-dropdown" id="roleMenu">
           <a href="rol-jugador.html" data-i18n="nav_role_player">Jugador</a>
           <a href="rol-club.html" data-i18n="nav_role_club">Club</a>
           <a href="rol-entrenador.html" data-i18n="nav_role_coach">Entrenador</a>
         </div>
       </div>
 
-      <!-- En esta página -->
-      <a href="#overview" data-i18n="nav_sport_overview">Visión general</a>
-      <a href="#football11" data-i18n="nav_sport_11">Fútbol 11</a>
-      <a href="#futsal" data-i18n="nav_sport_futsal">Futsal</a>
-      <a href="#legal" data-i18n="nav_legal">Legal</a>
+      <a href="#interactive" data-i18n="nav_interactive">Explorar</a>
+      <a href="#how" data-i18n="nav_how_sport">Cómo seleccionamos clips</a>
 
-      <!-- Dropdown App -->
-      <div class="nav-item-app">
-        <button class="nav-dropdown-toggle" type="button">
+      <div class="nav-item">
+        <button class="nav-toggle" type="button" id="appToggle">
           <span data-i18n="nav_app">App</span>
-          <span class="nav-dropdown-arrow">▾</span>
+          <span class="nav-arrow">▾</span>
         </button>
-        <div class="nav-dropdown">
+        <div class="nav-dropdown" id="appMenu">
           <a href="caracteristicas-app.html" data-i18n="nav_app_features">Características</a>
           <a href="nuestro-deporte.html" data-i18n="nav_app_sport">Nuestro deporte</a>
           <a href="subscripciones.html" data-i18n="nav_app_subscriptions">Suscripciones</a>
@@ -786,20 +451,14 @@
 
     <div class="header-actions">
       <div class="lang-switcher" id="langSwitcher">
-        <button class="lang-current" type="button" aria-expanded="false">
+        <button class="lang-current" type="button">
           <span class="lang-flag">🇪🇸</span>
           <span class="lang-label">ES</span>
-          <span class="lang-arrow">▾</span>
+          <span class="nav-arrow">▾</span>
         </button>
         <div class="lang-menu" id="langMenu">
-          <button type="button" data-lang="es">
-            <span class="lang-flag">🇪🇸</span>
-            <span>Español</span>
-          </button>
-          <button type="button" data-lang="en">
-            <span class="lang-flag">🇬🇧</span>
-            <span>English</span>
-          </button>
+          <button type="button" data-lang="es"><span class="lang-flag">🇪🇸</span> Español</button>
+          <button type="button" data-lang="en"><span class="lang-flag">🇬🇧</span> English</button>
         </div>
       </div>
 
@@ -807,35 +466,31 @@
     </div>
   </header>
 
-  <!-- MENÚ MÓVIL -->
+  <!-- Mobile -->
   <div class="mobile-menu" id="mobileMenu">
-    <div class="mobile-menu-links">
+    <div class="mobile-links">
       <a href="index.html#who-we-are" data-i18n="nav_about">Quiénes somos</a>
       <a href="index.html#how-steps" data-i18n="nav_how">Cómo funciona</a>
 
-      <div class="mobile-menu-role">
-        <button type="button" class="mobile-role-title">
-          <span data-i18n="nav_role">Rol</span>
-          <span class="mobile-role-arrow">▾</span>
+      <div class="mobile-group">
+        <button class="mobile-title" id="mRoleTitle" type="button">
+          <span data-i18n="nav_role">Rol</span><span class="mobile-arrow">▾</span>
         </button>
-        <div class="mobile-role-submenu">
+        <div class="mobile-sub" id="mRoleSub">
           <a href="rol-jugador.html" data-i18n="nav_role_player">Jugador</a>
           <a href="rol-club.html" data-i18n="nav_role_club">Club</a>
           <a href="rol-entrenador.html" data-i18n="nav_role_coach">Entrenador</a>
         </div>
       </div>
 
-      <a href="#overview" data-i18n="nav_sport_overview">Visión general</a>
-      <a href="#football11" data-i18n="nav_sport_11">Fútbol 11</a>
-      <a href="#futsal" data-i18n="nav_sport_futsal">Futsal</a>
-      <a href="#legal" data-i18n="nav_legal">Legal</a>
+      <a href="#interactive" data-i18n="nav_interactive">Explorar</a>
+      <a href="#how" data-i18n="nav_how_sport">Cómo seleccionamos clips</a>
 
-      <div class="mobile-menu-app">
-        <button type="button" class="mobile-app-title">
-          <span data-i18n="nav_app">App</span>
-          <span class="mobile-app-arrow">▾</span>
+      <div class="mobile-group">
+        <button class="mobile-title" id="mAppTitle" type="button">
+          <span data-i18n="nav_app">App</span><span class="mobile-arrow">▾</span>
         </button>
-        <div class="mobile-app-submenu">
+        <div class="mobile-sub" id="mAppSub">
           <a href="caracteristicas-app.html" data-i18n="nav_app_features">Características</a>
           <a href="nuestro-deporte.html" data-i18n="nav_app_sport">Nuestro deporte</a>
           <a href="subscripciones.html" data-i18n="nav_app_subscriptions">Suscripciones</a>
@@ -844,864 +499,854 @@
     </div>
   </div>
 
-  <!-- HERO -->
-  <section class="hero-section" id="home">
-    <!-- Puedes usar vídeo o imagen: -->
+  <!-- Hero -->
+  <section class="hero">
     <video class="hero-video" autoplay muted loop playsinline>
-      <!-- Cambia por tu vídeo real -->
       <source src="videos/sport-hero.mp4" type="video/mp4" />
     </video>
     <div class="hero-overlay"></div>
 
     <div class="hero-content">
-      <div class="hero-badge">
-        <span data-i18n="sport_badge">Fútbol 11 · Futsal · Scouting</span>
-      </div>
-
-      <h1 class="hero-title" data-i18n="sport_title">
-        Nuestro deporte: dos formatos, una sola misión
-      </h1>
-      <p class="hero-subtitle" data-i18n="sport_subtitle">
-        Mostrar talento real, con contexto, y con protección para los jugadores.
+      <div class="badge" data-i18n="hero_badge">Fútbol 11 · Futsal · Scouting</div>
+      <h1 data-i18n="hero_title">Explora nuestras acciones por deporte, rol y objetivo</h1>
+      <p data-i18n="hero_sub">
+        Cambia de deporte, filtra por objetivo y descubre qué tipo de clips destacan.
       </p>
-
-      <div class="hero-buttons">
-        <a href="#overview" class="btn btn-cta" data-i18n="sport_btn_1">Ver cómo trabajamos</a>
-        <a href="#legal" class="btn btn-secondary" data-i18n="sport_btn_2">Ver marco legal</a>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#interactive" data-i18n="hero_btn_1">Explorar ahora</a>
+        <button class="btn btn-secondary" id="openGuide" type="button" data-i18n="hero_btn_2">Guía rápida de clips</button>
       </div>
     </div>
   </section>
 
-  <!-- OVERVIEW -->
-  <section class="overview" id="overview">
-    <div class="section-inner">
-      <p class="section-kicker" data-i18n="overview_kicker">Visión general</p>
-      <h2 data-i18n="overview_title">Fútbol 11 y Futsal: dos lenguajes del mismo talento</h2>
-      <p data-i18n="overview_p1">
-        En Athlead trabajamos con <b>Fútbol 11</b> y <b>Futsal</b> porque el talento se expresa de formas
-        distintas: espacios grandes vs. espacios reducidos, ritmo vs. precisión, lectura táctica vs.
-        creatividad inmediata.
-      </p>
-      <p data-i18n="overview_p2">
-        Nuestra forma de organizar el contenido está diseñada para que un club o entrenador pueda
-        entender rápido: <b>quién eres</b>, <b>qué haces</b> y <b>en qué contexto compites</b>.
+  <!-- Interactive Explorer -->
+  <section class="section" id="interactive">
+    <div class="inner">
+      <p class="kicker" data-i18n="explore_kicker">Explorar</p>
+      <h2 class="title" data-i18n="explore_title">Un explorador interactivo (sin repetición)</h2>
+      <p class="lead" data-i18n="explore_lead">
+        Todo se genera desde una sola base de datos: cambia de deporte, busca una acción y filtra por objetivo.
+        Haz clic en cualquier acción para ver ejemplo, por qué importa y cómo grabarla.
       </p>
 
-      <div class="sports-grid">
-        <article class="sport-card">
-          <div class="sport-card-media">
-            <img src="images/sport-overview-1.jpg" alt="Acción de fútbol 11" />
+      <div class="sport-shell">
+        <div class="toolbar">
+          <div class="tabs" role="tablist" aria-label="Sport tabs">
+            <button class="tab active" id="tab-f11" data-sport="f11" type="button" role="tab" aria-selected="true" data-i18n="tab_f11">Fútbol 11</button>
+            <button class="tab" id="tab-fs" data-sport="fs" type="button" role="tab" aria-selected="false" data-i18n="tab_fs">Futsal</button>
           </div>
-          <div class="sport-card-body">
-            <div class="sport-label" data-i18n="overview_card1_label">Qué buscamos</div>
-            <h3 data-i18n="overview_card1_title">Clips cortos + contexto real</h3>
-            <p data-i18n="overview_card1_p">
-              No queremos “vídeos bonitos”. Queremos acciones que permitan evaluar: decisión, ejecución y repetición.
-            </p>
-            <ul class="bullets">
-              <li data-i18n="overview_card1_b1">• Acciones de 10–45 segundos.</li>
-              <li data-i18n="overview_card1_b2">• Etiquetas: posición, rol, tipo de jugada.</li>
-              <li data-i18n="overview_card1_b3">• Competición, categoría y pie hábil.</li>
-            </ul>
-          </div>
-        </article>
 
-        <article class="sport-card">
-          <div class="sport-card-media">
-            <img src="images/sport-overview-2.jpg" alt="Acción de futsal" />
-          </div>
-          <div class="sport-card-body">
-            <div class="sport-label" data-i18n="overview_card2_label">Cómo lo ordenamos</div>
-            <h3 data-i18n="overview_card2_title">Estructura para scouting</h3>
-            <p data-i18n="overview_card2_p">
-              El objetivo es que un scout filtre en segundos y llegue a las acciones relevantes sin perderse.
-            </p>
-            <ul class="bullets">
-              <li data-i18n="overview_card2_b1">• Filtros por edad, posición y ubicación.</li>
-              <li data-i18n="overview_card2_b2">• Acciones ofensivas / defensivas / transición.</li>
-              <li data-i18n="overview_card2_b3">• Estadísticas básicas y consistencia.</li>
-            </ul>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
+          <div class="controls">
+            <div class="search" title="Buscar">
+              <span style="opacity:.8">⌕</span>
+              <input id="searchInput" type="text" placeholder="Buscar (ej: 1v1, presión, finalización...)" />
+            </div>
 
-  <!-- FOOTBALL 11 -->
-  <section class="overview alt" id="football11">
-    <div class="section-inner">
-      <p class="section-kicker" data-i18n="f11_kicker">Fútbol 11</p>
-      <h2 data-i18n="f11_title">Fútbol 11: lectura táctica + impacto en espacios grandes</h2>
-      <p data-i18n="f11_p1">
-        En Fútbol 11 valoramos especialmente la <b>toma de decisiones</b>, el <b>timing</b> y la capacidad de influir
-        en el juego sin tocar el balón en cada jugada.
-      </p>
+            <button class="pill active" type="button" data-filter="all" data-i18n="filter_all">Todo</button>
+            <button class="pill" type="button" data-filter="attack" data-i18n="filter_attack">Ataque</button>
+            <button class="pill" type="button" data-filter="defense" data-i18n="filter_defense">Defensa</button>
+            <button class="pill" type="button" data-filter="transition" data-i18n="filter_transition">Transición</button>
 
-      <div class="sports-grid">
-        <article class="sport-card">
-          <div class="sport-card-media">
-            <img src="images/sport-11.jpg" alt="Fútbol 11" />
+            <button class="ghost" id="shuffleBtn" type="button" data-i18n="shuffle">Aleatorio</button>
           </div>
-          <div class="sport-card-body">
-            <div class="sport-label" data-i18n="f11_card1_label">Qué acciones destacan</div>
-            <h3 data-i18n="f11_card1_title">Acciones que un club quiere ver</h3>
-            <p data-i18n="f11_card1_p">
-              Selecciona jugadas que reflejen tu rol real: no solo highlights, también consistencia.
-            </p>
-            <ul class="bullets">
-              <li data-i18n="f11_card1_b1">• Desmarques, apoyos, fijación, ruptura.</li>
-              <li data-i18n="f11_card1_b2">• Duelo 1v1 (ataque/defensa) con continuidad.</li>
-              <li data-i18n="f11_card1_b3">• Centros, cambios de orientación, último pase.</li>
-              <li data-i18n="f11_card1_b4">• Presión, coberturas, basculación, retorno.</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="sport-card">
-          <div class="sport-card-media">
-            <img src="images/sport-11-structure.jpg" alt="Estructura de partido" />
-          </div>
-          <div class="sport-card-body">
-            <div class="sport-label" data-i18n="f11_card2_label">Cómo grabar</div>
-            <h3 data-i18n="f11_card2_title">Contexto de partido (sin complicarte)</h3>
-            <p data-i18n="f11_card2_p">
-              El mejor ángulo es el que deja ver tu decisión antes y después del contacto con el balón.
-            </p>
-            <ul class="bullets">
-              <li data-i18n="f11_card2_b1">• Plano abierto cuando sea posible.</li>
-              <li data-i18n="f11_card2_b2">• Incluye 2–3 segundos antes de la acción.</li>
-              <li data-i18n="f11_card2_b3">• Evita filtros, música o overlays excesivos.</li>
-            </ul>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- FUTSAL -->
-  <section class="overview" id="futsal">
-    <div class="section-inner">
-      <p class="section-kicker" data-i18n="fs_kicker">Futsal</p>
-      <h2 data-i18n="fs_title">Futsal: técnica, velocidad mental y precisión bajo presión</h2>
-      <p data-i18n="fs_p1">
-        En Futsal, el espacio y el tiempo se reducen: la diferencia la marca la <b>toma de información</b>, el <b>control orientado</b>
-        y la capacidad de resolver en 1–2 toques.
-      </p>
-
-      <div class="sports-grid">
-        <article class="sport-card">
-          <div class="sport-card-media">
-            <img src="images/sport-futsal.jpg" alt="Futsal" />
-          </div>
-          <div class="sport-card-body">
-            <div class="sport-label" data-i18n="fs_card1_label">Qué acciones destacan</div>
-            <h3 data-i18n="fs_card1_title">Lo que demuestra nivel real</h3>
-            <p data-i18n="fs_card1_p">
-              No es solo regate: es ventaja creada y repetible.
-            </p>
-            <ul class="bullets">
-              <li data-i18n="fs_card1_b1">• 1v1, 2v1 y pared en espacios reducidos.</li>
-              <li data-i18n="fs_card1_b2">• Giros, control orientado, salida de presión.</li>
-              <li data-i18n="fs_card1_b3">• Finalización rápida y tiros con poco ángulo.</li>
-              <li data-i18n="fs_card1_b4">• Defensa: anticipación, cierre de líneas, robo.</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="sport-card">
-          <div class="sport-card-media">
-            <img src="images/sport-futsal-how.jpg" alt="Cómo grabar futsal" />
-          </div>
-          <div class="sport-card-body">
-            <div class="sport-label" data-i18n="fs_card2_label">Cómo grabar</div>
-            <h3 data-i18n="fs_card2_title">Cámara fija + acciones encadenadas</h3>
-            <p data-i18n="fs_card2_p">
-              En pista, una cámara fija bien colocada puede ser mejor que seguir el balón con zoom.
-            </p>
-            <ul class="bullets">
-              <li data-i18n="fs_card2_b1">• Altura media (grada) y encuadre de media pista.</li>
-              <li data-i18n="fs_card2_b2">• Acciones encadenadas (3–10s) valen oro.</li>
-              <li data-i18n="fs_card2_b3">• Evita cortes bruscos: continuidad = evaluación.</li>
-            </ul>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- LEGAL -->
-  <section class="legal-section alt" id="legal">
-    <div class="section-inner">
-      <p class="section-kicker" data-i18n="legal_kicker">Legal & protección</p>
-      <h2 data-i18n="legal_title">Protegemos al jugador: imagen, datos y uso responsable</h2>
-      <p data-i18n="legal_p">
-        Esto no es un “extra”. Es parte del producto: claridad sobre permisos, derechos de imagen y seguridad,
-        especialmente cuando hay menores.
-      </p>
-
-      <div class="legal-grid">
-        <div class="legal-card">
-          <h3 data-i18n="legal_c1_title">Derechos de imagen</h3>
-          <p data-i18n="legal_c1_p">
-            Publica solo contenido que tengas derecho a compartir. Si el vídeo lo grabó un tercero, asegúrate de tener permiso.
-          </p>
         </div>
-        <div class="legal-card">
-          <h3 data-i18n="legal_c2_title">Menores</h3>
-          <p data-i18n="legal_c2_p">
-            Si el jugador es menor, el registro y publicación deben hacerse con autorización de madre/padre o tutor legal.
-          </p>
-        </div>
-        <div class="legal-card">
-          <h3 data-i18n="legal_c3_title">Uso de la plataforma</h3>
-          <p data-i18n="legal_c3_p">
-            Tolerancia cero con acoso, suplantación, mensajes inapropiados o uso fraudulento. La seguridad va primero.
-          </p>
+
+        <div class="grid">
+          <!-- Left: Carousel -->
+          <div class="carousel" aria-live="polite">
+            <div class="dots" id="dots"></div>
+
+            <div class="carousel-controls">
+              <button class="icon-btn" id="prevBtn" type="button" aria-label="Anterior">‹</button>
+              <button class="icon-btn" id="nextBtn" type="button" aria-label="Siguiente">›</button>
+            </div>
+
+            <div class="carousel-media">
+              <img id="heroImg" src="images/sport-11.jpg" alt="Action preview" />
+            </div>
+
+            <div class="carousel-overlay">
+              <h3 id="heroTitle">—</h3>
+              <p id="heroDesc">—</p>
+            </div>
+          </div>
+
+          <!-- Right: List -->
+          <div class="panel">
+            <div class="panel-head">
+              <h3 data-i18n="panel_title">Acciones</h3>
+              <span id="panelCount">0</span>
+            </div>
+            <div class="list" id="actionList"></div>
+
+            <div class="accordion" id="accordion"></div>
+          </div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="legal-actions">
-        <a href="#" class="btn btn-cta legal-link" data-modal="terms" data-i18n="legal_btn_terms">Ver Términos</a>
-        <a href="#" class="btn btn-secondary legal-link" data-modal="privacy" data-i18n="legal_btn_privacy">Ver Privacidad</a>
-        <a href="#" class="btn btn-secondary legal-link" data-modal="data" data-i18n="legal_btn_data">Protección de Datos</a>
+  <!-- How (Accordion-only, data-driven) -->
+  <section class="section alt" id="how">
+    <div class="inner">
+      <p class="kicker" data-i18n="how_kicker">Cómo</p>
+      <h2 class="title" data-i18n="how_title">Cómo seleccionamos clips (simple y evaluable)</h2>
+      <p class="lead" data-i18n="how_lead">
+        Esto es lo que hace que un clip sea útil para un entrenador o club. Sin texto duplicado: lo mismo aplica a ambos deportes.
+      </p>
+
+      <div class="accordion" id="howAccordion"></div>
+
+      <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center">
+        <button class="btn btn-primary" type="button" id="openChecklist" data-i18n="btn_checklist">Checklist en 30s</button>
+        <a class="btn btn-secondary" href="#interactive" data-i18n="btn_back_explore">Volver al explorador</a>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- Footer -->
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-links">
-        <a href="#overview" data-i18n="nav_sport_overview">Visión general</a>
-        <a href="#football11" data-i18n="nav_sport_11">Fútbol 11</a>
-        <a href="#futsal" data-i18n="nav_sport_futsal">Futsal</a>
-        <a href="#legal" data-i18n="nav_legal">Legal</a>
+        <a href="#interactive" data-i18n="nav_interactive">Explorar</a>
+        <a href="#how" data-i18n="nav_how_sport">Cómo seleccionamos clips</a>
+        <a href="index.html#who-we-are" data-i18n="nav_about">Quiénes somos</a>
       </div>
-
-      <div class="copyright" data-i18n="footer_copyright">
-        © 2025 Athlead. Todos los derechos reservados.
-      </div>
-
-      <div class="privacy-links">
-        <a href="#" class="legal-link" data-modal="privacy" data-i18n="privacy_privacy">Política de Privacidad</a>
-        <a href="#" class="legal-link" data-modal="terms" data-i18n="privacy_terms">Términos y Condiciones</a>
-        <a href="#" class="legal-link" data-modal="cookies" data-i18n="privacy_cookies">Política de Cookies</a>
-        <a href="#" class="legal-link" data-modal="data" data-i18n="privacy_data">Protección de Datos</a>
-      </div>
-
-      <div class="footer-tagline" data-i18n="footer_tagline">Deja que el talento hable por ti.</div>
+      <div class="copy" data-i18n="copy">© 2025 Athlead. Todos los derechos reservados.</div>
+      <div class="tagline" data-i18n="tagline">Deja que el talento hable por ti.</div>
     </div>
   </footer>
 
-  <!-- MODAL LEGAL -->
-  <div id="legal-modal" class="legal-modal">
-    <div class="legal-modal-overlay"></div>
-
-    <div class="legal-modal-content" role="dialog" aria-modal="true" aria-labelledby="legal-modal-title">
-      <button class="legal-modal-close" type="button" aria-label="Cerrar">×</button>
-      <h2 id="legal-modal-title">Legal</h2>
-      <div id="legal-modal-body" class="legal-modal-body"></div>
+  <!-- Modal -->
+  <div class="modal" id="modal">
+    <div class="modal-overlay" id="modalOverlay"></div>
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="modalClose" type="button" aria-label="Cerrar">×</button>
+      <div class="modal-title" id="modalTitle">—</div>
+      <div class="modal-body" id="modalBody">—</div>
     </div>
   </div>
 
   <script>
-    // ========= i18n (misma lógica que tu base) =========
-    let ATHLEAD_LANG = 'es';
+    /* ======================
+      DATA (una sola fuente, sin repetición)
+    ====================== */
+    let LANG = 'es';
+    let currentSport = 'f11';
+    let currentFilter = 'all';
+    let currentQuery = '';
+    let currentIndex = 0;
 
-    const i18n = {
-      es: {
-        page_title: 'Athlead - Nuestro deporte | Fútbol 11 y Futsal',
-
-        nav_about: 'Quiénes somos',
-        nav_how: 'Cómo funciona',
-        nav_role: 'Rol',
-        nav_role_player: 'Jugador',
-        nav_role_club: 'Club',
-        nav_role_coach: 'Entrenador',
-        nav_app: 'App',
-        nav_app_features: 'Características',
-        nav_app_sport: 'Nuestro deporte',
-        nav_app_subscriptions: 'Suscripciones',
-
-        nav_sport_overview: 'Visión general',
-        nav_sport_11: 'Fútbol 11',
-        nav_sport_futsal: 'Futsal',
-        nav_legal: 'Legal',
-
-        sport_badge: 'Fútbol 11 · Futsal · Scouting',
-        sport_title: 'Nuestro deporte: dos formatos, una sola misión',
-        sport_subtitle: 'Mostrar talento real, con contexto, y con protección para los jugadores.',
-        sport_btn_1: 'Ver cómo trabajamos',
-        sport_btn_2: 'Ver marco legal',
-
-        overview_kicker: 'Visión general',
-        overview_title: 'Fútbol 11 y Futsal: dos lenguajes del mismo talento',
-        overview_p1:
-          'En Athlead trabajamos con <b>Fútbol 11</b> y <b>Futsal</b> porque el talento se expresa de formas distintas: espacios grandes vs. espacios reducidos, ritmo vs. precisión, lectura táctica vs. creatividad inmediata.',
-        overview_p2:
-          'Nuestra forma de organizar el contenido está diseñada para que un club o entrenador pueda entender rápido: <b>quién eres</b>, <b>qué haces</b> y <b>en qué contexto compites</b>.',
-
-        overview_card1_label: 'Qué buscamos',
-        overview_card1_title: 'Clips cortos + contexto real',
-        overview_card1_p:
-          'No queremos “vídeos bonitos”. Queremos acciones que permitan evaluar: decisión, ejecución y repetición.',
-        overview_card1_b1: '• Acciones de 10–45 segundos.',
-        overview_card1_b2: '• Etiquetas: posición, rol, tipo de jugada.',
-        overview_card1_b3: '• Competición, categoría y pie hábil.',
-
-        overview_card2_label: 'Cómo lo ordenamos',
-        overview_card2_title: 'Estructura para scouting',
-        overview_card2_p:
-          'El objetivo es que un scout filtre en segundos y llegue a las acciones relevantes sin perderse.',
-        overview_card2_b1: '• Filtros por edad, posición y ubicación.',
-        overview_card2_b2: '• Acciones ofensivas / defensivas / transición.',
-        overview_card2_b3: '• Estadísticas básicas y consistencia.',
-
-        f11_kicker: 'Fútbol 11',
-        f11_title: 'Fútbol 11: lectura táctica + impacto en espacios grandes',
-        f11_p1:
-          'En Fútbol 11 valoramos especialmente la <b>toma de decisiones</b>, el <b>timing</b> y la capacidad de influir en el juego sin tocar el balón en cada jugada.',
-
-        f11_card1_label: 'Qué acciones destacan',
-        f11_card1_title: 'Acciones que un club quiere ver',
-        f11_card1_p:
-          'Selecciona jugadas que reflejen tu rol real: no solo highlights, también consistencia.',
-        f11_card1_b1: '• Desmarques, apoyos, fijación, ruptura.',
-        f11_card1_b2: '• Duelo 1v1 (ataque/defensa) con continuidad.',
-        f11_card1_b3: '• Centros, cambios de orientación, último pase.',
-        f11_card1_b4: '• Presión, coberturas, basculación, retorno.',
-
-        f11_card2_label: 'Cómo grabar',
-        f11_card2_title: 'Contexto de partido (sin complicarte)',
-        f11_card2_p:
-          'El mejor ángulo es el que deja ver tu decisión antes y después del contacto con el balón.',
-        f11_card2_b1: '• Plano abierto cuando sea posible.',
-        f11_card2_b2: '• Incluye 2–3 segundos antes de la acción.',
-        f11_card2_b3: '• Evita filtros, música o overlays excesivos.',
-
-        fs_kicker: 'Futsal',
-        fs_title: 'Futsal: técnica, velocidad mental y precisión bajo presión',
-        fs_p1:
-          'En Futsal, el espacio y el tiempo se reducen: la diferencia la marca la <b>toma de información</b>, el <b>control orientado</b> y la capacidad de resolver en 1–2 toques.',
-
-        fs_card1_label: 'Qué acciones destacan',
-        fs_card1_title: 'Lo que demuestra nivel real',
-        fs_card1_p: 'No es solo regate: es ventaja creada y repetible.',
-        fs_card1_b1: '• 1v1, 2v1 y pared en espacios reducidos.',
-        fs_card1_b2: '• Giros, control orientado, salida de presión.',
-        fs_card1_b3: '• Finalización rápida y tiros con poco ángulo.',
-        fs_card1_b4: '• Defensa: anticipación, cierre de líneas, robo.',
-
-        fs_card2_label: 'Cómo grabar',
-        fs_card2_title: 'Cámara fija + acciones encadenadas',
-        fs_card2_p:
-          'En pista, una cámara fija bien colocada puede ser mejor que seguir el balón con zoom.',
-        fs_card2_b1: '• Altura media (grada) y encuadre de media pista.',
-        fs_card2_b2: '• Acciones encadenadas (3–10s) valen oro.',
-        fs_card2_b3: '• Evita cortes bruscos: continuidad = evaluación.',
-
-        legal_kicker: 'Legal & protección',
-        legal_title: 'Protegemos al jugador: imagen, datos y uso responsable',
-        legal_p:
-          'Esto no es un “extra”. Es parte del producto: claridad sobre permisos, derechos de imagen y seguridad, especialmente cuando hay menores.',
-        legal_c1_title: 'Derechos de imagen',
-        legal_c1_p:
-          'Publica solo contenido que tengas derecho a compartir. Si el vídeo lo grabó un tercero, asegúrate de tener permiso.',
-        legal_c2_title: 'Menores',
-        legal_c2_p:
-          'Si el jugador es menor, el registro y publicación deben hacerse con autorización de madre/padre o tutor legal.',
-        legal_c3_title: 'Uso de la plataforma',
-        legal_c3_p:
-          'Tolerancia cero con acoso, suplantación, mensajes inapropiados o uso fraudulento. La seguridad va primero.',
-        legal_btn_terms: 'Ver Términos',
-        legal_btn_privacy: 'Ver Privacidad',
-        legal_btn_data: 'Protección de Datos',
-
-        cookie_title: 'Tu privacidad es importante',
-        cookie_text:
-          'Usamos cookies esenciales para que la web funcione correctamente y, de forma opcional, cookies de analítica para entender cómo se usa Athlead y mejorar la experiencia. Puedes aceptar todas, solo las esenciales o rechazarlas.',
-        cookie_accept_all: 'Aceptar todas',
-        cookie_accept_essential: 'Aceptar solo esenciales',
-        cookie_reject: 'Rechazar',
-        cookie_more: 'Más información sobre cookies',
-
-        footer_copyright: '© 2025 Athlead. Todos los derechos reservados.',
-        privacy_privacy: 'Política de Privacidad',
-        privacy_terms: 'Términos y Condiciones',
-        privacy_cookies: 'Política de Cookies',
-        privacy_data: 'Protección de Datos',
-        footer_tagline: 'Deja que el talento hable por ti.'
+    const DATA = {
+      f11: {
+        heroFallback: "images/sport-11.jpg",
+        actions: [
+          {
+            id: "f11_run",
+            cat: "attack",
+            img: "images/sport-11.jpg",
+            title: { es: "Ruptura y desmarque", en: "Runs & off-ball movement" },
+            desc:  { es: "Impacto sin balón: cuándo romper, cuándo fijar, y cómo crear ventaja.", en: "Impact without the ball: timing runs and creating space." },
+            why:   { es: "Los clubes buscan jugadores que entiendan el juego antes de recibir.", en: "Clubs value players who read the game before receiving." },
+            how:   { es: ["Plano abierto", "2–3s antes de la jugada", "Incluye continuidad (no cortes)"],
+                     en: ["Wide angle", "2–3s before action", "Keep continuity (no hard cuts)"] }
+          },
+          {
+            id: "f11_1v1",
+            cat: "attack",
+            img: "images/sport-11-1v1.jpg",
+            title: { es: "1v1 con propósito", en: "1v1 with intent" },
+            desc:  { es: "No es regate por regate: es ganar metros, crear ocasión o fijar rival.", en: "Not dribbling for show: gain ground, create a chance, pin a defender." },
+            why:   { es: "Demuestra decisión + ejecución, y si puedes repetirlo bajo presión.", en: "Shows decision + execution and repeatability under pressure." },
+            how:   { es: ["Muestra el antes (recepción)", "Termina la acción (pase/tiro)", "Evita zoom excesivo"],
+                     en: ["Show the build-up (first touch)", "Show the end (pass/shot)", "Avoid heavy zoom"] }
+          },
+          {
+            id: "f11_press",
+            cat: "defense",
+            img: "images/sport-11-press.jpg",
+            title: { es: "Presión y retorno", en: "Pressing & tracking back" },
+            desc:  { es: "Intensidad inteligente: orientar, cerrar línea, y recuperar posición.", en: "Smart intensity: angle pressing, close lanes, recover shape." },
+            why:   { es: "Es la diferencia entre highlight y jugador fiable.", en: "It’s the difference between highlights and reliability." },
+            how:   { es: ["Incluye 2 acciones seguidas", "Se ve tu orientación corporal", "Muestra el repliegue"],
+                     en: ["Include 2 chained actions", "Show body orientation", "Show recovery run"] }
+          },
+          {
+            id: "f11_switch",
+            cat: "transition",
+            img: "images/sport-11-switch.jpg",
+            title: { es: "Transición + cambio de orientación", en: "Transition & switch of play" },
+            desc:  { es: "Cambiar ritmo y lado del juego cuando el rival está desequilibrado.", en: "Change tempo and side when the opponent is unbalanced." },
+            why:   { es: "Lectura táctica y ejecución técnica en un momento clave.", en: "Tactical reading + technical execution at key moments." },
+            how:   { es: ["Plano amplio", "Incluye la recepción del compañero", "Evita música/overlays"],
+                     en: ["Wide angle", "Include teammate’s reception", "Avoid music/overlays"] }
+          }
+        ]
       },
-
-      en: {
-        page_title: 'Athlead - Our sport | 11-a-side Football & Futsal',
-
-        nav_about: 'About',
-        nav_how: 'How it works',
-        nav_role: 'Role',
-        nav_role_player: 'Player',
-        nav_role_club: 'Club',
-        nav_role_coach: 'Coach',
-        nav_app: 'App',
-        nav_app_features: 'Features',
-        nav_app_sport: 'Our sport',
-        nav_app_subscriptions: 'Subscriptions',
-
-        nav_sport_overview: 'Overview',
-        nav_sport_11: '11-a-side',
-        nav_sport_futsal: 'Futsal',
-        nav_legal: 'Legal',
-
-        sport_badge: '11-a-side · Futsal · Scouting',
-        sport_title: 'Our sport: two formats, one mission',
-        sport_subtitle: 'Real talent, real context, and real protection for players.',
-        sport_btn_1: 'See how we work',
-        sport_btn_2: 'See the legal framework',
-
-        overview_kicker: 'Overview',
-        overview_title: '11-a-side and Futsal: two languages of the same talent',
-        overview_p1:
-          'At Athlead we work with <b>11-a-side football</b> and <b>Futsal</b> because talent shows up differently: big spaces vs. tight spaces, pace vs. precision, tactical reading vs. instant creativity.',
-        overview_p2:
-          'We organise content so clubs and coaches can quickly understand: <b>who you are</b>, <b>what you do</b>, and <b>the context you compete in</b>.',
-
-        overview_card1_label: 'What we look for',
-        overview_card1_title: 'Short clips + real context',
-        overview_card1_p:
-          'We don’t want “pretty videos”. We want actions that show: decision, execution, and repeatability.',
-        overview_card1_b1: '• 10–45 second actions.',
-        overview_card1_b2: '• Tags: position, role, action type.',
-        overview_card1_b3: '• Competition level, category, dominant foot.',
-
-        overview_card2_label: 'How we organise it',
-        overview_card2_title: 'Scouting-ready structure',
-        overview_card2_p:
-          'The goal is to let scouts filter in seconds and reach the relevant actions fast.',
-        overview_card2_b1: '• Filters by age, position and location.',
-        overview_card2_b2: '• Attacking / defending / transition actions.',
-        overview_card2_b3: '• Basic stats and consistency.',
-
-        f11_kicker: '11-a-side football',
-        f11_title: '11-a-side: tactical reading + impact in big spaces',
-        f11_p1:
-          'In 11-a-side football we value <b>decision-making</b>, <b>timing</b>, and your ability to influence the game even without touching the ball every play.',
-
-        f11_card1_label: 'Top actions',
-        f11_card1_title: 'What clubs want to see',
-        f11_card1_p:
-          'Pick clips that reflect your real role: not only highlights, also consistency.',
-        f11_card1_b1: '• Runs, support, pinning, breaking lines.',
-        f11_card1_b2: '• 1v1 duels (attack/defence) with continuity.',
-        f11_card1_b3: '• Crosses, switches, key passes.',
-        f11_card1_b4: '• Pressing, cover, shifting, tracking back.',
-
-        f11_card2_label: 'How to record',
-        f11_card2_title: 'Match context (keep it simple)',
-        f11_card2_p:
-          'The best angle shows your decision before and after the touch.',
-        f11_card2_b1: '• Wide angle whenever possible.',
-        f11_card2_b2: '• Include 2–3 seconds before the action.',
-        f11_card2_b3: '• Avoid heavy filters, music, or aggressive overlays.',
-
-        fs_kicker: 'Futsal',
-        fs_title: 'Futsal: technique, speed of thought, precision under pressure',
-        fs_p1:
-          'In Futsal, time and space shrink: difference comes from <b>scanning</b>, <b>first touch</b>, and solving in 1–2 touches.',
-
-        fs_card1_label: 'Top actions',
-        fs_card1_title: 'What shows real level',
-        fs_card1_p: 'It’s not only dribbling: it’s creating repeatable advantage.',
-        fs_card1_b1: '• 1v1, 2v1 and quick walls in tight spaces.',
-        fs_card1_b2: '• Turns, oriented control, escaping pressure.',
-        fs_card1_b3: '• Quick finishing and low-angle shots.',
-        fs_card1_b4: '• Defence: anticipation, line closing, winning the ball.',
-
-        fs_card2_label: 'How to record',
-        fs_card2_title: 'Fixed camera + chained actions',
-        fs_card2_p:
-          'On court, a well-placed fixed camera can beat zoom-follow.',
-        fs_card2_b1: '• Mid height (stands) and half-court framing.',
-        fs_card2_b2: '• Chained actions (3–10s) are gold.',
-        fs_card2_b3: '• Avoid hard cuts: continuity helps evaluation.',
-
-        legal_kicker: 'Legal & safeguarding',
-        legal_title: 'Protecting players: image rights, data, and responsible use',
-        legal_p:
-          'This is not an “extra”. It’s part of the product: clarity on permissions, image rights, and safety—especially with minors.',
-        legal_c1_title: 'Image rights',
-        legal_c1_p:
-          'Only upload content you have the right to share. If a third party recorded it, make sure you have permission.',
-        legal_c2_title: 'Minors',
-        legal_c2_p:
-          'If the player is a minor, registration and posting must be done with authorisation from a parent or legal guardian.',
-        legal_c3_title: 'Platform use',
-        legal_c3_p:
-          'Zero tolerance for harassment, impersonation, inappropriate messages, or fraud. Safety comes first.',
-        legal_btn_terms: 'View Terms',
-        legal_btn_privacy: 'View Privacy',
-        legal_btn_data: 'Data Protection',
-
-        cookie_title: 'Your privacy matters',
-        cookie_text:
-          'We use essential cookies for the website to work and optional analytics cookies to understand usage and improve the experience. You can accept all, accept essentials only, or reject.',
-        cookie_accept_all: 'Accept all',
-        cookie_accept_essential: 'Essentials only',
-        cookie_reject: 'Reject',
-        cookie_more: 'More info about cookies',
-
-        footer_copyright: '© 2025 Athlead. All rights reserved.',
-        privacy_privacy: 'Privacy Policy',
-        privacy_terms: 'Terms & Conditions',
-        privacy_cookies: 'Cookie Policy',
-        privacy_data: 'Data Protection',
-        footer_tagline: 'Let your talent speak for you.'
+      fs: {
+        heroFallback: "images/sport-futsal.jpg",
+        actions: [
+          {
+            id: "fs_control",
+            cat: "attack",
+            img: "images/sport-futsal.jpg",
+            title: { es: "Control orientado", en: "Oriented first touch" },
+            desc:  { es: "Ganar ventaja en 1 toque: perfilarte y salir de presión.", en: "Create advantage in 1 touch: open your body and escape pressure." },
+            why:   { es: "En futsal el tiempo es mínimo: el primer toque lo decide todo.", en: "In futsal, time is tiny: first touch decides everything." },
+            how:   { es: ["Cámara fija (grada)", "Acción encadenada 3–8s", "Se ve el rival cerca"],
+                     en: ["Fixed camera", "Chained action 3–8s", "Show close pressure"] }
+          },
+          {
+            id: "fs_wall",
+            cat: "attack",
+            img: "images/sport-futsal-wall.jpg",
+            title: { es: "Pared y tercer hombre", en: "Wall pass & third man" },
+            desc:  { es: "Velocidad mental: soltar, moverte y volver a aparecer.", en: "Mental speed: release, move, reappear." },
+            why:   { es: "Demuestra automatismos y lectura del espacio reducido.", en: "Shows automatisms and tight-space reading." },
+            how:   { es: ["Evita cortes", "Muestra la salida final", "Audio limpio si se puede"],
+                     en: ["No hard cuts", "Show the final exit", "Keep clean audio if possible"] }
+          },
+          {
+            id: "fs_def",
+            cat: "defense",
+            img: "images/sport-futsal-defense.jpg",
+            title: { es: "Defensa: anticipación", en: "Defense: anticipation" },
+            desc:  { es: "Robar sin falta: cierres, temporizar y saltar en el momento justo.", en: "Win the ball clean: close, delay, jump at the right moment." },
+            why:   { es: "El defensor top en futsal es oro: reduce tiros y transiciones.", en: "Top futsal defending is gold: reduces shots and transitions." },
+            how:   { es: ["Plano medio de media pista", "Incluye recuperación", "Se ve tu postura"],
+                     en: ["Mid-court framing", "Include the recovery", "Show your stance"] }
+          },
+          {
+            id: "fs_transition",
+            cat: "transition",
+            img: "images/sport-futsal-transition.jpg",
+            title: { es: "Transición rápida", en: "Fast transition" },
+            desc:  { es: "Decidir en 2 segundos: conducir, fijar y soltar o finalizar.", en: "Decide in 2 seconds: carry, pin, release or finish." },
+            why:   { es: "El futsal premia la velocidad de decisión bajo fatiga.", en: "Futsal rewards decision speed under fatigue." },
+            how:   { es: ["Acción completa (inicio-fin)", "Evita zoom", "1 clip = 1 idea"],
+                     en: ["Full action (start-end)", "Avoid zoom", "1 clip = 1 idea"] }
+          }
+        ]
       }
     };
 
-    function applyTranslations(lang) {
-      const dict = i18n[lang] || i18n.es;
-      document.querySelectorAll('[data-i18n]').forEach((el) => {
-        const key = el.getAttribute('data-i18n');
-        const translation = dict[key];
-        if (translation) el.innerHTML = translation;
-      });
-      if (dict.page_title) document.title = dict.page_title;
-    }
-
-    function t(key) {
-      const dict = i18n[ATHLEAD_LANG] || i18n.es;
-      return dict[key] || (i18n.es && i18n.es[key]) || '';
-    }
-
-    // ========= UI header =========
-    document.getElementById('logo').addEventListener('click', function () {
-      window.location.href = 'index.html';
-    });
-
-    const menuToggle = document.getElementById('menuToggle');
-    const mobileMenu = document.getElementById('mobileMenu');
-
-    menuToggle.addEventListener('click', function (e) {
-      e.stopPropagation();
-      const isOpen = mobileMenu.classList.contains('active');
-      if (isOpen) {
-        mobileMenu.classList.remove('active');
-        menuToggle.textContent = '☰';
-      } else {
-        mobileMenu.classList.add('active');
-        menuToggle.textContent = '✕';
-      }
-    });
-
-    document.querySelectorAll('.mobile-menu-links a').forEach((link) => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.remove('active');
-        menuToggle.textContent = '☰';
-      });
-    });
-
-    document.addEventListener('click', (e) => {
-      if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
-        mobileMenu.classList.remove('active');
-        menuToggle.textContent = '☰';
-      }
-    });
-
-    // Scroll suave in-page
-    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-      anchor.addEventListener('click', function (e) {
-        const href = this.getAttribute('href');
-        if (!href || href === '#') return;
-        const target = document.querySelector(href);
-        if (!target) return;
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-    });
-
-    // Dropdown mobile: Rol
-    (function () {
-      const toggle = document.querySelector('.mobile-role-title');
-      const submenu = document.querySelector('.mobile-role-submenu');
-      if (!toggle || !submenu) return;
-      toggle.addEventListener('click', () => {
-        submenu.classList.toggle('open');
-        toggle.classList.toggle('open');
-      });
-    })();
-
-    // Dropdown mobile: App
-    (function () {
-      const toggle = document.querySelector('.mobile-app-title');
-      const submenu = document.querySelector('.mobile-app-submenu');
-      if (!toggle || !submenu) return;
-      toggle.addEventListener('click', () => {
-        submenu.classList.toggle('open');
-        toggle.classList.toggle('open');
-      });
-    })();
-
-    // Dropdown escritorio: Rol (hover + click)
-    (function () {
-      const roleItem = document.querySelector('.nav-item-role');
-      if (!roleItem) return;
-      const toggle = roleItem.querySelector('.nav-dropdown-toggle');
-      const menu = roleItem.querySelector('.nav-dropdown');
-      let hideTimeout;
-
-      function openMenu() { clearTimeout(hideTimeout); menu.classList.add('open'); }
-      function closeMenu() { hideTimeout = setTimeout(() => menu.classList.remove('open'), 120); }
-
-      if (window.matchMedia('(hover: hover)').matches) {
-        roleItem.addEventListener('mouseenter', openMenu);
-        roleItem.addEventListener('mouseleave', closeMenu);
-      }
-
-      toggle.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        menu.classList.toggle('open');
-      });
-
-      document.addEventListener('click', (e) => {
-        if (!roleItem.contains(e.target)) menu.classList.remove('open');
-      });
-    })();
-
-    // Dropdown escritorio: App (hover + click)
-    (function () {
-      const appItem = document.querySelector('.nav-item-app');
-      if (!appItem) return;
-      const toggle = appItem.querySelector('.nav-dropdown-toggle');
-      const menu = appItem.querySelector('.nav-dropdown');
-      let hideTimeout;
-
-      function openMenu() { clearTimeout(hideTimeout); menu.classList.add('open'); }
-      function closeMenu() { hideTimeout = setTimeout(() => menu.classList.remove('open'), 120); }
-
-      if (window.matchMedia('(hover: hover)').matches) {
-        appItem.addEventListener('mouseenter', openMenu);
-        appItem.addEventListener('mouseleave', closeMenu);
-      }
-
-      toggle.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        menu.classList.toggle('open');
-      });
-
-      document.addEventListener('click', (e) => {
-        if (!appItem.contains(e.target)) menu.classList.remove('open');
-      });
-    })();
-
-    // ========= Idioma (misma lógica base) =========
-    (function () {
-      const langSwitcher = document.getElementById('langSwitcher');
-      const langMenu = document.getElementById('langMenu');
-      const currentBtn = langSwitcher ? langSwitcher.querySelector('.lang-current') : null;
-      const flagEl = currentBtn ? currentBtn.querySelector('.lang-flag') : null;
-      const labelEl = currentBtn ? currentBtn.querySelector('.lang-label') : null;
-
-      function setLangUI(lang) {
-        if (!flagEl || !labelEl) return;
-        if (lang === 'en') {
-          flagEl.textContent = '🇬🇧';
-          labelEl.textContent = 'EN';
-          document.documentElement.lang = 'en';
-        } else {
-          flagEl.textContent = '🇪🇸';
-          labelEl.textContent = 'ES';
-          document.documentElement.lang = 'es';
+    /* Shared “How we select clips” blocks (no repetition across sections) */
+    const HOW = [
+      {
+        id: "h1",
+        title: { es: "1 clip = 1 idea", en: "1 clip = 1 idea" },
+        subtitle:{ es:"Que se entienda en 5 segundos", en:"Understandable in 5 seconds" },
+        body: {
+          es: "Un clip vale cuando cuenta algo claro: decisión + ejecución + resultado. Evita mezclar 3 jugadas distintas en una.",
+          en: "A clip works when it tells one clear story: decision + execution + outcome. Avoid mixing multiple plays."
+        },
+        bullets:{
+          es:["Acciones de 10–45s","Empieza 2–3s antes","Termina la jugada (pase/tiro/recuperación)"],
+          en:["10–45s actions","Start 2–3s before","Finish the play (pass/shot/recovery)"]
+        }
+      },
+      {
+        id: "h2",
+        title: { es: "Contexto > filtros", en: "Context > filters" },
+        subtitle:{ es:"Plano útil para evaluar", en:"A view scouts can evaluate" },
+        body: {
+          es: "El mejor montaje es el que deja ver el espacio, los rivales y tus opciones. Menos edición, más evaluable.",
+          en: "Best edit shows space, opponents and options. Less editing, more evaluation."
+        },
+        bullets:{
+          es:["Plano abierto si puedes","Evita overlays agresivos","Sin música si tapa comunicación"],
+          en:["Wide angle if possible","Avoid heavy overlays","No music if it hides communication"]
+        }
+      },
+      {
+        id: "h3",
+        title: { es: "Repetición y consistencia", en: "Repeatability & consistency" },
+        subtitle:{ es:"No solo highlights", en:"Not only highlights" },
+        body: {
+          es: "Una acción espectacular ayuda, pero lo que convence es repetir patrones buenos (presión, apoyos, controles).",
+          en: "One amazing play helps, but scouts trust repeatable good patterns (pressing, support, first touch)."
+        },
+        bullets:{
+          es:["2–3 clips del mismo tipo","Incluye defensa si aplica","Muestra continuidad (sin cortes)"],
+          en:["2–3 clips of same type","Include defending if relevant","Show continuity (no hard cuts)"]
         }
       }
+    ];
 
-      // Cargar preferencia
-      const stored = localStorage.getItem('athlead_lang');
-      if (stored === 'en' || stored === 'es') ATHLEAD_LANG = stored;
-      setLangUI(ATHLEAD_LANG);
-      applyTranslations(ATHLEAD_LANG);
+    /* ======================
+      i18n strings (UI)
+    ====================== */
+    const UI = {
+      es: {
+        nav_about:"Quiénes somos",
+        nav_how:"Cómo funciona",
+        nav_role:"Rol",
+        nav_role_player:"Jugador",
+        nav_role_club:"Club",
+        nav_role_coach:"Entrenador",
+        nav_app:"App",
+        nav_app_features:"Características",
+        nav_app_sport:"Nuestro deporte",
+        nav_app_subscriptions:"Suscripciones",
+        nav_interactive:"Explorar",
+        nav_how_sport:"Cómo seleccionamos clips",
 
-      if (!langSwitcher || !langMenu || !currentBtn) return;
+        hero_badge:"Fútbol 11 · Futsal · Scouting",
+        hero_title:"Explora nuestras acciones por deporte, rol y objetivo",
+        hero_sub:"Cambia de deporte, filtra por objetivo y descubre qué tipo de clips destacan.",
+        hero_btn_1:"Explorar ahora",
+        hero_btn_2:"Guía rápida de clips",
 
-      currentBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        langMenu.classList.toggle('open');
+        explore_kicker:"Explorar",
+        explore_title:"Un explorador interactivo (sin repetición)",
+        explore_lead:"Todo se genera desde una sola base de datos: cambia de deporte, busca una acción y filtra por objetivo. Haz clic en cualquier acción para ver ejemplo, por qué importa y cómo grabarla.",
+
+        tab_f11:"Fútbol 11",
+        tab_fs:"Futsal",
+
+        filter_all:"Todo",
+        filter_attack:"Ataque",
+        filter_defense:"Defensa",
+        filter_transition:"Transición",
+        shuffle:"Aleatorio",
+
+        panel_title:"Acciones",
+        acc_title:"Detalles",
+        acc_subtitle:"Por qué importa y cómo grabar",
+
+        how_kicker:"Cómo",
+        how_title:"Cómo seleccionamos clips (simple y evaluable)",
+        how_lead:"Esto es lo que hace que un clip sea útil para un entrenador o club. Sin texto duplicado: lo mismo aplica a ambos deportes.",
+        btn_checklist:"Checklist en 30s",
+        btn_back_explore:"Volver al explorador",
+
+        cookie_title:"Tu privacidad es importante",
+        cookie_text:"Usamos cookies esenciales para que la web funcione y, opcionalmente, analítica agregada para mejorar la experiencia.",
+        cookie_all:"Aceptar todas",
+        cookie_essential:"Solo esenciales",
+        cookie_reject:"Rechazar",
+
+        copy:"© 2025 Athlead. Todos los derechos reservados.",
+        tagline:"Deja que el talento hable por ti.",
+
+        modal_guide_title:"Guía rápida (30 segundos)",
+        modal_check_title:"Checklist antes de subir",
+        modal_close:"Cerrar"
+      },
+      en: {
+        nav_about:"About",
+        nav_how:"How it works",
+        nav_role:"Role",
+        nav_role_player:"Player",
+        nav_role_club:"Club",
+        nav_role_coach:"Coach",
+        nav_app:"App",
+        nav_app_features:"Features",
+        nav_app_sport:"Our sport",
+        nav_app_subscriptions:"Subscriptions",
+        nav_interactive:"Explore",
+        nav_how_sport:"How we pick clips",
+
+        hero_badge:"11-a-side · Futsal · Scouting",
+        hero_title:"Explore actions by sport, role and goal",
+        hero_sub:"Switch sport, filter by goal and discover what clips stand out.",
+        hero_btn_1:"Explore now",
+        hero_btn_2:"Quick clip guide",
+
+        explore_kicker:"Explore",
+        explore_title:"An interactive explorer (no repetition)",
+        explore_lead:"Everything is generated from one dataset: switch sport, search actions and filter by goal. Click any action to see example, why it matters and how to record it.",
+
+        tab_f11:"11-a-side",
+        tab_fs:"Futsal",
+
+        filter_all:"All",
+        filter_attack:"Attack",
+        filter_defense:"Defense",
+        filter_transition:"Transition",
+        shuffle:"Shuffle",
+
+        panel_title:"Actions",
+        acc_title:"Details",
+        acc_subtitle:"Why it matters and how to record",
+
+        how_kicker:"How",
+        how_title:"How we pick clips (simple & evaluable)",
+        how_lead:"This is what makes a clip useful for coaches and clubs. No duplicated text: same principles for both sports.",
+        btn_checklist:"30s checklist",
+        btn_back_explore:"Back to explorer",
+
+        cookie_title:"Your privacy matters",
+        cookie_text:"We use essential cookies for the website to work and optional aggregated analytics to improve the experience.",
+        cookie_all:"Accept all",
+        cookie_essential:"Essentials only",
+        cookie_reject:"Reject",
+
+        copy:"© 2025 Athlead. All rights reserved.",
+        tagline:"Let your talent speak for you.",
+
+        modal_guide_title:"Quick guide (30 seconds)",
+        modal_check_title:"Checklist before uploading",
+        modal_close:"Close"
+      }
+    };
+
+    function tr(key){
+      return (UI[LANG] && UI[LANG][key]) || (UI.es && UI.es[key]) || "";
+    }
+    function applyTranslations(){
+      document.querySelectorAll("[data-i18n]").forEach(el=>{
+        const k = el.getAttribute("data-i18n");
+        const v = tr(k);
+        if (v) el.textContent = v;
       });
+    }
 
-      langMenu.querySelectorAll('button[data-lang]').forEach((btn) => {
-        btn.addEventListener('click', () => {
-          const lang = btn.getAttribute('data-lang');
-          ATHLEAD_LANG = (lang === 'en') ? 'en' : 'es';
-          localStorage.setItem('athlead_lang', ATHLEAD_LANG);
-          setLangUI(ATHLEAD_LANG);
-          applyTranslations(ATHLEAD_LANG);
-          langMenu.classList.remove('open');
+    /* ======================
+      Rendering logic
+    ====================== */
+    function getFilteredActions(){
+      const all = DATA[currentSport].actions;
+
+      const q = (currentQuery||"").trim().toLowerCase();
+      return all.filter(a=>{
+        const matchFilter = (currentFilter==="all") ? true : a.cat===currentFilter;
+        const matchQuery = !q ? true : (
+          (a.title[LANG]||a.title.es||"").toLowerCase().includes(q) ||
+          (a.desc[LANG]||a.desc.es||"").toLowerCase().includes(q) ||
+          a.id.toLowerCase().includes(q)
+        );
+        return matchFilter && matchQuery;
+      });
+    }
+
+    function renderList(){
+      const list = document.getElementById("actionList");
+      const count = document.getElementById("panelCount");
+      const actions = getFilteredActions();
+
+      count.textContent = actions.length ? String(actions.length) : "0";
+
+      list.innerHTML = "";
+      actions.forEach((a, idx)=>{
+        const div = document.createElement("div");
+        div.className = "item" + (idx===currentIndex ? " active" : "");
+        div.setAttribute("data-idx", idx);
+
+        div.innerHTML = `
+          <div class="item-top">
+            <div>
+              <div class="tag">${a.cat}</div>
+              <div class="item-title">${a.title[LANG] || a.title.es}</div>
+            </div>
+          </div>
+          <div class="item-desc">${a.desc[LANG] || a.desc.es}</div>
+        `;
+        div.addEventListener("click", ()=>{
+          currentIndex = idx;
+          syncHero();
+          renderList();
+          renderDetails();
         });
+        list.appendChild(div);
       });
 
-      document.addEventListener('click', () => langMenu.classList.remove('open'));
-    })();
-
-    // ========= Modal legal (bilingüe) =========
-    const legalTexts = {
-      es: {
-        privacy: {
-          title: 'Política de Privacidad',
-          body: `
-            <p>Tratamos datos personales únicamente para el funcionamiento de la plataforma, la gestión de perfiles y la comunicación relacionada con Athlead.</p>
-            <p>No cedemos datos a terceros ajenos salvo obligación legal. Puedes solicitar acceso, rectificación o supresión escribiendo al email de contacto.</p>
-          `
-        },
-        terms: {
-          title: 'Términos y Condiciones',
-          body: `
-            <p>Al usar Athlead, te comprometes a aportar información veraz y a publicar contenido para el que tengas derechos (incluyendo permisos de grabación cuando aplique).</p>
-            <p>Está prohibido el acoso, suplantación, publicación de contenido ofensivo o cualquier uso fraudulento.</p>
-            <p>En caso de menores, el registro y publicación deben contar con autorización de madre/padre o tutor legal.</p>
-          `
-        },
-        cookies: {
-          title: 'Política de Cookies',
-          body: `
-            <p>Usamos cookies técnicas para que la web funcione. De forma opcional, podemos usar analítica agregada para mejorar la experiencia.</p>
-            <p>No usamos cookies para perfiles individuales ni publicidad personalizada.</p>
-          `
-        },
-        data: {
-          title: 'Protección de Datos',
-          body: `
-            <p>Almacenamos los datos de forma segura y solo durante el tiempo necesario para la finalidad del servicio.</p>
-            <p>Puedes ejercer derechos de acceso, rectificación, supresión, limitación u oposición, y solicitar portabilidad cuando corresponda.</p>
-          `
-        }
-      },
-      en: {
-        privacy: {
-          title: 'Privacy Policy',
-          body: `
-            <p>We process personal data only to operate the platform, manage profiles, and communicate about Athlead.</p>
-            <p>We do not share data with third parties unless legally required. You can request access, correction, or deletion via our contact email.</p>
-          `
-        },
-        terms: {
-          title: 'Terms & Conditions',
-          body: `
-            <p>By using Athlead, you agree to provide truthful information and upload content you have rights to share (including recording permissions where applicable).</p>
-            <p>Harassment, impersonation, abusive content, and fraudulent behaviour are strictly forbidden.</p>
-            <p>For minors, registration and posting must be done with a parent/legal guardian authorisation.</p>
-          `
-        },
-        cookies: {
-          title: 'Cookie Policy',
-          body: `
-            <p>We use essential cookies for the website to work. Optionally, we may use aggregated analytics to improve the experience.</p>
-            <p>We do not use cookies for individual profiling or personalised advertising.</p>
-          `
-        },
-        data: {
-          title: 'Data Protection',
-          body: `
-            <p>We store data securely and only for as long as necessary to provide the service.</p>
-            <p>You may exercise access, correction, deletion, restriction or objection rights, and request portability where applicable.</p>
-          `
-        }
+      if (!actions.length){
+        list.innerHTML = `<div style="padding:14px;color:rgba(255,255,255,.65);font-size:13px;line-height:1.6">
+          ${LANG==="es" ? "No hay resultados. Prueba otro filtro o busca otra palabra." : "No results. Try another filter or search term."}
+        </div>`;
       }
-    };
-
-    const legalModal = document.getElementById('legal-modal');
-    const legalTitleEl = document.getElementById('legal-modal-title');
-    const legalBodyEl = document.getElementById('legal-modal-body');
-    const legalCloseBtn = legalModal ? legalModal.querySelector('.legal-modal-close') : null;
-    const legalOverlay = legalModal ? legalModal.querySelector('.legal-modal-overlay') : null;
-
-    function openLegalModal(key) {
-      if (!legalModal) return;
-      const pack = legalTexts[ATHLEAD_LANG] || legalTexts.es;
-      if (!pack[key]) return;
-      legalTitleEl.textContent = pack[key].title;
-      legalBodyEl.innerHTML = pack[key].body;
-      legalModal.classList.add('open');
-    }
-    function closeLegalModal() {
-      if (!legalModal) return;
-      legalModal.classList.remove('open');
     }
 
-    document.querySelectorAll('.legal-link').forEach((link) => {
-      link.addEventListener('click', (e) => {
+    function renderDots(){
+      const dots = document.getElementById("dots");
+      const actions = getFilteredActions();
+      dots.innerHTML = "";
+
+      actions.forEach((_, i)=>{
+        const b = document.createElement("button");
+        b.className = "dot" + (i===currentIndex ? " active" : "");
+        b.type = "button";
+        b.setAttribute("aria-label","Dot "+(i+1));
+        b.addEventListener("click", ()=>{
+          currentIndex = i;
+          syncHero();
+          renderList();
+          renderDetails();
+        });
+        dots.appendChild(b);
+      });
+    }
+
+    function safeIdx(){
+      const actions = getFilteredActions();
+      if (!actions.length){ currentIndex = 0; return; }
+      if (currentIndex >= actions.length) currentIndex = 0;
+      if (currentIndex < 0) currentIndex = actions.length-1;
+    }
+
+    function syncHero(){
+      const img = document.getElementById("heroImg");
+      const t = document.getElementById("heroTitle");
+      const d = document.getElementById("heroDesc");
+      const actions = getFilteredActions();
+
+      if (!actions.length){
+        img.src = DATA[currentSport].heroFallback;
+        t.textContent = LANG==="es" ? "Sin resultados" : "No results";
+        d.textContent = LANG==="es" ? "Ajusta filtros o búsqueda para ver acciones." : "Adjust filters or search to see actions.";
+        return;
+      }
+
+      safeIdx();
+      const a = actions[currentIndex];
+      img.src = a.img || DATA[currentSport].heroFallback;
+      t.textContent = a.title[LANG] || a.title.es;
+      d.textContent = a.desc[LANG] || a.desc.es;
+    }
+
+    function renderDetails(){
+      const acc = document.getElementById("accordion");
+      const actions = getFilteredActions();
+
+      acc.innerHTML = "";
+      const wrap = document.createElement("details");
+      wrap.open = true;
+
+      if (!actions.length){
+        wrap.innerHTML = `
+          <summary><span>${tr("acc_title")}</span><span class="sum-muted">${tr("acc_subtitle")}</span></summary>
+          <div class="acc-body">${LANG==="es" ? "Sin acción seleccionada." : "No action selected."}</div>
+        `;
+        acc.appendChild(wrap);
+        return;
+      }
+
+      safeIdx();
+      const a = actions[currentIndex];
+
+      const bullets = (a.how && a.how[LANG]) ? a.how[LANG] : (a.how && a.how.es) ? a.how.es : [];
+      const bulletHtml = bullets.length ? `<ul class="acc-bullets">${bullets.map(b=>`<li>${b}</li>`).join("")}</ul>` : "";
+
+      wrap.innerHTML = `
+        <summary><span>${tr("acc_title")}</span><span class="sum-muted">${tr("acc_subtitle")}</span></summary>
+        <div class="acc-body">
+          <div style="opacity:.9"><b>${LANG==="es" ? "Por qué importa:" : "Why it matters:"}</b> ${(a.why[LANG]||a.why.es)}</div>
+          ${bulletHtml}
+          <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+            <button class="btn btn-secondary" type="button" id="openActionModal">${LANG==="es" ? "Ver ejemplo y tips" : "See example & tips"}</button>
+          </div>
+        </div>
+      `;
+      acc.appendChild(wrap);
+
+      const btn = document.getElementById("openActionModal");
+      if (btn){
+        btn.addEventListener("click", ()=> openActionModal(a));
+      }
+    }
+
+    function renderHowAccordion(){
+      const target = document.getElementById("howAccordion");
+      target.innerHTML = "";
+
+      HOW.forEach(block=>{
+        const det = document.createElement("details");
+        det.open = false;
+        const bullets = (block.bullets && block.bullets[LANG]) ? block.bullets[LANG] : block.bullets.es;
+        det.innerHTML = `
+          <summary>
+            <span>${block.title[LANG] || block.title.es}</span>
+            <span class="sum-muted">${block.subtitle[LANG] || block.subtitle.es}</span>
+          </summary>
+          <div class="acc-body">
+            ${block.body[LANG] || block.body.es}
+            <ul class="acc-bullets">
+              ${bullets.map(x=>`<li>${x}</li>`).join("")}
+            </ul>
+          </div>
+        `;
+        target.appendChild(det);
+      });
+    }
+
+    /* ======================
+      Modal helpers
+    ====================== */
+    const modal = document.getElementById("modal");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalBody = document.getElementById("modalBody");
+    const modalClose = document.getElementById("modalClose");
+    const modalOverlay = document.getElementById("modalOverlay");
+
+    function openModal(title, html){
+      modalTitle.textContent = title;
+      modalBody.innerHTML = html;
+      modal.classList.add("open");
+    }
+    function closeModal(){ modal.classList.remove("open"); }
+
+    function openGuideModal(){
+      openModal(tr("modal_guide_title"), `
+        <p>${LANG==="es"
+          ? "Sube clips que un entrenador pueda evaluar en segundos: decisión + ejecución + resultado."
+          : "Upload clips coaches can evaluate in seconds: decision + execution + outcome."}
+        </p>
+        <ul>
+          <li>${LANG==="es" ? "Acciones de 10–45s (mejor que un montaje largo)." : "10–45s actions (better than long montages)."}</li>
+          <li>${LANG==="es" ? "Empieza 2–3s antes y termina la jugada." : "Start 2–3s before and finish the play."}</li>
+          <li>${LANG==="es" ? "Plano útil (espacio + rivales + opciones)." : "Useful framing (space + opponents + options)."}</li>
+        </ul>
+      `);
+    }
+
+    function openChecklistModal(){
+      openModal(tr("modal_check_title"), `
+        <p>${LANG==="es"
+          ? "Antes de subir, revisa esto:"
+          : "Before uploading, check this:"}
+        </p>
+        <ul>
+          <li>${LANG==="es" ? "El clip cuenta 1 sola idea (sin mezclar jugadas)." : "The clip shows 1 single idea (no mixed plays)."}</li>
+          <li>${LANG==="es" ? "Se ve tu decisión antes y después del toque." : "Your decision is visible before and after the touch."}</li>
+          <li>${LANG==="es" ? "No hay filtros/overlays que tapen el juego." : "No heavy filters/overlays hiding the play."}</li>
+          <li>${LANG==="es" ? "Calidad suficiente (no hace falta 4K)." : "Enough quality (no need for 4K)."}</li>
+        </ul>
+      `);
+    }
+
+    function openActionModal(a){
+      const tips = (a.how && a.how[LANG]) ? a.how[LANG] : a.how.es;
+      openModal(a.title[LANG] || a.title.es, `
+        <p style="opacity:.9">${a.desc[LANG] || a.desc.es}</p>
+        <p><b>${LANG==="es" ? "Por qué importa:" : "Why it matters:"}</b> ${a.why[LANG] || a.why.es}</p>
+        <p><b>${LANG==="es" ? "Cómo grabarlo:" : "How to record:"}</b></p>
+        <ul>${tips.map(x=>`<li>${x}</li>`).join("")}</ul>
+        <p style="margin-top:10px;color:rgba(255,255,255,.65);font-size:12px">
+          ${LANG==="es" ? "Tip: 2–3 clips similares valen más que 1 highlight aislado." : "Tip: 2–3 similar clips beat 1 isolated highlight."}
+        </p>
+      `);
+    }
+
+    modalClose.addEventListener("click", closeModal);
+    modalOverlay.addEventListener("click", closeModal);
+    document.addEventListener("keydown", (e)=>{ if(e.key==="Escape") closeModal(); });
+
+    /* ======================
+      UI events
+    ====================== */
+    // Logo
+    document.getElementById("logo").addEventListener("click", ()=> location.href="index.html");
+
+    // Mobile menu
+    const menuToggle = document.getElementById("menuToggle");
+    const mobileMenu = document.getElementById("mobileMenu");
+    menuToggle.addEventListener("click", (e)=>{
+      e.stopPropagation();
+      const open = mobileMenu.classList.toggle("active");
+      menuToggle.textContent = open ? "✕" : "☰";
+    });
+    document.addEventListener("click",(e)=>{
+      if(!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)){
+        mobileMenu.classList.remove("active");
+        menuToggle.textContent = "☰";
+      }
+    });
+    document.querySelectorAll(".mobile-links a").forEach(a=>{
+      a.addEventListener("click", ()=>{
+        mobileMenu.classList.remove("active");
+        menuToggle.textContent="☰";
+      });
+    });
+
+    // Mobile dropdowns
+    function bindMobileDrop(titleId, subId){
+      const t = document.getElementById(titleId);
+      const s = document.getElementById(subId);
+      t.addEventListener("click", ()=>{
+        s.classList.toggle("open");
+        t.classList.toggle("open");
+      });
+    }
+    bindMobileDrop("mRoleTitle","mRoleSub");
+    bindMobileDrop("mAppTitle","mAppSub");
+
+    // Desktop dropdown click support
+    function bindDropdown(toggleId, menuId){
+      const t = document.getElementById(toggleId);
+      const m = document.getElementById(menuId);
+      t.addEventListener("click",(e)=>{
+        e.preventDefault(); e.stopPropagation();
+        m.classList.toggle("open");
+      });
+      document.addEventListener("click",(e)=>{ if(!m.contains(e.target) && !t.contains(e.target)) m.classList.remove("open"); });
+    }
+    bindDropdown("roleToggle","roleMenu");
+    bindDropdown("appToggle","appMenu");
+
+    // Language switcher
+    const langSwitcher = document.getElementById("langSwitcher");
+    const langMenu = document.getElementById("langMenu");
+    const langBtn = langSwitcher.querySelector(".lang-current");
+    const flagEl = langBtn.querySelector(".lang-flag");
+    const labelEl = langBtn.querySelector(".lang-label");
+
+    function setLangUI(){
+      if(LANG==="en"){ flagEl.textContent="🇬🇧"; labelEl.textContent="EN"; document.documentElement.lang="en"; }
+      else { flagEl.textContent="🇪🇸"; labelEl.textContent="ES"; document.documentElement.lang="es"; }
+    }
+
+    // Load lang
+    const storedLang = localStorage.getItem("athlead_lang");
+    if(storedLang==="en" || storedLang==="es") LANG = storedLang;
+    setLangUI();
+    applyTranslations();
+
+    langBtn.addEventListener("click",(e)=>{ e.stopPropagation(); langMenu.classList.toggle("open"); });
+    langMenu.querySelectorAll("button[data-lang]").forEach(b=>{
+      b.addEventListener("click", ()=>{
+        LANG = b.getAttribute("data-lang")==="en" ? "en" : "es";
+        localStorage.setItem("athlead_lang", LANG);
+        setLangUI();
+        applyTranslations();
+        // Re-render interactive blocks in new language
+        currentIndex = 0;
+        syncHero(); renderList(); renderDots(); renderDetails();
+        renderHowAccordion();
+        langMenu.classList.remove("open");
+      });
+    });
+    document.addEventListener("click", ()=> langMenu.classList.remove("open"));
+
+    // Tabs: sport switch
+    document.querySelectorAll(".tab").forEach(tab=>{
+      tab.addEventListener("click", ()=>{
+        document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+        tab.classList.add("active");
+
+        currentSport = tab.getAttribute("data-sport");
+        currentIndex = 0;
+        // reset search + filter visual to keep UX clean
+        currentQuery = "";
+        document.getElementById("searchInput").value = "";
+        currentFilter = "all";
+        document.querySelectorAll(".pill").forEach(p=>p.classList.remove("active"));
+        document.querySelector('.pill[data-filter="all"]').classList.add("active");
+
+        syncHero(); renderDots(); renderList(); renderDetails();
+      });
+    });
+
+    // Search
+    const searchInput = document.getElementById("searchInput");
+    searchInput.addEventListener("input", ()=>{
+      currentQuery = searchInput.value || "";
+      currentIndex = 0;
+      syncHero(); renderDots(); renderList(); renderDetails();
+    });
+
+    // Filters
+    document.querySelectorAll(".pill").forEach(p=>{
+      p.addEventListener("click", ()=>{
+        document.querySelectorAll(".pill").forEach(x=>x.classList.remove("active"));
+        p.classList.add("active");
+        currentFilter = p.getAttribute("data-filter");
+        currentIndex = 0;
+        syncHero(); renderDots(); renderList(); renderDetails();
+      });
+    });
+
+    // Carousel prev/next
+    document.getElementById("prevBtn").addEventListener("click", ()=>{
+      currentIndex -= 1;
+      safeIdx();
+      syncHero(); renderDots(); renderList(); renderDetails();
+    });
+    document.getElementById("nextBtn").addEventListener("click", ()=>{
+      currentIndex += 1;
+      safeIdx();
+      syncHero(); renderDots(); renderList(); renderDetails();
+    });
+
+    // Shuffle
+    document.getElementById("shuffleBtn").addEventListener("click", ()=>{
+      const actions = getFilteredActions();
+      if(!actions.length) return;
+      currentIndex = Math.floor(Math.random()*actions.length);
+      syncHero(); renderDots(); renderList(); renderDetails();
+    });
+
+    // Hero modal buttons
+    document.getElementById("openGuide").addEventListener("click", openGuideModal);
+    document.getElementById("openChecklist").addEventListener("click", openChecklistModal);
+
+    // Smooth in-page anchor
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener("click",(e)=>{
+        const href = a.getAttribute("href");
+        if(!href || href==="#") return;
+        const target = document.querySelector(href);
+        if(!target) return;
         e.preventDefault();
-        const key = link.getAttribute('data-modal');
-        openLegalModal(key);
+        target.scrollIntoView({behavior:"smooth", block:"start"});
       });
     });
 
-    if (legalCloseBtn) legalCloseBtn.addEventListener('click', closeLegalModal);
-    if (legalOverlay) legalOverlay.addEventListener('click', closeLegalModal);
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeLegalModal();
-    });
-
-    // ========= Cookies (igual) =========
-    const COOKIE_KEY = 'athlead_cookie_consent';
-    const cookieBanner = document.getElementById('cookie-banner');
-    const btnAcceptAll = document.getElementById('cookie-accept-all');
-    const btnAcceptEssential = document.getElementById('cookie-accept-essential');
-    const btnReject = document.getElementById('cookie-reject');
-
-    function enableNonEssentialCookies() {
-      // Aquí meterías analítica si la usas (GA/Matomo/etc)
-    }
-    function disableNonEssentialCookies() {
-      // Opcional: desactivar/borrar cookies no esenciales si las cargas
-    }
-    function applyCookieConsent(choice) {
-      if (choice === 'all') enableNonEssentialCookies();
-      else disableNonEssentialCookies();
-    }
-    function hideCookieBanner() { if (cookieBanner) cookieBanner.classList.remove('visible'); }
-    function showCookieBanner() { if (cookieBanner) cookieBanner.classList.add('visible'); }
-
-    const storedConsent = localStorage.getItem(COOKIE_KEY);
-    if (storedConsent) applyCookieConsent(storedConsent);
-    else showCookieBanner();
-
-    if (btnAcceptAll) {
-      btnAcceptAll.addEventListener('click', () => {
-        localStorage.setItem(COOKIE_KEY, 'all');
-        applyCookieConsent('all');
-        hideCookieBanner();
-      });
-    }
-    if (btnAcceptEssential) {
-      btnAcceptEssential.addEventListener('click', () => {
-        localStorage.setItem(COOKIE_KEY, 'essential');
-        applyCookieConsent('essential');
-        hideCookieBanner();
-      });
-    }
-    if (btnReject) {
-      btnReject.addEventListener('click', () => {
-        localStorage.setItem(COOKIE_KEY, 'reject');
-        applyCookieConsent('reject');
-        hideCookieBanner();
-      });
-    }
-
-    // (Opcional) Ocultar header al hacer scroll down
-    (function () {
-      const header = document.querySelector('.header');
-      if (!header) return;
+    // Header hide on scroll
+    (function(){
+      const header = document.getElementById("header");
       let lastY = window.scrollY;
-      window.addEventListener('scroll', () => {
+      window.addEventListener("scroll", ()=>{
         const y = window.scrollY;
-        const goingDown = y > lastY;
-        if (y > 120 && goingDown) header.classList.add('hide-header');
-        else header.classList.remove('hide-header');
+        const down = y > lastY;
+        if (y > 120 && down) header.classList.add("hide");
+        else header.classList.remove("hide");
         lastY = y;
       });
     })();
+
+    /* ======================
+      Cookies (simple)
+    ====================== */
+    const COOKIE_KEY = "athlead_cookie_consent";
+    const banner = document.getElementById("cookie-banner");
+    const storedConsent = localStorage.getItem(COOKIE_KEY);
+
+    function showBanner(){ banner.classList.add("visible"); }
+    function hideBanner(){ banner.classList.remove("visible"); }
+
+    if(!storedConsent) showBanner();
+
+    document.getElementById("cookie-all").addEventListener("click", ()=>{
+      localStorage.setItem(COOKIE_KEY,"all");
+      hideBanner();
+      // Si agregas analítica, la activas aquí.
+    });
+    document.getElementById("cookie-essential").addEventListener("click", ()=>{
+      localStorage.setItem(COOKIE_KEY,"essential");
+      hideBanner();
+    });
+    document.getElementById("cookie-reject").addEventListener("click", ()=>{
+      localStorage.setItem(COOKIE_KEY,"reject");
+      hideBanner();
+    });
+
+    /* ======================
+      Initial render
+    ====================== */
+    function init(){
+      // Placeholder text for search
+      searchInput.placeholder = (LANG==="es")
+        ? "Buscar (ej: 1v1, presión, finalización...)"
+        : "Search (e.g., 1v1, pressing, finishing...)";
+
+      renderHowAccordion();
+      syncHero();
+      renderDots();
+      renderList();
+      renderDetails();
+    }
+    init();
   </script>
 </body>
 </html>
