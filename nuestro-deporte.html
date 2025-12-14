@@ -65,6 +65,7 @@
     .nav-dropdown.open{display:block}
     .nav-dropdown a{display:block;padding:8px 14px;font-size:14px;border-radius:999px}
     .nav-dropdown a:hover{background:rgba(255,255,255,.08)}
+    .nav-dropdown a.active{background:rgba(255,255,255,.12);opacity:1}
     @media (hover:hover){ .nav-item:hover .nav-dropdown{display:block} }
 
     .header-actions{display:flex;align-items:center;gap:10px}
@@ -102,6 +103,7 @@
       width:270px;height:100vh;background:rgba(0,0,0,.96);
       backdrop-filter:blur(14px);
       z-index:900;padding:80px 24px 24px;transition:right .3s ease;
+      overflow-y:auto;
     }
     .mobile-menu.active{right:0}
     .mobile-links{display:flex;flex-direction:column;gap:16px;font-size:16px}
@@ -528,7 +530,7 @@
       <a href="index.html#who-we-are" data-i18n="nav_about">Quiénes somos</a>
       <a href="index.html#how-steps" data-i18n="nav_how">Cómo funciona</a>
 
-      <div class="nav-item">
+      <div class="nav-item nav-item-role">
         <button class="nav-toggle" type="button" id="roleToggle">
           <span data-i18n="nav_role">Rol</span>
           <span class="nav-arrow">▾</span>
@@ -543,14 +545,14 @@
       <a href="#demo" data-i18n="nav_demo">Demo</a>
       <a href="#diagram" data-i18n="nav_diagram">Mapa de acciones</a>
 
-      <div class="nav-item">
+      <div class="nav-item nav-item-app">
         <button class="nav-toggle" type="button" id="appToggle">
           <span data-i18n="nav_app">App</span>
           <span class="nav-arrow">▾</span>
         </button>
         <div class="nav-dropdown" id="appMenu">
           <a href="caracteristicas-app.html" data-i18n="nav_app_features">Características</a>
-          <a href="nuestro-deporte.html" data-i18n="nav_app_sport">Nuestro deporte</a>
+          <a href="nuestro-deporte.html" class="active" data-i18n="nav_app_sport">Nuestro deporte</a>
           <a href="subscripciones.html" data-i18n="nav_app_subscriptions">Suscripciones</a>
         </div>
       </div>
@@ -558,7 +560,7 @@
 
     <div class="header-actions">
       <div class="lang-switcher" id="langSwitcher">
-        <button class="lang-current" type="button">
+        <button class="lang-current" type="button" aria-expanded="false">
           <span class="lang-flag">🇪🇸</span>
           <span class="lang-label">ES</span>
           <span class="nav-arrow">▾</span>
@@ -574,7 +576,7 @@
   </header>
 
   <!-- Mobile -->
-  <div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
     <div class="mobile-links">
       <a href="index.html#who-we-are" data-i18n="nav_about">Quiénes somos</a>
       <a href="index.html#how-steps" data-i18n="nav_how">Cómo funciona</a>
@@ -701,7 +703,6 @@
             </div>
 
             <div class="media" id="mediaBox">
-              <!-- Demo video (puedes poner tu video real). Si no hay, usa imágenes. -->
               <video id="demoVideo" muted playsinline preload="metadata" style="display:none">
                 <source src="videos/demo-clip.mp4" type="video/mp4" />
               </video>
@@ -760,7 +761,6 @@
             <div class="mid"></div>
             <div class="circle"></div>
 
-            <!-- hotspots -->
             <div class="hotspot" style="left:72%;top:52%" data-spot="wing"></div>
             <div class="hotspot" style="left:55%;top:45%" data-spot="halfspace"></div>
             <div class="hotspot" style="left:28%;top:55%" data-spot="press"></div>
@@ -782,7 +782,6 @@
             <div class="mid"></div>
             <div class="circle" style="width:28%"></div>
 
-            <!-- hotspots -->
             <div class="hotspot" style="left:60%;top:58%" data-spot="pivot"></div>
             <div class="hotspot" style="left:48%;top:42%" data-spot="wall"></div>
             <div class="hotspot" style="left:34%;top:58%" data-spot="steal"></div>
@@ -829,13 +828,7 @@
 
   <script>
     /* =========================================================
-      DEMO “explicativo y demostrativo”:
-      - Cambia deporte / objetivo / búsqueda
-      - Simula un perfil arriba (mini-profile)
-      - “Chips” que cambian el texto del overlay: Contexto / Etiquetas / Por qué
-      - Timeline “scrub” para demostrar que el clip incluye “antes y después”
-      - Mapas (campo/pista) con hotspots explicativos
-      - Modal tour + checklist
+      DEMO “explicativo y demostrativo”
     ========================================================= */
 
     let LANG = 'es';
@@ -1056,7 +1049,7 @@
 
         hero_badge:"Fútbol 11 · Futsal · Scouting",
         hero_title:"Una página demostrativa: así se ve el scouting en Athlead",
-        hero_sub:"Cambia deporte, cambia objetivo, y mira cómo se construye un clip “evaluable” con contexto, etiquetas y explicación.",
+        hero_sub:"Cambia deporte, cambia objetivo, y mira cómo se construuye un clip “evaluable” con contexto, etiquetas y explicación.",
         hero_btn_1:"Ver demo interactiva",
         hero_btn_2:"Tour guiado (30s)",
 
@@ -1248,7 +1241,6 @@
       img.src = a.img || DATA[currentSport].heroFallback;
       t.textContent = a.title[LANG] || a.title.es;
 
-      // Texto demostrativo cambia según chip seleccionado
       if (chipMode === "context") {
         d.textContent = a.context[LANG] || a.context.es;
       } else if (chipMode === "tags") {
@@ -1258,7 +1250,6 @@
         d.textContent = a.why[LANG] || a.why.es;
       }
 
-      // Callout inferior (simulación)
       const scrub = Number(document.getElementById("scrub").value);
       document.getElementById("c1").textContent = (LANG==="es" ? "🧠 Decisión" : "🧠 Decision") + " · " + (scrub < 10 ? (LANG==="es"?"antes":"before") : (LANG==="es"?"durante":"during"));
       document.getElementById("c2").textContent = (LANG==="es" ? "⚡ Ejecución" : "⚡ Execution") + " · " + (scrub >= 10 && scrub < 20 ? (LANG==="es"?"ahora":"now") : (LANG==="es"?"en curso":"in flow"));
@@ -1340,9 +1331,6 @@
       document.getElementById("openChecklist2").addEventListener("click", openChecklistModal);
     }
 
-    /* ======================
-      Chips mode
-    ====================== */
     function setChipMode(mode){
       chipMode = mode;
       document.querySelectorAll(".chip").forEach(c=>c.classList.remove("active"));
@@ -1351,9 +1339,6 @@
       syncHero();
     }
 
-    /* ======================
-      Diagram hotspots
-    ====================== */
     const SPOTS = {
       wing: {
         es: { t:"Banda: ventaja y 1v1", b:"En F11, banda = espacio. Un buen clip muestra: primer toque, decisión y desenlace." },
@@ -1403,9 +1388,6 @@
       }
     }
 
-    /* ======================
-      Modal
-    ====================== */
     const modal = document.getElementById("modal");
     const modalTitle = document.getElementById("modalTitle");
     const modalBody = document.getElementById("modalBody");
@@ -1414,8 +1396,12 @@
       modalTitle.textContent = title;
       modalBody.innerHTML = html;
       modal.classList.add("open");
+      document.body.style.overflow = "hidden";
     }
-    function closeModal(){ modal.classList.remove("open"); }
+    function closeModal(){
+      modal.classList.remove("open");
+      document.body.style.overflow = "";
+    }
 
     document.getElementById("modalClose").addEventListener("click", closeModal);
     document.getElementById("modalOverlay").addEventListener("click", closeModal);
@@ -1464,34 +1450,51 @@
     }
 
     /* ======================
-      UI events: header + menus
+      Header + menus (FIX)
     ====================== */
     document.getElementById("logo").addEventListener("click", ()=> location.href="index.html");
 
-    // Mobile menu
     const menuToggle = document.getElementById("menuToggle");
     const mobileMenu = document.getElementById("mobileMenu");
-    menuToggle.addEventListener("click", (e)=>{
+
+    function openMobileMenu(){
+      mobileMenu.classList.add("active");
+      mobileMenu.setAttribute("aria-hidden","false");
+      menuToggle.textContent = "✕";
+      document.body.style.overflow = "hidden";
+    }
+    function closeMobileMenu(){
+      mobileMenu.classList.remove("active");
+      mobileMenu.setAttribute("aria-hidden","true");
+      menuToggle.textContent = "☰";
+      document.body.style.overflow = "";
+    }
+
+    menuToggle.addEventListener("click",(e)=>{
       e.stopPropagation();
-      const open = mobileMenu.classList.toggle("active");
-      menuToggle.textContent = open ? "✕" : "☰";
+      const isOpen = mobileMenu.classList.contains("active");
+      if(isOpen) closeMobileMenu();
+      else openMobileMenu();
     });
+
+    // Cierra al clicar fuera
     document.addEventListener("click",(e)=>{
       if(!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)){
-        mobileMenu.classList.remove("active");
-        menuToggle.textContent = "☰";
+        closeMobileMenu();
       }
     });
-    document.querySelectorAll(".mobile-links a").forEach(a=>{
-      a.addEventListener("click", ()=>{
-        mobileMenu.classList.remove("active");
-        menuToggle.textContent="☰";
-      });
+
+    // Cierra al clicar un link normal
+    document.querySelectorAll(".mobile-links > a").forEach(a=>{
+      a.addEventListener("click", ()=> closeMobileMenu());
     });
+
+    // Dropdowns móvil (Rol/App) - NO cerrar menú
     function bindMobileDrop(titleId, subId){
       const t = document.getElementById(titleId);
       const s = document.getElementById(subId);
-      t.addEventListener("click", ()=>{
+      t.addEventListener("click",(e)=>{
+        e.stopPropagation();
         s.classList.toggle("open");
         t.classList.toggle("open");
       });
@@ -1499,20 +1502,32 @@
     bindMobileDrop("mRoleTitle","mRoleSub");
     bindMobileDrop("mAppTitle","mAppSub");
 
-    // Desktop dropdown click support
-    function bindDropdown(toggleId, menuId){
-      const t = document.getElementById(toggleId);
-      const m = document.getElementById(menuId);
-      t.addEventListener("click",(e)=>{
-        e.preventDefault(); e.stopPropagation();
-        m.classList.toggle("open");
-      });
-      document.addEventListener("click",(e)=>{ if(!m.contains(e.target) && !t.contains(e.target)) m.classList.remove("open"); });
-    }
-    bindDropdown("roleToggle","roleMenu");
-    bindDropdown("appToggle","appMenu");
+    // Desktop dropdowns click + outside + close sibling
+    (function(){
+      const roleToggle = document.getElementById("roleToggle");
+      const roleMenu = document.getElementById("roleMenu");
+      const appToggle = document.getElementById("appToggle");
+      const appMenu = document.getElementById("appMenu");
 
-    // Language switcher
+      roleToggle.addEventListener("click",(e)=>{
+        e.preventDefault(); e.stopPropagation();
+        roleMenu.classList.toggle("open");
+        appMenu.classList.remove("open");
+      });
+
+      appToggle.addEventListener("click",(e)=>{
+        e.preventDefault(); e.stopPropagation();
+        appMenu.classList.toggle("open");
+        roleMenu.classList.remove("open");
+      });
+
+      document.addEventListener("click",(e)=>{
+        if(!roleMenu.contains(e.target) && !roleToggle.contains(e.target)) roleMenu.classList.remove("open");
+        if(!appMenu.contains(e.target) && !appToggle.contains(e.target)) appMenu.classList.remove("open");
+      });
+    })();
+
+    // Language switcher (con aria + outside)
     const langSwitcher = document.getElementById("langSwitcher");
     const langMenu = document.getElementById("langMenu");
     const langBtn = langSwitcher.querySelector(".lang-current");
@@ -1529,14 +1544,20 @@
     setLangUI();
     applyTranslations();
 
-    langBtn.addEventListener("click",(e)=>{ e.stopPropagation(); langMenu.classList.toggle("open"); });
+    langBtn.addEventListener("click",(e)=>{
+      e.stopPropagation();
+      langMenu.classList.toggle("open");
+      const expanded = langBtn.getAttribute("aria-expanded")==="true";
+      langBtn.setAttribute("aria-expanded", (!expanded).toString());
+    });
+
     langMenu.querySelectorAll("button[data-lang]").forEach(b=>{
-      b.addEventListener("click", ()=>{
+      b.addEventListener("click",(e)=>{
+        e.stopPropagation();
         LANG = b.getAttribute("data-lang")==="en" ? "en" : "es";
         localStorage.setItem("athlead_lang", LANG);
         setLangUI();
         applyTranslations();
-        // Re-render all demo
         currentIndex = 0;
         syncProfile();
         updateDashboard();
@@ -1544,11 +1565,18 @@
         renderList();
         renderDetails();
         langMenu.classList.remove("open");
+        langBtn.setAttribute("aria-expanded","false");
       });
     });
-    document.addEventListener("click", ()=> langMenu.classList.remove("open"));
 
-    // Smooth anchors
+    document.addEventListener("click",(e)=>{
+      if(!langSwitcher.contains(e.target)){
+        langMenu.classList.remove("open");
+        langBtn.setAttribute("aria-expanded","false");
+      }
+    });
+
+    // Smooth anchors (solo para anchors del mismo doc)
     document.querySelectorAll('a[href^="#"]').forEach(a=>{
       a.addEventListener("click",(e)=>{
         const href = a.getAttribute("href");
@@ -1576,7 +1604,6 @@
     /* ======================
       Demo controls
     ====================== */
-    // Tabs: sport switch
     document.querySelectorAll(".tab").forEach(tab=>{
       tab.addEventListener("click", ()=>{
         document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
@@ -1598,7 +1625,6 @@
       });
     });
 
-    // Search
     const searchInput = document.getElementById("searchInput");
     searchInput.addEventListener("input", ()=>{
       currentQuery = searchInput.value || "";
@@ -1608,7 +1634,6 @@
       renderDetails();
     });
 
-    // Filters
     document.querySelectorAll(".pill").forEach(p=>{
       p.addEventListener("click", ()=>{
         document.querySelectorAll(".pill").forEach(x=>x.classList.remove("active"));
@@ -1622,7 +1647,6 @@
       });
     });
 
-    // Shuffle
     document.getElementById("shuffleBtn").addEventListener("click", ()=>{
       const actions = getFilteredActions();
       if(!actions.length) return;
@@ -1632,27 +1656,22 @@
       renderDetails();
     });
 
-    // Chips
     document.querySelectorAll(".chip").forEach(ch=>{
       ch.addEventListener("click", ()=>{
         setChipMode(ch.getAttribute("data-chip"));
       });
     });
 
-    // Scrub timeline (demostración del “antes/después”)
     const scrub = document.getElementById("scrub");
     scrub.addEventListener("input", ()=>{
       const v = Number(scrub.value);
       document.getElementById("tLeft").textContent = (v) + "s";
-      // no tocamos el video real (por simplicidad), solo demostramos concepto con el texto
       syncHero();
     });
 
-    // Buttons
     document.getElementById("openTour").addEventListener("click", openTourModal);
     document.getElementById("openChecklist").addEventListener("click", openChecklistModal);
 
-    // Hotspots
     document.querySelectorAll("#field11 .hotspot").forEach(h=>{
       h.addEventListener("click", ()=> showTooltip("11", h.getAttribute("data-spot")));
     });
@@ -1660,9 +1679,6 @@
       h.addEventListener("click", ()=> showTooltip("fs", h.getAttribute("data-spot")));
     });
 
-    /* ======================
-      Cookies
-    ====================== */
     const COOKIE_KEY = "athlead_cookie_consent";
     const banner = document.getElementById("cookie-banner");
     const storedConsent = localStorage.getItem(COOKIE_KEY);
@@ -1673,9 +1689,6 @@
     document.getElementById("cookie-essential").addEventListener("click", ()=>{ localStorage.setItem(COOKIE_KEY,"essential"); hideBanner(); });
     document.getElementById("cookie-reject").addEventListener("click", ()=>{ localStorage.setItem(COOKIE_KEY,"reject"); hideBanner(); });
 
-    /* ======================
-      Initial render
-    ====================== */
     function init(){
       searchInput.placeholder = (LANG==="es")
         ? "Buscar (ej: 1v1, presión, finalización...)"
@@ -1694,3 +1707,4 @@
   </script>
 </body>
 </html>
+
