@@ -60,7 +60,9 @@
       margin-bottom: 6px;
     }
 
-    /* HEADER (copiado/compatible con index) */
+    /* =========================
+       HEADER (igual que index)
+       ========================= */
     .header {
       position: fixed;
       top: 16px;
@@ -88,6 +90,7 @@
       font-weight: 700;
       letter-spacing: 0.16em;
       cursor: pointer;
+      user-select: none;
     }
 
     .nav-links {
@@ -149,10 +152,17 @@
       padding: 8px 14px;
       font-size: 14px;
       border-radius: 999px;
-      border-bottom: none;
+      border-bottom: none !important;
+      opacity: 0.9;
     }
 
-    .nav-dropdown a:hover { background: rgba(255, 255, 255, 0.08); }
+    .nav-dropdown a:hover { background: rgba(255, 255, 255, 0.08); opacity: 1; }
+
+    /* Link activo (App > Características) */
+    .nav-dropdown a.active {
+      background: rgba(255, 255, 255, 0.12);
+      opacity: 1;
+    }
 
     @media (hover: hover) {
       .nav-item-role:hover .nav-dropdown,
@@ -240,6 +250,7 @@
       z-index: 900;
       padding: 80px 24px 24px;
       transition: right 0.3s ease;
+      overflow-y: auto;
     }
 
     .mobile-menu.active { right: 0; }
@@ -280,6 +291,7 @@
       display: none;
       padding-left: 8px;
       border-left: 1px solid rgba(255, 255, 255, 0.12);
+      margin-top: 6px;
     }
 
     .mobile-role-submenu a, .mobile-app-submenu a {
@@ -300,7 +312,9 @@
       .lang-current { padding: 6px 10px; font-size: 11px; }
     }
 
-    /* HERO (nuevo, mismo look) */
+    /* =========================
+       HERO (mismo look)
+       ========================= */
     .page-hero {
       position: relative;
       min-height: 85vh;
@@ -408,7 +422,9 @@
       gap: 12px;
     }
 
-    /* INTERACTIVE: Tabs + cards */
+    /* =========================
+       INTERACTIVE: Tabs + cards
+       ========================= */
     .tabs-section { background: #000; }
     .tabs-shell {
       background: rgba(0,0,0,0.55);
@@ -587,7 +603,7 @@
       .features-grid { grid-template-columns: 1fr; }
     }
 
-    /* FAQ (mismo estilo que index) */
+    /* FAQ */
     .faq-section { background: #000; text-align: center; }
     .faq-section h2 {
       font-size: 32px;
@@ -709,7 +725,7 @@
       .preview-media { min-height: 240px; }
     }
 
-    /* FOOTER minimal (estética igual) */
+    /* FOOTER */
     .footer {
       background: #000;
       border-top: 1px solid rgba(255, 255, 255, 0.12);
@@ -732,7 +748,7 @@
 </head>
 
 <body>
-  <!-- HEADER (igual que index) -->
+  <!-- HEADER -->
   <header class="header">
     <div class="logo" id="logo">ATHLEAD</div>
 
@@ -765,7 +781,7 @@
           <span class="nav-dropdown-arrow">▾</span>
         </button>
         <div class="nav-dropdown">
-          <a href="caracteristicas-app.html" data-i18n="nav_app_features">Características</a>
+          <a href="caracteristicas-app.html" class="active" data-i18n="nav_app_features">Características</a>
           <a href="nuestro-deporte.html" data-i18n="nav_app_sport">Nuestro deporte</a>
           <a href="subscripciones.html" data-i18n="nav_app_subscriptions">Suscripciones</a>
         </div>
@@ -795,8 +811,8 @@
     </div>
   </header>
 
-  <!-- Mobile menu (igual que index) -->
-  <div class="mobile-menu" id="mobileMenu">
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
     <div class="mobile-menu-links">
       <a href="index.html#who-we-are" data-i18n="nav_about">Quiénes somos</a>
       <a href="index.html#how-steps" data-i18n="nav_how">Cómo funciona</a>
@@ -1038,7 +1054,6 @@
               </div>
             </div>
           </div>
-
         </div><!-- /tab-panels -->
       </div><!-- /tabs-shell -->
     </div>
@@ -1162,7 +1177,7 @@
   </div>
 
   <script>
-    // ===== i18n (simple, coherente con tu index) =====
+    // ===== i18n =====
     let ATHLEAD_LANG = 'es';
 
     const i18n = {
@@ -1310,41 +1325,71 @@
       window.location.href = 'index.html';
     });
 
-    // Menú móvil
+    // =========================
+    // Menú móvil (mejorado)
+    // =========================
     const menuToggle = document.getElementById('menuToggle');
     const mobileMenu = document.getElementById('mobileMenu');
+
+    function openMobileMenu() {
+      mobileMenu.classList.add('active');
+      mobileMenu.setAttribute('aria-hidden', 'false');
+      menuToggle.textContent = '✕';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMobileMenu() {
+      mobileMenu.classList.remove('active');
+      mobileMenu.setAttribute('aria-hidden', 'true');
+      menuToggle.textContent = '☰';
+      document.body.style.overflow = '';
+    }
 
     menuToggle.addEventListener('click', function (e) {
       e.stopPropagation();
       const isOpen = mobileMenu.classList.contains('active');
-      if (isOpen) {
-        mobileMenu.classList.remove('active');
-        menuToggle.textContent = '☰';
-      } else {
-        mobileMenu.classList.add('active');
-        menuToggle.textContent = '✕';
-      }
+      if (isOpen) closeMobileMenu();
+      else openMobileMenu();
     });
 
+    // Cierra al clicar fuera
     document.addEventListener('click', (e) => {
       if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
-        mobileMenu.classList.remove('active');
-        menuToggle.textContent = '☰';
+        closeMobileMenu();
       }
     });
 
-    // Dropdowns móvil
+    // Cierra al clicar un link normal
+    document.querySelectorAll('.mobile-menu-links a').forEach((link) => {
+      link.addEventListener('click', () => closeMobileMenu());
+    });
+
+    // Dropdowns móvil (Rol/App) - NO cerrar menú
     (function () {
       const rT = document.querySelector('.mobile-role-title');
       const rS = document.querySelector('.mobile-role-submenu');
-      if (rT && rS) rT.addEventListener('click', () => { rS.classList.toggle('open'); rT.classList.toggle('open'); });
+      if (rT && rS) {
+        rT.addEventListener('click', (e) => {
+          e.stopPropagation();
+          rS.classList.toggle('open');
+          rT.classList.toggle('open');
+        });
+      }
 
       const aT = document.querySelector('.mobile-app-title');
       const aS = document.querySelector('.mobile-app-submenu');
-      if (aT && aS) aT.addEventListener('click', () => { aS.classList.toggle('open'); aT.classList.toggle('open'); });
+      if (aT && aS) {
+        aT.addEventListener('click', (e) => {
+          e.stopPropagation();
+          aS.classList.toggle('open');
+          aT.classList.toggle('open');
+        });
+      }
     })();
 
+    // =========================
     // Dropdowns escritorio (click + outside)
+    // =========================
     (function () {
       const roleItem = document.querySelector('.nav-item-role');
       const appItem  = document.querySelector('.nav-item-app');
@@ -1359,11 +1404,13 @@
       roleToggle.addEventListener('click', (e) => {
         e.preventDefault(); e.stopPropagation();
         roleMenu.classList.toggle('open');
+        appMenu.classList.remove('open');
       });
 
       appToggle.addEventListener('click', (e) => {
         e.preventDefault(); e.stopPropagation();
         appMenu.classList.toggle('open');
+        roleMenu.classList.remove('open');
       });
 
       document.addEventListener('click', (e) => {
@@ -1372,7 +1419,9 @@
       });
     })();
 
+    // =========================
     // Selector de idioma
+    // =========================
     (function () {
       const langSwitcher = document.getElementById('langSwitcher');
       if (!langSwitcher) return;
@@ -1393,7 +1442,8 @@
       });
 
       menu.querySelectorAll('button[data-lang]').forEach((btn) => {
-        btn.addEventListener('click', () => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
           const lang = btn.getAttribute('data-lang') || 'es';
           localStorage.setItem('athlead_lang', lang);
           setCurrentLang(lang);
@@ -1410,7 +1460,7 @@
       });
 
       function setCurrentLang(lang) {
-        ATHLEAD_LANG = lang === 'en' ? 'en' : 'es';
+        ATHLEAD_LANG = (lang === 'en') ? 'en' : 'es';
 
         if (ATHLEAD_LANG === 'en') {
           currentFlag.textContent = '🇬🇧';
@@ -1426,7 +1476,7 @@
       }
     })();
 
-    // Ocultar header en scroll (igual que index)
+    // Ocultar header en scroll
     let lastScroll = 0;
     const header = document.querySelector('.header');
     window.addEventListener('scroll', () => {
@@ -1504,6 +1554,7 @@
   </script>
 </body>
 </html>
+
 
 
 
