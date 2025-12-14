@@ -2296,40 +2296,47 @@
   </div>
 </header>
 
-   <div class="mobile-menu" id="mobileMenu">
-    <div class="mobile-menu-links">
-      <a href="index.html#who-we-are" data-i18n="nav_about">Quiénes somos</a>
-      <a href="index.html#how-steps" data-i18n="nav_how">Cómo funciona</a>
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-links">
+    <a href="index.html#who-we-are" data-i18n="nav_about">Quiénes somos</a>
+    <a href="index.html#how-steps" data-i18n="nav_how">Cómo funciona</a>
 
-      <!-- Rol en móvil -->
-      <div class="mobile-menu-role">
-        <button type="button" class="mobile-role-title">
-          <span data-i18n="nav_role">Rol</span>
-          <span class="mobile-role-arrow">▾</span>
-        </button>
-        <div class="mobile-role-submenu">
-          <a href="rol-jugador.html" data-i18n="nav_role_player">Jugador</a>
-          <a href="rol-club.html" data-i18n="nav_role_club">Club</a>
-          <a href="rol-entrenador.html" data-i18n="nav_role_coach">Entrenador</a>
-        </div>
+    <!-- Rol en móvil -->
+    <div class="mobile-menu-role">
+      <button type="button" class="mobile-role-title">
+        <span data-i18n="nav_role">Rol</span>
+        <span class="mobile-role-arrow">▾</span>
+      </button>
+      <div class="mobile-role-submenu">
+        <a href="rol-jugador.html" data-i18n="nav_role_player">Jugador</a>
+        <a href="rol-club.html" data-i18n="nav_role_club">Club</a>
+        <a href="rol-entrenador.html" data-i18n="nav_role_coach">Entrenador</a>
       </div>
-      <!-- Fin Rol móvil -->
+    </div>
+    <!-- Fin Rol móvil -->
 
-      <!-- App en móvil -->
-<div class="mobile-menu-app">
-  <button type="button" class="mobile-app-title">
-    <span data-i18n="nav_app">App</span>
-    <span class="mobile-app-arrow">▾</span>
-  </button>
-  <div class="mobile-app-submenu">
-    <a href="caracteristicas-app.html" data-i18n="nav_app_features">Características</a>
-    <a href="nuestro-deporte.html" data-i18n="nav_app_sport">Nuestro deporte</a>
-    <a href="subscripciones.html" data-i18n="nav_app_subscriptions">Suscripciones</a>
+    <!-- Enlaces que te faltaban (igual que ordenador) -->
+    <a href="index.html#signup" data-i18n="nav_signup">Regístrate</a>
+    <a href="index.html#features" data-i18n="nav_features">Características</a>
+    <a href="index.html#faq" data-i18n="nav_faq">FAQ</a>
+    <a href="index.html#contact" data-i18n="nav_contact">Contacto</a>
+
+    <!-- App en móvil -->
+    <div class="mobile-menu-app">
+      <button type="button" class="mobile-app-title">
+        <span data-i18n="nav_app">App</span>
+        <span class="mobile-app-arrow">▾</span>
+      </button>
+      <div class="mobile-app-submenu">
+        <a href="caracteristicas-app.html" data-i18n="nav_app_features">Características</a>
+        <a href="nuestro-deporte.html" data-i18n="nav_app_sport">Nuestro deporte</a>
+        <a href="subscripciones.html" data-i18n="nav_app_subscriptions">Suscripciones</a>
+      </div>
+    </div>
+    <!-- Fin App móvil -->
   </div>
 </div>
-</div>
-</div>
-<!-- Fin App móvil -->
+
 
   <!-- HERO -->
   <section class="hero-section" id="home">
@@ -3627,6 +3634,10 @@ signup_success_close: 'Close',
         menuToggle.textContent = '☰';
       });
     });
+    document.querySelectorAll('.mobile-role-title, .mobile-app-title').forEach((btn) => {
+  btn.addEventListener('click', (e) => e.stopPropagation());
+});
+
 
     document.addEventListener('click', (e) => {
       if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
