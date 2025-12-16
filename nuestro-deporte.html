@@ -2,19 +2,22 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#000000" />
 
-  <!-- Favicon -->
+  <!-- Favicons -->
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png" />
   <link rel="shortcut icon" href="images/favicon.ico" />
   <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
   <link rel="manifest" href="images/site.webmanifest" />
-  <meta name="theme-color" content="#000000" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Athlead - Nuestro deporte | Fútbol 11 y Futsal</title>
 
   <style>
+    /* =========================================================
+      1) BASE + TOKENS
+    ========================================================= */
     :root{
       --bg:#000;
       --bg2:#050509;
@@ -23,15 +26,32 @@
       --border:rgba(255,255,255,.12);
       --text:#fff;
       --muted:rgba(255,255,255,.72);
-      --muted2:rgba(255,255,255,.58);
-      --good:#4ecdc4;
     }
+
     *{margin:0;padding:0;box-sizing:border-box}
     html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,system-ui,sans-serif;scroll-behavior:smooth}
     a{text-decoration:none;color:inherit}
     img,video{max-width:100%;display:block}
 
-    /* ===== HEADER (misma estética) ===== */
+    .inner{max-width:1100px;margin:0 auto;padding:80px 16px}
+    .kicker{text-transform:uppercase;letter-spacing:.16em;font-size:12px;opacity:.7;margin-bottom:6px}
+    .title{font-size:32px;letter-spacing:-.03em;margin-bottom:12px}
+    .lead{font-size:16px;line-height:1.7;color:var(--muted);max-width:920px;margin-bottom:24px}
+
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:12px 30px;border-radius:999px;font-weight:600;font-size:15px;
+      border:none;cursor:pointer;white-space:nowrap;
+      transition:transform .15s ease, box-shadow .15s ease, background-color .15s ease, color .15s ease;
+    }
+    .btn-primary{background:#fff;color:#000;box-shadow:0 14px 30px rgba(0,0,0,.6)}
+    .btn-primary:hover{background:#f2f2f2;transform:translateY(-1px);box-shadow:0 20px 40px rgba(0,0,0,.75)}
+    .btn-secondary{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.7)}
+    .btn-secondary:hover{background:#fff;color:#000;transform:translateY(-1px)}
+
+    /* =========================================================
+      2) HEADER
+    ========================================================= */
     .header{
       position:fixed;top:16px;left:50%;transform:translateX(-50%);
       width:min(1100px,92%);
@@ -44,10 +64,12 @@
       transition:transform .55s ease;
     }
     .header.hide{transform:translate(-50%,-180%)}
+
     .logo{font-size:24px;font-weight:700;letter-spacing:.16em;cursor:pointer;white-space:nowrap}
     .nav-links{display:flex;gap:18px;align-items:center;font-size:16px}
     .nav-links a{opacity:.82;padding:4px 0;border-bottom:1px solid transparent;transition:opacity .2s,border-bottom-color .2s}
     .nav-links a:hover{opacity:1;border-bottom-color:rgba(255,255,255,.8)}
+
     .nav-item{position:relative}
     .nav-toggle{
       display:inline-flex;align-items:center;gap:6px;opacity:.82;padding:4px 0;
@@ -70,7 +92,7 @@
 
     .header-actions{display:flex;align-items:center;gap:10px}
 
-    /* Language switch */
+    /* Language */
     .lang-switcher{position:relative}
     .lang-current{
       display:inline-flex;align-items:center;gap:8px;
@@ -95,9 +117,8 @@
     }
     .lang-menu button:hover{background:rgba(255,255,255,.08)}
 
-    .menu-toggle{display:none;background:none;border:none;color:#fff;font-size:24px;cursor:pointer}
-
     /* Mobile menu */
+    .menu-toggle{display:none;background:none;border:none;color:#fff;font-size:24px;cursor:pointer}
     .mobile-menu{
       position:fixed;top:0;right:-100%;
       width:270px;height:100vh;background:rgba(0,0,0,.96);
@@ -117,6 +138,7 @@
     .mobile-sub{display:none;padding-left:8px;border-left:1px solid rgba(255,255,255,.12)}
     .mobile-sub.open{display:block}
     .mobile-title.open .mobile-arrow{transform:rotate(180deg)}
+
     @media(max-width:768px){
       .header{width:94%;padding:10px 16px}
       .nav-links{display:none}
@@ -124,7 +146,9 @@
       .lang-current{padding:6px 10px;font-size:11px}
     }
 
-    /* ===== HERO ===== */
+    /* =========================================================
+      3) HERO
+    ========================================================= */
     .hero{
       position:relative;min-height:92vh;
       padding:120px 16px 70px;
@@ -133,6 +157,7 @@
     .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.78}
     .hero-overlay{position:absolute;inset:0;background:rgba(0,0,0,.28)}
     .hero-content{position:relative;z-index:2;max-width:980px;text-align:center}
+
     .badge{
       display:inline-flex;align-items:center;gap:8px;
       padding:6px 12px;border-radius:999px;
@@ -143,32 +168,20 @@
     .hero h1{font-size:clamp(2.2rem,4vw,3.2rem);line-height:1.1;letter-spacing:-.04em;margin-bottom:12px}
     .hero p{font-size:clamp(1.05rem,2vw,1.35rem);font-style:italic;opacity:.92;margin-bottom:26px}
     .hero-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:12px}
-    .btn{
-      display:inline-flex;align-items:center;justify-content:center;
-      padding:12px 30px;border-radius:999px;
-      font-weight:600;font-size:15px;cursor:pointer;border:none;
-      transition:transform .15s ease, box-shadow .15s ease, background-color .15s ease, color .15s ease;
-      white-space:nowrap
-    }
-    .btn-primary{background:#fff;color:#000;box-shadow:0 14px 30px rgba(0,0,0,.6)}
-    .btn-primary:hover{background:#f2f2f2;transform:translateY(-1px);box-shadow:0 20px 40px rgba(0,0,0,.75)}
-    .btn-secondary{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.7)}
-    .btn-secondary:hover{background:#fff;color:#000;transform:translateY(-1px)}
+
     @media(max-width:768px){
       .hero{padding-top:112px;min-height:88vh}
       .hero h1{font-size:2rem}
       .hero p{font-size:1rem}
     }
 
-    /* ===== Sections ===== */
+    /* =========================================================
+      4) SECTIONS + DEMO UI
+    ========================================================= */
     .section{background:#000}
     .section.alt{background:var(--bg2)}
-    .inner{max-width:1100px;margin:0 auto;padding:80px 16px}
-    .kicker{text-transform:uppercase;letter-spacing:.16em;font-size:12px;opacity:.7;margin-bottom:6px}
-    .title{font-size:32px;letter-spacing:-.03em;margin-bottom:12px}
-    .lead{font-size:16px;line-height:1.7;color:var(--muted);max-width:920px;margin-bottom:24px}
 
-    /* ===== “Demostrativo”: mini-dashboard ===== */
+    /* Mini dashboard */
     .dash{
       display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;
       margin:18px 0 26px;
@@ -184,7 +197,7 @@
     .stat .sub{font-size:12px;color:rgba(255,255,255,.62);margin-top:6px;line-height:1.5}
     @media(max-width:900px){ .dash{grid-template-columns:repeat(2,minmax(0,1fr));} }
 
-    /* ===== Interactive shell ===== */
+    /* Demo shell */
     .shell{
       background:rgba(255,255,255,.03);
       border:1px solid var(--border);
@@ -193,7 +206,6 @@
       box-shadow:0 22px 55px rgba(0,0,0,.55);
     }
 
-    /* Tabs + filters */
     .toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-bottom:14px}
     .tabs{
       display:inline-flex;gap:8px;flex-wrap:wrap;
@@ -208,6 +220,7 @@
     }
     .tab:hover{opacity:1;transform:translateY(-1px)}
     .tab.active{background:#fff;color:#000;opacity:1}
+
     .controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:flex-end}
     .search{
       width:min(320px,100%);
@@ -217,6 +230,7 @@
       background:rgba(0,0,0,.35);
     }
     .search input{width:100%;background:transparent;border:none;outline:none;color:#fff;font-size:13px}
+
     .pill{
       padding:10px 12px;border-radius:999px;
       border:1px solid rgba(255,255,255,.18);
@@ -225,6 +239,7 @@
     }
     .pill:hover{opacity:1}
     .pill.active{background:rgba(255,255,255,.1)}
+
     .ghost{
       padding:10px 12px;border-radius:999px;
       border:1px solid rgba(255,255,255,.35);
@@ -232,17 +247,14 @@
     }
     .ghost:hover{background:rgba(255,255,255,.08)}
 
-    /* Layout grid */
     .grid{display:grid;grid-template-columns:1.15fr .85fr;gap:16px;align-items:start}
     @media(max-width:950px){ .grid{grid-template-columns:1fr} }
 
-    /* Demo preview card */
+    /* Preview */
     .preview{
-      border-radius:22px;
-      overflow:hidden;
+      border-radius:22px;overflow:hidden;
       border:1px solid rgba(255,255,255,.12);
-      background:#0b0b10;
-      position:relative;
+      background:#0b0b10;position:relative;
     }
     .preview-top{
       padding:14px 14px 12px;
@@ -261,6 +273,7 @@
     }
     .pname{font-weight:750;letter-spacing:-.02em}
     .pmeta{font-size:12px;color:rgba(255,255,255,.62);margin-top:2px}
+
     .chips{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
     .chip{
       font-size:12px;opacity:.85;
@@ -273,7 +286,7 @@
     .chip strong{opacity:.95}
 
     .media{position:relative;height:360px;background:#0b0b10}
-    .media video, .media img{width:100%;height:100%;object-fit:cover;opacity:.92}
+    .media img{width:100%;height:100%;object-fit:cover;opacity:.92}
     .overlay{
       position:absolute;inset:auto 0 0 0;
       padding:16px;
@@ -281,8 +294,16 @@
     }
     .overlay h3{font-size:18px;margin-bottom:6px;letter-spacing:-.02em}
     .overlay p{font-size:13px;color:rgba(255,255,255,.75);line-height:1.6}
+    .callout{
+      margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;
+      color:rgba(255,255,255,.72);font-size:12px;
+    }
+    .callout span{
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(0,0,0,.25);
+      border-radius:999px;padding:7px 10px;
+    }
 
-    /* Timeline */
     .timeline{
       position:absolute;left:12px;right:12px;bottom:12px;
       display:flex;align-items:center;gap:10px;
@@ -294,17 +315,6 @@
     }
     .time{font-size:12px;color:rgba(255,255,255,.7);min-width:44px;text-align:center}
     input[type="range"]{width:100%}
-    .callout{
-      margin-top:10px;
-      display:flex;gap:10px;flex-wrap:wrap;
-      color:rgba(255,255,255,.72);
-      font-size:12px;
-    }
-    .callout span{
-      border:1px solid rgba(255,255,255,.14);
-      background:rgba(0,0,0,.25);
-      border-radius:999px;padding:7px 10px;
-    }
 
     /* Right panel */
     .panel{
@@ -313,11 +323,10 @@
       border-radius:22px;
       padding:14px;
     }
-    .panel-head{
-      display:flex;justify-content:space-between;align-items:flex-end;gap:10px;margin-bottom:10px;
-    }
-    .panel-head h3{font-size:16px;letter-spacing:-.01em}
+    .panel-head{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;margin-bottom:10px}
+    .panel-head h3{font-size:16px}
     .panel-head span{font-size:12px;color:rgba(255,255,255,.6)}
+
     .list{display:flex;flex-direction:column;gap:8px}
     .item{
       padding:12px 12px;border-radius:16px;
@@ -329,7 +338,7 @@
     .item:hover{transform:translateY(-1px);background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.18)}
     .item.active{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.22)}
     .tag{font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:.72}
-    .item-title{font-size:14px;font-weight:650;letter-spacing:-.01em;margin-top:4px}
+    .item-title{font-size:14px;font-weight:650;margin-top:4px}
     .item-desc{font-size:12px;color:rgba(255,255,255,.68);line-height:1.6;margin-top:6px}
 
     /* Accordion */
@@ -357,60 +366,17 @@
     }
     .mini-btn:hover{background:rgba(255,255,255,.08)}
 
-    /* Pitch / Court diagram */
-    .diagram-wrap{
-      display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start;
-      margin-top:14px;
-    }
-    @media(max-width:950px){ .diagram-wrap{grid-template-columns:1fr} }
-    .diagram{
-      background:rgba(255,255,255,.03);
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:22px;
-      padding:14px;
-      overflow:hidden;
-      position:relative;
-    }
-    .diagram h3{font-size:16px;letter-spacing:-.01em;margin-bottom:10px}
-    .field{
-      position:relative;
-      width:100%;
-      aspect-ratio: 16/9;
-      border-radius:18px;
-      border:1px solid rgba(255,255,255,.12);
-      background:
-        radial-gradient(circle at 50% 50%, rgba(78,205,196,.10), transparent 60%),
-        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-      overflow:hidden;
-    }
-    .line{position:absolute;inset:10%;border:1px solid rgba(255,255,255,.14);border-radius:12px}
-    .mid{position:absolute;left:50%;top:10%;bottom:10%;width:1px;background:rgba(255,255,255,.14);transform:translateX(-.5px)}
-    .circle{
-      position:absolute;left:50%;top:50%;
-      width:22%;aspect-ratio:1/1;border:1px solid rgba(255,255,255,.14);
-      border-radius:999px;transform:translate(-50%,-50%);
-    }
-    .hotspot{
-      position:absolute;width:14px;height:14px;border-radius:999px;
-      border:1px solid rgba(255,255,255,.25);
-      background:rgba(255,255,255,.08);
-      box-shadow:0 12px 26px rgba(0,0,0,.55);
-      cursor:pointer;transition:transform .12s, background .12s;
-    }
-    .hotspot:hover{transform:scale(1.08);background:rgba(78,205,196,.20)}
-    .hint{margin-top:10px;font-size:12px;color:rgba(255,255,255,.66);line-height:1.6}
-    .tooltip{
-      position:absolute;left:14px;right:14px;bottom:14px;
-      background:rgba(0,0,0,.45);
-      border:1px solid rgba(255,255,255,.14);
-      border-radius:16px;padding:12px 12px;
-      backdrop-filter:blur(10px);display:none;
-    }
-    .tooltip.show{display:block}
-    .tooltip .tt-title{font-weight:750;letter-spacing:-.02em}
-    .tooltip .tt-body{font-size:12px;color:rgba(255,255,255,.72);line-height:1.6;margin-top:6px}
+    /* =========================================================
+      5) MODAL + FOOTER + COOKIES
+    ========================================================= */
+    .footer{background:#000;border-top:1px solid rgba(255,255,255,.12);text-align:center}
+    .footer-inner{max-width:1100px;margin:0 auto;padding:34px 16px 26px}
+    .footer-links{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;font-size:13px;margin-bottom:12px}
+    .footer-links a{opacity:.72}
+    .footer-links a:hover{opacity:1}
+    .copy{font-size:12px;opacity:.6}
+    .tagline{font-style:italic;font-size:15px;opacity:.85;margin-top:8px}
 
-    /* Modal */
     .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:2000}
     .modal.open{display:flex}
     .modal-overlay{position:absolute;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(4px)}
@@ -422,31 +388,14 @@
       padding:22px 22px 18px;
       overflow:hidden;display:flex;flex-direction:column
     }
-    .modal-box::before{
-      content:"";position:absolute;inset:-40%;
-      background:
-        radial-gradient(circle at 0 0, rgba(78,205,196,.18), transparent 55%),
-        radial-gradient(circle at 100% 100%, rgba(255,255,255,.08), transparent 60%);
-      opacity:.9;pointer-events:none;z-index:-1
-    }
     .modal-close{position:absolute;top:12px;right:14px;background:none;border:none;color:#fff;font-size:20px;cursor:pointer;opacity:.8}
     .modal-close:hover{opacity:1}
-    .modal-title{font-size:18px;letter-spacing:-.02em;margin-bottom:10px}
+    .modal-title{font-size:18px;margin-bottom:10px}
     .modal-body{font-size:13px;line-height:1.7;color:rgba(255,255,255,.8);overflow:auto;padding-right:4px}
     .modal-body p+p{margin-top:10px}
     .modal-body ul{margin-top:8px;padding-left:18px}
     .modal-body li+li{margin-top:4px}
 
-    /* Footer */
-    .footer{background:#000;border-top:1px solid rgba(255,255,255,.12);text-align:center}
-    .footer-inner{max-width:1100px;margin:0 auto;padding:34px 16px 26px}
-    .footer-links{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;font-size:13px;margin-bottom:12px}
-    .footer-links a{opacity:.72}
-    .footer-links a:hover{opacity:1}
-    .copy{font-size:12px;opacity:.6}
-    .tagline{font-style:italic;font-size:15px;opacity:.85;margin-top:8px}
-
-    /* Cookies banner */
     .cookie-banner{
       position:fixed;left:0;right:0;bottom:0;padding:16px;z-index:1900;
       display:flex;justify-content:center;pointer-events:none;
@@ -466,11 +415,12 @@
     .cookie-btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
     .cookie-btn{border-radius:999px;padding:8px 16px;font-size:13px;border:1px solid transparent;cursor:pointer;white-space:nowrap}
     .cookie-yes{background:#fff;color:#000;border-color:#fff}
-    .cookie-yes:hover{background:#f2f2f2}
     .cookie-mid{background:transparent;color:#fff;border-color:rgba(255,255,255,.6)}
-    .cookie-mid:hover{background:rgba(255,255,255,.08)}
     .cookie-no{background:transparent;color:rgba(255,255,255,.8);border-color:transparent}
+    .cookie-yes:hover{background:#f2f2f2}
+    .cookie-mid:hover{background:rgba(255,255,255,.08)}
     .cookie-no:hover{color:#fff}
+
     @media(max-width:600px){
       .cookie-btns{flex-direction:column;align-items:stretch}
       .cookie-btn{width:100%;text-align:center}
@@ -481,13 +431,13 @@
 
 <body>
 
-  <!-- Cookies -->
+  <!-- =========================
+    COOKIES
+  ========================== -->
   <div id="cookie-banner" class="cookie-banner">
     <div class="cookie-inner">
       <h3 data-i18n="cookie_title">Tu privacidad es importante</h3>
-      <p data-i18n="cookie_text">
-        Usamos cookies esenciales para que la web funcione y, opcionalmente, analítica agregada para mejorar la experiencia.
-      </p>
+      <p data-i18n="cookie_text">Usamos cookies esenciales para que la web funcione y, opcionalmente, analítica agregada para mejorar la experiencia.</p>
       <div class="cookie-btns">
         <button class="cookie-btn cookie-yes" id="cookie-all" data-i18n="cookie_all">Aceptar todas</button>
         <button class="cookie-btn cookie-mid" id="cookie-essential" data-i18n="cookie_essential">Solo esenciales</button>
@@ -496,7 +446,9 @@
     </div>
   </div>
 
-  <!-- Header -->
+  <!-- =========================
+    HEADER
+  ========================== -->
   <header class="header" id="header">
     <div class="logo" id="logo">ATHLEAD</div>
 
@@ -504,10 +456,9 @@
       <a href="index.html#who-we-are" data-i18n="nav_about">Quiénes somos</a>
       <a href="index.html#how-steps" data-i18n="nav_how">Cómo funciona</a>
 
-      <div class="nav-item nav-item-role">
+      <div class="nav-item">
         <button class="nav-toggle" type="button" id="roleToggle" aria-expanded="false">
-          <span data-i18n="nav_role">Rol</span>
-          <span class="nav-arrow">▾</span>
+          <span data-i18n="nav_role">Rol</span><span class="nav-arrow">▾</span>
         </button>
         <div class="nav-dropdown" id="roleMenu">
           <a href="rol-jugador.html" data-i18n="nav_role_player">Jugador</a>
@@ -517,12 +468,10 @@
       </div>
 
       <a href="#demo" data-i18n="nav_demo">Demo</a>
-      <a href="#diagram" data-i18n="nav_diagram">Mapa de acciones</a>
 
-      <div class="nav-item nav-item-app">
+      <div class="nav-item">
         <button class="nav-toggle" type="button" id="appToggle" aria-expanded="false">
-          <span data-i18n="nav_app">App</span>
-          <span class="nav-arrow">▾</span>
+          <span data-i18n="nav_app">App</span><span class="nav-arrow">▾</span>
         </button>
         <div class="nav-dropdown" id="appMenu">
           <a href="caracteristicas-app.html" data-i18n="nav_app_features">Características</a>
@@ -535,9 +484,7 @@
     <div class="header-actions">
       <div class="lang-switcher" id="langSwitcher">
         <button class="lang-current" type="button" aria-expanded="false">
-          <span class="lang-flag">🇪🇸</span>
-          <span class="lang-label">ES</span>
-          <span class="nav-arrow">▾</span>
+          <span class="lang-flag">🇪🇸</span><span class="lang-label">ES</span><span class="nav-arrow">▾</span>
         </button>
         <div class="lang-menu" id="langMenu">
           <button type="button" data-lang="es"><span class="lang-flag">🇪🇸</span> Español</button>
@@ -549,7 +496,9 @@
     </div>
   </header>
 
-  <!-- Mobile -->
+  <!-- =========================
+    MOBILE MENU
+  ========================== -->
   <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
     <div class="mobile-links">
       <a href="index.html#who-we-are" data-i18n="nav_about">Quiénes somos</a>
@@ -567,7 +516,6 @@
       </div>
 
       <a href="#demo" data-i18n="nav_demo">Demo</a>
-      <a href="#diagram" data-i18n="nav_diagram">Mapa de acciones</a>
 
       <div class="mobile-group">
         <button class="mobile-title" id="mAppTitle" type="button">
@@ -582,7 +530,9 @@
     </div>
   </div>
 
-  <!-- Hero -->
+  <!-- =========================
+    HERO
+  ========================== -->
   <section class="hero">
     <video class="hero-video" autoplay muted loop playsinline>
       <source src="videos/sport-hero.mp4" type="video/mp4" />
@@ -592,9 +542,7 @@
     <div class="hero-content">
       <div class="badge" data-i18n="hero_badge">Fútbol 11 · Futsal · Scouting</div>
       <h1 data-i18n="hero_title">Una página demostrativa: así se ve el scouting en Athlead</h1>
-      <p data-i18n="hero_sub">
-        Cambia deporte, cambia objetivo, y mira cómo se construye un clip “evaluable” con contexto, etiquetas y explicación.
-      </p>
+      <p data-i18n="hero_sub">Cambia deporte, cambia objetivo, y mira cómo se construye un clip “evaluable” con contexto, etiquetas y explicación.</p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="#demo" data-i18n="hero_btn_1">Ver demo interactiva</a>
         <button class="btn btn-secondary" id="openTour" type="button" data-i18n="hero_btn_2">Tour guiado (30s)</button>
@@ -602,48 +550,47 @@
     </div>
   </section>
 
-  <!-- Demo intro + mini dashboard -->
+  <!-- =========================
+    DEMO
+  ========================== -->
   <section class="section alt" id="demo">
     <div class="inner">
       <p class="kicker" data-i18n="demo_kicker">Demo</p>
       <h2 class="title" data-i18n="demo_title">Qué ve un club en 15 segundos</h2>
-      <p class="lead" data-i18n="demo_lead">
-        Athlead no es solo vídeo: es vídeo + contexto + estructura. Estas tarjetas simulan cómo un club “escanea” un perfil.
-      </p>
+      <p class="lead" data-i18n="demo_lead">Athlead no es solo vídeo: es vídeo + contexto + estructura.</p>
 
-      <div class="dash" id="dash">
+      <div class="dash">
         <div class="stat">
           <div class="lab" data-i18n="stat1_lab">Deporte</div>
-          <div class="val" id="statSport">Fútbol 11</div>
+          <div class="val" id="statSport">—</div>
           <div class="sub" data-i18n="stat1_sub">Cambia arriba en tabs para ver cómo cambia el contenido.</div>
         </div>
         <div class="stat">
           <div class="lab" data-i18n="stat2_lab">Posición</div>
-          <div class="val" id="statPos">RW</div>
+          <div class="val" id="statPos">—</div>
           <div class="sub" data-i18n="stat2_sub">Posición real + rol (extremo / pívot, etc.).</div>
         </div>
         <div class="stat">
           <div class="lab" data-i18n="stat3_lab">Objetivo</div>
-          <div class="val" id="statGoal">Ataque</div>
+          <div class="val" id="statGoal">—</div>
           <div class="sub" data-i18n="stat3_sub">Filtros por objetivo para encontrar rápido lo relevante.</div>
         </div>
         <div class="stat">
           <div class="lab" data-i18n="stat4_lab">Calidad de clip</div>
-          <div class="val" id="statQuality">Evaluable</div>
+          <div class="val" id="statQuality">—</div>
           <div class="sub" data-i18n="stat4_sub">Checklist: antes/después, final de jugada y plano útil.</div>
         </div>
       </div>
 
-      <!-- Interactive Demo Shell -->
       <div class="shell">
         <div class="toolbar">
-          <div class="tabs" id="sportTabs" role="tablist" aria-label="Sport tabs">
-            <button class="tab active" data-sport="f11" type="button" role="tab" aria-selected="true" data-i18n="tab_f11">Fútbol 11</button>
-            <button class="tab" data-sport="fs" type="button" role="tab" aria-selected="false" data-i18n="tab_fs">Futsal</button>
+          <div class="tabs" id="sportTabs">
+            <button class="tab active" data-sport="f11" type="button" data-i18n="tab_f11">Fútbol 11</button>
+            <button class="tab" data-sport="fs" type="button" data-i18n="tab_fs">Futsal</button>
           </div>
 
           <div class="controls">
-            <div class="search" title="Buscar">
+            <div class="search">
               <span style="opacity:.8">⌕</span>
               <input id="searchInput" type="text" />
             </div>
@@ -658,14 +605,13 @@
         </div>
 
         <div class="grid">
-          <!-- Left: Demonstrative Preview -->
-          <div class="preview" aria-live="polite">
+          <div class="preview">
             <div class="preview-top">
               <div class="mini-profile">
                 <div class="avatar"></div>
                 <div>
-                  <div class="pname" id="pName">Player Demo</div>
-                  <div class="pmeta" id="pMeta">2008 · Barcelona · Right Wing</div>
+                  <div class="pname" id="pName">—</div>
+                  <div class="pmeta" id="pMeta">—</div>
                 </div>
               </div>
 
@@ -676,20 +622,17 @@
               </div>
             </div>
 
-            <div class="media" id="mediaBox">
-              <video id="demoVideo" muted playsinline preload="metadata" style="display:none">
-                <source src="videos/demo-clip.mp4" type="video/mp4" />
-              </video>
+            <div class="media">
               <img id="heroImg" src="images/sport-11.jpg" alt="Action preview" />
 
               <div class="overlay">
                 <h3 id="heroTitle">—</h3>
                 <p id="heroDesc">—</p>
 
-                <div class="callout" id="callout">
-                  <span id="c1">🧠 Decision</span>
-                  <span id="c2">⚡ Execution</span>
-                  <span id="c3">✅ Outcome</span>
+                <div class="callout">
+                  <span id="c1">—</span>
+                  <span id="c2">—</span>
+                  <span id="c3">—</span>
                 </div>
               </div>
 
@@ -701,7 +644,6 @@
             </div>
           </div>
 
-          <!-- Right: Actions + explanation -->
           <div class="panel">
             <div class="panel-head">
               <h3 data-i18n="panel_title">Acciones</h3>
@@ -709,7 +651,6 @@
             </div>
 
             <div class="list" id="actionList"></div>
-
             <div class="accordion" id="accordion"></div>
           </div>
         </div>
@@ -717,72 +658,13 @@
     </div>
   </section>
 
-  <!-- Diagram section -->
-  <section class="section" id="diagram">
-    <div class="inner">
-      <p class="kicker" data-i18n="diagram_kicker">Mapa de acciones</p>
-      <h2 class="title" data-i18n="diagram_title">Demostración visual: dónde impacta cada acción</h2>
-      <p class="lead" data-i18n="diagram_lead">
-        Haz clic en los puntos del campo/pista. Esto muestra el tipo de jugada y el porqué (ideal para que el visitante lo entienda de inmediato).
-      </p>
-
-      <div class="diagram-wrap">
-        <div class="diagram">
-          <h3 data-i18n="diagram_left">Campo (Fútbol 11)</h3>
-
-          <div class="field" id="field11">
-            <div class="line"></div>
-            <div class="mid"></div>
-            <div class="circle"></div>
-
-            <div class="hotspot" style="left:72%;top:52%" data-spot="wing"></div>
-            <div class="hotspot" style="left:55%;top:45%" data-spot="halfspace"></div>
-            <div class="hotspot" style="left:28%;top:55%" data-spot="press"></div>
-
-            <div class="tooltip" id="tt11">
-              <div class="tt-title" id="tt11Title">—</div>
-              <div class="tt-body" id="tt11Body">—</div>
-            </div>
-          </div>
-
-          <div class="hint" data-i18n="diagram_hint_11">Ejemplo: un extremo genera ventaja en banda; un 8 rompe líneas; presión tras pérdida.</div>
-        </div>
-
-        <div class="diagram">
-          <h3 data-i18n="diagram_right">Pista (Futsal)</h3>
-
-          <div class="field" id="fieldFs" style="aspect-ratio: 4/3;">
-            <div class="line" style="inset:9%"></div>
-            <div class="mid"></div>
-            <div class="circle" style="width:28%"></div>
-
-            <div class="hotspot" style="left:60%;top:58%" data-spot="pivot"></div>
-            <div class="hotspot" style="left:48%;top:42%" data-spot="wall"></div>
-            <div class="hotspot" style="left:34%;top:58%" data-spot="steal"></div>
-
-            <div class="tooltip" id="ttFs">
-              <div class="tt-title" id="ttFsTitle">—</div>
-              <div class="tt-body" id="ttFsBody">—</div>
-            </div>
-          </div>
-
-          <div class="hint" data-i18n="diagram_hint_fs">Ejemplo: pívot fija y descarga; pared; robo limpio y salida rápida.</div>
-        </div>
-      </div>
-
-      <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center">
-        <button class="btn btn-primary" type="button" id="openChecklist" data-i18n="btn_checklist">Checklist en 30s</button>
-        <a class="btn btn-secondary" href="#demo" data-i18n="btn_back_demo">Volver a la demo</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
+  <!-- =========================
+    FOOTER
+  ========================== -->
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-links">
         <a href="#demo" data-i18n="nav_demo">Demo</a>
-        <a href="#diagram" data-i18n="nav_diagram">Mapa de acciones</a>
         <a href="index.html#who-we-are" data-i18n="nav_about">Quiénes somos</a>
       </div>
       <div class="copy" data-i18n="copy">© 2025 Athlead. Todos los derechos reservados.</div>
@@ -790,10 +672,12 @@
     </div>
   </footer>
 
-  <!-- Modal -->
+  <!-- =========================
+    MODAL
+  ========================== -->
   <div class="modal" id="modal">
     <div class="modal-overlay" id="modalOverlay"></div>
-    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-box" role="dialog" aria-modal="true">
       <button class="modal-close" id="modalClose" type="button" aria-label="Cerrar">×</button>
       <div class="modal-title" id="modalTitle">—</div>
       <div class="modal-body" id="modalBody">—</div>
@@ -802,786 +686,297 @@
 
   <script>
     /* =========================================================
-      DEMO “explicativo y demostrativo”
+      A) DATA (recortado y claro)
     ========================================================= */
-    let LANG = 'es';
-    let currentSport = 'f11';
-    let currentFilter = 'all';
-    let currentQuery = '';
-    let currentIndex = 0;
-    let chipMode = 'context'; // context | tags | why
-
-    const CAT_LABEL = {
-      es: { all: "Todo", attack: "Ataque", defense: "Defensa", transition: "Transición" },
-      en: { all: "All", attack: "Attack", defense: "Defense", transition: "Transition" }
-    };
-
     const DATA = {
       f11: {
-        sportName: { es: "Fútbol 11", en: "11-a-side" },
+        sportName: { es:"Fútbol 11", en:"11-a-side" },
         profile: {
-          name: { es: "Jugador Demo", en: "Demo Player" },
-          meta: { es: "2008 · Barcelona · Extremo derecho", en: "2008 · Barcelona · Right Wing" },
+          name: { es:"Jugador Demo", en:"Demo Player" },
+          meta: { es:"2008 · Barcelona · Extremo derecho", en:"2008 · Barcelona · Right Wing" },
           pos: "RW"
         },
-        heroFallback: "images/sport-11.jpg",
+        fallbackImg: "images/sport-11.jpg",
         actions: [
           {
-            id: "f11_run",
-            cat: "attack",
-            img: "images/sport-11.jpg",
-            title: { es: "Ruptura y desmarque", en: "Runs & off-ball movement" },
-            context: {
-              es: "Min 62 · 0-0 · transición ofensiva. El central duda: atacas su espalda.",
-              en: "62' · 0-0 · attacking transition. The CB hesitates: you attack the space behind."
-            },
-            tags: {
-              es: ["#RW", "#Desmarque", "#Timing", "#AtaqueEspacio"],
-              en: ["#RW", "#Run", "#Timing", "#SpaceAttack"]
-            },
-            why: {
-              es: "Porque demuestra lectura: te mueves antes de que llegue el balón y generas ventaja real.",
-              en: "Because it shows reading: you move before the ball arrives and create real advantage."
-            },
-            how: {
-              es: ["Plano abierto", "Empieza 2–3s antes", "Muestra el final (pase/tiro)"],
-              en: ["Wide angle", "Start 2–3s before", "Show the end (pass/shot)"]
-            }
+            id:"f11_run", cat:"attack", img:"images/sport-11.jpg",
+            title:{ es:"Ruptura y desmarque", en:"Runs & off-ball movement" },
+            context:{ es:"Min 62 · 0-0 · transición ofensiva. Atacas la espalda del central.", en:"62' · 0-0 · attacking transition. Attack the space behind." },
+            tags:{ es:["#RW","#Desmarque","#Timing"], en:["#RW","#Run","#Timing"] },
+            why:{ es:"Demuestra lectura y ventaja real antes de recibir.", en:"Shows reading and real advantage before receiving." },
+            how:{ es:["Plano abierto","Empieza 2–3s antes","Muestra el final"], en:["Wide angle","Start 2–3s earlier","Show the outcome"] }
           },
           {
-            id: "f11_1v1",
-            cat: "attack",
-            img: "images/sport-11-1v1.jpg",
-            title: { es: "1v1 con propósito", en: "1v1 with intent" },
-            context: {
-              es: "Recibes abierto. Primer toque hacia dentro, atraes, y decides: pase o finalización.",
-              en: "You receive wide. First touch inside, you attract pressure, then decide: pass or finish."
-            },
-            tags: {
-              es: ["#1v1", "#Conducción", "#Decisión", "#ÚltimoPase"],
-              en: ["#1v1", "#Carry", "#Decision", "#FinalPass"]
-            },
-            why: {
-              es: "No es “show”: es ganar metros o crear una ocasión repetible bajo presión.",
-              en: "Not for show: gain meters or create a repeatable chance under pressure."
-            },
-            how: {
-              es: ["Evita zoom excesivo", "Incluye la recepción", "Termina la acción"],
-              en: ["Avoid heavy zoom", "Include the reception", "Finish the play"]
-            }
-          },
-          {
-            id: "f11_press",
-            cat: "defense",
-            img: "images/sport-11-press.jpg",
-            title: { es: "Presión y retorno", en: "Pressing & tracking back" },
-            context: {
-              es: "Tras pérdida, orientas la salida del rival y vuelves a tu zona sin romper el bloque.",
-              en: "After losing the ball, you angle the press and recover your zone without breaking shape."
-            },
-            tags: {
-              es: ["#Presión", "#Repliegue", "#Orientar", "#Disciplina"],
-              en: ["#Press", "#Recover", "#Angle", "#Discipline"]
-            },
-            why: {
-              es: "Es lo que convierte highlights en un jugador fiable: decisiones defensivas consistentes.",
-              en: "It turns highlights into reliability: consistent defensive decisions."
-            },
-            how: {
-              es: ["2 acciones seguidas", "Se ve orientación corporal", "Incluye repliegue"],
-              en: ["2 chained actions", "Show body angle", "Include recovery run"]
-            }
-          },
-          {
-            id: "f11_transition",
-            cat: "transition",
-            img: "images/sport-11-switch.jpg",
-            title: { es: "Transición + cambio de orientación", en: "Transition & switch of play" },
-            context: {
-              es: "Rival desorganizado. Con un pase cambias el lado y aceleras el ataque.",
-              en: "Opponent is disorganised. One pass switches sides and speeds up the attack."
-            },
-            tags: {
-              es: ["#Transición", "#Switch", "#Lectura", "#Ritmo"],
-              en: ["#Transition", "#Switch", "#Reading", "#Tempo"]
-            },
-            why: {
-              es: "Demuestra lectura táctica + ejecución técnica en un momento de máximo valor.",
-              en: "Shows tactical reading + technical execution at peak value moments."
-            },
-            how: {
-              es: ["Plano amplio", "Incluye recepción del compañero", "Evita overlays"],
-              en: ["Wide angle", "Include teammate reception", "Avoid overlays"]
-            }
+            id:"f11_press", cat:"defense", img:"images/sport-11-press.jpg",
+            title:{ es:"Presión y retorno", en:"Pressing & tracking back" },
+            context:{ es:"Tras pérdida, orientas salida y vuelves a tu zona.", en:"After loss, you angle the press and recover your zone." },
+            tags:{ es:["#Presión","#Repliegue","#Disciplina"], en:["#Press","#Recover","#Discipline"] },
+            why:{ es:"Convierte highlights en fiabilidad.", en:"Turns highlights into reliability." },
+            how:{ es:["2 acciones seguidas","Se ve orientación corporal","Incluye repliegue"], en:["2 chained actions","Show body angle","Include recovery run"] }
           }
         ]
       },
 
       fs: {
-        sportName: { es: "Futsal", en: "Futsal" },
+        sportName: { es:"Futsal", en:"Futsal" },
         profile: {
-          name: { es: "Jugador Demo", en: "Demo Player" },
-          meta: { es: "2008 · Barcelona · Ala/ cierre", en: "2008 · Barcelona · Winger/Last man" },
+          name: { es:"Jugador Demo", en:"Demo Player" },
+          meta: { es:"2008 · Barcelona · Ala/Cierre", en:"2008 · Barcelona · Winger/Last man" },
           pos: "ALA"
         },
-        heroFallback: "images/sport-futsal.jpg",
+        fallbackImg: "images/sport-futsal.jpg",
         actions: [
           {
-            id: "fs_control",
-            cat: "attack",
-            img: "images/sport-futsal.jpg",
-            title: { es: "Control orientado", en: "Oriented first touch" },
-            context: {
-              es: "Recibes de espaldas. Un toque y sales. El rival llega tarde: ventaja creada.",
-              en: "Receive with back to goal. One touch and you escape. Opponent arrives late: advantage created."
-            },
-            tags: {
-              es: ["#Control", "#SalidaPresión", "#1-2Toques", "#Escaneo"],
-              en: ["#FirstTouch", "#Escape", "#1-2Touches", "#Scanning"]
-            },
-            why: {
-              es: "En pista, el primer toque decide: crea tiempo, espacio y línea de pase.",
-              en: "On court, first touch decides: it creates time, space and a passing lane."
-            },
-            how: {
-              es: ["Cámara fija (grada)", "Acción encadenada 3–8s", "Rival cerca en plano"],
-              en: ["Fixed camera", "Chained action 3–8s", "Show close pressure"]
-            }
+            id:"fs_control", cat:"attack", img:"images/sport-futsal.jpg",
+            title:{ es:"Control orientado", en:"Oriented first touch" },
+            context:{ es:"Recibes de espaldas. Un toque y sales con ventaja.", en:"Receive with back to goal. One touch and escape." },
+            tags:{ es:["#Control","#SalidaPresión","#Escaneo"], en:["#FirstTouch","#Escape","#Scanning"] },
+            why:{ es:"En pista, el primer toque decide.", en:"On court, first touch decides." },
+            how:{ es:["Cámara fija","Acción 3–8s","Rival cerca en plano"], en:["Fixed camera","3–8s action","Show close pressure"] }
           },
           {
-            id: "fs_wall",
-            cat: "attack",
-            img: "images/sport-futsal-wall.jpg",
-            title: { es: "Pared + tercer hombre", en: "Wall pass + third man" },
-            context: {
-              es: "Suelta rápido, atacas el espacio, vuelves a aparecer: automatismo de alto nivel.",
-              en: "Release quickly, attack space, reappear: high-level pattern."
-            },
-            tags: {
-              es: ["#Pared", "#TercerHombre", "#Ritmo", "#Movilidad"],
-              en: ["#WallPass", "#ThirdMan", "#Tempo", "#Mobility"]
-            },
-            why: {
-              es: "Demuestra velocidad mental y sincronización en espacios mínimos.",
-              en: "Shows mental speed and timing in minimal space."
-            },
-            how: {
-              es: ["Evita cortes", "Muestra salida final", "1 clip = 1 idea"],
-              en: ["No hard cuts", "Show final exit", "1 clip = 1 idea"]
-            }
-          },
-          {
-            id: "fs_def",
-            cat: "defense",
-            img: "images/sport-futsal-defense.jpg",
-            title: { es: "Defensa: anticipación", en: "Defense: anticipation" },
-            context: {
-              es: "Lees el pase, cierras línea y robas sin falta. Luego salida rápida.",
-              en: "Read the pass, close the lane and win it clean. Then quick exit."
-            },
-            tags: {
-              es: ["#Anticipación", "#RoboLimpio", "#Cierre", "#Salida"],
-              en: ["#Anticipation", "#CleanSteal", "#CloseLane", "#Exit"]
-            },
-            why: {
-              es: "Defender bien en futsal es oro: reduce tiros, transiciones y caos.",
-              en: "Good futsal defending is gold: reduces shots, transitions and chaos."
-            },
-            how: {
-              es: ["Plano media pista", "Incluye recuperación", "Se ve postura defensiva"],
-              en: ["Mid-court framing", "Include recovery", "Show defensive stance"]
-            }
-          },
-          {
-            id: "fs_transition",
-            cat: "transition",
-            img: "images/sport-futsal-transition.jpg",
-            title: { es: "Transición rápida", en: "Fast transition" },
-            context: {
-              es: "Recuperas y en 2 segundos decides: conducir, fijar, soltar o finalizar.",
-              en: "Recover and in 2 seconds decide: carry, pin, release or finish."
-            },
-            tags: {
-              es: ["#Transición", "#Decisión", "#Contra", "#Finalización"],
-              en: ["#Transition", "#Decision", "#Counter", "#Finish"]
-            },
-            why: {
-              es: "La ventaja dura poco: se premia decidir rápido bajo fatiga.",
-              en: "Advantage is brief: decision speed under fatigue wins."
-            },
-            how: {
-              es: ["Acción completa (inicio-fin)", "Evita zoom", "Muestra el desenlace"],
-              en: ["Full action (start-end)", "Avoid zoom", "Show the outcome"]
-            }
+            id:"fs_def", cat:"defense", img:"images/sport-futsal-defense.jpg",
+            title:{ es:"Anticipación", en:"Anticipation" },
+            context:{ es:"Lees el pase, robas limpio y sales rápido.", en:"Read the pass, win it clean, exit fast." },
+            tags:{ es:["#Anticipación","#RoboLimpio","#Salida"], en:["#Anticipation","#CleanSteal","#Exit"] },
+            why:{ es:"Reduce tiros y genera transiciones.", en:"Reduces shots and creates transitions." },
+            how:{ es:["Plano media pista","Incluye recuperación","Se ve postura"], en:["Mid-court framing","Include recovery","Show stance"] }
           }
         ]
       }
     };
 
-    const UI = {
-      es: {
-        nav_about:"Quiénes somos", nav_how:"Cómo funciona",
-        nav_role:"Rol", nav_role_player:"Jugador", nav_role_club:"Club", nav_role_coach:"Entrenador",
-        nav_app:"App", nav_app_features:"Características", nav_app_sport:"Nuestro deporte", nav_app_subscriptions:"Suscripciones",
-        nav_demo:"Demo", nav_diagram:"Mapa de acciones",
+    const LABELS = {
+      es: { all:"Todo", attack:"Ataque", defense:"Defensa", transition:"Transición" },
+      en: { all:"All", attack:"Attack", defense:"Defense", transition:"Transition" }
+    };
 
+    const I18N = {
+      es: {
+        nav_about:"Quiénes somos", nav_how:"Cómo funciona", nav_role:"Rol", nav_role_player:"Jugador", nav_role_club:"Club", nav_role_coach:"Entrenador",
+        nav_app:"App", nav_app_features:"Características", nav_app_sport:"Nuestro deporte", nav_app_subscriptions:"Suscripciones",
+        nav_demo:"Demo",
         hero_badge:"Fútbol 11 · Futsal · Scouting",
         hero_title:"Una página demostrativa: así se ve el scouting en Athlead",
         hero_sub:"Cambia deporte, cambia objetivo, y mira cómo se construye un clip “evaluable” con contexto, etiquetas y explicación.",
         hero_btn_1:"Ver demo interactiva",
         hero_btn_2:"Tour guiado (30s)",
-
         demo_kicker:"Demo",
         demo_title:"Qué ve un club en 15 segundos",
-        demo_lead:"Athlead no es solo vídeo: es vídeo + contexto + estructura. Estas tarjetas simulan cómo un club “escanea” un perfil.",
-
+        demo_lead:"Athlead no es solo vídeo: es vídeo + contexto + estructura.",
         stat1_lab:"Deporte", stat1_sub:"Cambia arriba en tabs para ver cómo cambia el contenido.",
         stat2_lab:"Posición", stat2_sub:"Posición real + rol (extremo / pívot, etc.).",
         stat3_lab:"Objetivo", stat3_sub:"Filtros por objetivo para encontrar rápido lo relevante.",
-        stat4_lab:"Calidad de clip", stat4_sub:"Checklist: antes/después, final de jugada y plano útil.",
-
+        stat4_lab:"Calidad de clip", stat4_sub:"Checklist: antes/después, final y plano útil.",
         tab_f11:"Fútbol 11", tab_fs:"Futsal",
         filter_all:"Todo", filter_attack:"Ataque", filter_defense:"Defensa", filter_transition:"Transición",
         shuffle:"Aleatorio",
         panel_title:"Acciones",
-        chip_context:"Contexto",
-        chip_tags:"Etiquetas",
-        chip_why:"Por qué",
-
-        acc_title:"Explicación del clip",
-        acc_subtitle:"Qué demuestra + cómo grabarlo",
-        btn_example:"Abrir demo completa",
-        btn_checklist:"Checklist en 30s",
-        btn_back_demo:"Volver a la demo",
-
-        diagram_kicker:"Mapa de acciones",
-        diagram_title:"Demostración visual: dónde impacta cada acción",
-        diagram_lead:"Haz clic en los puntos del campo/pista. Esto muestra el tipo de jugada y el porqué (ideal para que el visitante lo entienda de inmediato).",
-        diagram_left:"Campo (Fútbol 11)",
-        diagram_right:"Pista (Futsal)",
-        diagram_hint_11:"Ejemplo: un extremo genera ventaja en banda; un 8 rompe líneas; presión tras pérdida.",
-        diagram_hint_fs:"Ejemplo: pívot fija y descarga; pared; robo limpio y salida rápida.",
-
+        chip_context:"Contexto", chip_tags:"Etiquetas", chip_why:"Por qué",
         cookie_title:"Tu privacidad es importante",
         cookie_text:"Usamos cookies esenciales para que la web funcione y, opcionalmente, analítica agregada para mejorar la experiencia.",
-        cookie_all:"Aceptar todas",
-        cookie_essential:"Solo esenciales",
-        cookie_reject:"Rechazar",
-
+        cookie_all:"Aceptar todas", cookie_essential:"Solo esenciales", cookie_reject:"Rechazar",
         copy:"© 2025 Athlead. Todos los derechos reservados.",
         tagline:"Deja que el talento hable por ti.",
-
         modal_tour_title:"Tour guiado (30s)",
-        modal_check_title:"Checklist antes de subir",
-        modal_check_1:"1) 1 clip = 1 idea (no mezcles 3 jugadas).",
-        modal_check_2:"2) Empieza 2–3s antes (decisión visible).",
-        modal_check_3:"3) Termina la acción (pase/tiro/recuperación).",
-        modal_check_4:"4) Plano útil: espacio + rivales + opciones.",
-        modal_tour_1:"Paso 1: cambia Fútbol 11 / Futsal con las tabs.",
-        modal_tour_2:"Paso 2: filtra Ataque/Defensa/Transición.",
-        modal_tour_3:"Paso 3: haz clic en una acción (derecha).",
-        modal_tour_4:"Paso 4: cambia chips (Contexto/Etiquetas/Por qué) para ver lo que entiende un club."
+        modal_tour_html:"<p>1) Cambia deporte (tabs).<br>2) Filtra objetivo.<br>3) Elige una acción.<br>4) Cambia Contexto/Etiquetas/Por qué.</p><ul><li>1 clip = 1 idea</li><li>Empieza 2–3s antes</li><li>Termina la acción</li><li>Plano útil</li></ul>"
       },
-
       en: {
-        nav_about:"About", nav_how:"How it works",
-        nav_role:"Role", nav_role_player:"Player", nav_role_club:"Club", nav_role_coach:"Coach",
+        nav_about:"About", nav_how:"How it works", nav_role:"Role", nav_role_player:"Player", nav_role_club:"Club", nav_role_coach:"Coach",
         nav_app:"App", nav_app_features:"Features", nav_app_sport:"Our sport", nav_app_subscriptions:"Subscriptions",
-        nav_demo:"Demo", nav_diagram:"Action map",
-
+        nav_demo:"Demo",
         hero_badge:"11-a-side · Futsal · Scouting",
         hero_title:"A demonstrative page: what scouting looks like on Athlead",
         hero_sub:"Switch sport, switch goal, and see how an “evaluable” clip is built with context, tags and explanation.",
         hero_btn_1:"See interactive demo",
         hero_btn_2:"Guided tour (30s)",
-
         demo_kicker:"Demo",
         demo_title:"What a club sees in 15 seconds",
-        demo_lead:"Athlead is not just video: it’s video + context + structure. These cards simulate how a club scans a profile.",
-
+        demo_lead:"Athlead is not just video: it’s video + context + structure.",
         stat1_lab:"Sport", stat1_sub:"Use tabs to see how the content changes.",
-        stat2_lab:"Position", stat2_sub:"Real position + role (winger / pivot, etc.).",
+        stat2_lab:"Position", stat2_sub:"Real position + role.",
         stat3_lab:"Goal", stat3_sub:"Goal filters help scouts find what matters fast.",
-        stat4_lab:"Clip quality", stat4_sub:"Checklist: before/after, full outcome, useful framing.",
-
+        stat4_lab:"Clip quality", stat4_sub:"Checklist: before/after, outcome, useful framing.",
         tab_f11:"11-a-side", tab_fs:"Futsal",
         filter_all:"All", filter_attack:"Attack", filter_defense:"Defense", filter_transition:"Transition",
         shuffle:"Shuffle",
         panel_title:"Actions",
-        chip_context:"Context",
-        chip_tags:"Tags",
-        chip_why:"Why",
-
-        acc_title:"Clip explanation",
-        acc_subtitle:"What it shows + how to record",
-        btn_example:"Open full demo",
-        btn_checklist:"30s checklist",
-        btn_back_demo:"Back to demo",
-
-        diagram_kicker:"Action map",
-        diagram_title:"Visual demonstration: where each action impacts",
-        diagram_lead:"Click the points on the field/court. It explains the action and why it matters (instant understanding).",
-        diagram_left:"Field (11-a-side)",
-        diagram_right:"Court (Futsal)",
-        diagram_hint_11:"Example: winger creates advantage wide; #8 breaks lines; counter-press after loss.",
-        diagram_hint_fs:"Example: pivot pins and lays off; wall pass; clean steal and quick exit.",
-
+        chip_context:"Context", chip_tags:"Tags", chip_why:"Why",
         cookie_title:"Your privacy matters",
         cookie_text:"We use essential cookies for the website to work and optional aggregated analytics to improve the experience.",
-        cookie_all:"Accept all",
-        cookie_essential:"Essentials only",
-        cookie_reject:"Reject",
-
+        cookie_all:"Accept all", cookie_essential:"Essentials only", cookie_reject:"Reject",
         copy:"© 2025 Athlead. All rights reserved.",
         tagline:"Let your talent speak for you.",
-
         modal_tour_title:"Guided tour (30s)",
-        modal_check_title:"Checklist before uploading",
-        modal_check_1:"1) 1 clip = 1 idea (don’t mix plays).",
-        modal_check_2:"2) Start 2–3s before (decision visible).",
-        modal_check_3:"3) Finish the play (pass/shot/recovery).",
-        modal_check_4:"4) Useful framing: space + opponents + options.",
-        modal_tour_1:"Step 1: switch 11-a-side / futsal with tabs.",
-        modal_tour_2:"Step 2: filter Attack/Defense/Transition.",
-        modal_tour_3:"Step 3: click an action (right).",
-        modal_tour_4:"Step 4: switch chips (Context/Tags/Why) to see what a club understands."
+        modal_tour_html:"<p>1) Switch sport (tabs).<br>2) Filter goal.<br>3) Pick an action.<br>4) Switch Context/Tags/Why.</p><ul><li>1 clip = 1 idea</li><li>Start 2–3s earlier</li><li>Finish the play</li><li>Useful framing</li></ul>"
       }
     };
 
-    function tr(key){
-      return (UI[LANG] && UI[LANG][key]) || (UI.es && UI.es[key]) || "";
-    }
-    function applyTranslations(){
-      document.querySelectorAll("[data-i18n]").forEach(el=>{
-        const k = el.getAttribute("data-i18n");
-        const v = tr(k);
-        if (v) el.textContent = v;
+    /* =========================================================
+      B) STATE + DOM HELPERS
+    ========================================================= */
+    const state = {
+      lang: localStorage.getItem("athlead_lang") === "en" ? "en" : "es",
+      sport: "f11",
+      filter: "all",
+      query: "",
+      index: 0,
+      chip: "context"
+    };
+
+    const $ = (sel, root=document) => root.querySelector(sel);
+    const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+
+    const t = (key) => (I18N[state.lang] && I18N[state.lang][key]) || (I18N.es[key] || "");
+
+    function setTextI18N(){
+      $$("[data-i18n]").forEach(el=>{
+        const key = el.getAttribute("data-i18n");
+        const val = t(key);
+        if(val) el.textContent = val;
       });
     }
 
-    /* ======================
-      Filtering + rendering
-    ====================== */
-    function getFilteredActions(){
-      const all = DATA[currentSport].actions;
-      const q = (currentQuery||"").trim().toLowerCase();
+    function actionsFiltered(){
+      const all = DATA[state.sport].actions;
+      const q = state.query.trim().toLowerCase();
       return all.filter(a=>{
-        const okFilter = (currentFilter==="all") ? true : a.cat===currentFilter;
-        const okQuery = !q ? true : (
-          (a.title[LANG]||a.title.es||"").toLowerCase().includes(q) ||
-          (a.context[LANG]||a.context.es||"").toLowerCase().includes(q) ||
-          (a.why[LANG]||a.why.es||"").toLowerCase().includes(q) ||
-          (a.tags[LANG]||a.tags.es||[]).join(" ").toLowerCase().includes(q) ||
-          a.id.toLowerCase().includes(q)
-        );
+        const okFilter = state.filter === "all" ? true : a.cat === state.filter;
+        const blob = [
+          a.id,
+          a.title[state.lang] || a.title.es,
+          a.context[state.lang] || a.context.es,
+          a.why[state.lang] || a.why.es,
+          (a.tags[state.lang] || a.tags.es).join(" ")
+        ].join(" ").toLowerCase();
+        const okQuery = !q ? true : blob.includes(q);
         return okFilter && okQuery;
       });
     }
 
-    function safeIdx(){
-      const actions = getFilteredActions();
-      if (!actions.length){ currentIndex = 0; return; }
-      if (currentIndex >= actions.length) currentIndex = 0;
-      if (currentIndex < 0) currentIndex = actions.length-1;
+    function clampIndex(list){
+      if(!list.length){ state.index = 0; return; }
+      if(state.index < 0) state.index = list.length - 1;
+      if(state.index >= list.length) state.index = 0;
     }
 
-    function updateDashboard(){
-      const sportLabel = DATA[currentSport].sportName[LANG] || DATA[currentSport].sportName.es;
-      document.getElementById("statSport").textContent = sportLabel;
-      document.getElementById("statPos").textContent = DATA[currentSport].profile.pos;
+    /* =========================================================
+      C) RENDER (1 solo punto de entrada)
+    ========================================================= */
+    function render(){
+      // 1) i18n
+      setTextI18N();
 
-      const goalLabel = (CAT_LABEL[LANG] || CAT_LABEL.es)[currentFilter] || (CAT_LABEL[LANG] || CAT_LABEL.es).all;
-      document.getElementById("statGoal").textContent = goalLabel;
+      // 2) profile
+      const prof = DATA[state.sport].profile;
+      $("#pName").textContent = prof.name[state.lang] || prof.name.es;
+      $("#pMeta").textContent = prof.meta[state.lang] || prof.meta.es;
 
-      document.getElementById("statQuality").textContent = (LANG==="es" ? "Evaluable" : "Scout-ready");
-    }
+      // 3) dashboard
+      $("#statSport").textContent = DATA[state.sport].sportName[state.lang] || DATA[state.sport].sportName.es;
+      $("#statPos").textContent = prof.pos;
+      $("#statGoal").textContent = (LABELS[state.lang] || LABELS.es)[state.filter] || (LABELS[state.lang] || LABELS.es).all;
+      $("#statQuality").textContent = state.lang === "es" ? "Evaluable" : "Scout-ready";
 
-    function syncProfile(){
-      const p = DATA[currentSport].profile;
-      document.getElementById("pName").textContent = p.name[LANG] || p.name.es;
-      document.getElementById("pMeta").textContent = p.meta[LANG] || p.meta.es;
-    }
+      // 4) list + hero
+      const list = actionsFiltered();
+      clampIndex(list);
 
-    function syncHero(){
-      const img = document.getElementById("heroImg");
-      const t = document.getElementById("heroTitle");
-      const d = document.getElementById("heroDesc");
+      $("#panelCount").textContent = String(list.length);
 
-      const actions = getFilteredActions();
-      if (!actions.length){
-        img.src = DATA[currentSport].heroFallback;
-        t.textContent = (LANG==="es") ? "Sin resultados" : "No results";
-        d.textContent = (LANG==="es") ? "Ajusta filtros o búsqueda para ver acciones." : "Adjust filters or search to see actions.";
-        return;
-      }
-
-      safeIdx();
-      const a = actions[currentIndex];
-
-      img.src = a.img || DATA[currentSport].heroFallback;
-      t.textContent = a.title[LANG] || a.title.es;
-
-      if (chipMode === "context") d.textContent = a.context[LANG] || a.context.es;
-      else if (chipMode === "tags") d.textContent = (a.tags[LANG] || a.tags.es).join("  ");
-      else d.textContent = a.why[LANG] || a.why.es;
-
-      const scrub = Number(document.getElementById("scrub").value);
-      document.getElementById("c1").textContent = (LANG==="es" ? "🧠 Decisión" : "🧠 Decision") + " · " + (scrub < 10 ? (LANG==="es"?"antes":"before") : (LANG==="es"?"durante":"during"));
-      document.getElementById("c2").textContent = (LANG==="es" ? "⚡ Ejecución" : "⚡ Execution") + " · " + (scrub >= 10 && scrub < 20 ? (LANG==="es"?"ahora":"now") : (LANG==="es"?"en curso":"in flow"));
-      document.getElementById("c3").textContent = (LANG==="es" ? "✅ Resultado" : "✅ Outcome") + " · " + (scrub >= 20 ? (LANG==="es"?"final":"end") : (LANG==="es"?"desenlace":"outcome"));
-    }
-
-    function renderList(){
-      const list = document.getElementById("actionList");
-      const count = document.getElementById("panelCount");
-      const actions = getFilteredActions();
-
-      count.textContent = actions.length ? String(actions.length) : "0";
-      list.innerHTML = "";
-
-      actions.forEach((a, idx)=>{
-        const div = document.createElement("div");
-        div.className = "item" + (idx===currentIndex ? " active" : "");
-        const catLabel = (CAT_LABEL[LANG] || CAT_LABEL.es)[a.cat] || a.cat;
-        div.innerHTML = `
-          <div class="tag">${catLabel}</div>
-          <div class="item-title">${a.title[LANG] || a.title.es}</div>
-          <div class="item-desc">${(a.context[LANG] || a.context.es)}</div>
-        `;
-        div.addEventListener("click", ()=>{
-          currentIndex = idx;
-          syncHero();
-          renderList();
-          renderDetails();
-        });
-        list.appendChild(div);
-      });
-
-      if (!actions.length){
-        list.innerHTML = `<div style="padding:14px;color:rgba(255,255,255,.65);font-size:13px;line-height:1.6">
-          ${LANG==="es" ? "No hay resultados. Prueba otro filtro o busca otra palabra." : "No results. Try another filter or search term."}
+      // List
+      const listEl = $("#actionList");
+      listEl.innerHTML = "";
+      if(!list.length){
+        listEl.innerHTML = `<div style="padding:14px;color:rgba(255,255,255,.65);font-size:13px;line-height:1.6">
+          ${state.lang==="es" ? "No hay resultados. Prueba otro filtro o búsqueda." : "No results. Try another filter or search."}
         </div>`;
-      }
-    }
-
-    function renderDetails(){
-      const acc = document.getElementById("accordion");
-      const actions = getFilteredActions();
-
-      acc.innerHTML = "";
-      const wrap = document.createElement("details");
-      wrap.open = true;
-
-      if (!actions.length){
-        wrap.innerHTML = `
-          <summary><span>${tr("acc_title")}</span><span class="sum-muted">${tr("acc_subtitle")}</span></summary>
-          <div class="acc-body">${LANG==="es" ? "Sin acción seleccionada." : "No action selected."}</div>
-        `;
-        acc.appendChild(wrap);
-        return;
-      }
-
-      safeIdx();
-      const a = actions[currentIndex];
-      const bullets = (a.how && a.how[LANG]) ? a.how[LANG] : a.how.es;
-
-      wrap.innerHTML = `
-        <summary><span>${tr("acc_title")}</span><span class="sum-muted">${tr("acc_subtitle")}</span></summary>
-        <div class="acc-body">
-          <div style="opacity:.92"><b>${LANG==="es" ? "Qué demuestra:" : "What it shows:"}</b> ${a.why[LANG] || a.why.es}</div>
-
-          <div style="margin-top:10px;opacity:.92"><b>${LANG==="es" ? "Etiquetas (ejemplo):" : "Tags (example):"}</b> ${(a.tags[LANG]||a.tags.es).join(" ")}</div>
-
-          <div style="margin-top:10px;opacity:.92"><b>${LANG==="es" ? "Cómo grabarlo:" : "How to record:"}</b></div>
-          <ul class="acc-bullets">${bullets.map(b=>`<li>${b}</li>`).join("")}</ul>
-
-          <div class="mini-btn-row">
-            <button class="mini-btn" type="button" id="openExample">${tr("btn_example")}</button>
-            <button class="mini-btn" type="button" id="openChecklist2">${tr("btn_checklist")}</button>
-          </div>
-        </div>
-      `;
-      acc.appendChild(wrap);
-
-      document.getElementById("openExample").addEventListener("click", ()=> openActionModal(a));
-      document.getElementById("openChecklist2").addEventListener("click", openChecklistModal);
-    }
-
-    function setChipMode(mode){
-      chipMode = mode;
-      document.querySelectorAll(".chip").forEach(c=>c.classList.remove("active"));
-      const chip = document.querySelector(\`.chip[data-chip="\${mode}"]\`);
-      if (chip) chip.classList.add("active");
-      syncHero();
-    }
-
-    const SPOTS = {
-      wing: {
-        es: { t:"Banda: ventaja y 1v1", b:"En F11, banda = espacio. Un buen clip muestra: primer toque, decisión y desenlace." },
-        en: { t:"Wing: advantage & 1v1", b:"In 11s, wing = space. A good clip shows first touch, decision and outcome." }
-      },
-      halfspace: {
-        es: { t:"Half-space: último pase", b:"Zona de máximo valor: recibir entre líneas, orientar y filtrar un pase." },
-        en: { t:"Half-space: final pass", b:"High-value zone: receive between lines, open body, slip a pass." }
-      },
-      press: {
-        es: { t:"Presión tras pérdida", b:"Demuestra disciplina: orientar la salida y recuperar forma del bloque." },
-        en: { t:"Counter-press", b:"Shows discipline: angle the press and recover team shape." }
-      },
-      pivot: {
-        es: { t:"Pívot: fijar y descargar", b:"En futsal, fijar es oro: atraes y habilitas al compañero." },
-        en: { t:"Pivot: pin & lay-off", b:"In futsal, pinning is gold: you attract pressure and free a teammate." }
-      },
-      wall: {
-        es: { t:"Pared", b:"Velocidad mental: soltar, moverte y volver a aparecer (3er hombre)." },
-        en: { t:"Wall pass", b:"Mental speed: release, move, reappear (third man)." }
-      },
-      steal: {
-        es: { t:"Robo limpio", b:"Anticipación sin falta: cierras línea y sales rápido en transición." },
-        en: { t:"Clean steal", b:"Anticipate without fouling: close lane and exit fast." }
-      }
-    };
-
-    function showTooltip(which, spotKey){
-      const pack = SPOTS[spotKey];
-      if (!pack) return;
-      const t = pack[LANG] || pack.es;
-
-      if (which === "11") {
-        const box = document.getElementById("tt11");
-        document.getElementById("tt11Title").textContent = t.t;
-        document.getElementById("tt11Body").textContent = t.b;
-        box.classList.add("show");
-        clearTimeout(showTooltip._tt11);
-        showTooltip._tt11 = setTimeout(()=> box.classList.remove("show"), 2600);
       } else {
-        const box = document.getElementById("ttFs");
-        document.getElementById("ttFsTitle").textContent = t.t;
-        document.getElementById("ttFsBody").textContent = t.b;
-        box.classList.add("show");
-        clearTimeout(showTooltip._ttFs);
-        showTooltip._ttFs = setTimeout(()=> box.classList.remove("show"), 2600);
+        list.forEach((a, idx)=>{
+          const div = document.createElement("div");
+          div.className = "item" + (idx===state.index ? " active":"");
+          div.innerHTML = `
+            <div class="tag">${(LABELS[state.lang]||LABELS.es)[a.cat] || a.cat}</div>
+            <div class="item-title">${a.title[state.lang] || a.title.es}</div>
+            <div class="item-desc">${a.context[state.lang] || a.context.es}</div>
+          `;
+          div.addEventListener("click", ()=>{
+            state.index = idx;
+            render();
+          });
+          listEl.appendChild(div);
+        });
       }
-    }
 
-    const modal = document.getElementById("modal");
-    const modalTitle = document.getElementById("modalTitle");
-    const modalBody = document.getElementById("modalBody");
+      // Hero card
+      const img = $("#heroImg");
+      const title = $("#heroTitle");
+      const desc = $("#heroDesc");
 
-    function openModal(title, html){
-      modalTitle.textContent = title;
-      modalBody.innerHTML = html;
-      modal.classList.add("open");
-      document.body.style.overflow = "hidden";
-    }
-    function closeModal(){
-      modal.classList.remove("open");
-      document.body.style.overflow = "";
-    }
+      if(!list.length){
+        img.src = DATA[state.sport].fallbackImg;
+        title.textContent = state.lang==="es" ? "Sin resultados" : "No results";
+        desc.textContent  = state.lang==="es" ? "Ajusta filtros o búsqueda para ver acciones." : "Adjust filters or search to see actions.";
+      } else {
+        const a = list[state.index];
+        img.src = a.img || DATA[state.sport].fallbackImg;
+        title.textContent = a.title[state.lang] || a.title.es;
 
-    document.getElementById("modalClose").addEventListener("click", closeModal);
-    document.getElementById("modalOverlay").addEventListener("click", closeModal);
-    document.addEventListener("keydown", (e)=>{
-      if(e.key==="Escape"){
-        closeModal();
-        closeMobileMenu();
-        roleMenu.classList.remove("open");
-        appMenu.classList.remove("open");
-        langMenu.classList.remove("open");
+        if(state.chip==="context") desc.textContent = a.context[state.lang] || a.context.es;
+        if(state.chip==="tags")    desc.textContent = (a.tags[state.lang] || a.tags.es).join("  ");
+        if(state.chip==="why")     desc.textContent = a.why[state.lang] || a.why.es;
       }
-    });
 
-    function openTourModal(){
-      openModal(tr("modal_tour_title"), `
-        <p>${tr("modal_tour_1")}</p>
-        <p>${tr("modal_tour_2")}</p>
-        <p>${tr("modal_tour_3")}</p>
-        <p>${tr("modal_tour_4")}</p>
-        <ul style="margin-top:12px">
-          <li>${tr("modal_check_1")}</li>
-          <li>${tr("modal_check_2")}</li>
-          <li>${tr("modal_check_3")}</li>
-          <li>${tr("modal_check_4")}</li>
-        </ul>
-      `);
-    }
+      // Callout
+      const v = Number($("#scrub").value);
+      $("#tLeft").textContent = v + "s";
+      $("#tRight").textContent = "30s";
+      $("#c1").textContent = (state.lang==="es" ? "🧠 Decisión" : "🧠 Decision");
+      $("#c2").textContent = (state.lang==="es" ? "⚡ Ejecución" : "⚡ Execution");
+      $("#c3").textContent = (state.lang==="es" ? "✅ Resultado" : "✅ Outcome");
 
-    function openChecklistModal(){
-      openModal(tr("modal_check_title"), `
-        <ul>
-          <li>${tr("modal_check_1")}</li>
-          <li>${tr("modal_check_2")}</li>
-          <li>${tr("modal_check_3")}</li>
-          <li>${tr("modal_check_4")}</li>
-        </ul>
-        <p style="margin-top:10px;color:rgba(255,255,255,.68);font-size:12px">
-          ${LANG==="es"
-            ? "Tip: 2–3 clips del mismo patrón valen más que 1 highlight aislado."
-            : "Tip: 2–3 clips of the same pattern beat one isolated highlight."}
-        </p>
-      `);
-    }
+      // Accordion (simple)
+      const acc = $("#accordion");
+      acc.innerHTML = "";
+      const d = document.createElement("details");
+      d.open = true;
 
-    function openActionModal(a){
-      const tips = (a.how && a.how[LANG]) ? a.how[LANG] : a.how.es;
-      openModal(a.title[LANG] || a.title.es, `
-        <p style="opacity:.92"><b>${LANG==="es" ? "Contexto:" : "Context:"}</b> ${a.context[LANG] || a.context.es}</p>
-        <p style="opacity:.92"><b>${LANG==="es" ? "Qué demuestra:" : "What it shows:"}</b> ${a.why[LANG] || a.why.es}</p>
-        <p style="opacity:.92"><b>${LANG==="es" ? "Etiquetas:" : "Tags:"}</b> ${(a.tags[LANG]||a.tags.es).join(" ")}</p>
-        <p style="opacity:.92"><b>${LANG==="es" ? "Cómo grabarlo:" : "How to record:"}</b></p>
-        <ul>${tips.map(x=>`<li>${x}</li>`).join("")}</ul>
-      `);
-    }
-
-    /* ======================
-      Header + menus
-    ====================== */
-    document.getElementById("logo").addEventListener("click", ()=> location.href="index.html");
-
-    const menuToggle = document.getElementById("menuToggle");
-    const mobileMenu = document.getElementById("mobileMenu");
-
-    function openMobileMenu(){
-      mobileMenu.classList.add("active");
-      mobileMenu.setAttribute("aria-hidden","false");
-      menuToggle.textContent = "✕";
-      document.body.style.overflow = "hidden";
-    }
-    function closeMobileMenu(){
-      mobileMenu.classList.remove("active");
-      mobileMenu.setAttribute("aria-hidden","true");
-      menuToggle.textContent = "☰";
-      document.body.style.overflow = "";
-    }
-
-    menuToggle.addEventListener("click",(e)=>{
-      e.stopPropagation();
-      const isOpen = mobileMenu.classList.contains("active");
-      if(isOpen) closeMobileMenu();
-      else openMobileMenu();
-    });
-
-    document.addEventListener("click",(e)=>{
-      if(!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)){
-        closeMobileMenu();
+      if(!list.length){
+        d.innerHTML = `<summary><span>—</span><span class="sum-muted">—</span></summary><div class="acc-body">—</div>`;
+      } else {
+        const a = list[state.index];
+        const how = (a.how && a.how[state.lang]) ? a.how[state.lang] : a.how.es;
+        d.innerHTML = `
+          <summary><span>${state.lang==="es" ? "Explicación del clip" : "Clip explanation"}</span>
+          <span class="sum-muted">${state.lang==="es" ? "Qué demuestra + cómo grabarlo" : "What it shows + how to record"}</span></summary>
+          <div class="acc-body">
+            <div><b>${state.lang==="es" ? "Qué demuestra:" : "What it shows:"}</b> ${a.why[state.lang] || a.why.es}</div>
+            <div style="margin-top:10px"><b>${state.lang==="es" ? "Etiquetas:" : "Tags:"}</b> ${(a.tags[state.lang]||a.tags.es).join(" ")}</div>
+            <div style="margin-top:10px"><b>${state.lang==="es" ? "Cómo grabarlo:" : "How to record:"}</b></div>
+            <ul class="acc-bullets">${how.map(x=>`<li>${x}</li>`).join("")}</ul>
+            <div class="mini-btn-row">
+              <button class="mini-btn" id="openExample" type="button">${state.lang==="es" ? "Abrir detalle" : "Open details"}</button>
+            </div>
+          </div>
+        `;
       }
-    });
+      acc.appendChild(d);
 
-    document.querySelectorAll(".mobile-links a").forEach(a=>{
-      a.addEventListener("click", ()=> closeMobileMenu());
-    });
-
-    function bindMobileDrop(titleId, subId){
-      const t = document.getElementById(titleId);
-      const s = document.getElementById(subId);
-      t.addEventListener("click",(e)=>{
-        e.stopPropagation();
-        s.classList.toggle("open");
-        t.classList.toggle("open");
-      });
-    }
-    bindMobileDrop("mRoleTitle","mRoleSub");
-    bindMobileDrop("mAppTitle","mAppSub");
-
-    const roleToggle = document.getElementById("roleToggle");
-    const roleMenu = document.getElementById("roleMenu");
-    const appToggle = document.getElementById("appToggle");
-    const appMenu = document.getElementById("appMenu");
-
-    roleToggle.addEventListener("click",(e)=>{
-      e.preventDefault(); e.stopPropagation();
-      const open = roleMenu.classList.toggle("open");
-      roleToggle.setAttribute("aria-expanded", open ? "true" : "false");
-      appMenu.classList.remove("open");
-      appToggle.setAttribute("aria-expanded","false");
-    });
-
-    appToggle.addEventListener("click",(e)=>{
-      e.preventDefault(); e.stopPropagation();
-      const open = appMenu.classList.toggle("open");
-      appToggle.setAttribute("aria-expanded", open ? "true" : "false");
-      roleMenu.classList.remove("open");
-      roleToggle.setAttribute("aria-expanded","false");
-    });
-
-    document.addEventListener("click",(e)=>{
-      if(!roleMenu.contains(e.target) && !roleToggle.contains(e.target)) {
-        roleMenu.classList.remove("open");
-        roleToggle.setAttribute("aria-expanded","false");
-      }
-      if(!appMenu.contains(e.target) && !appToggle.contains(e.target)) {
-        appMenu.classList.remove("open");
-        appToggle.setAttribute("aria-expanded","false");
-      }
-    });
-
-    /* ======================
-      Language switcher
-    ====================== */
-    const langSwitcher = document.getElementById("langSwitcher");
-    const langMenu = document.getElementById("langMenu");
-    const langBtn = langSwitcher.querySelector(".lang-current");
-    const flagEl = langBtn.querySelector(".lang-flag");
-    const labelEl = langBtn.querySelector(".lang-label");
-
-    function setLangUI(){
-      if(LANG==="en"){ flagEl.textContent="🇬🇧"; labelEl.textContent="EN"; document.documentElement.lang="en"; }
-      else { flagEl.textContent="🇪🇸"; labelEl.textContent="ES"; document.documentElement.lang="es"; }
+      // Search placeholder
+      $("#searchInput").placeholder = state.lang==="es"
+        ? "Buscar (ej: presión, control, desmarque...)"
+        : "Search (e.g., pressing, first touch, runs...)";
     }
 
-    const storedLang = localStorage.getItem("athlead_lang");
-    if(storedLang==="en" || storedLang==="es") LANG = storedLang;
-    setLangUI();
-    applyTranslations();
+    /* =========================================================
+      D) EVENTS (pequeños y directos)
+    ========================================================= */
+    // Logo
+    $("#logo").addEventListener("click", ()=> location.href="index.html");
 
-    langBtn.addEventListener("click",(e)=>{
-      e.stopPropagation();
-      langMenu.classList.toggle("open");
-      const expanded = langBtn.getAttribute("aria-expanded")==="true";
-      langBtn.setAttribute("aria-expanded", (!expanded).toString());
-    });
-
-    langMenu.querySelectorAll("button[data-lang]").forEach(b=>{
-      b.addEventListener("click",(e)=>{
-        e.stopPropagation();
-        LANG = b.getAttribute("data-lang")==="en" ? "en" : "es";
-        localStorage.setItem("athlead_lang", LANG);
-        setLangUI();
-        applyTranslations();
-        currentIndex = 0;
-        syncProfile();
-        updateDashboard();
-        syncHero();
-        renderList();
-        renderDetails();
-        setSearchPlaceholder();
-        langMenu.classList.remove("open");
-        langBtn.setAttribute("aria-expanded","false");
-      });
-    });
-
-    document.addEventListener("click",(e)=>{
-      if(!langSwitcher.contains(e.target)){
-        langMenu.classList.remove("open");
-        langBtn.setAttribute("aria-expanded","false");
-      }
-    });
-
-    /* Smooth anchors */
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{
-      a.addEventListener("click",(e)=>{
-        const href = a.getAttribute("href");
-        if(!href || href==="#") return;
-        const target = document.querySelector(href);
-        if(!target) return;
-        e.preventDefault();
-        target.scrollIntoView({behavior:"smooth", block:"start"});
-      });
-    });
-
-    /* Header hide on scroll */
-    (function(){
-      const header = document.getElementById("header");
+    // Header hide on scroll
+    (() => {
+      const header = $("#header");
       let lastY = window.scrollY;
       window.addEventListener("scroll", ()=>{
         const y = window.scrollY;
@@ -1592,123 +987,183 @@
       });
     })();
 
-    /* ======================
-      Demo controls
-    ====================== */
-    function setSearchPlaceholder(){
-      const searchInput = document.getElementById("searchInput");
-      searchInput.placeholder = (LANG==="es")
-        ? "Buscar (ej: 1v1, presión, finalización...)"
-        : "Search (e.g., 1v1, pressing, finishing...)";
+    // Dropdowns (desktop)
+    const roleMenu = $("#roleMenu"), appMenu = $("#appMenu");
+    $("#roleToggle").addEventListener("click",(e)=>{
+      e.stopPropagation();
+      roleMenu.classList.toggle("open");
+      appMenu.classList.remove("open");
+    });
+    $("#appToggle").addEventListener("click",(e)=>{
+      e.stopPropagation();
+      appMenu.classList.toggle("open");
+      roleMenu.classList.remove("open");
+    });
+    document.addEventListener("click",()=>{
+      roleMenu.classList.remove("open");
+      appMenu.classList.remove("open");
+      $("#langMenu").classList.remove("open");
+    });
+
+    // Mobile menu
+    const mobileMenu = $("#mobileMenu");
+    const menuToggle = $("#menuToggle");
+    function setMobile(open){
+      mobileMenu.classList.toggle("active", open);
+      mobileMenu.setAttribute("aria-hidden", open ? "false" : "true");
+      menuToggle.textContent = open ? "✕" : "☰";
+      document.body.style.overflow = open ? "hidden" : "";
     }
+    menuToggle.addEventListener("click",(e)=>{
+      e.stopPropagation();
+      setMobile(!mobileMenu.classList.contains("active"));
+    });
+    $$(" .mobile-links a").forEach(a=>a.addEventListener("click", ()=>setMobile(false)));
+    function bindMobileDrop(titleId, subId){
+      const t = $("#"+titleId), s = $("#"+subId);
+      t.addEventListener("click", (e)=>{
+        e.stopPropagation();
+        s.classList.toggle("open");
+        t.classList.toggle("open");
+      });
+    }
+    bindMobileDrop("mRoleTitle","mRoleSub");
+    bindMobileDrop("mAppTitle","mAppSub");
 
-    // Sport tabs (scoped)
-    document.querySelectorAll("#sportTabs .tab").forEach(tab=>{
-      tab.addEventListener("click", ()=>{
-        document.querySelectorAll("#sportTabs .tab").forEach(t=>{
-          t.classList.remove("active");
-          t.setAttribute("aria-selected","false");
-        });
-        tab.classList.add("active");
-        tab.setAttribute("aria-selected","true");
-
-        currentSport = tab.getAttribute("data-sport");
-        currentIndex = 0;
-        currentQuery = "";
-        document.getElementById("searchInput").value = "";
-        currentFilter = "all";
-        document.querySelectorAll(".pill").forEach(p=>p.classList.remove("active"));
-        document.querySelector('.pill[data-filter="all"]').classList.add("active");
-
-        syncProfile();
-        updateDashboard();
-        syncHero();
-        renderList();
-        renderDetails();
+    // Tabs sport
+    $$("#sportTabs .tab").forEach(btn=>{
+      btn.addEventListener("click", ()=>{
+        $$("#sportTabs .tab").forEach(x=>x.classList.remove("active"));
+        btn.classList.add("active");
+        state.sport = btn.dataset.sport;
+        state.filter = "all";
+        state.query = "";
+        state.index = 0;
+        $("#searchInput").value = "";
+        $$(".pill").forEach(p=>p.classList.remove("active"));
+        $('.pill[data-filter="all"]').classList.add("active");
+        render();
       });
     });
 
-    const searchInput = document.getElementById("searchInput");
-    searchInput.addEventListener("input", ()=>{
-      currentQuery = searchInput.value || "";
-      currentIndex = 0;
-      syncHero();
-      renderList();
-      renderDetails();
-    });
-
-    document.querySelectorAll(".pill").forEach(p=>{
+    // Filters
+    $$(".pill").forEach(p=>{
       p.addEventListener("click", ()=>{
-        document.querySelectorAll(".pill").forEach(x=>x.classList.remove("active"));
+        $$(".pill").forEach(x=>x.classList.remove("active"));
         p.classList.add("active");
-        currentFilter = p.getAttribute("data-filter");
-        currentIndex = 0;
-        updateDashboard();
-        syncHero();
-        renderList();
-        renderDetails();
+        state.filter = p.dataset.filter;
+        state.index = 0;
+        render();
       });
     });
 
-    document.getElementById("shuffleBtn").addEventListener("click", ()=>{
-      const actions = getFilteredActions();
-      if(!actions.length) return;
-      currentIndex = Math.floor(Math.random()*actions.length);
-      syncHero();
-      renderList();
-      renderDetails();
+    // Search
+    $("#searchInput").addEventListener("input", (e)=>{
+      state.query = e.target.value || "";
+      state.index = 0;
+      render();
     });
 
-    document.querySelectorAll(".chip").forEach(ch=>{
-      ch.addEventListener("click", ()=>{
-        setChipMode(ch.getAttribute("data-chip"));
+    // Shuffle
+    $("#shuffleBtn").addEventListener("click", ()=>{
+      const list = actionsFiltered();
+      if(!list.length) return;
+      state.index = Math.floor(Math.random() * list.length);
+      render();
+    });
+
+    // Chips
+    $$(".chip").forEach(c=>{
+      c.addEventListener("click", ()=>{
+        $$(".chip").forEach(x=>x.classList.remove("active"));
+        c.classList.add("active");
+        state.chip = c.dataset.chip;
+        render();
       });
     });
 
-    const scrub = document.getElementById("scrub");
-    scrub.addEventListener("input", ()=>{
-      const v = Number(scrub.value);
-      document.getElementById("tLeft").textContent = (v) + "s";
-      syncHero();
-    });
+    // Scrub
+    $("#scrub").addEventListener("input", ()=> render());
 
-    document.getElementById("openTour").addEventListener("click", openTourModal);
-    document.getElementById("openChecklist").addEventListener("click", openChecklistModal);
-
-    document.querySelectorAll("#field11 .hotspot").forEach(h=>{
-      h.addEventListener("click", ()=> showTooltip("11", h.getAttribute("data-spot")));
-    });
-    document.querySelectorAll("#fieldFs .hotspot").forEach(h=>{
-      h.addEventListener("click", ()=> showTooltip("fs", h.getAttribute("data-spot")));
-    });
-
-    /* Cookies */
-    const COOKIE_KEY = "athlead_cookie_consent";
-    const banner = document.getElementById("cookie-banner");
-    const storedConsent = localStorage.getItem(COOKIE_KEY);
-    function showBanner(){ banner.classList.add("visible"); }
-    function hideBanner(){ banner.classList.remove("visible"); }
-    if(!storedConsent) showBanner();
-    document.getElementById("cookie-all").addEventListener("click", ()=>{ localStorage.setItem(COOKIE_KEY,"all"); hideBanner(); });
-    document.getElementById("cookie-essential").addEventListener("click", ()=>{ localStorage.setItem(COOKIE_KEY,"essential"); hideBanner(); });
-    document.getElementById("cookie-reject").addEventListener("click", ()=>{ localStorage.setItem(COOKIE_KEY,"reject"); hideBanner(); });
-
-    /* Init */
-    function init(){
-      setSearchPlaceholder();
-      setChipMode("context");
-      syncProfile();
-      updateDashboard();
-      syncHero();
-      renderList();
-      renderDetails();
-      document.getElementById("tRight").textContent = "30s";
-      document.getElementById("tLeft").textContent = scrub.value + "s";
+    /* Modal */
+    const modal = $("#modal");
+    function openModal(title, html){
+      $("#modalTitle").textContent = title;
+      $("#modalBody").innerHTML = html;
+      modal.classList.add("open");
+      document.body.style.overflow="hidden";
     }
-    init();
+    function closeModal(){
+      modal.classList.remove("open");
+      document.body.style.overflow="";
+    }
+    $("#modalClose").addEventListener("click", closeModal);
+    $("#modalOverlay").addEventListener("click", closeModal);
+    document.addEventListener("keydown",(e)=>{ if(e.key==="Escape") closeModal(); });
+
+    // Open tour
+    $("#openTour").addEventListener("click", ()=>{
+      openModal(t("modal_tour_title"), t("modal_tour_html"));
+    });
+
+    // Language
+    const langMenu = $("#langMenu");
+    $("#langSwitcher .lang-current").addEventListener("click",(e)=>{
+      e.stopPropagation();
+      langMenu.classList.toggle("open");
+    });
+    $$("#langMenu button[data-lang]").forEach(b=>{
+      b.addEventListener("click",(e)=>{
+        e.stopPropagation();
+        state.lang = b.dataset.lang === "en" ? "en" : "es";
+        localStorage.setItem("athlead_lang", state.lang);
+        $("#langSwitcher .lang-flag").textContent = state.lang==="en" ? "🇬🇧" : "🇪🇸";
+        $("#langSwitcher .lang-label").textContent = state.lang==="en" ? "EN" : "ES";
+        document.documentElement.lang = state.lang;
+        langMenu.classList.remove("open");
+        render();
+      });
+    });
+
+    // Cookies
+    const COOKIE_KEY = "athlead_cookie_consent";
+    const banner = $("#cookie-banner");
+    const storedConsent = localStorage.getItem(COOKIE_KEY);
+    if(!storedConsent) banner.classList.add("visible");
+    $("#cookie-all").addEventListener("click", ()=>{ localStorage.setItem(COOKIE_KEY,"all"); banner.classList.remove("visible"); });
+    $("#cookie-essential").addEventListener("click", ()=>{ localStorage.setItem(COOKIE_KEY,"essential"); banner.classList.remove("visible"); });
+    $("#cookie-reject").addEventListener("click", ()=>{ localStorage.setItem(COOKIE_KEY,"reject"); banner.classList.remove("visible"); });
+
+    /* =========================================================
+      E) INIT
+    ========================================================= */
+    // Sync lang button at load
+    $("#langSwitcher .lang-flag").textContent = state.lang==="en" ? "🇬🇧" : "🇪🇸";
+    $("#langSwitcher .lang-label").textContent = state.lang==="en" ? "EN" : "ES";
+    document.documentElement.lang = state.lang;
+
+    // Attach "openExample" inside accordion after render
+    // (Lo hacemos delegando el click en document para evitar re-bind raro)
+    document.addEventListener("click",(e)=>{
+      if(e.target && e.target.id === "openExample"){
+        const list = actionsFiltered();
+        if(!list.length) return;
+        const a = list[state.index];
+        const how = (a.how && a.how[state.lang]) ? a.how[state.lang] : a.how.es;
+        openModal(a.title[state.lang] || a.title.es, `
+          <p><b>${state.lang==="es" ? "Contexto:" : "Context:"}</b> ${a.context[state.lang] || a.context.es}</p>
+          <p><b>${state.lang==="es" ? "Qué demuestra:" : "What it shows:"}</b> ${a.why[state.lang] || a.why.es}</p>
+          <p><b>${state.lang==="es" ? "Etiquetas:" : "Tags:"}</b> ${(a.tags[state.lang]||a.tags.es).join(" ")}</p>
+          <p><b>${state.lang==="es" ? "Cómo grabarlo:" : "How to record:"}</b></p>
+          <ul>${how.map(x=>`<li>${x}</li>`).join("")}</ul>
+        `);
+      }
+    });
+
+    render();
   </script>
 
-  <!--Start of Tawk.to Script-->
+  <!-- Tawk -->
   <script type="text/javascript">
     var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
     (function(){
@@ -1720,7 +1175,6 @@
       s0.parentNode.insertBefore(s1,s0);
     })();
   </script>
-  <!--End of Tawk.to Script-->
 </body>
 </html>
 
