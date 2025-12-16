@@ -465,11 +465,6 @@
       flex:0 0 auto;
       transform:translateY(1px);
     }
-    .cross{
-      background:rgba(255,107,107,.14);
-      border:1px solid rgba(255,107,107,.35);
-      color:var(--danger);
-    }
 
     /* Comparison (expandable) */
     .compare{
@@ -525,9 +520,7 @@
     .pill.no{border-color:rgba(255,107,107,.28);background:rgba(255,107,107,.08);color:var(--danger);}
 
     /* Gallery */
-    .gallery{
-      background:#000;
-    }
+    .gallery{background:#000;}
     .gallery-grid{
       display:grid;
       grid-template-columns:repeat(3, minmax(0,1fr));
@@ -625,7 +618,7 @@
 
 <body>
 
-  <!-- HEADER (misma estructura que tu principal) -->
+  <!-- HEADER -->
   <header class="header">
     <div class="logo" id="logo">ATHLEAD</div>
 
@@ -857,7 +850,7 @@
     </div>
   </section>
 
-  <!-- GALLERY / mockups -->
+  <!-- GALLERY -->
   <section class="gallery">
     <div class="section-inner">
       <p class="section-kicker" data-i18n="gallery_kicker">Ejemplos</p>
@@ -961,7 +954,9 @@
   </footer>
 
   <script>
-    // ===== Idioma (mismo patrón que tu principal) =====
+    // =========================
+    //  i18n (ES / EN)
+    // =========================
     let ATHLEAD_LANG = 'es';
 
     const i18n = {
@@ -1127,7 +1122,9 @@
       });
     }
 
-    // ===== Header hide on scroll (suave) =====
+    // =========================
+    //  Header hide on scroll
+    // =========================
     (function(){
       const header = document.querySelector('.header');
       let lastY = window.scrollY;
@@ -1145,7 +1142,9 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // ===== Menú móvil =====
+    // =========================
+    //  Menú móvil
+    // =========================
     const menuToggle = document.getElementById('menuToggle');
     const mobileMenu = document.getElementById('mobileMenu');
 
@@ -1176,16 +1175,20 @@
       });
     });
 
-    // ===== Dropdowns escritorio (click) =====
+    // =========================
+    //  Dropdowns escritorio (click)
+    // =========================
     (function(){
       const roleItem = document.querySelector('.nav-item-role');
       const appItem = document.querySelector('.nav-item-app');
+
       if(roleItem){
         const t = roleItem.querySelector('.nav-dropdown-toggle');
         const m = roleItem.querySelector('.nav-dropdown');
         t.addEventListener('click', (e)=>{ e.preventDefault(); e.stopPropagation(); m.classList.toggle('open'); });
         document.addEventListener('click', (e)=>{ if(!roleItem.contains(e.target)) m.classList.remove('open'); });
       }
+
       if(appItem){
         const t = appItem.querySelector('.nav-dropdown-toggle');
         const m = appItem.querySelector('.nav-dropdown');
@@ -1194,7 +1197,190 @@
       }
     })();
 
-    // ===== Idioma (selector) =====
+    // =========================
+    //  Estado + precios + beneficios
+    // =========================
+    const state = { role:'player', billing:'monthly' };
+
+    const PRICES = {
+      player: { monthly: 5.99, yearly: 57.50 },
+      club:   { monthly: 24.99, yearly: 239.00 },
+      coach:  { monthly: 9.99, yearly: 95.00 }
+    };
+
+    const BENEFITS = {
+      player: {
+        free: [
+          'Perfil público con posición, edad, ubicación y clips',
+          'Subida de vídeos con likes y visibilidad básica',
+          'Búsqueda simple y exploración del feed',
+          'Mensajería limitada (invitaciones / solicitudes)',
+          'Seguridad: control básico de privacidad'
+        ],
+        pro: [
+          'Visibilidad avanzada (mejor ranking en búsquedas)',
+          'Métricas completas: quién te vio, guardados e interés',
+          'Filtros pro + búsquedas guardadas',
+          'Mensajería prioritaria con clubes/entrenadores',
+          'Etiqueta “Premium” en perfil + soporte rápido'
+        ],
+        compare: [
+          ['Perfil y vídeos', 'ok', 'ok'],
+          ['Analítica: quién te vio', 'no', 'ok'],
+          ['Filtros pro / búsquedas guardadas', 'no', 'ok'],
+          ['Mensajería ilimitada', 'no', 'ok'],
+          ['Posicionamiento en búsqueda', 'basic', 'pro']
+        ]
+      },
+      club: {
+        free: [
+          'Perfil de club básico (info, categorías, ubicación)',
+          'Explorar jugadores sin filtros avanzados',
+          'Guardar perfiles limitado',
+          'Publicar 1 necesidad de plantilla / mes',
+          'Mensajería limitada (respuestas)'
+        ],
+        pro: [
+          'Scouting: filtros avanzados (edad, posición, zona, atributos)',
+          'Workspace con miembros y permisos (staff)',
+          'Listas ilimitadas + notas internas',
+          'Contactos priorizados con jugadores',
+          'Publicaciones ilimitadas de necesidades + alertas'
+        ],
+        compare: [
+          ['Buscar jugadores', 'ok', 'ok'],
+          ['Filtros avanzados', 'no', 'ok'],
+          ['Listas + notas internas', 'limited', 'ok'],
+          ['Workspace con staff', 'no', 'ok'],
+          ['Publicaciones de necesidades', 'limited', 'ok']
+        ]
+      },
+      coach: {
+        free: [
+          'Perfil de entrenador básico (licencia, experiencia)',
+          'Explorar jugadores con búsqueda simple',
+          'Guardar perfiles limitado',
+          'Mensajería limitada',
+          'Publicar 1 oportunidad / mes'
+        ],
+        pro: [
+          'Filtros pro y búsquedas guardadas',
+          'Listas ilimitadas + notas por jugador',
+          'Mensajería ilimitada con jugadores y clubes',
+          'Acceso a analítica agregada (tendencias)',
+          'Publicaciones ilimitadas + prioridad'
+        ],
+        compare: [
+          ['Perfil de entrenador', 'ok', 'ok'],
+          ['Guardar perfiles', 'limited', 'ok'],
+          ['Notas por jugador', 'no', 'ok'],
+          ['Mensajería ilimitada', 'no', 'ok'],
+          ['Publicaciones', 'limited', 'ok']
+        ]
+      }
+    };
+
+    function formatPrice(n){
+      const v = Number(n);
+      if(Number.isNaN(v)) return '—';
+      return v.toFixed(2).replace('.', ',') + '€';
+    }
+    function pill(type){
+      if(type === 'ok') return '<span class="pill ok">✓</span>';
+      if(type === 'no') return '<span class="pill no">—</span>';
+      if(type === 'limited') return '<span class="pill">Limitado</span>';
+      if(type === 'basic') return '<span class="pill">Básico</span>';
+      if(type === 'pro') return '<span class="pill ok">Pro</span>';
+      return '<span class="pill">—</span>';
+    }
+
+    function renderPlans(){
+      const proPrice = document.getElementById('proPrice');
+      const proPer = document.getElementById('proPer');
+
+      const price = PRICES[state.role][state.billing];
+      proPrice.textContent = formatPrice(price);
+      proPer.innerHTML = (ATHLEAD_LANG === 'en')
+        ? (state.billing === 'monthly' ? '/ month' : '/ year')
+        : (state.billing === 'monthly' ? '/ mes' : '/ año');
+
+      const pack = BENEFITS[state.role];
+
+      document.getElementById('freeFeatures').innerHTML = pack.free.map(x => `
+        <div class="feat"><span class="tick">✓</span><span>${x}</span></div>
+      `).join('');
+
+      document.getElementById('proFeatures').innerHTML = pack.pro.map(x => `
+        <div class="feat"><span class="tick">✓</span><span>${x}</span></div>
+      `).join('');
+
+      document.getElementById('compareBody').innerHTML = pack.compare.map(([name, f, p]) => `
+        <tr>
+          <td>${name}</td>
+          <td>${pill(f)}</td>
+          <td>${pill(p)}</td>
+        </tr>
+      `).join('');
+    }
+
+    // Tabs roles
+    const tabs = document.querySelectorAll('.tabs .tab');
+    tabs.forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        tabs.forEach(b=>{
+          b.classList.remove('active');
+          b.setAttribute('aria-selected','false');
+        });
+        btn.classList.add('active');
+        btn.setAttribute('aria-selected','true');
+        state.role = btn.getAttribute('data-role');
+        renderPlans();
+      });
+    });
+
+    // Billing switch
+    const billingSwitch = document.getElementById('billingSwitch');
+    function setBilling(next){
+      state.billing = next;
+      billingSwitch.classList.toggle('on', next === 'yearly');
+      billingSwitch.setAttribute('aria-checked', (next === 'yearly') ? 'true' : 'false');
+      renderPlans();
+    }
+    billingSwitch.addEventListener('click', ()=>{
+      setBilling(state.billing === 'monthly' ? 'yearly' : 'monthly');
+    });
+    billingSwitch.addEventListener('keydown', (e)=>{
+      if(e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        setBilling(state.billing === 'monthly' ? 'yearly' : 'monthly');
+      }
+    });
+
+    // Comparativa desplegable
+    const compareBox = document.getElementById('compareBox');
+    document.getElementById('compareToggle').addEventListener('click', ()=>{
+      compareBox.classList.toggle('open');
+    });
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-item').forEach(item=>{
+      const q = item.querySelector('.faq-question');
+      q.addEventListener('click', ()=>{
+        document.querySelectorAll('.faq-item').forEach(i=>{ if(i!==item) i.classList.remove('active'); });
+        item.classList.toggle('active');
+      });
+    });
+
+    // CTA Premium (demo)
+    document.getElementById('startPremiumBtn').addEventListener('click', ()=>{
+      const roleTxt = state.role === 'player' ? 'Jugador' : (state.role === 'club' ? 'Club' : 'Entrenador');
+      const billingTxt = state.billing === 'monthly' ? 'Mensual' : 'Anual';
+      alert(`Premium (${roleTxt}) · ${billingTxt}\n\nAquí conectarías con tu checkout / Stripe / formulario.`);
+    });
+
+    // =========================
+    //  Idioma (selector)
+    // =========================
     (function(){
       const langSwitcher = document.getElementById('langSwitcher');
       if(!langSwitcher) return;
@@ -1237,217 +1423,15 @@
         currentLabel.textContent = (ATHLEAD_LANG === 'en') ? 'EN' : 'ES';
         document.documentElement.lang = ATHLEAD_LANG;
         applyTranslations(ATHLEAD_LANG);
-        renderPlans(); // re-render textos y precios por rol / billing
+        renderPlans();
       }
     })();
 
-    // ===== Interactividad: roles + billing + comparativa =====
-    const state = {
-      role: 'player',     // player | club | coach
-      billing: 'monthly'  // monthly | yearly
-    };
-
-    // Define precios (ajústalos a tu gusto)
-    const PRICES = {
-      player: { monthly: 5.99, yearly: 57.50 },  // ~20% off
-      club:   { monthly: 24.99, yearly: 239.00 },
-      coach:  { monthly: 9.99, yearly: 95.00 }
-    };
-
-    // Beneficios por rol (gratis y premium)
-    const BENEFITS = {
-      player: {
-        free: [
-          'Perfil público con posición, edad, ubicación y clips',
-          'Subida de vídeos con likes y visibilidad básica',
-          'Búsqueda simple y exploración del feed',
-          'Mensajería limitada (invitaciones / solicitudes)',
-          'Seguridad: control básico de privacidad'
-        ],
-        pro: [
-          'Visibilidad avanzada (mejor ranking en búsquedas)',
-          'Métricas completas: quién te vio, guardados e interés',
-          'Filtros pro + búsquedas guardadas',
-          'Mensajería prioritaria con clubes/entrenadores',
-          'Etiqueta “Premium” en perfil + soporte rápido'
-        ],
-        compare: [
-          ['Perfil y vídeos', 'ok', 'ok'],
-          ['Analítica: quién te vio', 'no', 'ok'],
-          ['Filtros pro / búsquedas guardadas', 'no', 'ok'],
-          ['Mensajería ilimitada', 'no', 'ok'],
-          ['Posicionamiento en búsqueda', 'basic', 'pro']
-        ]
-      },
-
-      club: {
-        free: [
-          'Perfil de club básico (info, categorías, ubicación)',
-          'Explorar jugadores sin filtros avanzados',
-          'Guardar perfiles limitado',
-          'Publicar 1 necesidad de plantilla / mes',
-          'Mensajería limitada (respuestas)'
-        ],
-        pro: [
-          'Scouting: filtros avanzados (edad, posición, zona, atributos)',
-          'Workspace con miembros y permisos (staff)',
-          'Listas ilimitadas + notas internas',
-          'Contactos priorizados con jugadores',
-          'Publicaciones ilimitadas de necesidades + alertas'
-        ],
-        compare: [
-          ['Buscar jugadores', 'ok', 'ok'],
-          ['Filtros avanzados', 'no', 'ok'],
-          ['Listas + notas internas', 'limited', 'ok'],
-          ['Workspace con staff', 'no', 'ok'],
-          ['Publicaciones de necesidades', 'limited', 'ok']
-        ]
-      },
-
-      coach: {
-        free: [
-          'Perfil de entrenador básico (licencia, experiencia)',
-          'Explorar jugadores con búsqueda simple',
-          'Guardar perfiles limitado',
-          'Mensajería limitada',
-          'Publicar 1 oportunidad / mes'
-        ],
-        pro: [
-          'Filtros pro y búsquedas guardadas',
-          'Listas ilimitadas + notas por jugador',
-          'Mensajería ilimitada con jugadores y clubes',
-          'Acceso a analítica agregada (tendencias)',
-          'Publicaciones ilimitadas + prioridad'
-        ],
-        compare: [
-          ['Perfil de entrenador', 'ok', 'ok'],
-          ['Guardar perfiles', 'limited', 'ok'],
-          ['Notas por jugador', 'no', 'ok'],
-          ['Mensajería ilimitada', 'no', 'ok'],
-          ['Publicaciones', 'limited', 'ok']
-        ]
-      }
-    };
-
-    // Helpers para pintar pills en comparación
-    function pill(type){
-      if(type === 'ok') return '<span class="pill ok">✓</span>';
-      if(type === 'no') return '<span class="pill no">—</span>';
-      if(type === 'limited') return '<span class="pill">Limitado</span>';
-      if(type === 'basic') return '<span class="pill">Básico</span>';
-      if(type === 'pro') return '<span class="pill ok">Pro</span>';
-      return '<span class="pill">—</span>';
-    }
-
-    function formatPrice(n){
-      // 5.99 -> "5,99€"
-      const v = Number(n);
-      if(Number.isNaN(v)) return '—';
-      return v.toFixed(2).replace('.', ',') + '€';
-    }
-
-    function renderPlans(){
-      // update price
-      const proPrice = document.getElementById('proPrice');
-      const proPer = document.getElementById('proPer');
-
-      const price = PRICES[state.role][state.billing];
-      proPrice.textContent = formatPrice(price);
-      proPer.innerHTML = (ATHLEAD_LANG === 'en')
-        ? (state.billing === 'monthly' ? '/ month' : '/ year')
-        : (state.billing === 'monthly' ? '/ mes' : '/ año');
-
-      // update feature lists
-      const freeFeatures = document.getElementById('freeFeatures');
-      const proFeatures = document.getElementById('proFeatures');
-
-      const rolePack = BENEFITS[state.role];
-
-      freeFeatures.innerHTML = rolePack.free.map(x => `
-        <div class="feat"><span class="tick">✓</span><span>${x}</span></div>
-      `).join('');
-
-      proFeatures.innerHTML = rolePack.pro.map(x => `
-        <div class="feat"><span class="tick">✓</span><span>${x}</span></div>
-      `).join('');
-
-      // comparison table
-      const tbody = document.getElementById('compareBody');
-      tbody.innerHTML = rolePack.compare.map(([name, free, pro]) => `
-        <tr>
-          <td>${name}</td>
-          <td>${pill(free)}</td>
-          <td>${pill(pro)}</td>
-        </tr>
-      `).join('');
-    }
-
-    // tabs
-    document.querySelectorAll('.tab').forEach(btn=>{
-      btn.addEventListener('click', ()=>{
-        document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
-        btn.classList.add('active');
-        state.role = btn.getAttribute('data-role');
-        renderPlans();
-      });
-    });
-
-    // billing switch
-    const billingSwitch = document.getElementById('billingSwitch');
-    function setBilling(next){
-      state.billing = next;
-      billingSwitch.classList.toggle('on', next === 'yearly');
-      billingSwitch.setAttribute('aria-checked', (next === 'yearly') ? 'true' : 'false');
-      renderPlans();
-    }
-    billingSwitch.addEventListener('click', ()=>{
-      setBilling(state.billing === 'monthly' ? 'yearly' : 'monthly');
-    });
-    billingSwitch.addEventListener('keydown', (e)=>{
-      if(e.key === 'Enter' || e.key === ' '){
-        e.preventDefault();
-        setBilling(state.billing === 'monthly' ? 'yearly' : 'monthly');
-      }
-    });
-
-    // compare accordion
-    const compareBox = document.getElementById('compareBox');
-    document.getElementById('compareToggle').addEventListener('click', ()=>{
-      compareBox.classList.toggle('open');
-    });
-
-    // FAQ accordion
-    document.querySelectorAll('.faq-item').forEach(item=>{
-      const q = item.querySelector('.faq-question');
-      q.addEventListener('click', ()=>{
-        // cerrar otras (opcional)
-        document.querySelectorAll('.faq-item').forEach(i=>{ if(i!==item) i.classList.remove('active'); });
-        item.classList.toggle('active');
-      });
-    });
-
-    // CTA Premium button (demo)
-    document.getElementById('startPremiumBtn').addEventListener('click', ()=>{
-      const roleTxt = state.role === 'player' ? 'Jugador' : (state.role === 'club' ? 'Club' : 'Entrenador');
-      const billingTxt = state.billing === 'monthly' ? 'Mensual' : 'Anual';
-      alert(`Premium (${roleTxt}) · ${billingTxt}\n\nAquí conectarías con tu checkout / Stripe / formulario.`);
-    });
-
-    // init
+    // INIT
+    applyTranslations(localStorage.getItem('athlead_lang') || 'es');
+    setBilling('monthly');
     renderPlans();
   </script>
-  <!--Start of Tawk.to Script-->
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/6941b1af8ecd79197d49c528/1jck9s660';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-</script>
-<!--End of Tawk.to Script-->
+  
 </body>
 </html>
