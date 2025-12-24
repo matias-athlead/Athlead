@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
 
-  <!-- Favicon (igual que index) -->
+  <!-- Favicon (igual que el documento principal) -->
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png" />
   <link rel="shortcut icon" href="images/favicon.ico" />
@@ -13,10 +13,10 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Athlead - Características de la App</title>
+  <title>Athlead · Características de la App</title>
   <meta
     name="description"
-    content="Explora todas las características de Athlead: perfil del jugador, feed de jugadas, buscador, rankings y mensajería. Interactivo, claro y moderno."
+    content="Explora las características clave de Athlead: highlights cortos, perfiles completos, búsqueda con filtros, rankings, mensajes y listas para jugadores, clubes y entrenadores."
   />
 
   <style>
@@ -24,9 +24,9 @@
       --bg-main: #000000;
       --bg-soft: #050509;
       --bg-card: rgba(255, 255, 255, 0.04);
-      --border-soft: rgba(255, 255, 255, 0.1);
+      --border-soft: rgba(255, 255, 255, 0.12);
       --text-main: #ffffff;
-      --text-muted: rgba(255, 255, 255, 0.7);
+      --text-muted: rgba(255, 255, 255, 0.72);
       --accent: #ffffff;
       --accent-soft: #f2f2f2;
       --accent-alt: #4ecdc4;
@@ -40,10 +40,11 @@
       scroll-behavior: smooth;
       background: var(--bg-main);
       color: var(--text-main);
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, system-ui, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, system-ui, sans-serif;
     }
 
     img, video { max-width: 100%; display: block; }
+
     a { color: inherit; text-decoration: none; }
 
     .section-inner {
@@ -57,12 +58,11 @@
       letter-spacing: 0.16em;
       font-size: 12px;
       opacity: 0.7;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
 
-    /* =========================
-       HEADER (igual que index)
-       ========================= */
+    /* ===== HEADER + NAV + IDIOMA (MISMO QUE DOCUMENTO PRINCIPAL) ===== */
+
     .header {
       position: fixed;
       top: 16px;
@@ -112,7 +112,15 @@
       border-bottom-color: rgba(255, 255, 255, 0.8);
     }
 
-    .nav-item-role, .nav-item-app { position: relative; }
+    .nav-links .active {
+      opacity: 1;
+      border-bottom-color: rgba(255, 255, 255, 0.8);
+    }
+
+    .nav-item-role,
+    .nav-item-app {
+      position: relative;
+    }
 
     .nav-dropdown-toggle {
       display: inline-flex;
@@ -128,6 +136,7 @@
     }
 
     .nav-dropdown-toggle:hover { opacity: 1; }
+
     .nav-dropdown-arrow { font-size: 11px; }
 
     .nav-dropdown {
@@ -152,28 +161,25 @@
       padding: 8px 14px;
       font-size: 14px;
       border-radius: 999px;
-      border-bottom: none !important;
+      border-bottom: none;
       opacity: 0.9;
     }
 
     .nav-dropdown a:hover { background: rgba(255, 255, 255, 0.08); opacity: 1; }
-
-    /* Link activo (App > Características) */
-    .nav-dropdown a.active {
-      background: rgba(255, 255, 255, 0.12);
-      opacity: 1;
-    }
+    .nav-dropdown a.active { background: rgba(255, 255, 255, 0.12); opacity: 1; }
 
     @media (hover: hover) {
       .nav-item-role:hover .nav-dropdown,
-      .nav-item-app:hover .nav-dropdown { display: block; }
+      .nav-item-app:hover .nav-dropdown {
+        display: block;
+      }
     }
 
     .header-actions {
       display: flex;
       align-items: center;
-      gap: 10px;
-      flex-wrap: nowrap;
+      gap: 12px;
+      margin-left: auto;
     }
 
     .lang-switcher { position: relative; }
@@ -190,6 +196,7 @@
       font-size: 13px;
       cursor: pointer;
       backdrop-filter: blur(10px);
+      user-select: none;
     }
 
     .lang-flag { font-size: 16px; line-height: 1; }
@@ -236,7 +243,7 @@
       color: #ffffff;
       font-size: 24px;
       cursor: pointer;
-      flex-shrink: 0;
+      line-height: 1;
     }
 
     .mobile-menu {
@@ -250,7 +257,7 @@
       z-index: 900;
       padding: 80px 24px 24px;
       transition: right 0.3s ease;
-      overflow-y: auto;
+      border-left: 1px solid rgba(255,255,255,0.12);
     }
 
     .mobile-menu.active { right: 0; }
@@ -265,8 +272,12 @@
     .mobile-menu-links a {
       padding-bottom: 10px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      opacity: 0.9;
     }
 
+    .mobile-menu-links a:hover { opacity: 1; }
+
+    /* Dropdown "Rol" en menú móvil */
     .mobile-menu-role, .mobile-menu-app { margin-top: 12px; }
 
     .mobile-role-title, .mobile-app-title {
@@ -280,6 +291,7 @@
       justify-content: space-between;
       align-items: center;
       cursor: pointer;
+      opacity: 0.95;
     }
 
     .mobile-role-arrow, .mobile-app-arrow {
@@ -299,82 +311,17 @@
       padding: 8px 0;
       font-size: 15px;
       border: none;
+      opacity: 0.9;
     }
 
     .mobile-role-submenu.open, .mobile-app-submenu.open { display: block; }
+
     .mobile-role-title.open .mobile-role-arrow,
-    .mobile-app-title.open .mobile-app-arrow { transform: rotate(180deg); }
-
-    @media (max-width: 768px) {
-      .header { width: 94%; padding: 10px 16px; }
-      .nav-links { display: none; }
-      .menu-toggle { display: block; font-size: 22px; }
-      .lang-current { padding: 6px 10px; font-size: 11px; }
+    .mobile-app-title.open .mobile-app-arrow {
+      transform: rotate(180deg);
     }
 
-    /* =========================
-       HERO (mismo look)
-       ========================= */
-    .page-hero {
-      position: relative;
-      min-height: 85vh;
-      padding: 130px 16px 70px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      background: #000;
-    }
-
-    .page-hero::before {
-      content: "";
-      position: absolute;
-      inset: -40%;
-      background:
-        radial-gradient(circle at 0 0, rgba(78, 205, 196, 0.16), transparent 55%),
-        radial-gradient(circle at 100% 100%, rgba(255, 255, 255, 0.08), transparent 60%);
-      opacity: 0.9;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .page-hero-inner {
-      position: relative;
-      z-index: 1;
-      max-width: 980px;
-      text-align: center;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      opacity: 0.92;
-      margin-bottom: 18px;
-      background: rgba(0, 0, 0, 0.65);
-    }
-
-    .page-hero h1 {
-      font-size: clamp(2.2rem, 4vw, 3.2rem);
-      letter-spacing: -0.04em;
-      line-height: 1.1;
-      margin-bottom: 14px;
-    }
-
-    .page-hero p {
-      font-size: clamp(1.05rem, 2vw, 1.35rem);
-      opacity: 0.88;
-      max-width: 760px;
-      margin: 0 auto 26px;
-      font-style: italic;
-    }
-
+    /* ===== BOTONES ===== */
     .btn {
       display: inline-flex;
       align-items: center;
@@ -385,10 +332,10 @@
       font-size: 15px;
       cursor: pointer;
       border: none;
-      transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease,
-        color 0.15s ease;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease, color 0.15s ease;
       text-decoration: none;
       white-space: nowrap;
+      user-select: none;
     }
 
     .btn-cta {
@@ -415,114 +362,89 @@
       transform: translateY(-1px);
     }
 
-    .hero-actions {
+    /* ===== HERO FEATURES ===== */
+    .features-hero {
+      min-height: 70vh;
+      padding: 150px 16px 60px;
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 12px;
-    }
-
-    /* =========================
-       INTERACTIVE: Tabs + cards
-       ========================= */
-    .tabs-section { background: #000; }
-    .tabs-shell {
-      background: rgba(0,0,0,0.55);
-      border: 1px solid rgba(255,255,255,0.14);
-      border-radius: 26px;
-      padding: 18px;
-      box-shadow: 0 24px 70px rgba(0,0,0,0.75);
-    }
-
-    .tabs-top {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: center;
-      padding: 10px 8px 14px;
-    }
-
-    .tab-btn {
-      border: 1px solid rgba(255,255,255,0.22);
-      background: rgba(255,255,255,0.04);
-      color: #fff;
-      padding: 10px 14px;
-      border-radius: 999px;
-      cursor: pointer;
-      font-size: 13px;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      opacity: 0.9;
-      transition: transform .15s ease, background .15s ease, border-color .15s ease;
-    }
-
-    .tab-btn:hover { transform: translateY(-1px); border-color: rgba(255,255,255,0.4); }
-    .tab-btn.active { background: #fff; color: #000; border-color: #fff; opacity: 1; }
-
-    .tab-panels { margin-top: 10px; }
-    .tab-panel { display: none; }
-    .tab-panel.active { display: block; }
-
-    .panel-grid {
-      display: grid;
-      grid-template-columns: 1.3fr 1fr;
-      gap: 18px;
-      align-items: stretch;
-    }
-
-    .panel-media {
-      border-radius: 22px;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(255,255,255,0.03);
+      align-items: center;
       position: relative;
-      min-height: 340px;
+      overflow: hidden;
+      background: radial-gradient(1200px 600px at 70% 30%, rgba(78, 205, 196, 0.12), transparent 60%),
+                  radial-gradient(900px 500px at 20% 70%, rgba(255, 255, 255, 0.06), transparent 55%),
+                  #000;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
     }
 
-    .panel-media img {
+    .features-hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.88;
-      transform: scale(1.01);
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+      gap: 40px;
+      align-items: center;
     }
 
-    .panel-media::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.65), rgba(0,0,0,0.05));
-      pointer-events: none;
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.14);
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.92;
+      margin-bottom: 14px;
+      width: fit-content;
     }
 
-    .panel-body {
-      background: var(--bg-card);
-      border: 1px solid var(--border-soft);
+    .features-hero h1 {
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+      margin-bottom: 14px;
+    }
+
+    .features-hero p {
+      color: var(--text-muted);
+      line-height: 1.75;
+      font-size: 15px;
+      max-width: 52ch;
+      margin-bottom: 18px;
+    }
+
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 10px; }
+
+    .hero-mini {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.12);
       border-radius: 22px;
       padding: 18px 18px 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      justify-content: space-between;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.65);
     }
 
-    .panel-body h3 {
-      font-size: 20px;
+    .hero-mini-title {
+      font-weight: 700;
       letter-spacing: -0.02em;
-      margin-bottom: 4px;
-    }
-
-    .panel-body p {
+      margin-bottom: 6px;
       font-size: 14px;
-      line-height: 1.7;
-      color: var(--text-muted);
     }
 
-    .panel-pills {
+    .hero-mini-sub {
+      color: var(--text-muted);
+      font-size: 13px;
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+
+    .mini-pills {
       display: flex;
-      flex-wrap: wrap;
       gap: 8px;
-      margin-top: 6px;
+      flex-wrap: wrap;
     }
 
     .pill {
@@ -531,219 +453,455 @@
       gap: 8px;
       padding: 8px 10px;
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.18);
-      background: rgba(0,0,0,0.35);
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(0,0,0,0.45);
       font-size: 12px;
-      color: rgba(255,255,255,0.85);
+      color: rgba(255,255,255,0.88);
     }
 
-    .panel-cta-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
-    .cta-small {
-      padding: 10px 16px;
-      font-size: 14px;
-      border-radius: 999px;
-      cursor: pointer;
-      border: 1px solid rgba(255,255,255,0.7);
-      background: transparent;
-      color: #fff;
-      font-weight: 600;
-      transition: transform .15s ease, background .15s ease, color .15s ease;
+    .pill-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 99px;
+      background: rgba(78, 205, 196, 0.9);
+      box-shadow: 0 0 0 6px rgba(78, 205, 196, 0.12);
     }
 
-    .cta-small:hover { background: #fff; color: #000; transform: translateY(-1px); }
-
-    .cta-primary {
-      border: none;
-      background: #fff;
-      color: #000;
-      box-shadow: 0 14px 30px rgba(0,0,0,0.6);
-    }
-    .cta-primary:hover { background: #f2f2f2; }
-
-    @media (max-width: 900px) {
-      .panel-grid { grid-template-columns: 1fr; }
-      .panel-media { min-height: 260px; }
+    /* ===== MÓDULO INTERACTIVO ===== */
+    .features-section {
+      background: #000;
     }
 
-    /* Feature cards extra */
-    .cards-section { background: var(--bg-soft); }
-    .cards-section h2 {
-      font-size: 32px;
-      letter-spacing: -0.03em;
-      margin-bottom: 10px;
-      text-align: center;
-    }
-    .cards-section > .section-inner > p {
-      font-size: 15px;
-      opacity: 0.8;
-      max-width: 760px;
-      margin: 0 auto 30px;
-      text-align: center;
-    }
-
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 24px;
-      margin-top: 20px;
-    }
-
-    .feature-card {
-      background: var(--bg-card);
-      border-radius: 20px;
-      padding: 26px 22px;
-      border: 1px solid var(--border-soft);
-      text-align: left;
-    }
-
-    .feature-card h3 { font-size: 18px; margin-bottom: 10px; }
-    .feature-card p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
-
-    @media (max-width: 768px) {
-      .features-grid { grid-template-columns: 1fr; }
-    }
-
-    /* FAQ */
-    .faq-section { background: #000; text-align: center; }
-    .faq-section h2 {
-      font-size: 32px;
-      margin-bottom: 10px;
-      letter-spacing: -0.03em;
-    }
-    .faq-section > .section-inner > p {
-      font-size: 15px;
-      opacity: 0.8;
-      max-width: 680px;
-      margin: 0 auto 30px;
-    }
-    .faq-container { max-width: 820px; margin: 0 auto; text-align: left; }
-    .faq-item {
-      background: var(--bg-card);
-      border-radius: 16px;
-      border: 1px solid var(--border-soft);
-      margin-bottom: 10px;
+    .features-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 28px;
+      padding: 22px;
+      box-shadow: 0 28px 80px rgba(0,0,0,0.65);
       overflow: hidden;
-      transition: border-color 0.2s ease;
     }
-    .faq-question {
-      padding: 16px 20px;
-      font-size: 15px;
-      font-weight: 600;
+
+    .features-top {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      cursor: pointer;
+      align-items: flex-end;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
     }
-    .faq-question:hover { background: rgba(255, 255, 255, 0.05); }
-    .faq-answer {
-      max-height: 0;
-      overflow: hidden;
-      padding: 0 20px;
+
+    .features-top h2 {
+      font-size: 26px;
+      letter-spacing: -0.03em;
+      margin-top: 4px;
+    }
+
+    .features-top p {
+      color: var(--text-muted);
       font-size: 14px;
       line-height: 1.7;
-      color: var(--text-muted);
-      transition: max-height 0.25s ease, padding 0.25s ease;
+      max-width: 68ch;
+      margin-top: 8px;
     }
-    .faq-item.active { border-color: rgba(255, 255, 255, 0.4); }
-    .faq-item.active .faq-answer { max-height: 340px; padding: 12px 20px 18px; }
-    .faq-arrow { transition: transform 0.25s ease; font-size: 14px; }
-    .faq-item.active .faq-arrow { transform: rotate(180deg); }
 
-    /* Modal Preview */
-    .preview-modal {
-      position: fixed;
-      inset: 0;
-      display: none;
+    .features-controls {
+      display: flex;
+      gap: 12px;
       align-items: center;
-      justify-content: center;
-      z-index: 2000;
-    }
-    .preview-modal.open { display: flex; }
-    .preview-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.75);
-      backdrop-filter: blur(6px);
-    }
-    .preview-box {
-      position: relative;
-      width: min(980px, 92%);
-      max-height: 82vh;
-      border-radius: 26px;
-      background: rgba(0,0,0,0.92);
-      border: 1px solid rgba(255,255,255,0.18);
-      box-shadow: 0 28px 80px rgba(0,0,0,0.9);
-      overflow: hidden;
-      display: grid;
-      grid-template-columns: 1.4fr 1fr;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin-top: 14px;
     }
 
-    .preview-media {
+    .segmented {
+      display: inline-flex;
+      gap: 6px;
+      padding: 6px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(0,0,0,0.35);
+      backdrop-filter: blur(10px);
+    }
+
+    .segmented button {
+      border: none;
+      cursor: pointer;
+      border-radius: 999px;
+      padding: 10px 12px;
+      background: transparent;
+      color: rgba(255,255,255,0.85);
+      font-size: 13px;
+      font-weight: 650;
+      letter-spacing: 0.02em;
+      transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    .segmented button:hover { transform: translateY(-1px); }
+
+    .segmented button.active {
+      background: rgba(255,255,255,0.92);
+      color: #000;
+    }
+
+    .feature-search {
       position: relative;
-      background: #08090c;
-      min-height: 360px;
+      flex: 1;
+      min-width: 220px;
+      max-width: 380px;
     }
-    .preview-media img {
+
+    .feature-search input {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.92;
+      background: rgba(0,0,0,0.45);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 999px;
+      padding: 12px 14px 12px 40px;
+      color: #fff;
+      font-size: 13px;
+      outline: none;
+      backdrop-filter: blur(10px);
     }
-    .preview-info {
-      padding: 18px 18px 16px;
+
+    .feature-search input::placeholder { color: rgba(255,255,255,0.55); }
+
+    .search-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: 0.7;
+      font-size: 14px;
+      pointer-events: none;
+    }
+
+    .features-layout {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .features-list {
       display: flex;
       flex-direction: column;
       gap: 10px;
+      padding: 6px;
+      border-radius: 22px;
+      background: rgba(0,0,0,0.35);
+      border: 1px solid rgba(255,255,255,0.12);
+      backdrop-filter: blur(12px);
     }
-    .preview-info h3 { font-size: 18px; letter-spacing: -0.02em; }
-    .preview-info p { font-size: 13px; line-height: 1.7; color: var(--text-muted); }
 
-    .preview-list {
-      list-style: none;
-      padding-left: 0;
-      margin: 0;
-      font-size: 13px;
+    .feature-item {
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
+      border: 1px solid transparent;
+      background: transparent;
+      color: rgba(255,255,255,0.92);
+      padding: 14px 14px;
+      border-radius: 18px;
+      transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .feature-item:hover {
+      background: rgba(255,255,255,0.06);
+      transform: translateY(-1px);
+    }
+
+    .feature-item.active {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.14);
+    }
+
+    .feature-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .feature-meta h3 {
+      font-size: 14px;
+      letter-spacing: -0.01em;
+      margin-bottom: 4px;
+    }
+
+    .feature-meta p {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .feature-preview {
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(0,0,0,0.35);
+      backdrop-filter: blur(12px);
+      padding: 14px;
+    }
+
+    .preview-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      gap: 14px;
+      align-items: center;
+    }
+
+    /* Phone mock */
+    .phone {
+      width: 100%;
+      max-width: 320px;
+      margin: 0 auto;
+      border-radius: 28px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(0,0,0,0.70);
+      box-shadow: 0 26px 70px rgba(0,0,0,0.75);
+      overflow: hidden;
+    }
+
+    .phone-topbar {
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: rgba(255,255,255,0.75);
+      font-size: 12px;
+      background: rgba(255,255,255,0.03);
+    }
+
+    .phone-notch {
+      width: 96px;
+      height: 18px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .phone-screen { padding: 12px; min-height: 360px; }
+
+    .ui-row { display: flex; gap: 10px; align-items: center; }
+    .ui-spacer { flex: 1; }
+
+    .ui-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.10);
+      color: rgba(255,255,255,0.86);
+      font-size: 12px;
+    }
+
+    .ui-dot {
+      width: 8px; height: 8px; border-radius: 99px;
+      background: rgba(78,205,196,0.92);
+      box-shadow: 0 0 0 6px rgba(78,205,196,0.12);
+    }
+
+    .ui-card {
+      margin-top: 10px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.10);
+      overflow: hidden;
+    }
+
+    .ui-card-header {
+      padding: 10px 12px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .ui-avatar {
+      width: 34px; height: 34px; border-radius: 12px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      flex-shrink: 0;
+    }
+
+    .ui-lines { flex: 1; }
+    .ui-line {
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.10);
+      margin-bottom: 6px;
+    }
+    .ui-line.thin { height: 8px; opacity: 0.8; width: 72%; margin-bottom: 0; }
+
+    .ui-media {
+      height: 160px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.10), rgba(78,205,196,0.08));
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .ui-actions {
+      padding: 10px 12px 12px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      color: rgba(255,255,255,0.75);
+      font-size: 12px;
+    }
+
+    .ui-chip {
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(0,0,0,0.35);
+      font-size: 12px;
       color: rgba(255,255,255,0.82);
     }
-    .preview-list li + li { margin-top: 6px; }
-    .preview-close {
-      position: absolute;
-      top: 10px;
-      right: 12px;
-      background: none;
-      border: none;
-      color: #fff;
-      font-size: 22px;
-      cursor: pointer;
-      opacity: 0.85;
-      z-index: 5;
-    }
-    .preview-close:hover { opacity: 1; }
 
-    @media (max-width: 900px) {
-      .preview-box { grid-template-columns: 1fr; }
-      .preview-media { min-height: 240px; }
+    .ui-chip.strong {
+      border-color: rgba(78,205,196,0.35);
+      background: rgba(78,205,196,0.10);
+      color: rgba(255,255,255,0.92);
     }
 
-    /* FOOTER */
+    .preview-copy h3 {
+      font-size: 20px;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    .preview-copy p {
+      color: var(--text-muted);
+      font-size: 14px;
+      line-height: 1.75;
+      margin-bottom: 12px;
+    }
+
+    .preview-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .preview-bullets li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      color: rgba(255,255,255,0.86);
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    .bullet-mark {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+      font-size: 12px;
+    }
+
+    .preview-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+    /* ===== FOOTER ===== */
     .footer {
       background: #000;
       border-top: 1px solid rgba(255, 255, 255, 0.12);
       text-align: center;
     }
-    .footer-inner { max-width: 1100px; margin: 0 auto; padding: 36px 16px 26px; }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 30px 16px 24px;
+      font-size: 12px;
+      opacity: 0.75;
+    }
+
     .footer-links {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 16px;
-      font-size: 13px;
-      margin-bottom: 16px;
+      gap: 14px;
+      margin-bottom: 8px;
     }
-    .footer-links a { opacity: 0.7; }
+
+    .footer-links a { opacity: 0.8; font-size: 12px; }
     .footer-links a:hover { opacity: 1; }
-    .copyright { font-size: 12px; opacity: 0.6; margin-bottom: 10px; }
-    .footer-tagline { font-style: italic; font-size: 15px; opacity: 0.85; margin-top: 4px; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .features-hero-inner { grid-template-columns: 1fr; gap: 16px; }
+      .hero-mini { max-width: 560px; }
+
+      .features-layout { grid-template-columns: 1fr; }
+      .preview-grid { grid-template-columns: 1fr; }
+      .phone { max-width: 380px; }
+    }
+
+    @media (max-width: 768px) {
+      .header { width: 94%; padding: 10px 16px; }
+      .nav-links { display: none; }
+
+      .header-actions {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: nowrap;
+      }
+
+      .lang-current { padding: 6px 10px; font-size: 11px; }
+      .lang-switcher { flex-shrink: 1; }
+
+      .menu-toggle {
+        display: block;
+        flex-shrink: 0;
+        font-size: 22px;
+        padding: 0;
+        line-height: 1;
+      }
+
+      .features-hero { padding: 130px 16px 50px; min-height: auto; }
+      .features-card { padding: 16px; border-radius: 22px; }
+
+      /* lista como carrusel de pills en móvil */
+      .features-list {
+        flex-direction: row;
+        overflow-x: auto;
+        gap: 8px;
+        padding: 10px;
+        border-radius: 18px;
+        scroll-snap-type: x mandatory;
+      }
+
+      .feature-item {
+        min-width: 250px;
+        scroll-snap-align: start;
+      }
+
+      .feature-search { max-width: 100%; }
+    }
   </style>
 </head>
 
@@ -811,15 +969,11 @@
     </div>
   </header>
 
-  <!-- Mobile menu -->
-  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <!-- MENÚ MÓVIL -->
+  <div class="mobile-menu" id="mobileMenu">
     <div class="mobile-menu-links">
       <a href="index.html#who-we-are" data-i18n="nav_about">Quiénes somos</a>
       <a href="index.html#how-steps" data-i18n="nav_how">Cómo funciona</a>
-      <a href="index.html#signup" data-i18n="nav_signup">Regístrate</a>
-      <a href="index.html#features" data-i18n="nav_features">Características</a>
-      <a href="index.html#faq" data-i18n="nav_faq">FAQ</a>
-      <a href="index.html#contact" data-i18n="nav_contact">Contacto</a>
 
       <!-- Rol en móvil -->
       <div class="mobile-menu-role">
@@ -834,6 +988,11 @@
         </div>
       </div>
 
+      <a href="index.html#signup" data-i18n="nav_signup">Regístrate</a>
+      <a href="index.html#features" data-i18n="nav_features">Características</a>
+      <a href="index.html#faq" data-i18n="nav_faq">FAQ</a>
+      <a href="index.html#contact" data-i18n="nav_contact">Contacto</a>
+
       <!-- App en móvil -->
       <div class="mobile-menu-app">
         <button type="button" class="mobile-app-title">
@@ -841,7 +1000,7 @@
           <span class="mobile-app-arrow">▾</span>
         </button>
         <div class="mobile-app-submenu">
-          <a href="caracteristicas-app.html" data-i18n="nav_app_features">Características</a>
+          <a href="caracteristicas-app.html" class="active" data-i18n="nav_app_features">Características</a>
           <a href="nuestro-deporte.html" data-i18n="nav_app_sport">Nuestro deporte</a>
           <a href="subscripciones.html" data-i18n="nav_app_subscriptions">Suscripciones</a>
         </div>
@@ -850,280 +1009,96 @@
   </div>
 
   <!-- HERO -->
-  <section class="page-hero" id="top">
-    <div class="page-hero-inner">
-      <div class="hero-badge" data-i18n="hero_badge">App · Athlead</div>
-      <h1 data-i18n="hero_title">Características de Athlead</h1>
-      <p data-i18n="hero_subtitle">
-        Una app estilo “Instagram + scouting”: jugadas, perfil, rankings y mensajes. Simple, rápida y pensada para descubrir talento real.
-      </p>
-      <div class="hero-actions">
-        <a class="btn btn-cta" href="#explore" data-i18n="hero_btn_cta">Explorar funciones</a>
-        <a class="btn btn-secondary" href="index.html#signup" data-i18n="hero_btn_secondary">Unirme a la lista</a>
+  <section class="features-hero">
+    <div class="features-hero-inner">
+      <div>
+        <div class="hero-badge">
+          <span class="pill-dot"></span>
+          <span data-i18n="features_badge">La app · Rápida · Clara · Hecha para fútbol</span>
+        </div>
+
+        <h1 data-i18n="features_h1">Características que convierten jugadas en oportunidades.</h1>
+        <p data-i18n="features_p">
+          Athlead combina lo mejor de una red social con herramientas de scouting. Sube highlights cortos, construye tu perfil,
+          y deja que clubes/entrenadores te encuentren con filtros reales.
+        </p>
+
+        <div class="hero-actions">
+          <a href="index.html#signup" class="btn btn-cta" data-i18n="features_cta">Quiero probar Athlead</a>
+          <a href="#interactive" class="btn btn-secondary" data-i18n="features_cta2">Ver características</a>
+        </div>
       </div>
-    </div>
-  </section>
 
-  <!-- INTERACTIVE TABS -->
-  <section class="tabs-section" id="explore">
-    <div class="section-inner">
-      <p class="section-kicker" data-i18n="tabs_kicker">Explora por secciones</p>
-      <h2 style="font-size:32px; letter-spacing:-0.03em; text-align:center; margin-bottom:10px;" data-i18n="tabs_title">
-        Así funciona Athlead por dentro
-      </h2>
-      <p style="text-align:center; opacity:0.8; max-width:820px; margin: 0 auto 26px;" data-i18n="tabs_p">
-        Cambia de pestaña para entender cada parte. Puedes abrir un preview para verlo “como si fuera la app”.
-      </p>
-
-      <div class="tabs-shell">
-        <div class="tabs-top" role="tablist" aria-label="Secciones de Athlead">
-          <button class="tab-btn active" data-tab="feed" role="tab" aria-selected="true">Feed</button>
-          <button class="tab-btn" data-tab="profile" role="tab" aria-selected="false">Perfil</button>
-          <button class="tab-btn" data-tab="search" role="tab" aria-selected="false">Buscador</button>
-          <button class="tab-btn" data-tab="rankings" role="tab" aria-selected="false">Rankings</button>
-          <button class="tab-btn" data-tab="messages" role="tab" aria-selected="false">Mensajes</button>
+      <div class="hero-mini">
+        <div class="hero-mini-title" data-i18n="mini_title">Qué vas a ver aquí</div>
+        <div class="hero-mini-sub" data-i18n="mini_sub">
+          Un módulo interactivo (tipo “demo”) para entender la app según tu rol: jugador, club/scout o entrenador.
         </div>
-
-        <div class="tab-panels">
-          <!-- FEED -->
-          <div class="tab-panel active" id="panel-feed" data-panel="feed" role="tabpanel">
-            <div class="panel-grid">
-              <div class="panel-media">
-                <img src="images/app-feed.jpg" alt="Pantalla de feed Athlead" />
-              </div>
-              <div class="panel-body">
-                <div>
-                  <h3 data-i18n="feed_title">Inicio (Feed de jugadas)</h3>
-                  <p data-i18n="feed_p">
-                    Un feed limpio, rápido y centrado en vídeo. El objetivo es que el talento se vea en 3 segundos: jugada, contexto y perfil.
-                  </p>
-                  <div class="panel-pills">
-                    <span class="pill">🎥 Vídeos cortos</span>
-                    <span class="pill">🏷️ Etiquetas (posición/jugada)</span>
-                    <span class="pill">❤️ Likes & guardados</span>
-                    <span class="pill">👀 Quién te vio</span>
-                  </div>
-                </div>
-                <div class="panel-cta-row">
-                  <button class="cta-small cta-primary" type="button"
-                    data-preview="feed"
-                    data-img="images/app-feed.jpg"
-                    data-title="Feed"
-                    data-desc="Scroll rápido, vídeo primero, contexto mínimo. Perfecto para scouting."
-                  >
-                    Ver preview
-                  </button>
-                  <a class="cta-small" href="index.html#how-steps">Cómo se sube un vídeo</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- PERFIL -->
-          <div class="tab-panel" id="panel-profile" data-panel="profile" role="tabpanel">
-            <div class="panel-grid">
-              <div class="panel-media">
-                <img src="images/app-profile.jpg" alt="Pantalla de perfil Athlead" />
-              </div>
-              <div class="panel-body">
-                <div>
-                  <h3 data-i18n="profile_title">Perfil del jugador</h3>
-                  <p data-i18n="profile_p">
-                    Tu CV futbolístico en formato visual: datos clave arriba, jugadas abajo. Sin humo: lo que eres, lo que haces y cómo juegas.
-                  </p>
-                  <div class="panel-pills">
-                    <span class="pill">🧾 Edad · Posición · Origen</span>
-                    <span class="pill">📊 Stats básicos</span>
-                    <span class="pill">📌 Jugadas fijadas</span>
-                    <span class="pill">🔗 Redes vinculadas</span>
-                  </div>
-                </div>
-                <div class="panel-cta-row">
-                  <button class="cta-small cta-primary" type="button"
-                    data-preview="profile"
-                    data-img="images/app-profile.jpg"
-                    data-title="Perfil"
-                    data-desc="Información rápida para decidir: quién eres + tus mejores clips."
-                  >
-                    Ver preview
-                  </button>
-                  <a class="cta-small" href="rol-jugador.html">Ver rol Jugador</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- SEARCH -->
-          <div class="tab-panel" id="panel-search" data-panel="search" role="tabpanel">
-            <div class="panel-grid">
-              <div class="panel-media">
-                <img src="images/app-search.jpg" alt="Buscador Athlead" />
-              </div>
-              <div class="panel-body">
-                <div>
-                  <h3 data-i18n="search_title">Buscador (Filtros inteligentes)</h3>
-                  <p data-i18n="search_p">
-                    Diseñado para entrenadores y clubes: filtra por edad, posición, localización y rasgos físicos/técnicos. Guarda búsquedas y compara perfiles.
-                  </p>
-                  <div class="panel-pills">
-                    <span class="pill">🔎 Búsqueda por filtros</span>
-                    <span class="pill">📍 Localización</span>
-                    <span class="pill">📁 Guardar búsquedas</span>
-                    <span class="pill">⚡ Resultados rápidos</span>
-                  </div>
-                </div>
-                <div class="panel-cta-row">
-                  <button class="cta-small cta-primary" type="button"
-                    data-preview="search"
-                    data-img="images/app-search.jpg"
-                    data-title="Buscador"
-                    data-desc="Filtros pensados para scouting: rápido, directo y con contexto."
-                  >
-                    Ver preview
-                  </button>
-                  <a class="cta-small" href="rol-entrenador.html">Ver rol Entrenador</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- RANKINGS -->
-          <div class="tab-panel" id="panel-rankings" data-panel="rankings" role="tabpanel">
-            <div class="panel-grid">
-              <div class="panel-media">
-                <img src="images/app-rankings.jpg" alt="Rankings Athlead" />
-              </div>
-              <div class="panel-body">
-                <div>
-                  <h3 data-i18n="rankings_title">Rankings</h3>
-                  <p data-i18n="rankings_p">
-                    Rankings por posición, zona y categorías. No es “fama”: es estructura. Ayuda a ordenar el talento y descubrir perfiles que normalmente no salen.
-                  </p>
-                  <div class="panel-pills">
-                    <span class="pill">🏆 Rankings por posición</span>
-                    <span class="pill">🗺️ Por zona / edad</span>
-                    <span class="pill">📈 Tendencias</span>
-                    <span class="pill">⭐ Descubrimientos</span>
-                  </div>
-                </div>
-                <div class="panel-cta-row">
-                  <button class="cta-small cta-primary" type="button"
-                    data-preview="rankings"
-                    data-img="images/app-rankings.jpg"
-                    data-title="Rankings"
-                    data-desc="Rankings que ayudan a descubrir talento oculto, no solo a viralizar."
-                  >
-                    Ver preview
-                  </button>
-                  <a class="cta-small" href="rol-club.html">Ver rol Club</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- MESSAGES -->
-          <div class="tab-panel" id="panel-messages" data-panel="messages" role="tabpanel">
-            <div class="panel-grid">
-              <div class="panel-media">
-                <img src="images/app-messages.jpg" alt="Mensajes Athlead" />
-              </div>
-              <div class="panel-body">
-                <div>
-                  <h3 data-i18n="messages_title">Mensajes (contacto directo)</h3>
-                  <p data-i18n="messages_p">
-                    Si un entrenador o club te quiere, te escribe. Sin intermediarios, sin comisiones raras. Conversación directa y controlada por el jugador.
-                  </p>
-                  <div class="panel-pills">
-                    <span class="pill">💬 Chat directo</span>
-                    <span class="pill">✅ Perfiles verificados</span>
-                    <span class="pill">🛡️ Control de privacidad</span>
-                    <span class="pill">📎 Compartir clips</span>
-                  </div>
-                </div>
-                <div class="panel-cta-row">
-                  <button class="cta-small cta-primary" type="button"
-                    data-preview="messages"
-                    data-img="images/app-messages.jpg"
-                    data-title="Mensajes"
-                    data-desc="Mensajería directa para cerrar oportunidades de forma simple."
-                  >
-                    Ver preview
-                  </button>
-                  <a class="cta-small" href="subscripciones.html">Ver suscripciones</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div><!-- /tab-panels -->
-      </div><!-- /tabs-shell -->
-    </div>
-  </section>
-
-  <!-- EXTRA CARDS -->
-  <section class="cards-section">
-    <div class="section-inner">
-      <p class="section-kicker" style="text-align:center;" data-i18n="extras_kicker">Detalles que importan</p>
-      <h2 data-i18n="extras_title">Hecho para que un scout decida rápido</h2>
-      <p data-i18n="extras_p">
-        Menos ruido. Más señal. Athlead prioriza claridad, orden y contexto: lo que un entrenador necesita para decir “quiero hablar con este jugador”.
-      </p>
-
-      <div class="features-grid">
-        <div class="feature-card">
-          <h3 data-i18n="extra1_title">Subida de vídeo sin fricción</h3>
-          <p data-i18n="extra1_p">Subes, etiquetas y listo. Sin ediciones eternas, sin perder tiempo.</p>
-        </div>
-        <div class="feature-card">
-          <h3 data-i18n="extra2_title">Perfiles diferenciados</h3>
-          <p data-i18n="extra2_p">Jugador vs entrenador/club: cada uno ve lo que necesita, con herramientas distintas.</p>
-        </div>
-        <div class="feature-card">
-          <h3 data-i18n="extra3_title">Privacidad y control</h3>
-          <p data-i18n="extra3_p">Tú decides qué se muestra y cómo te contactan. Transparente y sin spam.</p>
+        <div class="mini-pills">
+          <div class="pill"><span class="pill-dot"></span><span data-i18n="mini_pill1">Highlights cortos</span></div>
+          <div class="pill"><span class="pill-dot"></span><span data-i18n="mini_pill2">Búsqueda & filtros</span></div>
+          <div class="pill"><span class="pill-dot"></span><span data-i18n="mini_pill3">Mensajes directos</span></div>
+          <div class="pill"><span class="pill-dot"></span><span data-i18n="mini_pill4">Rankings</span></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FAQ -->
-  <section class="faq-section" id="faq">
+  <!-- INTERACTIVO -->
+  <section class="features-section" id="interactive">
     <div class="section-inner">
-      <p class="section-kicker" data-i18n="faq_kicker">FAQ</p>
-      <h2 data-i18n="faq_title">Preguntas sobre la app</h2>
-      <p data-i18n="faq_p">
-        Respuestas cortas y claras sobre cómo funcionan las secciones principales.
-      </p>
-
-      <div class="faq-container">
-        <div class="faq-item">
-          <div class="faq-question">
-            <span data-i18n="faq_q1">¿Puedo usar Athlead si soy jugador amateur?</span>
-            <span class="faq-arrow">▼</span>
+      <div class="features-card">
+        <div class="features-top">
+          <div>
+            <div class="section-kicker" data-i18n="module_kicker">Características interactivas</div>
+            <h2 data-i18n="module_title">Explora Athlead como si fuera una demo.</h2>
+            <p data-i18n="module_sub">
+              Elige tu rol, busca una característica y haz click para ver un ejemplo visual + explicación clara.
+              Todo está pensado para móvil.
+            </p>
           </div>
-          <div class="faq-answer" data-i18n="faq_a1">
-            Sí. Está pensada precisamente para jugadores amateur que quieren visibilidad real con un perfil ordenado y fácil de evaluar.
+
+          <div class="features-controls">
+            <div class="segmented" role="tablist" aria-label="Audiencia">
+              <button class="seg-btn active" type="button" data-audience="player" data-i18n="seg_player">Jugador</button>
+              <button class="seg-btn" type="button" data-audience="club" data-i18n="seg_club">Club / Scout</button>
+              <button class="seg-btn" type="button" data-audience="coach" data-i18n="seg_coach">Entrenador</button>
+            </div>
+
+            <div class="feature-search">
+              <span class="search-icon">⌕</span>
+              <input id="featureSearch" type="text" placeholder="Buscar característica…" />
+            </div>
           </div>
         </div>
 
-        <div class="faq-item">
-          <div class="faq-question">
-            <span data-i18n="faq_q2">¿Cómo se ordenan las jugadas en mi perfil?</span>
-            <span class="faq-arrow">▼</span>
-          </div>
-          <div class="faq-answer" data-i18n="faq_a2">
-            Por etiquetas (posición, tipo de jugada) y por destacados. Así un scout puede entenderte en segundos.
+        <div class="features-layout">
+          <div class="features-list" id="featuresList" aria-label="Lista de características"></div>
+
+          <div class="feature-preview">
+            <div class="preview-grid">
+              <div class="phone" aria-label="Previsualización">
+                <div class="phone-topbar">
+                  <span id="phoneTime">9:41</span>
+                  <div class="phone-notch"></div>
+                  <span>◉ ◉ ◉</span>
+                </div>
+                <div class="phone-screen" id="phoneScreen"></div>
+              </div>
+
+              <div class="preview-copy">
+                <h3 id="previewTitle">—</h3>
+                <p id="previewDesc">—</p>
+                <ul class="preview-bullets" id="previewBullets"></ul>
+                <div class="preview-actions">
+                  <a href="index.html#signup" class="btn btn-cta" data-i18n="preview_cta">Unirme a la lista de espera</a>
+                  <a href="index.html#faq" class="btn btn-secondary" data-i18n="preview_cta2">Ver FAQ</a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="faq-item">
-          <div class="faq-question">
-            <span data-i18n="faq_q3">¿Un club me puede escribir directamente?</span>
-            <span class="faq-arrow">▼</span>
-          </div>
-          <div class="faq-answer" data-i18n="faq_a3">
-            Sí. La mensajería está pensada para contacto directo, sin intermediarios. Tú mantienes el control.
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -1135,50 +1110,16 @@
         <a href="index.html#who-we-are" data-i18n="nav_about">Quiénes somos</a>
         <a href="index.html#how-steps" data-i18n="nav_how">Cómo funciona</a>
         <a href="index.html#signup" data-i18n="nav_signup">Regístrate</a>
-        <a href="index.html#features" data-i18n="nav_features">Características</a>
         <a href="index.html#faq" data-i18n="nav_faq">FAQ</a>
         <a href="index.html#contact" data-i18n="nav_contact">Contacto</a>
       </div>
-
-      <div class="copyright" data-i18n="footer_copyright">
-        © 2025 Athlead. Todos los derechos reservados.
-      </div>
-
-      <div class="footer-tagline" data-i18n="footer_tagline">Deja que el talento hable por ti.</div>
+      <div data-i18n="footer_copy">© 2025 Athlead. Todos los derechos reservados.</div>
     </div>
   </footer>
 
-  <!-- PREVIEW MODAL -->
-  <div id="previewModal" class="preview-modal" aria-hidden="true">
-    <div class="preview-overlay"></div>
-    <div class="preview-box" role="dialog" aria-modal="true" aria-labelledby="previewTitle">
-      <button class="preview-close" type="button" aria-label="Cerrar">×</button>
-
-      <div class="preview-media">
-        <img id="previewImg" src="" alt="Preview Athlead" />
-      </div>
-
-      <div class="preview-info">
-        <h3 id="previewTitle">Preview</h3>
-        <p id="previewDesc"></p>
-
-        <ul class="preview-list" id="previewList">
-          <li>• Interfaz limpia y rápida</li>
-          <li>• Pensado para evaluar en segundos</li>
-          <li>• Control total del jugador</li>
-        </ul>
-
-        <div style="margin-top:auto; display:flex; gap:10px; flex-wrap:wrap;">
-          <a class="cta-small cta-primary" href="index.html#signup" style="text-align:center;">Unirme a la lista</a>
-          <button class="cta-small" type="button" id="previewCloseBtn">Cerrar</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <script>
-    // ===== i18n =====
-    let ATHLEAD_LANG = 'es';
+    // ====== I18N BASE (NAV + TEXTOS DE ESTA PÁGINA) ======
+    let ATHLEAD_LANG = localStorage.getItem('athlead_lang') || 'es';
 
     const i18n = {
       es: {
@@ -1197,53 +1138,33 @@
         nav_app_sport: 'Nuestro deporte',
         nav_app_subscriptions: 'Suscripciones',
 
-        hero_badge: 'App · Athlead',
-        hero_title: 'Características de Athlead',
-        hero_subtitle: 'Una app estilo “Instagram + scouting”: jugadas, perfil, rankings y mensajes. Simple, rápida y pensada para descubrir talento real.',
-        hero_btn_cta: 'Explorar funciones',
-        hero_btn_secondary: 'Unirme a la lista',
+        features_badge: 'La app · Rápida · Clara · Hecha para fútbol',
+        features_h1: 'Características que convierten jugadas en oportunidades.',
+        features_p:
+          'Athlead combina lo mejor de una red social con herramientas de scouting. Sube highlights cortos, construye tu perfil, y deja que clubes/entrenadores te encuentren con filtros reales.',
+        features_cta: 'Quiero probar Athlead',
+        features_cta2: 'Ver características',
 
-        tabs_kicker: 'Explora por secciones',
-        tabs_title: 'Así funciona Athlead por dentro',
-        tabs_p: 'Cambia de pestaña para entender cada parte. Puedes abrir un preview para verlo “como si fuera la app”.',
+        mini_title: 'Qué vas a ver aquí',
+        mini_sub: 'Un módulo interactivo (tipo “demo”) para entender la app según tu rol: jugador, club/scout o entrenador.',
+        mini_pill1: 'Highlights cortos',
+        mini_pill2: 'Búsqueda & filtros',
+        mini_pill3: 'Mensajes directos',
+        mini_pill4: 'Rankings',
 
-        feed_title: 'Inicio (Feed de jugadas)',
-        feed_p: 'Un feed limpio, rápido y centrado en vídeo. El objetivo es que el talento se vea en 3 segundos: jugada, contexto y perfil.',
+        module_kicker: 'Características interactivas',
+        module_title: 'Explora Athlead como si fuera una demo.',
+        module_sub:
+          'Elige tu rol, busca una característica y haz click para ver un ejemplo visual + explicación clara. Todo está pensado para móvil.',
 
-        profile_title: 'Perfil del jugador',
-        profile_p: 'Tu CV futbolístico en formato visual: datos clave arriba, jugadas abajo. Sin humo: lo que eres, lo que haces y cómo juegas.',
+        seg_player: 'Jugador',
+        seg_club: 'Club / Scout',
+        seg_coach: 'Entrenador',
 
-        search_title: 'Buscador (Filtros inteligentes)',
-        search_p: 'Diseñado para entrenadores y clubes: filtra por edad, posición, localización y rasgos físicos/técnicos. Guarda búsquedas y compara perfiles.',
+        preview_cta: 'Unirme a la lista de espera',
+        preview_cta2: 'Ver FAQ',
 
-        rankings_title: 'Rankings',
-        rankings_p: 'Rankings por posición, zona y categorías. No es “fama”: es estructura. Ayuda a ordenar el talento y descubrir perfiles que normalmente no salen.',
-
-        messages_title: 'Mensajes (contacto directo)',
-        messages_p: 'Si un entrenador o club te quiere, te escribe. Sin intermediarios, sin comisiones raras. Conversación directa y controlada por el jugador.',
-
-        extras_kicker: 'Detalles que importan',
-        extras_title: 'Hecho para que un scout decida rápido',
-        extras_p: 'Menos ruido. Más señal. Athlead prioriza claridad, orden y contexto: lo que un entrenador necesita para decir “quiero hablar con este jugador”.',
-        extra1_title: 'Subida de vídeo sin fricción',
-        extra1_p: 'Subes, etiquetas y listo. Sin ediciones eternas, sin perder tiempo.',
-        extra2_title: 'Perfiles diferenciados',
-        extra2_p: 'Jugador vs entrenador/club: cada uno ve lo que necesita, con herramientas distintas.',
-        extra3_title: 'Privacidad y control',
-        extra3_p: 'Tú decides qué se muestra y cómo te contactan. Transparente y sin spam.',
-
-        faq_kicker: 'FAQ',
-        faq_title: 'Preguntas sobre la app',
-        faq_p: 'Respuestas cortas y claras sobre cómo funcionan las secciones principales.',
-        faq_q1: '¿Puedo usar Athlead si soy jugador amateur?',
-        faq_a1: 'Sí. Está pensada precisamente para jugadores amateur que quieren visibilidad real con un perfil ordenado y fácil de evaluar.',
-        faq_q2: '¿Cómo se ordenan las jugadas en mi perfil?',
-        faq_a2: 'Por etiquetas (posición, tipo de jugada) y por destacados. Así un scout puede entenderte en segundos.',
-        faq_q3: '¿Un club me puede escribir directamente?',
-        faq_a3: 'Sí. La mensajería está pensada para contacto directo, sin intermediarios. Tú mantienes el control.',
-
-        footer_copyright: '© 2025 Athlead. Todos los derechos reservados.',
-        footer_tagline: 'Deja que el talento hable por ti.'
+        footer_copy: '© 2025 Athlead. Todos los derechos reservados.'
       },
 
       en: {
@@ -1262,166 +1183,582 @@
         nav_app_sport: 'Our sport',
         nav_app_subscriptions: 'Subscriptions',
 
-        hero_badge: 'App · Athlead',
-        hero_title: 'Athlead App Features',
-        hero_subtitle: 'An “Instagram + scouting” app: plays, profile, rankings and messages. Simple, fast, built to discover real talent.',
-        hero_btn_cta: 'Explore features',
-        hero_btn_secondary: 'Join the waitlist',
+        features_badge: 'The app · Fast · Clear · Built for football',
+        features_h1: 'Features that turn highlights into opportunities.',
+        features_p:
+          'Athlead blends a social network with scouting tools. Upload short highlights, build your profile, and let clubs/coaches find you with real filters.',
+        features_cta: 'I want Athlead',
+        features_cta2: 'Explore features',
 
-        tabs_kicker: 'Explore by sections',
-        tabs_title: 'How Athlead works inside',
-        tabs_p: 'Switch tabs to understand each area. Open a preview to see it “like the app”.',
+        mini_title: 'What you’ll see here',
+        mini_sub: 'An interactive module (demo-style) to understand the app by role: player, club/scout or coach.',
+        mini_pill1: 'Short highlights',
+        mini_pill2: 'Search & filters',
+        mini_pill3: 'Direct messages',
+        mini_pill4: 'Rankings',
 
-        feed_title: 'Home (Plays feed)',
-        feed_p: 'A clean, fast, video-first feed. Talent should be understood in 3 seconds: play, context, profile.',
+        module_kicker: 'Interactive features',
+        module_title: 'Explore Athlead like a demo.',
+        module_sub:
+          'Pick your role, search for a feature and click to see a visual example + clear explanation. Mobile-first.',
 
-        profile_title: 'Player profile',
-        profile_p: 'Your football CV in a visual format: key info on top, clips below. No noise: who you are and how you play.',
+        seg_player: 'Player',
+        seg_club: 'Club / Scout',
+        seg_coach: 'Coach',
 
-        search_title: 'Search (Smart filters)',
-        search_p: 'Built for coaches and clubs: filter by age, position, location and key traits. Save searches and compare profiles.',
+        preview_cta: 'Join the waitlist',
+        preview_cta2: 'See FAQ',
 
-        rankings_title: 'Rankings',
-        rankings_p: 'Rankings by position, area and categories. Not “fame”: structure to discover hidden profiles.',
-
-        messages_title: 'Messages (direct contact)',
-        messages_p: 'If a coach or club wants you, they message you. No middlemen. Direct, controlled conversations.',
-
-        extras_kicker: 'Details that matter',
-        extras_title: 'Built so a scout decides fast',
-        extras_p: 'Less noise. More signal. Athlead prioritizes clarity, order and context for quick decisions.',
-        extra1_title: 'Frictionless uploads',
-        extra1_p: 'Upload, tag, done. No endless editing.',
-        extra2_title: 'Different roles, different views',
-        extra2_p: 'Player vs coach/club: each sees what they need.',
-        extra3_title: 'Privacy and control',
-        extra3_p: 'You decide what’s shown and how you’re contacted.',
-
-        faq_kicker: 'FAQ',
-        faq_title: 'App questions',
-        faq_p: 'Short and clear answers about the main sections.',
-        faq_q1: 'Can I use Athlead as an amateur player?',
-        faq_a1: 'Yes. It’s designed for amateur players who want real visibility with a structured profile.',
-        faq_q2: 'How are plays organized on my profile?',
-        faq_a2: 'By tags (position, play type) and featured clips so a scout can understand you quickly.',
-        faq_q3: 'Can a club message me directly?',
-        faq_a3: 'Yes. Messaging is direct, no intermediaries. You keep control.',
-
-        footer_copyright: '© 2025 Athlead. All rights reserved.',
-        footer_tagline: 'Let your talent speak for you.'
+        footer_copy: '© 2025 Athlead. All rights reserved.'
       }
     };
 
     function applyTranslations(lang) {
       const dict = i18n[lang] || i18n.es;
+
       document.querySelectorAll('[data-i18n]').forEach((el) => {
         const key = el.getAttribute('data-i18n');
-        if (dict[key]) el.innerHTML = dict[key];
+        if (dict[key]) el.textContent = dict[key];
+      });
+
+      // placeholder del buscador
+      const searchInput = document.getElementById('featureSearch');
+      if (searchInput) {
+        searchInput.placeholder = (lang === 'en') ? 'Search features…' : 'Buscar característica…';
+      }
+    }
+
+    // ====== FEATURES DATA (TEXTOS DINÁMICOS ES/EN) ======
+    const FEATURES = {
+      player: [
+        {
+          id: 'highlights',
+          icon: '🎬',
+          title: { es: 'Highlights cortos (sube en segundos)', en: 'Short highlights (upload in seconds)' },
+          teaser: { es: 'Tu mejor jugada, sin vídeos eternos.', en: 'Your best plays, no long videos.' },
+          desc: {
+            es: 'Sube clips cortos y claros para que te evalúen rápido. Menos “partidos enteros” y más jugadas decisivas.',
+            en: 'Upload short, clear clips so you can be evaluated quickly. Less “full matches”, more decisive plays.'
+          },
+          bullets: {
+            es: ['Recorte simple: 10–30s por jugada.', 'Etiqueta por tipo: ataque, defensa, transición.', 'Ordena tu perfil por “mejores primero”.'],
+            en: ['Simple trimming: 10–30s per play.', 'Tag by type: attack, defense, transition.', 'Sort your profile by “best first”.']
+          }
+        },
+        {
+          id: 'profile',
+          icon: '👤',
+          title: { es: 'Perfil completo (contexto real)', en: 'Full profile (real context)' },
+          teaser: { es: 'Edad, posición, zona, pie, rol.', en: 'Age, position, area, foot, role.' },
+          desc: {
+            es: 'Un perfil que dice lo importante: quién eres como jugador. Sin humo, con datos simples para que te entiendan.',
+            en: 'A profile that says what matters: who you are as a player. Clear, simple data.'
+          },
+          bullets: {
+            es: ['Datos clave: edad, altura, posición, ubicación.', 'Tu “rol”: extremo, 9, pivote, central…', 'Quién vio tu perfil (señales de interés).'],
+            en: ['Key data: age, height, position, location.', 'Your “role”: winger, 9, pivot, CB…', 'See who viewed your profile (interest signals).']
+          }
+        },
+        {
+          id: 'discovery',
+          icon: '🔥',
+          title: { es: 'Rankings & descubrimiento', en: 'Rankings & discovery' },
+          teaser: { es: 'Que te encuentren sin contactos.', en: 'Be found without contacts.' },
+          desc: {
+            es: 'El algoritmo de descubrimiento prioriza buen contenido y consistencia. Si juegas bien, se nota.',
+            en: 'Discovery prioritizes good content and consistency. If you play well, it shows.'
+          },
+          bullets: {
+            es: ['Rankings por posición/edad/zona.', 'Tendencias: jugadores “en subida”.', 'Más visibilidad si publicas de forma constante.'],
+            en: ['Rankings by position/age/area.', 'Trends: “rising” players.', 'More visibility with consistent posting.']
+          }
+        },
+        {
+          id: 'messages',
+          icon: '💬',
+          title: { es: 'Mensajes (contacto directo)', en: 'Messages (direct contact)' },
+          teaser: { es: 'Habla con quien te quiera ver.', en: 'Talk to people who want to see you.' },
+          desc: {
+            es: 'Mensajería simple para coordinar pruebas, pedir info o pasar tu perfil. Sin mil apps distintas.',
+            en: 'Simple messaging to arrange trials, ask for info, or share your profile.'
+          },
+          bullets: {
+            es: ['Solicitud de contacto clara.', 'Comparte tu perfil con 1 click.', 'Historial ordenado por conversación.'],
+            en: ['Clear contact requests.', 'Share your profile in 1 click.', 'Organized conversations history.']
+          }
+        },
+        {
+          id: 'search',
+          icon: '🎯',
+          title: { es: 'Búsqueda con filtros (para ser encontrado)', en: 'Search filters (to be found)' },
+          teaser: { es: 'Encaja con lo que buscan.', en: 'Match what they’re looking for.' },
+          desc: {
+            es: 'Filtros reales para clubes: si tu perfil está bien, apareces donde tienes que aparecer.',
+            en: 'Real club filters: if your profile is complete, you show up where you should.'
+          },
+          bullets: {
+            es: ['Edad, posición, zona, pie dominante, etc.', 'Búsquedas guardadas por scouts.', 'Tu perfil “responde” a lo que piden.'],
+            en: ['Age, position, area, dominant foot, etc.', 'Saved searches for scouts.', 'Your profile “matches” their needs.']
+          }
+        }
+      ],
+      club: [
+        {
+          id: 'search',
+          icon: '🔎',
+          title: { es: 'Scouting con filtros avanzados', en: 'Scouting with advanced filters' },
+          teaser: { es: 'Encuentra perfiles que encajan.', en: 'Find profiles that fit.' },
+          desc: {
+            es: 'Filtra por edad, posición, zona y más. Menos intuición, más claridad.',
+            en: 'Filter by age, position, area and more. Less guesswork, more clarity.'
+          },
+          bullets: {
+            es: ['Búsquedas guardadas por temporada.', 'Atajos por posiciones clave.', 'Comparación rápida entre perfiles.'],
+            en: ['Saved searches per season.', 'Shortcuts for key positions.', 'Quick comparisons across profiles.']
+          }
+        },
+        {
+          id: 'highlights',
+          icon: '🎥',
+          title: { es: 'Highlights comparables (10–30s)', en: 'Comparable highlights (10–30s)' },
+          teaser: { es: 'Evalúa sin ver partidos enteros.', en: 'Evaluate without full matches.' },
+          desc: {
+            es: 'Clips cortos por tipo de jugada para evaluar rápido y de forma consistente.',
+            en: 'Short clips by play type to evaluate faster and more consistently.'
+          },
+          bullets: {
+            es: ['Ataque/defensa/transición en 1 vista.', 'Calidad antes que cantidad.', 'Reduce el tiempo de screening.'],
+            en: ['Attack/defense/transition in one view.', 'Quality over quantity.', 'Reduce screening time.']
+          }
+        },
+        {
+          id: 'lists',
+          icon: '📌',
+          title: { es: 'Listas & favoritos', en: 'Lists & favorites' },
+          teaser: { es: 'Organiza por posición, torneo o fecha.', en: 'Organize by position, tournament or date.' },
+          desc: {
+            es: 'Crea listas (“U19”, “pruebas”, “enero”) y guarda perfiles para revisitarlos cuando toque.',
+            en: 'Create lists (“U19”, “trials”, “January”) and save profiles to revisit later.'
+          },
+          bullets: {
+            es: ['Notas internas por jugador.', 'Comparte listas con tu staff.', 'Seguimiento ordenado.'],
+            en: ['Internal notes per player.', 'Share lists with staff.', 'Organized tracking.']
+          }
+        },
+        {
+          id: 'messages',
+          icon: '✉️',
+          title: { es: 'Contacto directo (mensajes)', en: 'Direct contact (messages)' },
+          teaser: { es: 'Del “me interesa” a coordinar una prueba.', en: 'From “interested” to scheduling a trial.' },
+          desc: {
+            es: 'Habla con el jugador para pedir info, coordinar una prueba o pedir más clips.',
+            en: 'Message players to ask for info, schedule trials, or request more clips.'
+          },
+          bullets: {
+            es: ['Solicitud de contacto clara.', 'Perfil compartible en 1 click.', 'Historial por conversación.'],
+            en: ['Clear contact requests.', 'Shareable profile in 1 click.', 'Conversation history.']
+          }
+        },
+        {
+          id: 'insights',
+          icon: '📈',
+          title: { es: 'Señales & actividad', en: 'Signals & activity' },
+          teaser: { es: 'Detecta consistencia y evolución.', en: 'Spot consistency and progress.' },
+          desc: {
+            es: 'Observa regularidad de publicaciones y progreso del jugador en el tiempo.',
+            en: 'See posting consistency and player progress over time.'
+          },
+          bullets: {
+            es: ['Actividad reciente visible.', 'Evolución de highlights.', 'Mejor lectura del perfil.'],
+            en: ['Recent activity visibility.', 'Highlight progression.', 'Better profile read.']
+          }
+        }
+      ],
+      coach: [
+        {
+          id: 'lists',
+          icon: '🗂️',
+          title: { es: 'Biblioteca de jugadores (listas)', en: 'Player library (lists)' },
+          teaser: { es: 'Tu libreta digital, ordenada.', en: 'Your digital notebook, organized.' },
+          desc: {
+            es: 'Guarda jugadores por categorías (“pretemporada”, “U19”, “rival X”) y vuelve cuando lo necesites.',
+            en: 'Save players by categories (“preseason”, “U19”, “opponent X”) and revisit anytime.'
+          },
+          bullets: {
+            es: ['Listas con notas rápidas.', 'Comparación entre perfiles.', 'Todo en móvil.'],
+            en: ['Lists with quick notes.', 'Profile comparisons.', 'All on mobile.']
+          }
+        },
+        {
+          id: 'highlights',
+          icon: '🧠',
+          title: { es: 'Clips por momentos clave', en: 'Clips by key moments' },
+          teaser: { es: 'Evalúa lo que te importa.', en: 'Evaluate what matters to you.' },
+          desc: {
+            es: 'Mira transiciones, decisiones, duelos… sin perderte en vídeos largos.',
+            en: 'Watch transitions, decisions, duels… without long footage.'
+          },
+          bullets: {
+            es: ['Ataque/defensa/transición filtrables.', 'Más velocidad de análisis.', 'Mejor criterio con contexto.'],
+            en: ['Filter by attack/defense/transition.', 'Faster analysis.', 'Better judgement with context.']
+          }
+        },
+        {
+          id: 'search',
+          icon: '🧭',
+          title: { es: 'Descubrimiento con filtros', en: 'Discovery with filters' },
+          teaser: { es: 'Encuentra perfiles para tu idea de juego.', en: 'Find profiles for your game model.' },
+          desc: {
+            es: 'Busca jugadores que encajen con tu estilo: posición, edad, zona, perfil técnico.',
+            en: 'Search for players that fit your style: position, age, area, technical profile.'
+          },
+          bullets: {
+            es: ['Búsquedas guardadas.', 'Fichas claras.', 'Menos ruido, más señal.'],
+            en: ['Saved searches.', 'Clear player cards.', 'Less noise, more signal.']
+          }
+        },
+        {
+          id: 'messages',
+          icon: '🤝',
+          title: { es: 'Mensajes para coordinar', en: 'Messaging to coordinate' },
+          teaser: { es: 'Pruebas, preguntas, seguimiento.', en: 'Trials, questions, follow-up.' },
+          desc: {
+            es: 'Contacta para pedir info o invitar a una sesión. Directo, simple y trazable.',
+            en: 'Contact to ask for info or invite to a session. Direct, simple, traceable.'
+          },
+          bullets: {
+            es: ['Conversaciones ordenadas.', 'Compartir perfiles.', 'Decisiones más rápidas.'],
+            en: ['Organized conversations.', 'Share profiles.', 'Faster decisions.']
+          }
+        },
+        {
+          id: 'profile',
+          icon: '🧾',
+          title: { es: 'Perfiles con contexto', en: 'Profiles with context' },
+          teaser: { es: 'Entiende al jugador en 10 segundos.', en: 'Understand a player in 10 seconds.' },
+          desc: {
+            es: 'Edad, rol, pie dominante, club actual y highlights: lo esencial para decidir si seguir mirando.',
+            en: 'Age, role, dominant foot, current club, highlights: essentials to decide if you keep watching.'
+          },
+          bullets: {
+            es: ['Datos + vídeo en la misma vista.', 'Señales de consistencia.', 'Menos improvisación.'],
+            en: ['Data + video in one view.', 'Consistency signals.', 'Less improvisation.']
+          }
+        }
+      ]
+    };
+
+    // ====== STATE ======
+    const state = {
+      lang: ATHLEAD_LANG,
+      audience: 'player',
+      featureId: 'highlights',
+      query: ''
+    };
+
+    // ====== RENDER HELPERS ======
+    function getFeatureById(audience, id) {
+      const list = FEATURES[audience] || [];
+      return list.find(f => f.id === id) || list[0];
+    }
+
+    function setActiveAudience(audience) {
+      state.audience = audience;
+      const first = (FEATURES[audience] && FEATURES[audience][0]) ? FEATURES[audience][0].id : 'highlights';
+      state.featureId = first;
+      renderAll();
+    }
+
+    function buildPhoneScreen(featureId) {
+      // pantallas “mock” (sin imágenes externas)
+      const lang = state.lang;
+      const label = (t) => (lang === 'en' ? t.en : t.es);
+
+      const chips = {
+        highlights: ['Highlights', '10–30s', 'Tags'],
+        profile: ['Profile', 'Role', 'Stats'],
+        discovery: ['Ranking', 'Trending', 'Nearby'],
+        messages: ['Inbox', 'Requests', 'Share'],
+        search: ['Filters', 'Age', 'Position'],
+        lists: ['Lists', 'Notes', 'Share'],
+        insights: ['Activity', 'Signals', 'Progress']
+      };
+
+      const chipSet = chips[featureId] || chips.highlights;
+
+      return `
+        <div class="ui-row">
+          <div class="ui-pill"><span class="ui-dot"></span><span>Athlead</span></div>
+          <div class="ui-spacer"></div>
+          <div class="ui-pill">${chipSet[0]}</div>
+        </div>
+
+        <div class="ui-card">
+          <div class="ui-card-header">
+            <div class="ui-avatar"></div>
+            <div class="ui-lines">
+              <div class="ui-line" style="width:${featureId === 'search' ? '60%' : '78%'}"></div>
+              <div class="ui-line thin"></div>
+            </div>
+            <div class="ui-chip ${featureId === 'discovery' ? 'strong' : ''}">${chipSet[1]}</div>
+          </div>
+          <div class="ui-media"></div>
+          <div class="ui-actions">
+            <span class="ui-chip">${chipSet[2]}</span>
+            <span class="ui-chip">${(state.audience === 'club' ? (state.lang==='en'?'Save':'Guardar') : (state.lang==='en'?'Like':'Like'))}</span>
+            <span class="ui-chip">${(state.lang==='en'?'Share':'Compartir')}</span>
+            <span class="ui-spacer"></span>
+            <span style="opacity:0.65">${(state.lang==='en'?'View':'Ver')}</span>
+          </div>
+        </div>
+
+        <div class="ui-card" style="margin-top:12px;">
+          <div class="ui-card-header">
+            <div class="ui-pill" style="padding:8px 10px;">
+              ${(state.lang==='en') ? 'Quick view' : 'Vista rápida'}
+            </div>
+            <div class="ui-spacer"></div>
+            <div class="ui-chip strong">${(state.lang==='en') ? 'Direct' : 'Directo'}</div>
+          </div>
+          <div style="padding:10px 12px 12px;">
+            <div class="ui-line" style="width:92%; height:9px; margin-bottom:8px;"></div>
+            <div class="ui-line" style="width:70%; height:9px; margin-bottom:8px; opacity:0.85;"></div>
+            <div class="ui-line" style="width:78%; height:9px; opacity:0.78;"></div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderFeaturesList() {
+      const container = document.getElementById('featuresList');
+      if (!container) return;
+
+      const list = FEATURES[state.audience] || [];
+      const q = (state.query || '').trim().toLowerCase();
+
+      const filtered = q
+        ? list.filter(f => {
+            const title = (state.lang === 'en' ? f.title.en : f.title.es).toLowerCase();
+            const teaser = (state.lang === 'en' ? f.teaser.en : f.teaser.es).toLowerCase();
+            return title.includes(q) || teaser.includes(q) || f.id.includes(q);
+          })
+        : list;
+
+      container.innerHTML = '';
+
+      if (!filtered.length) {
+        const empty = document.createElement('div');
+        empty.style.padding = '12px 12px 16px';
+        empty.style.color = 'rgba(255,255,255,0.75)';
+        empty.style.fontSize = '13px';
+        empty.textContent = (state.lang === 'en') ? 'No results. Try another search.' : 'Sin resultados. Prueba otra búsqueda.';
+        container.appendChild(empty);
+        return;
+      }
+
+      filtered.forEach((f) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'feature-item' + (f.id === state.featureId ? ' active' : '');
+        btn.setAttribute('data-id', f.id);
+
+        const title = (state.lang === 'en') ? f.title.en : f.title.es;
+        const teaser = (state.lang === 'en') ? f.teaser.en : f.teaser.es;
+
+        btn.innerHTML = `
+          <span class="feature-icon">${f.icon}</span>
+          <span class="feature-meta">
+            <h3>${title}</h3>
+            <p>${teaser}</p>
+          </span>
+        `;
+
+        btn.addEventListener('click', () => {
+          state.featureId = f.id;
+          renderAll();
+        });
+
+        container.appendChild(btn);
       });
     }
 
-    // Logo -> home
-    document.getElementById('logo').addEventListener('click', () => {
+    function renderPreview() {
+      const f = getFeatureById(state.audience, state.featureId);
+      if (!f) return;
+
+      const title = (state.lang === 'en') ? f.title.en : f.title.es;
+      const desc = (state.lang === 'en') ? f.desc.en : f.desc.es;
+      const bullets = (state.lang === 'en') ? f.bullets.en : f.bullets.es;
+
+      document.getElementById('previewTitle').textContent = title;
+      document.getElementById('previewDesc').textContent = desc;
+
+      const ul = document.getElementById('previewBullets');
+      ul.innerHTML = '';
+      bullets.forEach((b) => {
+        const li = document.createElement('li');
+        li.innerHTML = `<span class="bullet-mark">✓</span><span>${b}</span>`;
+        ul.appendChild(li);
+      });
+
+      const phoneScreen = document.getElementById('phoneScreen');
+      phoneScreen.innerHTML = buildPhoneScreen(f.id);
+    }
+
+    function renderAll() {
+      applyTranslations(state.lang);
+      renderFeaturesList();
+      renderPreview();
+
+      // activar visualmente el item seleccionado (por si hubo búsqueda)
+      document.querySelectorAll('.feature-item').forEach((el) => {
+        el.classList.toggle('active', el.getAttribute('data-id') === state.featureId);
+      });
+    }
+
+    // ====== HEADER LOGIC (MISMO COMPORTAMIENTO) ======
+    // Logo → home
+    document.getElementById('logo').addEventListener('click', function () {
       window.location.href = 'index.html';
     });
 
-    // =========================
-    // Menú móvil (mejorado)
-    // =========================
+    // Menú móvil
     const menuToggle = document.getElementById('menuToggle');
     const mobileMenu = document.getElementById('mobileMenu');
-
-    function openMobileMenu() {
-      mobileMenu.classList.add('active');
-      mobileMenu.setAttribute('aria-hidden', 'false');
-      menuToggle.textContent = '✕';
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeMobileMenu() {
-      mobileMenu.classList.remove('active');
-      mobileMenu.setAttribute('aria-hidden', 'true');
-      menuToggle.textContent = '☰';
-      document.body.style.overflow = '';
-    }
 
     menuToggle.addEventListener('click', function (e) {
       e.stopPropagation();
       const isOpen = mobileMenu.classList.contains('active');
-      if (isOpen) closeMobileMenu();
-      else openMobileMenu();
+      if (isOpen) {
+        mobileMenu.classList.remove('active');
+        menuToggle.textContent = '☰';
+      } else {
+        mobileMenu.classList.add('active');
+        menuToggle.textContent = '✕';
+      }
     });
 
-    // Cierra al clicar fuera
     document.addEventListener('click', (e) => {
       if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
-        closeMobileMenu();
+        mobileMenu.classList.remove('active');
+        menuToggle.textContent = '☰';
       }
     });
 
-    // Cierra al clicar un link normal
     document.querySelectorAll('.mobile-menu-links a').forEach((link) => {
-      link.addEventListener('click', () => closeMobileMenu());
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+        menuToggle.textContent = '☰';
+      });
     });
 
-    // Dropdowns móvil (Rol/App) - NO cerrar menú
-    (function () {
-      const rT = document.querySelector('.mobile-role-title');
-      const rS = document.querySelector('.mobile-role-submenu');
-      if (rT && rS) {
-        rT.addEventListener('click', (e) => {
-          e.stopPropagation();
-          rS.classList.toggle('open');
-          rT.classList.toggle('open');
-        });
-      }
-
-      const aT = document.querySelector('.mobile-app-title');
-      const aS = document.querySelector('.mobile-app-submenu');
-      if (aT && aS) {
-        aT.addEventListener('click', (e) => {
-          e.stopPropagation();
-          aS.classList.toggle('open');
-          aT.classList.toggle('open');
-        });
-      }
-    })();
-
-    // =========================
-    // Dropdowns escritorio (click + outside)
-    // =========================
+    // Dropdown "Rol" escritorio (hover + click)
     (function () {
       const roleItem = document.querySelector('.nav-item-role');
-      const appItem  = document.querySelector('.nav-item-app');
-      if (!roleItem || !appItem) return;
+      if (!roleItem) return;
 
-      const roleToggle = roleItem.querySelector('.nav-dropdown-toggle');
-      const roleMenu   = roleItem.querySelector('.nav-dropdown');
+      const toggle = roleItem.querySelector('.nav-dropdown-toggle');
+      const menu = roleItem.querySelector('.nav-dropdown');
+      let hideTimeout;
 
-      const appToggle  = appItem.querySelector('.nav-dropdown-toggle');
-      const appMenu    = appItem.querySelector('.nav-dropdown');
+      function openMenu() {
+        clearTimeout(hideTimeout);
+        menu.classList.add('open');
+      }
 
-      roleToggle.addEventListener('click', (e) => {
-        e.preventDefault(); e.stopPropagation();
-        roleMenu.classList.toggle('open');
-        appMenu.classList.remove('open');
-      });
+      function closeMenu() {
+        hideTimeout = setTimeout(() => menu.classList.remove('open'), 120);
+      }
 
-      appToggle.addEventListener('click', (e) => {
-        e.preventDefault(); e.stopPropagation();
-        appMenu.classList.toggle('open');
-        roleMenu.classList.remove('open');
+      if (window.matchMedia('(hover: hover)').matches) {
+        roleItem.addEventListener('mouseenter', openMenu);
+        roleItem.addEventListener('mouseleave', closeMenu);
+      }
+
+      toggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        menu.classList.toggle('open');
       });
 
       document.addEventListener('click', (e) => {
-        if (!roleItem.contains(e.target)) roleMenu.classList.remove('open');
-        if (!appItem.contains(e.target)) appMenu.classList.remove('open');
+        if (!roleItem.contains(e.target)) menu.classList.remove('open');
       });
     })();
 
-    // =========================
+    // Dropdown "App" escritorio (hover + click)
+    (function () {
+      const appItem = document.querySelector('.nav-item-app');
+      if (!appItem) return;
+
+      const toggle = appItem.querySelector('.nav-dropdown-toggle');
+      const menu = appItem.querySelector('.nav-dropdown');
+      let hideTimeout;
+
+      function openMenu() {
+        clearTimeout(hideTimeout);
+        menu.classList.add('open');
+      }
+
+      function closeMenu() {
+        hideTimeout = setTimeout(() => menu.classList.remove('open'), 120);
+      }
+
+      if (window.matchMedia('(hover: hover)').matches) {
+        appItem.addEventListener('mouseenter', openMenu);
+        appItem.addEventListener('mouseleave', closeMenu);
+      }
+
+      toggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        menu.classList.toggle('open');
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!appItem.contains(e.target)) menu.classList.remove('open');
+      });
+    })();
+
+    // Dropdown "Rol" móvil
+    (function () {
+      const toggle = document.querySelector('.mobile-role-title');
+      const submenu = document.querySelector('.mobile-role-submenu');
+      if (!toggle || !submenu) return;
+
+      toggle.addEventListener('click', () => {
+        submenu.classList.toggle('open');
+        toggle.classList.toggle('open');
+      });
+    })();
+
+    // Dropdown "App" móvil
+    (function () {
+      const toggle = document.querySelector('.mobile-app-title');
+      const submenu = document.querySelector('.mobile-app-submenu');
+      if (!toggle || !submenu) return;
+
+      toggle.addEventListener('click', () => {
+        submenu.classList.toggle('open');
+        toggle.classList.toggle('open');
+      });
+    })();
+
+    // Ocultar header en scroll
+    let lastScroll = 0;
+    const header = document.querySelector('.header');
+
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+      if (currentScroll > lastScroll && currentScroll > 80) {
+        header.classList.add('hide-header');
+      } else if (currentScroll < lastScroll) {
+        header.classList.remove('hide-header');
+      }
+      lastScroll = currentScroll;
+    });
+
     // Selector de idioma
-    // =========================
     (function () {
       const langSwitcher = document.getElementById('langSwitcher');
       if (!langSwitcher) return;
@@ -1431,10 +1768,27 @@
       const currentFlag = currentBtn.querySelector('.lang-flag');
       const currentLabel = currentBtn.querySelector('.lang-label');
 
-      const savedLang = localStorage.getItem('athlead_lang') || 'es';
-      setCurrentLang(savedLang);
+      function setLang(lang) {
+        state.lang = (lang === 'en') ? 'en' : 'es';
+        localStorage.setItem('athlead_lang', state.lang);
 
-      currentBtn.addEventListener('click', function (e) {
+        if (state.lang === 'en') {
+          currentFlag.textContent = '🇬🇧';
+          currentLabel.textContent = 'EN';
+          document.documentElement.lang = 'en';
+        } else {
+          currentFlag.textContent = '🇪🇸';
+          currentLabel.textContent = 'ES';
+          document.documentElement.lang = 'es';
+        }
+
+        renderAll();
+      }
+
+      // init
+      setLang(state.lang);
+
+      currentBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         menu.classList.toggle('open');
         const expanded = currentBtn.getAttribute('aria-expanded') === 'true';
@@ -1442,11 +1796,9 @@
       });
 
       menu.querySelectorAll('button[data-lang]').forEach((btn) => {
-        btn.addEventListener('click', (e) => {
-          e.stopPropagation();
+        btn.addEventListener('click', () => {
           const lang = btn.getAttribute('data-lang') || 'es';
-          localStorage.setItem('athlead_lang', lang);
-          setCurrentLang(lang);
+          setLang(lang);
           menu.classList.remove('open');
           currentBtn.setAttribute('aria-expanded', 'false');
         });
@@ -1458,116 +1810,54 @@
           currentBtn.setAttribute('aria-expanded', 'false');
         }
       });
-
-      function setCurrentLang(lang) {
-        ATHLEAD_LANG = (lang === 'en') ? 'en' : 'es';
-
-        if (ATHLEAD_LANG === 'en') {
-          currentFlag.textContent = '🇬🇧';
-          currentLabel.textContent = 'EN';
-          document.documentElement.lang = 'en';
-        } else {
-          currentFlag.textContent = '🇪🇸';
-          currentLabel.textContent = 'ES';
-          document.documentElement.lang = 'es';
-        }
-
-        applyTranslations(ATHLEAD_LANG);
-      }
     })();
 
-    // Ocultar header en scroll
-    let lastScroll = 0;
-    const header = document.querySelector('.header');
-    window.addEventListener('scroll', () => {
-      const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-      if (currentScroll > lastScroll && currentScroll > 80) header.classList.add('hide-header');
-      else if (currentScroll < lastScroll) header.classList.remove('hide-header');
-      lastScroll = currentScroll;
+    // ====== INTERACTIVO: audiencias + búsqueda ======
+    document.querySelectorAll('.seg-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        setActiveAudience(btn.getAttribute('data-audience'));
+      });
     });
 
-    // Tabs
-    (function () {
-      const tabButtons = document.querySelectorAll('.tab-btn');
-      const panels = document.querySelectorAll('.tab-panel');
+    const searchInput = document.getElementById('featureSearch');
+    searchInput.addEventListener('input', (e) => {
+      state.query = e.target.value || '';
+      // mantener featureId válido dentro del filtro
+      const list = FEATURES[state.audience] || [];
+      const q = state.query.trim().toLowerCase();
+      const filtered = q ? list.filter(f => {
+        const title = (state.lang === 'en' ? f.title.en : f.title.es).toLowerCase();
+        const teaser = (state.lang === 'en' ? f.teaser.en : f.teaser.es).toLowerCase();
+        return title.includes(q) || teaser.includes(q) || f.id.includes(q);
+      }) : list;
 
-      function activate(tab) {
-        tabButtons.forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
-        panels.forEach(p => p.classList.toggle('active', p.dataset.panel === tab));
+      if (filtered.length && !filtered.find(f => f.id === state.featureId)) {
+        state.featureId = filtered[0].id;
       }
-
-      tabButtons.forEach(btn => {
-        btn.addEventListener('click', () => activate(btn.dataset.tab));
-      });
-    })();
-
-    // FAQ accordion
-    document.querySelectorAll('.faq-item').forEach((item) => {
-      const q = item.querySelector('.faq-question');
-      if (!q) return;
-      q.addEventListener('click', () => item.classList.toggle('active'));
+      renderAll();
     });
 
-    // Preview modal
+    // reloj simple en la “phone topbar”
     (function () {
-      const modal = document.getElementById('previewModal');
-      const overlay = modal.querySelector('.preview-overlay');
-      const closeX = modal.querySelector('.preview-close');
-      const closeBtn = document.getElementById('previewCloseBtn');
-      const img = document.getElementById('previewImg');
-      const title = document.getElementById('previewTitle');
-      const desc = document.getElementById('previewDesc');
+      const el = document.getElementById('phoneTime');
+      if (!el) return;
 
-      function openModal(payload) {
-        img.src = payload.img;
-        title.textContent = payload.title;
-        desc.textContent = payload.desc;
-        modal.classList.add('open');
-        modal.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
+      function pad(n) { return String(n).padStart(2, '0'); }
+      function tick() {
+        const d = new Date();
+        el.textContent = `${pad(d.getHours())}:${pad(d.getMinutes())}`;
       }
-
-      function closeModal() {
-        modal.classList.remove('open');
-        modal.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
-      }
-
-      document.querySelectorAll('[data-preview]').forEach((btn) => {
-        btn.addEventListener('click', () => {
-          openModal({
-            img: btn.getAttribute('data-img'),
-            title: btn.getAttribute('data-title') || 'Preview',
-            desc: btn.getAttribute('data-desc') || ''
-          });
-        });
-      });
-
-      overlay.addEventListener('click', closeModal);
-      closeX.addEventListener('click', closeModal);
-      closeBtn.addEventListener('click', closeModal);
-
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeModal();
-      });
+      tick();
+      setInterval(tick, 10000);
     })();
+
+    // Primer render
+    renderAll();
   </script>
-      <!--Start of Tawk.to Script-->
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/6941b1af8ecd79197d49c528/1jck9s660';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-</script>
-<!--End of Tawk.to Script-->
 </body>
 </html>
-
 
 
 
