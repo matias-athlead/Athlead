@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
 
-  <!-- Favicons -->
+  <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png" />
   <link rel="shortcut icon" href="images/favicon.ico" />
@@ -47,9 +47,6 @@
       --text-muted: rgba(255, 255, 255, 0.7);
       --accent: #ffffff;
       --accent-alt: #4ecdc4;
-
-      /* Header tokens (igual al principal / nuestro-deporte) */
-      --glass: rgba(0, 0, 0, 0.78);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -65,7 +62,11 @@
     img, video { max-width: 100%; display: block; }
     a { color: inherit; text-decoration: none; }
 
-    .section-inner { max-width: 1100px; margin: 0 auto; padding: 80px 16px; }
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 80px 16px;
+    }
 
     .section-kicker {
       text-transform: uppercase;
@@ -75,182 +76,249 @@
       margin-bottom: 6px;
     }
 
-    /* =========================================================
-      HEADER (IGUAL que el principal / nuestro-deporte)
-    ========================================================= */
-    .header{
-      position:fixed; top:16px; left:50%; transform:translateX(-50%);
-      width:min(1100px,92%);
-      padding:18px 26px;
-      border-radius:999px;
-      background:var(--glass);
-      backdrop-filter:blur(18px);
-      border:1px solid rgba(255,255,255,.15);
-      box-shadow:0 22px 45px rgba(0,0,0,.65);
-      z-index:1000;
-      display:flex; align-items:center; justify-content:space-between; gap:18px;
-      transition:transform .55s ease;
-    }
-    .header.hide{ transform:translate(-50%,-180%); }
-
-    .logo{
-      font-size:24px;
-      font-weight:700;
-      letter-spacing:.16em;
-      cursor:pointer;
-      white-space:nowrap;
+    /* HEADER */
+    .header {
+      position: fixed;
+      top: 16px;
+      left: 50%;
+      transform: translate(-50%, 0);
+      width: min(1100px, 92%);
+      padding: 20px 28px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.78);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 22px 45px rgba(0, 0, 0, 0.65);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      transition: transform 0.6s ease-in-out;
     }
 
-    .nav-links{
-      display:flex;
-      gap:18px;
-      align-items:center;
-      font-size:16px;
-    }
-    .nav-links a{
-      opacity:.82;
-      padding:4px 0;
-      border-bottom:1px solid transparent;
-      transition:opacity .2s, border-bottom-color .2s;
-    }
-    .nav-links a:hover{ opacity:1; border-bottom-color:rgba(255,255,255,.8); }
-    .nav-links a.active{ opacity:1; border-bottom-color:rgba(255,255,255,.8); }
+    .header.hide-header { transform: translate(-50%, -180%); }
 
-    .nav-item{ position:relative; }
-    .nav-toggle{
-      display:inline-flex; align-items:center; gap:6px;
-      opacity:.82; padding:4px 0;
-      border:none; background:transparent; color:#fff;
-      font-size:16px; cursor:pointer;
-    }
-    .nav-toggle:hover{ opacity:1; }
-    .nav-arrow{ font-size:11px; }
-
-    .nav-dropdown{
-      position:absolute; top:130%; left:50%; transform:translateX(-50%);
-      min-width:210px;
-      background:rgba(0,0,0,.96);
-      border-radius:18px;
-      border:1px solid rgba(255,255,255,.18);
-      box-shadow:0 18px 40px rgba(0,0,0,.8);
-      padding:10px 6px;
-      display:none;
-      z-index:1200;
-    }
-    .nav-dropdown.open{ display:block; }
-    .nav-dropdown a{
-      display:block;
-      padding:8px 14px;
-      font-size:14px;
-      border-radius:999px;
-      border-bottom:none;
-      opacity:1;
-    }
-    .nav-dropdown a:hover{ background:rgba(255,255,255,.08); }
-    .nav-dropdown a.active{ background:rgba(255,255,255,.12); }
-
-    @media (hover:hover){
-      .nav-item:hover .nav-dropdown{ display:block; }
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      cursor: pointer;
+      white-space: nowrap;
     }
 
-    .header-actions{ display:flex; align-items:center; gap:10px; }
-
-    /* Language switcher */
-    .lang-switcher{ position:relative; }
-    .lang-current{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:8px 14px; border-radius:999px;
-      border:1px solid rgba(255,255,255,.35);
-      background:rgba(0,0,0,.45);
-      color:#fff; font-size:13px; cursor:pointer;
-      backdrop-filter:blur(10px);
-      white-space:nowrap;
-    }
-    .lang-flag{ font-size:16px; line-height:1; }
-    .lang-label{ letter-spacing:.08em; text-transform:uppercase; font-size:11px; }
-
-    .lang-menu{
-      position:absolute; right:0; top:110%;
-      min-width:160px;
-      background:#000;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.2);
-      box-shadow:0 18px 40px rgba(0,0,0,.8);
-      padding:6px;
-      display:none;
-      z-index:1200;
-    }
-    .lang-menu.open{ display:block; }
-    .lang-menu button{
-      width:100%;
-      display:flex; align-items:center; gap:8px;
-      padding:8px 10px;
-      background:transparent;
-      border:none;
-      color:#fff;
-      font-size:13px;
-      cursor:pointer;
-      border-radius:999px;
-      text-align:left;
-    }
-    .lang-menu button:hover{ background:rgba(255,255,255,.08); }
-
-    /* Mobile menu */
-    .menu-toggle{
-      display:none;
-      background:none;
-      border:none;
-      color:#fff;
-      font-size:24px;
-      cursor:pointer;
-      line-height:1;
-    }
-    .mobile-menu{
-      position:fixed; top:0; right:-100%;
-      width:270px; height:100vh;
-      background:rgba(0,0,0,.96);
-      backdrop-filter:blur(14px);
-      z-index:900;
-      padding:80px 24px 24px;
-      transition:right .3s ease;
-      overflow-y:auto;
-    }
-    .mobile-menu.active{ right:0; }
-    .mobile-links{ display:flex; flex-direction:column; gap:16px; font-size:16px; }
-    .mobile-links a{ padding-bottom:10px; border-bottom:1px solid rgba(255,255,255,.12); }
-
-    .mobile-group{ margin-top:10px; }
-    .mobile-title{
-      width:100%;
-      padding:10px 0;
-      background:none;
-      border:none;
-      color:#fff;
-      font-size:16px;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      cursor:pointer;
-    }
-    .mobile-arrow{ font-size:13px; transition:transform .2s ease; }
-    .mobile-sub{
-      display:none;
-      padding-left:8px;
-      border-left:1px solid rgba(255,255,255,.12);
-    }
-    .mobile-sub.open{ display:block; }
-    .mobile-title.open .mobile-arrow{ transform:rotate(180deg); }
-
-    @media (max-width:768px){
-      .header{ width:94%; padding:10px 16px; }
-      .nav-links{ display:none; }
-      .menu-toggle{ display:block; }
-      .lang-current{ padding:6px 10px; font-size:11px; }
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      font-size: 16px;
     }
 
-    /* =========================================================
-      BOTONES GENERALES
-    ========================================================= */
+    .nav-links a {
+      opacity: 0.8;
+      padding: 4px 0;
+      border-bottom: 1px solid transparent;
+      transition: opacity 0.2s, border-bottom-color 0.2s;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+      border-bottom-color: rgba(255, 255, 255, 0.8);
+    }
+
+    .nav-links .active {
+      opacity: 1;
+      border-bottom-color: rgba(255, 255, 255, 0.8);
+    }
+
+    /* Dropdowns (Rol / App) – escritorio */
+    .nav-item {
+      position: relative;
+    }
+
+    .nav-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      opacity: 0.8;
+      padding: 4px 0;
+      border: none;
+      background: transparent;
+      color: #ffffff;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .nav-toggle:hover { opacity: 1; }
+    .nav-arrow { font-size: 11px; }
+
+    .nav-dropdown {
+      position: absolute;
+      top: 130%;
+      left: 50%;
+      transform: translateX(-50%);
+      min-width: 210px;
+      background: rgba(0, 0, 0, 0.96);
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.8);
+      padding: 10px 6px;
+      display: none;
+      z-index: 1200;
+    }
+
+    .nav-dropdown.open { display: block; }
+
+    .nav-dropdown a {
+      display: block;
+      padding: 8px 14px;
+      font-size: 14px;
+      border-radius: 999px;
+      border-bottom: none;
+      opacity: 0.9;
+    }
+
+    .nav-dropdown a:hover { background: rgba(255, 255, 255, 0.08); }
+    .nav-dropdown a.active { background: rgba(255, 255, 255, 0.12); opacity: 1; }
+
+    /* IMPORTANTE: quitamos hover automático para que no pelee con JS */
+    /* @media (hover: hover) { .nav-item:hover .nav-dropdown { display:block; } } */
+
+    .header-actions {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Selector de idioma */
+    .lang-switcher { position: relative; }
+
+    .lang-current {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      background: rgba(0, 0, 0, 0.45);
+      color: #ffffff;
+      font-size: 13px;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+      white-space: nowrap;
+    }
+
+    .lang-flag { font-size: 16px; line-height: 1; }
+    .lang-label { letter-spacing: 0.08em; text-transform: uppercase; font-size: 11px; }
+    .lang-arrow { font-size: 10px; opacity: 0.8; }
+
+    .lang-menu {
+      position: absolute;
+      right: 0;
+      top: 110%;
+      min-width: 160px;
+      background: #000000;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.8);
+      padding: 6px;
+      display: none;
+      z-index: 1200;
+    }
+
+    .lang-menu.open { display: block; }
+
+    .lang-menu button {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      background: transparent;
+      border: none;
+      color: #ffffff;
+      font-size: 13px;
+      cursor: pointer;
+      border-radius: 999px;
+      text-align: left;
+    }
+
+    .lang-menu button:hover { background: rgba(255, 255, 255, 0.08); }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: #ffffff;
+      font-size: 24px;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 260px;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.96);
+      backdrop-filter: blur(14px);
+      z-index: 900;
+      padding: 80px 24px 24px;
+      transition: right 0.3s ease;
+      overflow-y: auto;
+    }
+
+    .mobile-menu.active { right: 0; }
+
+    .mobile-menu-links {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      font-size: 16px;
+    }
+
+    .mobile-menu-links a {
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    /* Dropdowns en móvil */
+    .mobile-group { margin-top: 12px; }
+
+    .mobile-title {
+      width: 100%;
+      padding: 10px 0;
+      background: none;
+      border: none;
+      color: #ffffff;
+      font-size: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .mobile-arrow { font-size: 13px; transition: transform 0.2s ease; }
+
+    .mobile-sub {
+      display: none;
+      padding-left: 8px;
+      border-left: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .mobile-sub a {
+      display: block;
+      padding: 8px 0;
+      font-size: 15px;
+      border: none;
+    }
+
+    .mobile-sub.open { display: block; }
+    .mobile-title.open .mobile-arrow { transform: rotate(180deg); }
+
+    /* BOTONES GENERALES */
     .btn {
       display: inline-flex;
       align-items: center;
@@ -261,8 +329,7 @@
       font-size: 15px;
       cursor: pointer;
       border: none;
-      transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease,
-        color 0.15s ease;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease, color 0.15s ease;
       text-decoration: none;
       white-space: nowrap;
     }
@@ -291,9 +358,7 @@
       transform: translateY(-1px);
     }
 
-    /* =========================================================
-      HERO ROL
-    ========================================================= */
+    /* HERO ROL */
     .role-hero {
       position: relative;
       min-height: 100vh;
@@ -314,9 +379,7 @@
       z-index: 0;
     }
 
-    .role-hero-jugador::before {
-      background-image: url("images/rol-jugador-hero.jpg");
-    }
+    .role-hero-jugador::before { background-image: url("images/rol-jugador-hero.jpg"); }
 
     .role-hero-overlay {
       position: absolute;
@@ -354,15 +417,9 @@
       max-width: 560px;
     }
 
-    .role-hero-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
+    .role-hero-buttons { display: flex; flex-wrap: wrap; gap: 12px; }
 
-    /* =========================================================
-      SECCIONES ROL
-    ========================================================= */
+    /* SECCIONES ROL */
     .role-section {
       background: #000000;
       border-top: 1px solid rgba(255, 255, 255, 0.05);
@@ -375,11 +432,7 @@
       align-items: center;
     }
 
-    .role-title {
-      font-size: 28px;
-      letter-spacing: -0.03em;
-      margin-bottom: 12px;
-    }
+    .role-title { font-size: 28px; letter-spacing: -0.03em; margin-bottom: 12px; }
 
     .role-text {
       font-size: 15px;
@@ -388,12 +441,7 @@
       margin-bottom: 16px;
     }
 
-    .role-list {
-      list-style: none;
-      padding-left: 0;
-      font-size: 14px;
-      color: var(--text-muted);
-    }
+    .role-list { list-style: none; padding-left: 0; font-size: 14px; color: var(--text-muted); }
 
     .role-list li {
       margin-bottom: 8px;
@@ -402,11 +450,7 @@
       align-items: flex-start;
     }
 
-    .role-list li span {
-      font-size: 18px;
-      line-height: 1;
-      margin-top: 2px;
-    }
+    .role-list li span { font-size: 18px; line-height: 1; margin-top: 2px; }
 
     .role-photo-wrapper {
       border-radius: 26px;
@@ -416,11 +460,7 @@
       box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
     }
 
-    .role-photo-wrapper img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+    .role-photo-wrapper img { width: 100%; height: 100%; object-fit: cover; }
 
     .role-section-alt { background: #050509; }
 
@@ -438,9 +478,7 @@
       margin-bottom: 16px;
     }
 
-    /* =========================================================
-      FOOTER
-    ========================================================= */
+    /* FOOTER */
     .footer {
       background: #000000;
       border-top: 1px solid rgba(255, 255, 255, 0.12);
@@ -465,11 +503,7 @@
     .footer-links a { opacity: 0.7; }
     .footer-links a:hover { opacity: 1; }
 
-    .copyright {
-      font-size: 12px;
-      opacity: 0.6;
-      margin-bottom: 10px;
-    }
+    .copyright { font-size: 12px; opacity: 0.6; margin-bottom: 10px; }
 
     .privacy-links {
       display: flex;
@@ -481,26 +515,36 @@
       margin-bottom: 10px;
     }
 
-    .footer-tagline {
-      font-style: italic;
-      font-size: 15px;
-      opacity: 0.85;
-      margin-top: 4px;
-    }
+    .footer-tagline { font-style: italic; font-size: 15px; opacity: 0.85; margin-top: 4px; }
 
-    /* =========================================================
-      RESPONSIVE
-    ========================================================= */
+    /* RESPONSIVE */
     @media (max-width: 900px) {
       .role-layout { grid-template-columns: minmax(0, 1fr); gap: 26px; }
       .section-inner { padding: 64px 18px; }
     }
 
     @media (max-width: 768px) {
+      .header { width: 94%; padding: 10px 16px; }
+      .nav-links { display: none; }
+      .menu-toggle { display: block; }
+
+      .header-actions {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: nowrap;
+      }
+
+      .lang-current { padding: 6px 10px; font-size: 11px; }
+      .lang-switcher { flex-shrink: 1; }
+      .menu-toggle { flex-shrink: 0; font-size: 22px; padding: 0; line-height: 1; }
+
       .role-hero { padding: 130px 18px 60px; }
       .role-hero-title { font-size: 2rem; }
       .role-hero-subtitle { font-size: 0.98rem; }
       .role-hero-buttons { flex-direction: column; align-items: flex-start; }
+
       .section-inner { padding: 56px 18px; }
     }
 
@@ -511,9 +555,7 @@
 </head>
 
 <body>
-  <!-- =========================
-    HEADER (barra principal funcional)
-  ========================== -->
+  <!-- HEADER -->
   <header class="header" id="header">
     <div class="logo" id="logo">ATHLEAD</div>
 
@@ -533,6 +575,7 @@
         </div>
       </div>
 
+      <!-- Links -->
       <a href="index.html#signup" data-i18n="nav_signup">Regístrate</a>
       <a href="index.html#features" data-i18n="nav_features">Características</a>
       <a href="index.html#faq" data-i18n="nav_faq">FAQ</a>
@@ -552,16 +595,22 @@
     </nav>
 
     <div class="header-actions">
-      <!-- Language -->
+      <!-- Selector de idioma -->
       <div class="lang-switcher" id="langSwitcher">
         <button class="lang-current" type="button" aria-expanded="false">
           <span class="lang-flag">🇪🇸</span>
           <span class="lang-label">ES</span>
-          <span class="nav-arrow">▾</span>
+          <span class="lang-arrow">▾</span>
         </button>
         <div class="lang-menu" id="langMenu">
-          <button type="button" data-lang="es"><span class="lang-flag">🇪🇸</span> Español</button>
-          <button type="button" data-lang="en"><span class="lang-flag">🇬🇧</span> English</button>
+          <button type="button" data-lang="es">
+            <span class="lang-flag">🇪🇸</span>
+            <span>Español</span>
+          </button>
+          <button type="button" data-lang="en">
+            <span class="lang-flag">🇬🇧</span>
+            <span>English</span>
+          </button>
         </div>
       </div>
 
@@ -569,14 +618,13 @@
     </div>
   </header>
 
-  <!-- =========================
-    MOBILE MENU (funcional)
-  ========================== -->
+  <!-- MENÚ MÓVIL -->
   <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
-    <div class="mobile-links">
+    <div class="mobile-menu-links">
       <a href="index.html#who-we-are" data-i18n="nav_about">Quiénes somos</a>
       <a href="index.html#how-steps" data-i18n="nav_how">Cómo funciona</a>
 
+      <!-- Rol móvil -->
       <div class="mobile-group">
         <button class="mobile-title" id="mRoleTitle" type="button">
           <span data-i18n="nav_role">Rol</span><span class="mobile-arrow">▾</span>
@@ -593,6 +641,7 @@
       <a href="index.html#faq" data-i18n="nav_faq">FAQ</a>
       <a href="index.html#contact" data-i18n="nav_contact">Contacto</a>
 
+      <!-- App móvil -->
       <div class="mobile-group">
         <button class="mobile-title" id="mAppTitle" type="button">
           <span data-i18n="nav_app">App</span><span class="mobile-arrow">▾</span>
@@ -668,9 +717,7 @@
 
         <div>
           <div class="role-badge" data-i18n="role_player_section2_badge">Ventajas para jugadores</div>
-          <h2 class="role-title" data-i18n="role_player_section2_title">
-            De jugador invisible a jugador encontrado.
-          </h2>
+          <h2 class="role-title" data-i18n="role_player_section2_title">De jugador invisible a jugador encontrado.</h2>
           <p class="role-text" data-i18n="role_player_section2_p">
             Tu realidad hoy puede ser jugar cada fin de semana sin saber si alguien te está mirando
             de verdad. Con Athlead, cada jugada que subes queda disponible para entrenadores y clubes
@@ -682,7 +729,7 @@
             <li><span>✔</span><p data-i18n="role_player_section2_li3">Recibes interés real: si un entrenador te escribe, es porque ya ha visto cómo juegas.</p></li>
             <li><span>✔</span><p data-i18n="role_player_section2_li4">Tú decides qué enseñar y con quién hablar. No hay representantes obligatorios ni comisiones ocultas.</p></li>
           </ul>
-          <a href="index.html#signup" class="btn btn-cta" style="margin-top:12px" data-i18n="role_player_section2_cta">
+          <a href="index.html#signup" class="btn btn-cta" style="margin-top: 12px;" data-i18n="role_player_section2_cta">
             Empieza a construir tu perfil
           </a>
         </div>
@@ -703,9 +750,7 @@
         <a href="index.html#contact" data-i18n="nav_contact">Contacto</a>
       </div>
 
-      <div class="copyright" data-i18n="footer_copyright">
-        © 2025 Athlead. Todos los derechos reservados.
-      </div>
+      <div class="copyright" data-i18n="footer_copyright">© 2025 Athlead. Todos los derechos reservados.</div>
 
       <div class="privacy-links">
         <a href="#privacy" data-i18n="privacy_privacy">Política de Privacidad</a>
@@ -719,10 +764,14 @@
   </footer>
 
   <script>
+    // Helpers DOM
+    const $ = (sel, root=document) => root.querySelector(sel);
+    const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+
     // Estado global de idioma
     let ATHLEAD_LANG = 'es';
 
-    // Diccionario de traducciones (rol jugador + navegación + footer)
+    // Diccionario de traducciones (rol jugador + navegación + footer + app)
     const i18n = {
       es: {
         page_title: 'Athlead - Rol Jugador | Deja que el talento hable por ti',
@@ -734,7 +783,6 @@
         nav_faq: 'FAQ',
         nav_contact: 'Contacto',
         nav_problem: 'Jugadores invisibles',
-
         nav_role: 'Rol',
         nav_role_player: 'Jugador',
         nav_role_club: 'Club',
@@ -797,7 +845,6 @@
         nav_faq: 'FAQ',
         nav_contact: 'Contact',
         nav_problem: 'Invisible players',
-
         nav_role: 'Role',
         nav_role_player: 'Player',
         nav_role_club: 'Club',
@@ -858,106 +905,180 @@
       document.querySelectorAll('[data-i18n]').forEach((el) => {
         const key = el.getAttribute('data-i18n');
         const translation = dict[key];
-        if (translation) el.textContent = translation;
+        if (translation) el.innerHTML = translation;
       });
 
       if (dict.page_title) document.title = dict.page_title;
     }
 
-    // Helpers
-    const $ = (sel, root=document) => root.querySelector(sel);
-    const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
-
     // Logo → home
-    $("#logo").addEventListener("click", ()=> location.href="index.html");
-
-    // Hide header on scroll (igual a principal)
-    (() => {
-      const header = $("#header");
-      let lastY = window.scrollY;
-      window.addEventListener("scroll", ()=>{
-        const y = window.scrollY;
-        const down = y > lastY;
-        if (y > 120 && down) header.classList.add("hide");
-        else header.classList.remove("hide");
-        lastY = y;
-      });
-    })();
-
-    // Dropdowns desktop (Rol/App)
-    const roleMenu = $("#roleMenu"), appMenu = $("#appMenu");
-    $("#roleToggle").addEventListener("click",(e)=>{
-      e.stopPropagation();
-      roleMenu.classList.toggle("open");
-      appMenu.classList.remove("open");
-    });
-    $("#appToggle").addEventListener("click",(e)=>{
-      e.stopPropagation();
-      appMenu.classList.toggle("open");
-      roleMenu.classList.remove("open");
+    document.getElementById('logo').addEventListener('click', function () {
+      window.location.href = 'index.html';
     });
 
-    document.addEventListener("click",()=>{
-      roleMenu.classList.remove("open");
-      appMenu.classList.remove("open");
-      $("#langMenu").classList.remove("open");
+    // Ocultar header al hacer scroll
+    let lastScroll = 0;
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+      if (currentScroll > lastScroll && currentScroll > 80) header.classList.add('hide-header');
+      else if (currentScroll < lastScroll) header.classList.remove('hide-header');
+      lastScroll = currentScroll;
     });
 
-    // Mobile menu open/close
-    const mobileMenu = $("#mobileMenu");
-    const menuToggle = $("#menuToggle");
+    // Menú móvil
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+
     function setMobile(open){
-      mobileMenu.classList.toggle("active", open);
-      mobileMenu.setAttribute("aria-hidden", open ? "false" : "true");
-      menuToggle.textContent = open ? "✕" : "☰";
-      document.body.style.overflow = open ? "hidden" : "";
+      mobileMenu.classList.toggle('active', open);
+      mobileMenu.setAttribute('aria-hidden', open ? 'false' : 'true');
+      menuToggle.textContent = open ? '✕' : '☰';
+      document.body.style.overflow = open ? 'hidden' : '';
     }
-    menuToggle.addEventListener("click",(e)=>{
+
+    menuToggle.addEventListener('click', function (e) {
       e.stopPropagation();
-      setMobile(!mobileMenu.classList.contains("active"));
+      setMobile(!mobileMenu.classList.contains('active'));
     });
-    $$(".mobile-links a").forEach(a=>a.addEventListener("click", ()=>setMobile(false)));
+
+    document.addEventListener('click', (e) => {
+      if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) setMobile(false);
+    });
+
+    document.querySelectorAll('.mobile-menu-links a').forEach((link) => {
+      link.addEventListener('click', () => setMobile(false));
+    });
 
     function bindMobileDrop(titleId, subId){
-      const t = $("#"+titleId), s = $("#"+subId);
+      const t = document.getElementById(titleId);
+      const s = document.getElementById(subId);
       if(!t || !s) return;
-      t.addEventListener("click", (e)=>{
+      t.addEventListener('click', (e)=>{
         e.stopPropagation();
-        s.classList.toggle("open");
-        t.classList.toggle("open");
+        s.classList.toggle('open');
+        t.classList.toggle('open');
       });
     }
-    bindMobileDrop("mRoleTitle","mRoleSub");
-    bindMobileDrop("mAppTitle","mAppSub");
+    bindMobileDrop('mRoleTitle','mRoleSub');
+    bindMobileDrop('mAppTitle','mAppSub');
 
-    // Language switcher
-    const langMenu = $("#langMenu");
-    $("#langSwitcher .lang-current").addEventListener("click",(e)=>{
+    // Dropdowns desktop (Rol/App) — FIX: no se cierra antes de tiempo
+    const roleMenu = document.getElementById('roleMenu');
+    const appMenu  = document.getElementById('appMenu');
+    const roleToggle = document.getElementById('roleToggle');
+    const appToggle  = document.getElementById('appToggle');
+
+    let closeTimer = null;
+
+    function openMenu(menuToOpen) {
+      clearTimeout(closeTimer);
+      if (menuToOpen === roleMenu) appMenu.classList.remove('open');
+      if (menuToOpen === appMenu) roleMenu.classList.remove('open');
+      menuToOpen.classList.add('open');
+    }
+
+    function closeMenusDelayed(ms = 180) {
+      clearTimeout(closeTimer);
+      closeTimer = setTimeout(() => {
+        roleMenu.classList.remove('open');
+        appMenu.classList.remove('open');
+      }, ms);
+    }
+
+    function closeMenusNow() {
+      clearTimeout(closeTimer);
+      roleMenu.classList.remove('open');
+      appMenu.classList.remove('open');
+    }
+
+    roleToggle.addEventListener('click', (e) => {
+      e.preventDefault();
       e.stopPropagation();
-      langMenu.classList.toggle("open");
+      const willOpen = !roleMenu.classList.contains('open');
+      if (willOpen) openMenu(roleMenu);
+      else closeMenusNow();
     });
 
-    $$("#langMenu button[data-lang]").forEach(b=>{
-      b.addEventListener("click",(e)=>{
+    appToggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const willOpen = !appMenu.classList.contains('open');
+      if (willOpen) openMenu(appMenu);
+      else closeMenusNow();
+    });
+
+    [roleToggle, roleMenu].forEach((el) => {
+      el.addEventListener('mouseenter', () => openMenu(roleMenu));
+      el.addEventListener('mouseleave', () => closeMenusDelayed());
+    });
+
+    [appToggle, appMenu].forEach((el) => {
+      el.addEventListener('mouseenter', () => openMenu(appMenu));
+      el.addEventListener('mouseleave', () => closeMenusDelayed());
+    });
+
+    document.addEventListener('pointerdown', (e) => {
+      const clickedInRole = roleToggle.contains(e.target) || roleMenu.contains(e.target);
+      const clickedInApp  = appToggle.contains(e.target)  || appMenu.contains(e.target);
+      const clickedInLang = document.getElementById('langSwitcher')?.contains(e.target);
+      if (clickedInRole || clickedInApp || clickedInLang) return;
+      closeMenusNow();
+    });
+
+    // Selector de idioma
+    (function () {
+      const langSwitcher = document.getElementById('langSwitcher');
+      if (!langSwitcher) return;
+
+      const currentBtn = langSwitcher.querySelector('.lang-current');
+      const menu = document.getElementById('langMenu');
+      const currentFlag = currentBtn.querySelector('.lang-flag');
+      const currentLabel = currentBtn.querySelector('.lang-label');
+
+      const savedLang = localStorage.getItem('athlead_lang') || 'es';
+      setCurrentLang(savedLang);
+
+      currentBtn.addEventListener('click', function (e) {
         e.stopPropagation();
-        const lang = b.dataset.lang === "en" ? "en" : "es";
-        localStorage.setItem("athlead_lang", lang);
-        setCurrentLang(lang);
-        langMenu.classList.remove("open");
+        menu.classList.toggle('open');
+        const expanded = currentBtn.getAttribute('aria-expanded') === 'true';
+        currentBtn.setAttribute('aria-expanded', (!expanded).toString());
       });
-    });
 
-    function setCurrentLang(lang){
-      ATHLEAD_LANG = (lang === "en") ? "en" : "es";
-      $("#langSwitcher .lang-flag").textContent = ATHLEAD_LANG === "en" ? "🇬🇧" : "🇪🇸";
-      $("#langSwitcher .lang-label").textContent = ATHLEAD_LANG === "en" ? "EN" : "ES";
-      document.documentElement.lang = ATHLEAD_LANG;
-      applyTranslations(ATHLEAD_LANG);
-    }
+      menu.querySelectorAll('button[data-lang]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const lang = btn.getAttribute('data-lang') || 'es';
+          localStorage.setItem('athlead_lang', lang);
+          setCurrentLang(lang);
+          menu.classList.remove('open');
+          currentBtn.setAttribute('aria-expanded', 'false');
+        });
+      });
 
-    // Init lang
-    const savedLang = localStorage.getItem("athlead_lang") || "es";
-    setCurrentLang(savedLang);
+      document.addEventListener('click', (e) => {
+        if (!langSwitcher.contains(e.target)) {
+          menu.classList.remove('open');
+          currentBtn.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      function setCurrentLang(lang) {
+        ATHLEAD_LANG = lang === 'en' ? 'en' : 'es';
+
+        if (ATHLEAD_LANG === 'en') {
+          currentFlag.textContent = '🇬🇧';
+          currentLabel.textContent = 'EN';
+          document.documentElement.lang = 'en';
+        } else {
+          currentFlag.textContent = '🇪🇸';
+          currentLabel.textContent = 'ES';
+          document.documentElement.lang = 'es';
+        }
+
+        applyTranslations(ATHLEAD_LANG);
+      }
+    })();
   </script>
 
   <!--Start of Tawk.to Script-->
