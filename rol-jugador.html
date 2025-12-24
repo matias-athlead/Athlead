@@ -52,14 +52,9 @@
       --accent-alt: #4ecdc4;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    html,
-    body {
+    html, body {
       height: 100%;
       scroll-behavior: smooth;
       background: var(--bg-main);
@@ -67,22 +62,11 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, system-ui, sans-serif;
     }
 
-    img,
-    video {
-      max-width: 100%;
-      display: block;
-    }
+    img, video { max-width: 100%; display: block; }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    a { color: inherit; text-decoration: none; }
 
-    .section-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 80px 16px;
-    }
+    .section-inner { max-width: 1100px; margin: 0 auto; padding: 80px 16px; }
 
     .section-kicker {
       text-transform: uppercase;
@@ -92,7 +76,9 @@
       margin-bottom: 6px;
     }
 
-    /* HEADER */
+    /* =========================================================
+      HEADER (ACTUALIZADO)
+    ========================================================= */
 
     .header {
       position: fixed;
@@ -100,168 +86,228 @@
       left: 50%;
       transform: translate(-50%, 0);
       width: min(1100px, 92%);
-      padding: 20px 28px;
+      padding: 14px 18px;
       border-radius: 999px;
-      background: rgba(0, 0, 0, 0.78);
+      background: rgba(0, 0, 0, 0.72);
       backdrop-filter: blur(18px);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      box-shadow: 0 22px 45px rgba(0, 0, 0, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      box-shadow: 0 18px 44px rgba(0, 0, 0, 0.6);
       z-index: 1000;
+
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 20px;
-      transition: transform 0.6s ease-in-out;
+      gap: 16px;
+
+      transition: transform 0.6s ease-in-out, background 0.2s ease, border-color 0.2s ease;
     }
 
-    .header.hide-header {
-      transform: translate(-50%, -180%);
-    }
+    .header.hide-header { transform: translate(-50%, -180%); }
 
     .logo {
-      font-size: 24px;
-      font-weight: 700;
-      letter-spacing: 0.16em;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
       cursor: pointer;
+      line-height: 1;
+      padding: 8px 10px;
+      border-radius: 999px;
+      user-select: none;
     }
+
+    .logo:hover { background: rgba(255, 255, 255, 0.06); }
 
     .nav-links {
       display: flex;
-      gap: 20px;
+      gap: 18px;
       align-items: center;
-      font-size: 16px;
+      font-size: 14px;
     }
 
     .nav-links a {
-      opacity: 0.8;
-      padding: 4px 0;
-      border-bottom: 1px solid transparent;
-      transition: opacity 0.2s, border-bottom-color 0.2s;
+      opacity: 0.78;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border-bottom: none;
+      transition: opacity 0.2s ease, background 0.2s ease;
     }
 
     .nav-links a:hover {
       opacity: 1;
-      border-bottom-color: rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.06);
     }
 
     .nav-links .active {
       opacity: 1;
-      border-bottom-color: rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.08);
     }
 
     /* Dropdown "Rol" – escritorio */
-    .nav-item-role {
-      position: relative;
-    }
+    .nav-item-role { position: relative; }
 
     .nav-dropdown-toggle {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      opacity: 0.8;
-      padding: 4px 0;
+      opacity: 0.78;
+      padding: 8px 10px;
       border: none;
+      border-radius: 999px;
       background: transparent;
       color: #ffffff;
-      font-size: 16px;
+      font-size: 14px;
       cursor: pointer;
+      transition: opacity 0.2s ease, background 0.2s ease;
     }
 
     .nav-dropdown-toggle:hover {
       opacity: 1;
+      background: rgba(255, 255, 255, 0.06);
     }
 
-    .nav-dropdown-arrow {
-      font-size: 11px;
-    }
+    .nav-dropdown-arrow { font-size: 11px; opacity: 0.85; }
 
     .nav-dropdown {
       position: absolute;
-      top: 130%;
+      top: 125%;
       left: 50%;
       transform: translateX(-50%);
-      min-width: 200px;
+      min-width: 210px;
+
       background: rgba(0, 0, 0, 0.96);
       border-radius: 18px;
-      border: 1px solid rgba(255, 255, 255, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.16);
       box-shadow: 0 18px 40px rgba(0, 0, 0, 0.8);
-      padding: 10px 6px;
+
+      padding: 10px 8px;
       display: none;
       z-index: 1200;
     }
 
-    .nav-dropdown.open {
-      display: block;
-    }
+    .nav-dropdown.open { display: block; }
 
     .nav-dropdown a {
       display: block;
-      padding: 8px 14px;
-      font-size: 14px;
+      padding: 10px 12px;
+      font-size: 13px;
       border-radius: 999px;
       border-bottom: none;
+      opacity: 0.9;
     }
 
-    .nav-dropdown a:hover {
-      background: rgba(255, 255, 255, 0.08);
-    }
+    .nav-dropdown a:hover { background: rgba(255, 255, 255, 0.08); }
 
-    .nav-dropdown a.active {
-      background: rgba(255, 255, 255, 0.12);
-    }
+    .nav-dropdown a.active { background: rgba(255, 255, 255, 0.12); }
 
     @media (hover: hover) {
-      .nav-item-role:hover .nav-dropdown {
-        display: block;
-      }
+      .nav-item-role:hover .nav-dropdown { display: block; }
     }
 
+    /* Right actions */
     .header-actions {
       margin-left: auto;
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
     }
 
-    /* Selector de idioma en la barra */
-    .lang-switcher {
-      position: relative;
+    /* Botones generales */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 30px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+      text-decoration: none;
+      white-space: nowrap;
     }
+
+    .btn-cta {
+      background: #ffffff;
+      color: #000000;
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.6);
+    }
+
+    .btn-cta:hover {
+      background: #f2f2f2;
+      transform: translateY(-1px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.75);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+    }
+
+    .btn-secondary:hover {
+      background: #ffffff;
+      color: #000000;
+      transform: translateY(-1px);
+    }
+
+    /* Botones del header (compactos) */
+    .header-actions .btn {
+      padding: 10px 16px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .header-actions .btn-cta { box-shadow: none; }
+
+    .header-actions .btn-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.7);
+    }
+
+    .header-actions .btn-secondary {
+      border: 1px solid rgba(255, 255, 255, 0.45);
+    }
+
+    .header-actions .btn-secondary:hover { background: rgba(255, 255, 255, 0.9); }
+
+    /* Selector de idioma */
+    .lang-switcher { position: relative; }
 
     .lang-current {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 8px 14px;
+      padding: 9px 12px;
       border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.35);
-      background: rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.26);
+      background: rgba(0, 0, 0, 0.35);
       color: #ffffff;
-      font-size: 13px;
+      font-size: 12px;
       cursor: pointer;
       backdrop-filter: blur(10px);
+      transition: background 0.2s ease, border-color 0.2s ease;
     }
 
-    .lang-flag {
-      font-size: 16px;
-      line-height: 1;
+    .lang-current:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.34);
     }
+
+    .lang-flag { font-size: 15px; line-height: 1; }
 
     .lang-label {
-      letter-spacing: 0.08em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       font-size: 11px;
     }
 
-    .lang-arrow {
-      font-size: 10px;
-      opacity: 0.8;
-    }
+    .lang-arrow { font-size: 10px; opacity: 0.8; }
 
     .lang-menu {
       position: absolute;
       right: 0;
-      top: 110%;
+      top: 112%;
       min-width: 160px;
       background: #000000;
       border-radius: 14px;
@@ -272,16 +318,14 @@
       z-index: 1200;
     }
 
-    .lang-menu.open {
-      display: block;
-    }
+    .lang-menu.open { display: block; }
 
     .lang-menu button {
       width: 100%;
       display: flex;
       align-items: center;
       gap: 8px;
-      padding: 8px 10px;
+      padding: 9px 10px;
       background: transparent;
       border: none;
       color: #ffffff;
@@ -291,20 +335,24 @@
       text-align: left;
     }
 
-    .lang-menu button:hover {
-      background: rgba(255, 255, 255, 0.08);
-    }
+    .lang-menu button:hover { background: rgba(255, 255, 255, 0.08); }
 
+    /* Hamburguesa */
     .menu-toggle {
       display: none;
       background: none;
       border: none;
       color: #ffffff;
-      font-size: 24px;
+      font-size: 22px;
       cursor: pointer;
       line-height: 1;
+      padding: 8px 10px;
+      border-radius: 999px;
     }
 
+    .menu-toggle:hover { background: rgba(255, 255, 255, 0.06); }
+
+    /* Mobile menu (igual lógica, misma estructura) */
     .mobile-menu {
       position: fixed;
       top: 0;
@@ -316,11 +364,10 @@
       z-index: 900;
       padding: 80px 24px 24px;
       transition: right 0.3s ease;
+      overflow-y: auto;
     }
 
-    .mobile-menu.active {
-      right: 0;
-    }
+    .mobile-menu.active { right: 0; }
 
     .mobile-menu-links {
       display: flex;
@@ -335,9 +382,7 @@
     }
 
     /* Dropdown "Rol" en menú móvil */
-    .mobile-menu-role {
-      margin-top: 12px;
-    }
+    .mobile-menu-role { margin-top: 12px; }
 
     .mobile-role-title {
       width: 100%;
@@ -370,57 +415,46 @@
       border: none;
     }
 
-    .mobile-role-submenu.open {
-      display: block;
+    .mobile-role-submenu.open { display: block; }
+
+    .mobile-role-title.open .mobile-role-arrow { transform: rotate(180deg); }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .section-inner { padding: 64px 18px; }
     }
 
-    .mobile-role-title.open .mobile-role-arrow {
-      transform: rotate(180deg);
+    @media (max-width: 768px) {
+      .header {
+        width: 94%;
+        padding: 10px 12px;
+      }
+
+      .nav-links { display: none; }
+
+      .menu-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Ocultamos los botones grandes del header para no saturar */
+      .header-actions .btn { display: none; }
+
+      .header-actions {
+        gap: 8px;
+        flex-wrap: nowrap;
+      }
+
+      .lang-current {
+        padding: 7px 10px;
+        font-size: 11px;
+      }
     }
 
-    /* BOTONES GENERALES */
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 12px 30px;
-      border-radius: 999px;
-      font-weight: 600;
-      font-size: 15px;
-      cursor: pointer;
-      border: none;
-      transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease,
-        color 0.15s ease;
-      text-decoration: none;
-      white-space: nowrap;
-    }
-
-    .btn-cta {
-      background: #ffffff;
-      color: #000000;
-      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.6);
-    }
-
-    .btn-cta:hover {
-      background: #f2f2f2;
-      transform: translateY(-1px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.75);
-    }
-
-    .btn-secondary {
-      background: transparent;
-      color: #ffffff;
-      border: 1px solid rgba(255, 255, 255, 0.7);
-    }
-
-    .btn-secondary:hover {
-      background: #ffffff;
-      color: #000000;
-      transform: translateY(-1px);
-    }
-
-    /* HERO ROL */
+    /* =========================================================
+      HERO ROL
+    ========================================================= */
 
     .role-hero {
       position: relative;
@@ -443,9 +477,7 @@
     }
 
     /* IMAGEN DE FONDO PARA JUGADOR */
-    .role-hero-jugador::before {
-      background-image: url("images/rol-jugador-hero.jpg");
-    }
+    .role-hero-jugador::before { background-image: url("images/rol-jugador-hero.jpg"); }
 
     .role-hero-overlay {
       position: absolute;
@@ -483,12 +515,6 @@
       max-width: 560px;
     }
 
-    .role-hero-meta {
-      font-size: 0.9rem;
-      opacity: 0.8;
-      margin-bottom: 28px;
-    }
-
     .role-hero-buttons {
       display: flex;
       flex-wrap: wrap;
@@ -496,7 +522,6 @@
     }
 
     /* SECCIONES ROL */
-
     .role-section {
       background: #000000;
       border-top: 1px solid rgba(255, 255, 255, 0.05);
@@ -556,9 +581,7 @@
       object-fit: cover;
     }
 
-    .role-section-alt {
-      background: #050509;
-    }
+    .role-section-alt { background: #050509; }
 
     .role-badge {
       display: inline-flex;
@@ -574,8 +597,7 @@
       margin-bottom: 16px;
     }
 
-    /* FOOTER (igual estilo que home) */
-
+    /* FOOTER */
     .footer {
       background: #000000;
       border-top: 1px solid rgba(255, 255, 255, 0.12);
@@ -597,13 +619,8 @@
       margin-bottom: 16px;
     }
 
-    .footer-links a {
-      opacity: 0.7;
-    }
-
-    .footer-links a:hover {
-      opacity: 1;
-    }
+    .footer-links a { opacity: 0.7; }
+    .footer-links a:hover { opacity: 1; }
 
     .copyright {
       font-size: 12px;
@@ -628,87 +645,25 @@
       margin-top: 4px;
     }
 
-    /* RESPONSIVE */
-
     @media (max-width: 900px) {
-      .role-layout {
-        grid-template-columns: minmax(0, 1fr);
-        gap: 26px;
-      }
-
-      .section-inner {
-        padding: 64px 18px;
-      }
+      .role-layout { grid-template-columns: minmax(0, 1fr); gap: 26px; }
+      .section-inner { padding: 64px 18px; }
     }
 
     @media (max-width: 768px) {
-      .header {
-        width: 94%;
-        padding: 10px 16px;
-      }
-
-      .nav-links {
-        display: none;
-      }
-
-      .menu-toggle {
-        display: block;
-      }
-
-      /* idioma + hamburguesa en la misma línea */
-      .header-actions {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 8px;
-        flex-wrap: nowrap;
-      }
-
-      .lang-current {
-        padding: 6px 10px;
-        font-size: 11px;
-      }
-
-      .lang-switcher {
-        flex-shrink: 1;
-      }
-
-      .menu-toggle {
-        flex-shrink: 0;
-        font-size: 22px;
-        padding: 0;
-        line-height: 1;
-      }
-
-      .role-hero {
-        padding: 130px 18px 60px;
-      }
-
-      .role-hero-title {
-        font-size: 2rem;
-      }
-
-      .role-hero-subtitle {
-        font-size: 0.98rem;
-      }
-
-      .role-hero-buttons {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .section-inner {
-        padding: 56px 18px;
-      }
+      .role-hero { padding: 130px 18px 60px; }
+      .role-hero-title { font-size: 2rem; }
+      .role-hero-subtitle { font-size: 0.98rem; }
+      .role-hero-buttons { flex-direction: column; align-items: flex-start; }
+      .section-inner { padding: 56px 18px; }
     }
 
     @media (min-width: 1024px) {
-      .role-hero-title {
-        font-size: 3.2rem;
-      }
+      .role-hero-title { font-size: 3.2rem; }
     }
   </style>
 </head>
+
 <body>
   <!-- HEADER -->
   <header class="header">
@@ -730,15 +685,16 @@
           <a href="rol-entrenador.html" data-i18n="nav_role_coach">Entrenador</a>
         </div>
       </div>
-      <!-- Fin Dropdown Rol -->
 
-      <a href="index.html#signup" data-i18n="nav_signup">Regístrate</a>
-      <a href="index.html#features" data-i18n="nav_features">Características</a>
       <a href="index.html#faq" data-i18n="nav_faq">FAQ</a>
       <a href="index.html#contact" data-i18n="nav_contact">Contacto</a>
     </nav>
 
     <div class="header-actions">
+      <!-- Botones (desktop) -->
+      <a href="index.html#signup" class="btn btn-secondary" data-i18n="nav_login">Entrar</a>
+      <a href="index.html#signup" class="btn btn-cta" data-i18n="nav_signup">Regístrate</a>
+
       <!-- Selector de idioma -->
       <div class="lang-switcher" id="langSwitcher">
         <button class="lang-current" type="button" aria-expanded="false">
@@ -780,12 +736,17 @@
           <a href="rol-entrenador.html" data-i18n="nav_role_coach">Entrenador</a>
         </div>
       </div>
-      <!-- Fin Rol móvil -->
 
-      <a href="index.html#signup" data-i18n="nav_signup">Regístrate</a>
-      <a href="index.html#features" data-i18n="nav_features">Características</a>
       <a href="index.html#faq" data-i18n="nav_faq">FAQ</a>
       <a href="index.html#contact" data-i18n="nav_contact">Contacto</a>
+
+      <!-- CTA en móvil -->
+      <a href="index.html#signup" class="btn btn-cta" style="margin-top: 12px;" data-i18n="nav_signup">
+        Regístrate
+      </a>
+      <a href="index.html#signup" class="btn btn-secondary" style="margin-top: 10px;" data-i18n="nav_login">
+        Entrar
+      </a>
     </div>
   </div>
 
@@ -801,7 +762,7 @@
         Como jugador, Athlead es tu escaparate: un lugar donde tus jugadas, tu estilo de juego
         y tu carácter hablan por ti, incluso cuando no estás en el campo.
       </p>
-      </p>
+
       <div class="role-hero-buttons">
         <a href="index.html#signup" class="btn btn-cta" data-i18n="role_player_cta_waitlist">
           Únete a la lista de espera
@@ -813,7 +774,7 @@
     </div>
   </section>
 
-  <!-- SECCIÓN 1: QUÉ HACE UN JUGADOR EN ATHLEAD -->
+  <!-- SECCIÓN 1 -->
   <section class="role-section">
     <div class="section-inner">
       <div class="role-layout">
@@ -862,7 +823,7 @@
     </div>
   </section>
 
-  <!-- SECCIÓN 2: CÓMO TE AYUDA ATHLEAD -->
+  <!-- SECCIÓN 2 -->
   <section class="role-section role-section-alt">
     <div class="section-inner">
       <div class="role-layout">
@@ -906,12 +867,7 @@
               </p>
             </li>
           </ul>
-          <a
-            href="index.html#signup"
-            class="btn btn-cta"
-            style="margin-top: 12px;"
-            data-i18n="role_player_section2_cta"
-          >
+          <a href="index.html#signup" class="btn btn-cta" style="margin-top: 12px;" data-i18n="role_player_section2_cta">
             Empieza a construir tu perfil
           </a>
         </div>
@@ -959,6 +915,7 @@
         nav_about: 'Quiénes somos',
         nav_how: 'Cómo funciona',
         nav_signup: 'Regístrate',
+        nav_login: 'Entrar',
         nav_features: 'Características',
         nav_faq: 'FAQ',
         nav_contact: 'Contacto',
@@ -1016,6 +973,7 @@
         nav_about: 'About',
         nav_how: 'How it works',
         nav_signup: 'Sign up',
+        nav_login: 'Log in',
         nav_features: 'Features',
         nav_faq: 'FAQ',
         nav_contact: 'Contact',
@@ -1085,11 +1043,6 @@
       }
     }
 
-    function t(key) {
-      const dict = i18n[ATHLEAD_LANG] || i18n.es;
-      return dict[key] || (i18n.es && i18n.es[key]) || '';
-    }
-
     // Logo → volver al home
     document.getElementById('logo').addEventListener('click', function () {
       window.location.href = 'index.html';
@@ -1105,9 +1058,11 @@
       if (isOpen) {
         mobileMenu.classList.remove('active');
         menuToggle.textContent = '☰';
+        document.body.style.overflow = '';
       } else {
         mobileMenu.classList.add('active');
         menuToggle.textContent = '✕';
+        document.body.style.overflow = 'hidden';
       }
     });
 
@@ -1115,6 +1070,7 @@
       if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
         mobileMenu.classList.remove('active');
         menuToggle.textContent = '☰';
+        document.body.style.overflow = '';
       }
     });
 
@@ -1123,6 +1079,7 @@
       link.addEventListener('click', () => {
         mobileMenu.classList.remove('active');
         menuToggle.textContent = '☰';
+        document.body.style.overflow = '';
       });
     });
 
@@ -1176,7 +1133,7 @@
       });
     })();
 
-    // Ocultar header en scroll (igual que en home)
+    // Ocultar header en scroll
     let lastScroll = 0;
     const header = document.querySelector('.header');
 
@@ -1227,10 +1184,6 @@
         }
       });
 
-      if ('scrollRestoration' in history) {
-        history.scrollRestoration = 'auto';
-      }
-
       function setCurrentLang(lang) {
         ATHLEAD_LANG = lang === 'en' ? 'en' : 'es';
 
@@ -1247,19 +1200,23 @@
         applyTranslations(ATHLEAD_LANG);
       }
     })();
+
+    // Init
+    applyTranslations(localStorage.getItem('athlead_lang') === 'en' ? 'en' : 'es');
   </script>
-      <!--Start of Tawk.to Script-->
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/6941b1af8ecd79197d49c528/1jck9s660';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-</script>
-<!--End of Tawk.to Script-->
+
+  <!--Start of Tawk.to Script-->
+  <script type="text/javascript">
+    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+    (function () {
+      var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+      s1.async = true;
+      s1.src = 'https://embed.tawk.to/6941b1af8ecd79197d49c528/1jck9s660';
+      s1.charset = 'UTF-8';
+      s1.setAttribute('crossorigin', '*');
+      s0.parentNode.insertBefore(s1, s0);
+    })();
+  </script>
+  <!--End of Tawk.to Script-->
 </body>
 </html>
