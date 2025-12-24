@@ -92,7 +92,9 @@
       margin-bottom: 6px;
     }
 
-    /* HEADER */
+    /* =========================
+       HEADER (SOLO BARRA)
+       ========================= */
 
     .header {
       position: fixed;
@@ -149,8 +151,9 @@
       border-bottom-color: rgba(255, 255, 255, 0.8);
     }
 
-    /* Dropdown "Rol" – escritorio */
-    .nav-item-role {
+    /* Dropdowns escritorio: Rol + App */
+    .nav-item-role,
+    .nav-item-app {
       position: relative;
     }
 
@@ -210,8 +213,10 @@
       background: rgba(255, 255, 255, 0.12);
     }
 
+    /* Hover dropdowns (desktop) */
     @media (hover: hover) {
-      .nav-item-role:hover .nav-dropdown {
+      .nav-item-role:hover .nav-dropdown,
+      .nav-item-app:hover .nav-dropdown {
         display: block;
       }
     }
@@ -378,8 +383,55 @@
       transform: rotate(180deg);
     }
 
-    /* BOTONES GENERALES */
+    /* Dropdown "App" en menú móvil */
+    .mobile-menu-app {
+      margin-top: 12px;
+    }
 
+    .mobile-app-title {
+      width: 100%;
+      padding: 10px 0;
+      background: none;
+      border: none;
+      color: #ffffff;
+      font-size: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .mobile-app-arrow {
+      font-size: 13px;
+      transition: transform 0.2s ease;
+    }
+
+    .mobile-app-submenu {
+      display: none;
+      padding-left: 8px;
+      border-left: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .mobile-app-submenu a {
+      display: block;
+      padding: 8px 0;
+      font-size: 15px;
+      border: none;
+    }
+
+    .mobile-app-submenu.open {
+      display: block;
+    }
+
+    .mobile-app-title.open .mobile-app-arrow {
+      transform: rotate(180deg);
+    }
+
+    /* =========================
+       RESTO (sin cambios)
+       ========================= */
+
+    /* BOTONES GENERALES */
     .btn {
       display: inline-flex;
       align-items: center;
@@ -421,7 +473,6 @@
     }
 
     /* HERO ROL */
-
     .role-hero {
       position: relative;
       min-height: 100vh;
@@ -496,7 +547,6 @@
     }
 
     /* SECCIONES ROL */
-
     .role-section {
       background: #000000;
       border-top: 1px solid rgba(255, 255, 255, 0.05);
@@ -575,7 +625,6 @@
     }
 
     /* FOOTER */
-
     .footer {
       background: #000000;
       border-top: 1px solid rgba(255, 255, 255, 0.12);
@@ -629,7 +678,6 @@
     }
 
     /* RESPONSIVE */
-
     @media (max-width: 900px) {
       .role-layout {
         grid-template-columns: minmax(0, 1fr);
@@ -709,8 +757,9 @@
     }
   </style>
 </head>
+
 <body>
-  <!-- HEADER -->
+  <!-- HEADER (ACTUALIZADO SOLO BARRA) -->
   <header class="header">
     <div class="logo" id="logo">ATHLEAD</div>
 
@@ -736,6 +785,20 @@
       <a href="index.html#features" data-i18n="nav_features">Características</a>
       <a href="index.html#faq" data-i18n="nav_faq">FAQ</a>
       <a href="index.html#contact" data-i18n="nav_contact">Contacto</a>
+
+      <!-- Dropdown App (NUEVO) -->
+      <div class="nav-item-app">
+        <button class="nav-dropdown-toggle" type="button">
+          <span data-i18n="nav_app">App</span>
+          <span class="nav-dropdown-arrow">▾</span>
+        </button>
+        <div class="nav-dropdown">
+          <a href="caracteristicas-app.html" data-i18n="nav_app_features">Características</a>
+          <a href="nuestro-deporte.html" data-i18n="nav_app_sport">Nuestro deporte</a>
+          <a href="subscripciones.html" data-i18n="nav_app_subscriptions">Suscripciones</a>
+        </div>
+      </div>
+      <!-- Fin Dropdown App -->
     </nav>
 
     <div class="header-actions">
@@ -762,7 +825,7 @@
     </div>
   </header>
 
-  <!-- MENÚ MÓVIL -->
+  <!-- MENÚ MÓVIL (ACTUALIZADO SOLO BARRA) -->
   <div class="mobile-menu" id="mobileMenu">
     <div class="mobile-menu-links">
       <a href="index.html#who-we-are" data-i18n="nav_about">Quiénes somos</a>
@@ -786,6 +849,20 @@
       <a href="index.html#features" data-i18n="nav_features">Características</a>
       <a href="index.html#faq" data-i18n="nav_faq">FAQ</a>
       <a href="index.html#contact" data-i18n="nav_contact">Contacto</a>
+
+      <!-- App en móvil (NUEVO) -->
+      <div class="mobile-menu-app">
+        <button type="button" class="mobile-app-title">
+          <span data-i18n="nav_app">App</span>
+          <span class="mobile-app-arrow">▾</span>
+        </button>
+        <div class="mobile-app-submenu">
+          <a href="caracteristicas-app.html" data-i18n="nav_app_features">Características</a>
+          <a href="nuestro-deporte.html" data-i18n="nav_app_sport">Nuestro deporte</a>
+          <a href="subscripciones.html" data-i18n="nav_app_subscriptions">Suscripciones</a>
+        </div>
+      </div>
+      <!-- Fin App móvil -->
     </div>
   </div>
 
@@ -971,6 +1048,12 @@
         nav_role_club: 'Club',
         nav_role_coach: 'Entrenador',
 
+        /* NUEVO (barra) */
+        nav_app: 'App',
+        nav_app_features: 'Características',
+        nav_app_sport: 'Nuestro deporte',
+        nav_app_subscriptions: 'Suscripciones',
+
         footer_copyright: '© 2025 Athlead. Todos los derechos reservados.',
         privacy_privacy: 'Política de Privacidad',
         privacy_terms: 'Términos y Condiciones',
@@ -1031,6 +1114,12 @@
         nav_role_player: 'Player',
         nav_role_club: 'Club',
         nav_role_coach: 'Coach',
+
+        /* NUEVO (barra) */
+        nav_app: 'App',
+        nav_app_features: 'Features',
+        nav_app_sport: 'Our sport',
+        nav_app_subscriptions: 'Subscriptions',
 
         footer_copyright: '© 2025 Athlead. All rights reserved.',
         privacy_privacy: 'Privacy Policy',
@@ -1136,13 +1225,15 @@
       });
     });
 
-    // Dropdown "Rol" escritorio
-    (function () {
-      const roleItem = document.querySelector('.nav-item-role');
-      if (!roleItem) return;
+    /* ===== Dropdowns desktop (Rol + App) - MISMO COMPORTAMIENTO PRINCIPAL ===== */
+    function setupDesktopDropdown(itemSelector) {
+      const item = document.querySelector(itemSelector);
+      if (!item) return;
 
-      const toggle = roleItem.querySelector('.nav-dropdown-toggle');
-      const menu = roleItem.querySelector('.nav-dropdown');
+      const toggle = item.querySelector('.nav-dropdown-toggle');
+      const menu = item.querySelector('.nav-dropdown');
+      if (!toggle || !menu) return;
+
       let hideTimeout;
 
       function openMenu() {
@@ -1153,12 +1244,12 @@
       function closeMenu() {
         hideTimeout = setTimeout(() => {
           menu.classList.remove('open');
-        }, 120);
+        }, 140);
       }
 
       if (window.matchMedia('(hover: hover)').matches) {
-        roleItem.addEventListener('mouseenter', openMenu);
-        roleItem.addEventListener('mouseleave', closeMenu);
+        item.addEventListener('mouseenter', openMenu);
+        item.addEventListener('mouseleave', closeMenu);
       }
 
       toggle.addEventListener('click', (e) => {
@@ -1168,23 +1259,27 @@
       });
 
       document.addEventListener('click', (e) => {
-        if (!roleItem.contains(e.target)) {
-          menu.classList.remove('open');
-        }
+        if (!item.contains(e.target)) menu.classList.remove('open');
       });
-    })();
+    }
 
-    // Dropdown "Rol" en menú móvil
-    (function () {
-      const toggle = document.querySelector('.mobile-role-title');
-      const submenu = document.querySelector('.mobile-role-submenu');
+    setupDesktopDropdown('.nav-item-role');
+    setupDesktopDropdown('.nav-item-app');
+
+    /* ===== Submenús móvil (Rol + App) ===== */
+    function setupMobileSubmenu(titleSelector, submenuSelector) {
+      const toggle = document.querySelector(titleSelector);
+      const submenu = document.querySelector(submenuSelector);
       if (!toggle || !submenu) return;
 
       toggle.addEventListener('click', () => {
         submenu.classList.toggle('open');
         toggle.classList.toggle('open');
       });
-    })();
+    }
+
+    setupMobileSubmenu('.mobile-role-title', '.mobile-role-submenu');
+    setupMobileSubmenu('.mobile-app-title', '.mobile-app-submenu');
 
     // Ocultar header en scroll
     let lastScroll = 0;
@@ -1258,18 +1353,6 @@
       }
     })();
   </script>
-      <!--Start of Tawk.to Script-->
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/6941b1af8ecd79197d49c528/1jck9s660';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-</script>
-<!--End of Tawk.to Script-->
 </body>
 </html>
+
