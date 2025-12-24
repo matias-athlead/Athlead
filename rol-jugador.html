@@ -25,10 +25,7 @@
   <meta name="author" content="Athlead" />
 
   <!-- Open Graph -->
-  <meta
-    property="og:title"
-    content="Athlead - Rol Jugador | Deja que el talento hable por ti"
-  />
+  <meta property="og:title" content="Athlead - Rol Jugador | Deja que el talento hable por ti" />
   <meta
     property="og:description"
     content="Convierte tu talento en tu mejor carta de presentación. Crea tu perfil en Athlead y deja que tu fútbol hable por ti."
@@ -63,11 +60,9 @@
     }
 
     img, video { max-width: 100%; display: block; }
-
     a { color: inherit; text-decoration: none; }
 
     .section-inner { max-width: 1100px; margin: 0 auto; padding: 80px 16px; }
-
     .section-kicker {
       text-transform: uppercase;
       letter-spacing: 0.16em;
@@ -76,42 +71,40 @@
       margin-bottom: 6px;
     }
 
-    /* =========================================================
-      HEADER (ACTUALIZADO)
-    ========================================================= */
+    /* =========================
+       HEADER (BARRA PRINCIPAL)
+       ========================= */
 
     .header {
       position: fixed;
       top: 16px;
       left: 50%;
       transform: translate(-50%, 0);
-      width: min(1100px, 92%);
+      width: min(1200px, 92%);
       padding: 14px 18px;
       border-radius: 999px;
-      background: rgba(0, 0, 0, 0.72);
+      background: rgba(0, 0, 0, 0.78);
       backdrop-filter: blur(18px);
       border: 1px solid rgba(255, 255, 255, 0.14);
-      box-shadow: 0 18px 44px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 22px 45px rgba(0, 0, 0, 0.65);
       z-index: 1000;
-
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
-
-      transition: transform 0.6s ease-in-out, background 0.2s ease, border-color 0.2s ease;
+      gap: 14px;
+      transition: transform 0.6s ease-in-out;
     }
 
     .header.hide-header { transform: translate(-50%, -180%); }
 
     .logo {
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 800;
       letter-spacing: 0.18em;
       cursor: pointer;
-      line-height: 1;
-      padding: 8px 10px;
+      padding: 10px 12px;
       border-radius: 999px;
+      line-height: 1;
       user-select: none;
     }
 
@@ -119,50 +112,39 @@
 
     .nav-links {
       display: flex;
-      gap: 18px;
+      gap: 10px;
       align-items: center;
       font-size: 14px;
+      flex-wrap: nowrap;
+      margin-left: 6px;
     }
 
-    .nav-links a {
-      opacity: 0.78;
-      padding: 8px 10px;
+    .nav-links a,
+    .nav-dropdown-toggle {
+      opacity: 0.82;
+      padding: 10px 12px;
       border-radius: 999px;
-      border-bottom: none;
       transition: opacity 0.2s ease, background 0.2s ease;
+      white-space: nowrap;
     }
 
-    .nav-links a:hover {
-      opacity: 1;
-      background: rgba(255, 255, 255, 0.06);
-    }
+    .nav-links a:hover,
+    .nav-dropdown-toggle:hover { opacity: 1; background: rgba(255, 255, 255, 0.06); }
 
-    .nav-links .active {
-      opacity: 1;
-      background: rgba(255, 255, 255, 0.08);
-    }
+    .nav-links .active { opacity: 1; background: rgba(255, 255, 255, 0.08); }
 
-    /* Dropdown "Rol" – escritorio */
-    .nav-item-role { position: relative; }
+    /* Dropdown shared (Rol / App) */
+    .nav-item-dropdown { position: relative; }
 
     .nav-dropdown-toggle {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      opacity: 0.78;
-      padding: 8px 10px;
       border: none;
-      border-radius: 999px;
       background: transparent;
       color: #ffffff;
       font-size: 14px;
       cursor: pointer;
-      transition: opacity 0.2s ease, background 0.2s ease;
-    }
-
-    .nav-dropdown-toggle:hover {
-      opacity: 1;
-      background: rgba(255, 255, 255, 0.06);
     }
 
     .nav-dropdown-arrow { font-size: 11px; opacity: 0.85; }
@@ -172,13 +154,11 @@
       top: 125%;
       left: 50%;
       transform: translateX(-50%);
-      min-width: 210px;
-
+      min-width: 220px;
       background: rgba(0, 0, 0, 0.96);
       border-radius: 18px;
       border: 1px solid rgba(255, 255, 255, 0.16);
       box-shadow: 0 18px 40px rgba(0, 0, 0, 0.8);
-
       padding: 10px 8px;
       display: none;
       z-index: 1200;
@@ -191,27 +171,163 @@
       padding: 10px 12px;
       font-size: 13px;
       border-radius: 999px;
-      border-bottom: none;
-      opacity: 0.9;
+      opacity: 0.92;
     }
 
     .nav-dropdown a:hover { background: rgba(255, 255, 255, 0.08); }
-
     .nav-dropdown a.active { background: rgba(255, 255, 255, 0.12); }
 
     @media (hover: hover) {
-      .nav-item-role:hover .nav-dropdown { display: block; }
+      .nav-item-dropdown:hover .nav-dropdown { display: block; }
     }
 
-    /* Right actions */
     .header-actions {
-      margin-left: auto;
       display: flex;
       align-items: center;
       gap: 10px;
+      margin-left: auto;
     }
 
-    /* Botones generales */
+    /* Selector de idioma en la barra */
+    .lang-switcher { position: relative; }
+
+    .lang-current {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.26);
+      background: rgba(0, 0, 0, 0.35);
+      color: #ffffff;
+      font-size: 12px;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+      transition: background 0.2s ease, border-color 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .lang-current:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.34);
+    }
+
+    .lang-flag { font-size: 15px; line-height: 1; }
+    .lang-label { letter-spacing: 0.1em; text-transform: uppercase; font-size: 11px; }
+    .lang-arrow { font-size: 10px; opacity: 0.8; }
+
+    .lang-menu {
+      position: absolute;
+      right: 0;
+      top: 112%;
+      min-width: 160px;
+      background: #000000;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.8);
+      padding: 6px;
+      display: none;
+      z-index: 1200;
+    }
+
+    .lang-menu.open { display: block; }
+
+    .lang-menu button {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 10px;
+      background: transparent;
+      border: none;
+      color: #ffffff;
+      font-size: 13px;
+      cursor: pointer;
+      border-radius: 999px;
+      text-align: left;
+    }
+
+    .lang-menu button:hover { background: rgba(255, 255, 255, 0.08); }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: #ffffff;
+      font-size: 22px;
+      cursor: pointer;
+      line-height: 1;
+      padding: 10px 12px;
+      border-radius: 999px;
+    }
+
+    .menu-toggle:hover { background: rgba(255, 255, 255, 0.06); }
+
+    /* MENÚ MÓVIL */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 280px;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.96);
+      backdrop-filter: blur(14px);
+      z-index: 900;
+      padding: 90px 24px 24px;
+      transition: right 0.3s ease;
+      overflow-y: auto;
+    }
+
+    .mobile-menu.active { right: 0; }
+
+    .mobile-menu-links {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      font-size: 16px;
+    }
+
+    .mobile-menu-links a {
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    /* Dropdown móvil (Rol / App) */
+    .mobile-menu-dropdown { margin-top: 10px; }
+
+    .mobile-drop-title {
+      width: 100%;
+      padding: 10px 0;
+      background: none;
+      border: none;
+      color: #ffffff;
+      font-size: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .mobile-drop-arrow { font-size: 13px; transition: transform 0.2s ease; }
+
+    .mobile-drop-submenu {
+      display: none;
+      padding-left: 8px;
+      border-left: 1px solid rgba(255, 255, 255, 0.12);
+      margin-top: 6px;
+    }
+
+    .mobile-drop-submenu a {
+      display: block;
+      padding: 8px 0;
+      font-size: 15px;
+      border: none;
+    }
+
+    .mobile-drop-submenu.open { display: block; }
+    .mobile-drop-title.open .mobile-drop-arrow { transform: rotate(180deg); }
+
+    /* BOTONES GENERALES */
     .btn {
       display: inline-flex;
       align-items: center;
@@ -251,211 +367,7 @@
       transform: translateY(-1px);
     }
 
-    /* Botones del header (compactos) */
-    .header-actions .btn {
-      padding: 10px 16px;
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    .header-actions .btn-cta { box-shadow: none; }
-
-    .header-actions .btn-cta:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.7);
-    }
-
-    .header-actions .btn-secondary {
-      border: 1px solid rgba(255, 255, 255, 0.45);
-    }
-
-    .header-actions .btn-secondary:hover { background: rgba(255, 255, 255, 0.9); }
-
-    /* Selector de idioma */
-    .lang-switcher { position: relative; }
-
-    .lang-current {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 9px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.26);
-      background: rgba(0, 0, 0, 0.35);
-      color: #ffffff;
-      font-size: 12px;
-      cursor: pointer;
-      backdrop-filter: blur(10px);
-      transition: background 0.2s ease, border-color 0.2s ease;
-    }
-
-    .lang-current:hover {
-      background: rgba(255, 255, 255, 0.06);
-      border-color: rgba(255, 255, 255, 0.34);
-    }
-
-    .lang-flag { font-size: 15px; line-height: 1; }
-
-    .lang-label {
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      font-size: 11px;
-    }
-
-    .lang-arrow { font-size: 10px; opacity: 0.8; }
-
-    .lang-menu {
-      position: absolute;
-      right: 0;
-      top: 112%;
-      min-width: 160px;
-      background: #000000;
-      border-radius: 14px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.8);
-      padding: 6px;
-      display: none;
-      z-index: 1200;
-    }
-
-    .lang-menu.open { display: block; }
-
-    .lang-menu button {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 9px 10px;
-      background: transparent;
-      border: none;
-      color: #ffffff;
-      font-size: 13px;
-      cursor: pointer;
-      border-radius: 999px;
-      text-align: left;
-    }
-
-    .lang-menu button:hover { background: rgba(255, 255, 255, 0.08); }
-
-    /* Hamburguesa */
-    .menu-toggle {
-      display: none;
-      background: none;
-      border: none;
-      color: #ffffff;
-      font-size: 22px;
-      cursor: pointer;
-      line-height: 1;
-      padding: 8px 10px;
-      border-radius: 999px;
-    }
-
-    .menu-toggle:hover { background: rgba(255, 255, 255, 0.06); }
-
-    /* Mobile menu (igual lógica, misma estructura) */
-    .mobile-menu {
-      position: fixed;
-      top: 0;
-      right: -100%;
-      width: 260px;
-      height: 100vh;
-      background: rgba(0, 0, 0, 0.96);
-      backdrop-filter: blur(14px);
-      z-index: 900;
-      padding: 80px 24px 24px;
-      transition: right 0.3s ease;
-      overflow-y: auto;
-    }
-
-    .mobile-menu.active { right: 0; }
-
-    .mobile-menu-links {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      font-size: 16px;
-    }
-
-    .mobile-menu-links a {
-      padding-bottom: 10px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-    }
-
-    /* Dropdown "Rol" en menú móvil */
-    .mobile-menu-role { margin-top: 12px; }
-
-    .mobile-role-title {
-      width: 100%;
-      padding: 10px 0;
-      background: none;
-      border: none;
-      color: #ffffff;
-      font-size: 16px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      cursor: pointer;
-    }
-
-    .mobile-role-arrow {
-      font-size: 13px;
-      transition: transform 0.2s ease;
-    }
-
-    .mobile-role-submenu {
-      display: none;
-      padding-left: 8px;
-      border-left: 1px solid rgba(255, 255, 255, 0.12);
-    }
-
-    .mobile-role-submenu a {
-      display: block;
-      padding: 8px 0;
-      font-size: 15px;
-      border: none;
-    }
-
-    .mobile-role-submenu.open { display: block; }
-
-    .mobile-role-title.open .mobile-role-arrow { transform: rotate(180deg); }
-
-    /* RESPONSIVE */
-    @media (max-width: 900px) {
-      .section-inner { padding: 64px 18px; }
-    }
-
-    @media (max-width: 768px) {
-      .header {
-        width: 94%;
-        padding: 10px 12px;
-      }
-
-      .nav-links { display: none; }
-
-      .menu-toggle {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      /* Ocultamos los botones grandes del header para no saturar */
-      .header-actions .btn { display: none; }
-
-      .header-actions {
-        gap: 8px;
-        flex-wrap: nowrap;
-      }
-
-      .lang-current {
-        padding: 7px 10px;
-        font-size: 11px;
-      }
-    }
-
-    /* =========================================================
-      HERO ROL
-    ========================================================= */
-
+    /* HERO ROL */
     .role-hero {
       position: relative;
       min-height: 100vh;
@@ -476,7 +388,6 @@
       z-index: 0;
     }
 
-    /* IMAGEN DE FONDO PARA JUGADOR */
     .role-hero-jugador::before { background-image: url("images/rol-jugador-hero.jpg"); }
 
     .role-hero-overlay {
@@ -486,12 +397,7 @@
       z-index: 1;
     }
 
-    .role-hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 720px;
-      margin: 0 auto;
-    }
+    .role-hero-content { position: relative; z-index: 2; max-width: 720px; margin: 0 auto; }
 
     .role-hero-kicker {
       text-transform: uppercase;
@@ -515,17 +421,10 @@
       max-width: 560px;
     }
 
-    .role-hero-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
+    .role-hero-buttons { display: flex; flex-wrap: wrap; gap: 12px; }
 
     /* SECCIONES ROL */
-    .role-section {
-      background: #000000;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-    }
+    .role-section { background: #000000; border-top: 1px solid rgba(255, 255, 255, 0.05); }
 
     .role-layout {
       display: grid;
@@ -534,11 +433,7 @@
       align-items: center;
     }
 
-    .role-title {
-      font-size: 28px;
-      letter-spacing: -0.03em;
-      margin-bottom: 12px;
-    }
+    .role-title { font-size: 28px; letter-spacing: -0.03em; margin-bottom: 12px; }
 
     .role-text {
       font-size: 15px;
@@ -547,25 +442,11 @@
       margin-bottom: 16px;
     }
 
-    .role-list {
-      list-style: none;
-      padding-left: 0;
-      font-size: 14px;
-      color: var(--text-muted);
-    }
+    .role-list { list-style: none; padding-left: 0; font-size: 14px; color: var(--text-muted); }
 
-    .role-list li {
-      margin-bottom: 8px;
-      display: flex;
-      gap: 8px;
-      align-items: flex-start;
-    }
+    .role-list li { margin-bottom: 8px; display: flex; gap: 8px; align-items: flex-start; }
 
-    .role-list li span {
-      font-size: 18px;
-      line-height: 1;
-      margin-top: 2px;
-    }
+    .role-list li span { font-size: 18px; line-height: 1; margin-top: 2px; }
 
     .role-photo-wrapper {
       border-radius: 26px;
@@ -575,11 +456,7 @@
       box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
     }
 
-    .role-photo-wrapper img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+    .role-photo-wrapper img { width: 100%; height: 100%; object-fit: cover; }
 
     .role-section-alt { background: #050509; }
 
@@ -598,17 +475,9 @@
     }
 
     /* FOOTER */
-    .footer {
-      background: #000000;
-      border-top: 1px solid rgba(255, 255, 255, 0.12);
-      text-align: center;
-    }
+    .footer { background: #000000; border-top: 1px solid rgba(255, 255, 255, 0.12); text-align: center; }
 
-    .footer-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 36px 16px 26px;
-    }
+    .footer-inner { max-width: 1100px; margin: 0 auto; padding: 36px 16px 26px; }
 
     .footer-links {
       display: flex;
@@ -622,11 +491,7 @@
     .footer-links a { opacity: 0.7; }
     .footer-links a:hover { opacity: 1; }
 
-    .copyright {
-      font-size: 12px;
-      opacity: 0.6;
-      margin-bottom: 10px;
-    }
+    .copyright { font-size: 12px; opacity: 0.6; margin-bottom: 10px; }
 
     .privacy-links {
       display: flex;
@@ -638,11 +503,12 @@
       margin-bottom: 10px;
     }
 
-    .footer-tagline {
-      font-style: italic;
-      font-size: 15px;
-      opacity: 0.85;
-      margin-top: 4px;
+    .footer-tagline { font-style: italic; font-size: 15px; opacity: 0.85; margin-top: 4px; }
+
+    /* RESPONSIVE */
+    @media (max-width: 1050px) {
+      .nav-links { gap: 6px; }
+      .nav-links a, .nav-dropdown-toggle { padding: 10px 10px; }
     }
 
     @media (max-width: 900px) {
@@ -651,6 +517,14 @@
     }
 
     @media (max-width: 768px) {
+      .header { width: 94%; padding: 10px 12px; }
+      .nav-links { display: none; }
+      .menu-toggle { display: inline-flex; }
+
+      /* idioma + hamburguesa en la misma línea */
+      .header-actions { gap: 8px; flex-wrap: nowrap; }
+      .lang-current { padding: 7px 10px; font-size: 11px; }
+
       .role-hero { padding: 130px 18px 60px; }
       .role-hero-title { font-size: 2rem; }
       .role-hero-subtitle { font-size: 0.98rem; }
@@ -674,7 +548,7 @@
       <a href="index.html#how-steps" data-i18n="nav_how">Cómo funciona</a>
 
       <!-- Dropdown Rol -->
-      <div class="nav-item-role">
+      <div class="nav-item-dropdown" id="roleDropdown">
         <button class="nav-dropdown-toggle" type="button">
           <span data-i18n="nav_role">Rol</span>
           <span class="nav-dropdown-arrow">▾</span>
@@ -686,15 +560,26 @@
         </div>
       </div>
 
+      <a href="index.html#signup" data-i18n="nav_signup">Regístrate</a>
+      <a href="index.html#features" data-i18n="nav_features">Características</a>
       <a href="index.html#faq" data-i18n="nav_faq">FAQ</a>
       <a href="index.html#contact" data-i18n="nav_contact">Contacto</a>
+
+      <!-- Dropdown App -->
+      <div class="nav-item-dropdown" id="appDropdown">
+        <button class="nav-dropdown-toggle" type="button">
+          <span data-i18n="nav_app">App</span>
+          <span class="nav-dropdown-arrow">▾</span>
+        </button>
+        <div class="nav-dropdown">
+          <a href="index.html#signup" data-i18n="nav_app_players">App para jugadores</a>
+          <a href="index.html#signup" data-i18n="nav_app_clubs">App para clubes</a>
+          <a href="index.html#signup" data-i18n="nav_app_demo">Ver demo / early access</a>
+        </div>
+      </div>
     </nav>
 
     <div class="header-actions">
-      <!-- Botones (desktop) -->
-      <a href="index.html#signup" class="btn btn-secondary" data-i18n="nav_login">Entrar</a>
-      <a href="index.html#signup" class="btn btn-cta" data-i18n="nav_signup">Regístrate</a>
-
       <!-- Selector de idioma -->
       <div class="lang-switcher" id="langSwitcher">
         <button class="lang-current" type="button" aria-expanded="false">
@@ -725,28 +610,35 @@
       <a href="index.html#how-steps" data-i18n="nav_how">Cómo funciona</a>
 
       <!-- Rol en móvil -->
-      <div class="mobile-menu-role">
-        <button type="button" class="mobile-role-title">
+      <div class="mobile-menu-dropdown">
+        <button type="button" class="mobile-drop-title" id="mobileRoleToggle">
           <span data-i18n="nav_role">Rol</span>
-          <span class="mobile-role-arrow">▾</span>
+          <span class="mobile-drop-arrow">▾</span>
         </button>
-        <div class="mobile-role-submenu">
+        <div class="mobile-drop-submenu" id="mobileRoleMenu">
           <a href="rol-jugador.html" data-i18n="nav_role_player">Jugador</a>
           <a href="rol-club.html" data-i18n="nav_role_club">Club</a>
           <a href="rol-entrenador.html" data-i18n="nav_role_coach">Entrenador</a>
         </div>
       </div>
 
+      <a href="index.html#signup" data-i18n="nav_signup">Regístrate</a>
+      <a href="index.html#features" data-i18n="nav_features">Características</a>
       <a href="index.html#faq" data-i18n="nav_faq">FAQ</a>
       <a href="index.html#contact" data-i18n="nav_contact">Contacto</a>
 
-      <!-- CTA en móvil -->
-      <a href="index.html#signup" class="btn btn-cta" style="margin-top: 12px;" data-i18n="nav_signup">
-        Regístrate
-      </a>
-      <a href="index.html#signup" class="btn btn-secondary" style="margin-top: 10px;" data-i18n="nav_login">
-        Entrar
-      </a>
+      <!-- App en móvil -->
+      <div class="mobile-menu-dropdown">
+        <button type="button" class="mobile-drop-title" id="mobileAppToggle">
+          <span data-i18n="nav_app">App</span>
+          <span class="mobile-drop-arrow">▾</span>
+        </button>
+        <div class="mobile-drop-submenu" id="mobileAppMenu">
+          <a href="index.html#signup" data-i18n="nav_app_players">App para jugadores</a>
+          <a href="index.html#signup" data-i18n="nav_app_clubs">App para clubes</a>
+          <a href="index.html#signup" data-i18n="nav_app_demo">Ver demo / early access</a>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -789,30 +681,10 @@
             para que cualquiera que sepa de fútbol entienda en segundos qué tipo de jugador eres.
           </p>
           <ul class="role-list">
-            <li>
-              <span>•</span>
-              <p data-i18n="role_player_section1_li1">
-                Datos básicos claros: posición, pie dominante, edad, equipo actual y zona geográfica.
-              </p>
-            </li>
-            <li>
-              <span>•</span>
-              <p data-i18n="role_player_section1_li2">
-                Vídeos cortos ordenados por tipo de jugada: goles, asistencias, regates, robos, salidas jugando…
-              </p>
-            </li>
-            <li>
-              <span>•</span>
-              <p data-i18n="role_player_section1_li3">
-                Descripción de tu estilo de juego para que el entrenador sepa dónde encajas antes incluso de llamarte.
-              </p>
-            </li>
-            <li>
-              <span>•</span>
-              <p data-i18n="role_player_section1_li4">
-                Enlaces a tus redes (Instagram, TikTok, YouTube) para mostrar tu compromiso y tu día a día.
-              </p>
-            </li>
+            <li><span>•</span><p data-i18n="role_player_section1_li1">Datos básicos claros: posición, pie dominante, edad, equipo actual y zona geográfica.</p></li>
+            <li><span>•</span><p data-i18n="role_player_section1_li2">Vídeos cortos ordenados por tipo de jugada: goles, asistencias, regates, robos, salidas jugando…</p></li>
+            <li><span>•</span><p data-i18n="role_player_section1_li3">Descripción de tu estilo de juego para que el entrenador sepa dónde encajas antes incluso de llamarte.</p></li>
+            <li><span>•</span><p data-i18n="role_player_section1_li4">Enlaces a tus redes (Instagram, TikTok, YouTube) para mostrar tu compromiso y tu día a día.</p></li>
           </ul>
         </div>
 
@@ -842,30 +714,10 @@
             que están buscando exactamente tu perfil.
           </p>
           <ul class="role-list">
-            <li>
-              <span>✔</span>
-              <p data-i18n="role_player_section2_li1">
-                Dejas de depender de que “te vea alguien” por casualidad en la grada.
-              </p>
-            </li>
-            <li>
-              <span>✔</span>
-              <p data-i18n="role_player_section2_li2">
-                Te pueden descubrir clubes de otras ciudades sin que tengas que desplazarte.
-              </p>
-            </li>
-            <li>
-              <span>✔</span>
-              <p data-i18n="role_player_section2_li3">
-                Recibes interés real: si un entrenador te escribe, es porque ya ha visto cómo juegas.
-              </p>
-            </li>
-            <li>
-              <span>✔</span>
-              <p data-i18n="role_player_section2_li4">
-                Tú decides qué enseñar y con quién hablar. No hay representantes obligatorios ni comisiones ocultas.
-              </p>
-            </li>
+            <li><span>✔</span><p data-i18n="role_player_section2_li1">Dejas de depender de que “te vea alguien” por casualidad en la grada.</p></li>
+            <li><span>✔</span><p data-i18n="role_player_section2_li2">Te pueden descubrir clubes de otras ciudades sin que tengas que desplazarte.</p></li>
+            <li><span>✔</span><p data-i18n="role_player_section2_li3">Recibes interés real: si un entrenador te escribe, es porque ya ha visto cómo juegas.</p></li>
+            <li><span>✔</span><p data-i18n="role_player_section2_li4">Tú decides qué enseñar y con quién hablar. No hay representantes obligatorios ni comisiones ocultas.</p></li>
           </ul>
           <a href="index.html#signup" class="btn btn-cta" style="margin-top: 12px;" data-i18n="role_player_section2_cta">
             Empieza a construir tu perfil
@@ -888,9 +740,7 @@
         <a href="index.html#contact" data-i18n="nav_contact">Contacto</a>
       </div>
 
-      <div class="copyright" data-i18n="footer_copyright">
-        © 2025 Athlead. Todos los derechos reservados.
-      </div>
+      <div class="copyright" data-i18n="footer_copyright">© 2025 Athlead. Todos los derechos reservados.</div>
 
       <div class="privacy-links">
         <a href="#privacy" data-i18n="privacy_privacy">Política de Privacidad</a>
@@ -907,23 +757,26 @@
     // Estado global de idioma
     let ATHLEAD_LANG = 'es';
 
-    // Diccionario de traducciones (rol jugador + navegación + footer)
     const i18n = {
       es: {
         page_title: 'Athlead - Rol Jugador | Deja que el talento hable por ti',
 
         nav_about: 'Quiénes somos',
         nav_how: 'Cómo funciona',
-        nav_signup: 'Regístrate',
-        nav_login: 'Entrar',
-        nav_features: 'Características',
-        nav_faq: 'FAQ',
-        nav_contact: 'Contacto',
-        nav_problem: 'Jugadores invisibles',
         nav_role: 'Rol',
         nav_role_player: 'Jugador',
         nav_role_club: 'Club',
         nav_role_coach: 'Entrenador',
+        nav_signup: 'Regístrate',
+        nav_features: 'Características',
+        nav_faq: 'FAQ',
+        nav_contact: 'Contacto',
+        nav_problem: 'Jugadores invisibles',
+
+        nav_app: 'App',
+        nav_app_players: 'App para jugadores',
+        nav_app_clubs: 'App para clubes',
+        nav_app_demo: 'Ver demo / early access',
 
         footer_copyright: '© 2025 Athlead. Todos los derechos reservados.',
         privacy_privacy: 'Política de Privacidad',
@@ -972,16 +825,20 @@
 
         nav_about: 'About',
         nav_how: 'How it works',
-        nav_signup: 'Sign up',
-        nav_login: 'Log in',
-        nav_features: 'Features',
-        nav_faq: 'FAQ',
-        nav_contact: 'Contact',
-        nav_problem: 'Invisible players',
         nav_role: 'Role',
         nav_role_player: 'Player',
         nav_role_club: 'Club',
         nav_role_coach: 'Coach',
+        nav_signup: 'Sign up',
+        nav_features: 'Features',
+        nav_faq: 'FAQ',
+        nav_contact: 'Contact',
+        nav_problem: 'Invisible players',
+
+        nav_app: 'App',
+        nav_app_players: 'Player app',
+        nav_app_clubs: 'Club app',
+        nav_app_demo: 'See demo / early access',
 
         footer_copyright: '© 2025 Athlead. All rights reserved.',
         privacy_privacy: 'Privacy Policy',
@@ -998,12 +855,10 @@
         role_player_cta_examples: 'See sample highlights',
 
         role_player_section1_kicker: 'Your player profile',
-        role_player_section1_title:
-          'A profile that explains how you play, not just where you play.',
+        role_player_section1_title: 'A profile that explains how you play, not just where you play.',
         role_player_section1_p:
           'In Athlead you are not just a shirt number or a position. You are a set of decisions, movements and key moments that can change a match. Your profile is designed so that anyone who understands football can see in seconds what type of player you are.',
-        role_player_section1_li1:
-          'Clear basic data: position, dominant foot, age, current team and area.',
+        role_player_section1_li1: 'Clear basic data: position, dominant foot, age, current team and area.',
         role_player_section1_li2:
           'Short videos organised by play type: goals, assists, dribbles, tackles, build-up play…',
         role_player_section1_li3:
@@ -1015,10 +870,8 @@
         role_player_section2_title: 'From invisible player to discovered player.',
         role_player_section2_p:
           'Right now you might be playing every weekend without knowing if anyone is truly watching you. With Athlead, every play you upload is available to coaches and clubs who are looking for your exact profile.',
-        role_player_section2_li1:
-          'You stop depending on “someone in the stands” randomly noticing you.',
-        role_player_section2_li2:
-          'Clubs in other cities can discover you without you having to travel.',
+        role_player_section2_li1: 'You stop depending on “someone in the stands” randomly noticing you.',
+        role_player_section2_li2: 'Clubs in other cities can discover you without you having to travel.',
         role_player_section2_li3:
           'You get real interest: if a coach writes to you, it’s because they have already seen how you play.',
         role_player_section2_li4:
@@ -1033,14 +886,10 @@
       document.querySelectorAll('[data-i18n]').forEach((el) => {
         const key = el.getAttribute('data-i18n');
         const translation = dict[key];
-        if (translation) {
-          el.innerHTML = translation;
-        }
+        if (translation) el.innerHTML = translation;
       });
 
-      if (dict.page_title) {
-        document.title = dict.page_title;
-      }
+      if (dict.page_title) document.title = dict.page_title;
     }
 
     // Logo → volver al home
@@ -1083,13 +932,12 @@
       });
     });
 
-    // Dropdown "Rol" escritorio
-    (function () {
-      const roleItem = document.querySelector('.nav-item-role');
-      if (!roleItem) return;
-
-      const toggle = roleItem.querySelector('.nav-dropdown-toggle');
-      const menu = roleItem.querySelector('.nav-dropdown');
+    // Dropdown helper (desktop)
+    function setupDesktopDropdown(containerId) {
+      const item = document.getElementById(containerId);
+      if (!item) return;
+      const toggle = item.querySelector('.nav-dropdown-toggle');
+      const menu = item.querySelector('.nav-dropdown');
       let hideTimeout;
 
       function openMenu() {
@@ -1098,14 +946,12 @@
       }
 
       function closeMenu() {
-        hideTimeout = setTimeout(() => {
-          menu.classList.remove('open');
-        }, 120);
+        hideTimeout = setTimeout(() => menu.classList.remove('open'), 120);
       }
 
       if (window.matchMedia('(hover: hover)').matches) {
-        roleItem.addEventListener('mouseenter', openMenu);
-        roleItem.addEventListener('mouseleave', closeMenu);
+        item.addEventListener('mouseenter', openMenu);
+        item.addEventListener('mouseleave', closeMenu);
       }
 
       toggle.addEventListener('click', (e) => {
@@ -1115,23 +961,27 @@
       });
 
       document.addEventListener('click', (e) => {
-        if (!roleItem.contains(e.target)) {
-          menu.classList.remove('open');
-        }
+        if (!item.contains(e.target)) menu.classList.remove('open');
       });
-    })();
+    }
 
-    // Dropdown "Rol" en menú móvil
-    (function () {
-      const toggle = document.querySelector('.mobile-role-title');
-      const submenu = document.querySelector('.mobile-role-submenu');
+    setupDesktopDropdown('roleDropdown');
+    setupDesktopDropdown('appDropdown');
+
+    // Dropdown móvil (Rol / App)
+    function setupMobileDropdown(toggleId, menuId) {
+      const toggle = document.getElementById(toggleId);
+      const submenu = document.getElementById(menuId);
       if (!toggle || !submenu) return;
 
       toggle.addEventListener('click', () => {
         submenu.classList.toggle('open');
         toggle.classList.toggle('open');
       });
-    })();
+    }
+
+    setupMobileDropdown('mobileRoleToggle', 'mobileRoleMenu');
+    setupMobileDropdown('mobileAppToggle', 'mobileAppMenu');
 
     // Ocultar header en scroll
     let lastScroll = 0;
@@ -1139,15 +989,12 @@
 
     window.addEventListener('scroll', () => {
       const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-      if (currentScroll > lastScroll && currentScroll > 80) {
-        header.classList.add('hide-header');
-      } else if (currentScroll < lastScroll) {
-        header.classList.remove('hide-header');
-      }
+      if (currentScroll > lastScroll && currentScroll > 80) header.classList.add('hide-header');
+      else if (currentScroll < lastScroll) header.classList.remove('hide-header');
       lastScroll = currentScroll;
     });
 
-    // Selector de idioma en la barra
+    // Selector de idioma
     (function () {
       const langSwitcher = document.getElementById('langSwitcher');
       if (!langSwitcher) return;
@@ -1200,9 +1047,6 @@
         applyTranslations(ATHLEAD_LANG);
       }
     })();
-
-    // Init
-    applyTranslations(localStorage.getItem('athlead_lang') === 'en' ? 'en' : 'es');
   </script>
 
   <!--Start of Tawk.to Script-->
@@ -1220,3 +1064,4 @@
   <!--End of Tawk.to Script-->
 </body>
 </html>
+
