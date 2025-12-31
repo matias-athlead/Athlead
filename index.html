@@ -2298,6 +2298,45 @@
     margin-top: 0;
   }
 }
+/* ====== SOLO #how-steps (desktop carrusel): sin márgenes arriba/abajo ====== */
+@media (min-width: 1024px) {
+
+  /* Quita padding vertical del contenedor de la sección */
+  #how-steps.how-carousel .how-steps-inner{
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  /* Quita cualquier espacio extra interno */
+  #how-steps.how-carousel .how-step-triggers{
+    margin-top: 0 !important;   /* antes tenía 40px */
+  }
+
+  /* (Opcional pero recomendado) evita “huecos” visuales entre slides:
+     wrapper/slide/card con la MISMA altura */
+  #how-steps.how-carousel .how-step-card-wrapper{
+    height: min(70vh, 620px);
+    min-height: 0 !important;
+    overflow: hidden;
+  }
+
+  #how-steps.how-carousel .how-step-slide{
+    height: 100%;
+  }
+
+  #how-steps.how-carousel .how-step-card{
+    height: 100% !important;   /* MUY importante */
+    max-height: none !important;
+  }
+
+  #how-steps.how-carousel .how-step-image{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+}
 
   </style>
 </head>
