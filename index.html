@@ -2237,6 +2237,44 @@
     height: 100vh;
   }
 }
+/* ====== SOLO ESTA PANTALLA (how-steps en desktop carrusel): sin márgenes y fotos bien visibles ====== */
+@media (min-width: 1024px) {
+  /* Quita el “container” limitado SOLO en esta sección */
+  #how-steps.how-carousel .section-inner {
+    max-width: none;      /* elimina el límite de 1100px */
+    width: 92vw;          /* ocupa casi todo el ancho como tu header */
+    margin: 0 auto;
+    padding-left: 0;      /* sin márgenes laterales */
+    padding-right: 0;
+  }
+
+  /* Que el layout use todo el ancho disponible */
+  #how-steps.how-carousel .how-steps-layout {
+    width: 100%;
+    max-width: none;
+    justify-content: flex-start;
+    gap: 56px;            /* ajusta el aire entre el número y la tarjeta */
+  }
+
+  /* La tarjeta ocupa todo el espacio restante */
+  #how-steps.how-carousel .how-step-card-wrapper {
+    max-width: none;
+    width: 100%;
+  }
+
+  #how-steps.how-carousel .how-step-card {
+    width: 100%;
+  }
+
+  /* La imagen SIEMPRE llena el contenedor sin deformarse */
+  #how-steps.how-carousel .how-step-card img,
+  #how-steps.how-carousel .how-step-card video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;        /* clave para que se vea bien */
+    object-position: center;  /* centra el encuadre */
+  }
+}
 
   </style>
 </head>
