@@ -1785,10 +1785,11 @@
       }
 
       #how-steps .how-step-card-wrapper {
-        flex: 1;
-        position: relative;
-        min-height: min(70vh, 620px);
-      }
+  flex: 1;
+  position: relative;
+  min-height: 540px;     /* fijo como el video */
+  max-width: 980px;      /* evita que se vaya enorme en pantallas grandes */
+}
 
       #how-steps .how-step-slide {
         position: absolute;
@@ -1804,11 +1805,14 @@
         pointer-events: auto;
       }
 
-      #how-steps .how-step-card {
-        border-radius: 24px;
-        height: 75vh;
-        max-height: 620px;
-      }
+  #how-steps .how-step-card {
+  position: relative;
+  border-radius: 28px;   /* más “Veo-like” */
+  height: 540px;         /* fijo (clave) */
+  max-height: 540px;
+  overflow: hidden;      /* para que el overlay no “rompa” bordes redondos */
+}
+
 
       #how-steps .how-step-image {
         width: 100%;
@@ -1817,13 +1821,21 @@
         display: block;
       }
 
-      #how-steps .how-step-overlay {
-        display: flex;
-        align-items: flex-end;
-        justify-content: flex-start;
-        padding: 32px 36px 36px;
-        max-width: 520px;
-      }
+ #how-steps .how-step-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;          /* antes estaba abajo: flex-end */
+  justify-content: flex-start;
+  padding: 0 0 0 64px;          /* texto a la izquierda, centrado vertical */
+  max-width: none;              /* que no recorte el overlay */
+}
+
+/* el bloque de texto no se estira infinito */
+#how-steps .how-step-overlay > div {
+  max-width: 520px;
+}
+
 
       #how-steps .how-step-title {
         font-size: 42px;
