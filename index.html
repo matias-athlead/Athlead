@@ -2380,6 +2380,76 @@
     font-size: clamp(46px, 12vw, 90px);
   }
 }
+/* ====== BIG FOOTER SLOGAN (legible, 1 línea) ====== */
+.big-footer-slogan{
+  background: #000;
+  padding: 40px 0 20px;
+  overflow: hidden;
+}
+
+.big-footer-slogan-inner{
+  width: 100%;
+  margin: 0 auto;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+
+  padding: 0 4vw;
+
+  font-family: inherit;     /* misma tipografía Athlead */
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.06em;
+  line-height: 0.85;
+  color: #fff;
+
+  /* se adapta y siempre entra */
+  font-size: clamp(48px, 8.8vw, 170px);
+  white-space: nowrap;
+}
+/* ====== VE0-LIKE: margen entre fotos, pero sin margen arriba/abajo (solo desktop + solo how-steps carrusel) ====== */
+@media (min-width: 1024px) {
+  #how-steps.how-carousel { 
+    --step-gap: 34px; /* ajusta este número si querés más/menos separación */
+  }
+
+  /* 0 margen arriba/abajo de la sección (por si queda algo residual) */
+  #how-steps.how-carousel .how-steps-inner{
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+  #how-steps.how-carousel .how-step-triggers{
+    margin-top: 0 !important;
+  }
+
+  /* Cada slide mide 100% de alto (no tocamos esto), pero le metemos "aire" abajo
+     SOLO entre slides (no en el último) */
+  #how-steps.how-carousel .how-step-slide:not(:last-child){
+    padding-bottom: var(--step-gap);
+  }
+  #how-steps.how-carousel .how-step-slide:last-child{
+    padding-bottom: 0;
+  }
+
+  /* La tarjeta ocupa todo el alto del slide,
+     excepto cuando hay gap (para que se vea el margen negro entre fotos) */
+  #how-steps.how-carousel .how-step-card{
+    height: 100% !important;
+    max-height: none !important;
+  }
+  #how-steps.how-carousel .how-step-slide:not(:last-child) .how-step-card{
+    height: calc(100% - var(--step-gap)) !important;
+  }
+
+  /* Asegura que la imagen rellene bien la tarjeta */
+  #how-steps.how-carousel .how-step-image{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+}
 
   </style>
 </head>
@@ -4632,6 +4702,9 @@ s0.parentNode.insertBefore(s1,s0);
     <span>TALENT</span>
   </div>
 </section>
-
+ <!-- BIG FOOTER SLOGAN (tipo Veo) -->
+  <section class="big-footer-slogan" aria-label="Slogan">
+    <div class="big-footer-slogan-inner">YOU AND YOUR TALENT</div>
+  </section>
 </body>
 </html>
