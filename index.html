@@ -2337,6 +2337,49 @@
     object-fit: cover;
   }
 }
+/* ====== BIG FOOTER SLOGAN (tipo Veo) ====== */
+.big-footer-slogan{
+  background: #000;         /* tu fondo */
+  padding: 90px 0 60px;     /* espacio arriba/abajo */
+  overflow: hidden;         /* que el texto gigante no cree scroll horizontal */
+}
+
+.big-footer-slogan-inner{
+  width: min(1400px, 92vw); /* alineado con tu header */
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, max-content);
+  gap: clamp(24px, 4vw, 70px);
+  align-items: end;
+  justify-content: center;  /* centrado */
+}
+
+.big-footer-slogan-inner span{
+  font-family: inherit;     /* MISMA tipografía que Athlead */
+  font-weight: 800;
+  letter-spacing: -0.06em;
+  text-transform: uppercase;
+  line-height: 0.85;
+  color: #fff;
+  font-size: clamp(64px, 10vw, 160px);
+  white-space: nowrap;
+}
+
+/* Responsive: en móvil se apila en 2 filas (para no romper) */
+@media (max-width: 900px){
+  .big-footer-slogan{
+    padding: 60px 0 50px;
+  }
+
+  .big-footer-slogan-inner{
+    grid-template-columns: repeat(2, max-content);
+    justify-content: center;
+  }
+
+  .big-footer-slogan-inner span{
+    font-size: clamp(46px, 12vw, 90px);
+  }
+}
 
   </style>
 </head>
@@ -4580,5 +4623,15 @@ s0.parentNode.insertBefore(s1,s0);
 })();
 </script>
 <!--End of Tawk.to Script-->
+  <!-- BIG FOOTER SLOGAN (tipo Veo) -->
+<section class="big-footer-slogan" aria-label="Slogan">
+  <div class="big-footer-slogan-inner">
+    <span>YOU</span>
+    <span>AND</span>
+    <span>YOUR</span>
+    <span>TALENT</span>
+  </div>
+</section>
+
 </body>
 </html>
