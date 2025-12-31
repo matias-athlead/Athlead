@@ -2204,6 +2204,39 @@
     text-align: center;
   }
 }
+/* ====== DESKTOP: carrusel por scroll estilo Veo (solo ordenador) ====== */
+@media (min-width: 1024px) {
+  /* activado por JS */
+  #how-steps.how-carousel .how-step-card-wrapper {
+    overflow: hidden;
+    height: min(70vh, 620px);
+  }
+
+  #how-steps.how-carousel .how-step-track {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+  }
+
+  /* Apaga el modo "fade" (absolute/opacity/active) y lo convierte en slides normales */
+  #how-steps.how-carousel .how-step-slide {
+    position: relative !important;
+    inset: auto !important;
+    flex: 0 0 100%;
+    height: 100%;
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    pointer-events: auto !important;
+  }
+
+  /* Scroll length por paso (como Veo) */
+  #how-steps.how-carousel .how-step-trigger {
+    height: 100vh;
+  }
+}
 
   </style>
 </head>
@@ -3796,42 +3829,100 @@ signup_success_close: 'Close',
       });
     }
 
-    // Bloque "Tres pasos" – scroll solo escritorio
-    (function () {
-      const stepsSection = document.getElementById('how-steps');
-      if (!stepsSection || window.innerWidth < 1024) return;
+// "Tres pasos" – carrusel por scroll (solo escritorio, estilo Veo)
+(function () {
+  const mql = window.matchMedia("(min-width: 1024px)");
+  const stepsSection = document.getElementById("how-steps");
+  if (!stepsSection) return;
 
-      const slides = stepsSection.querySelectorAll('.how-step-slide');
-      const numberEl = document.getElementById('howStepNumber');
-      const triggers = stepsSection.querySelectorAll('.how-step-trigger');
+  const numberEl = document.getElementById("howStepNumber");
+  const wrapper = stepsSection.querySelector(".how-step-card-wrapper");
+  const triggersWrap = stepsSection.querySelector(".how-step-triggers");
 
-      if (!slides.length || !triggers.length || !numberEl) return;
+  let rafId = 0;
+  let enabled = false;
 
-      const activate = (index) => {
-        slides.forEach((slide, i) => {
-          slide.classList.toggle('active', i === index);
-        });
-        numberEl.textContent = `0${index + 1}`;
-      };
+  const clamp = (n, a, b) => Math.max(a, Math.min(b, n));
 
-      activate(0);
+  function enable() {
+    if (enabled) return;
+    if (!numberEl || !wrapper || !triggersWrap) return;
 
-      const stepObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              const stepIndex = parseInt(entry.target.getAttribute('data-step'), 10) || 0;
-              activate(stepIndex);
-            }
-          });
-        },
-        {
-          threshold: 0.6
-        }
-      );
+    enabled = true;
 
-      triggers.forEach((trigger) => stepObserver.observe(trigger));
-    })();
+    // Activa overrides CSS solo en desktop
+    stepsSection.classList.add("how-carousel");
+
+    // Crear track si no existe (sin tocar tu HTML)
+    let slides = Array.from(wrapper.querySelectorAll(".how-step-slide"));
+    let track = wrapper.querySelector(".how-step-track");
+
+    if (!track) {
+      track = document.createElement("div");
+      track.className = "how-step-track";
+      slides.forEach((s) => track.appendChild(s));
+      wrapper.appendChild(track);
+    } else {
+      slides = Array.from(track.querySelectorAll(".how-step-slide"));
+    }
+
+    // Quitar "active" para que no influya
+    slides.forEach((s) => s.classList.remove("active"));
+
+    const totalSlides = slides.length;
+    if (!totalSlides) return;
+
+    function update() {
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        const vh = window.innerHeight;
+        const rect = triggersWrap.getBoundingClientRect();
+
+        // total scroll útil dentro de los triggers
+        const totalScroll = Math.max(1, triggersWrap.offsetHeight - vh);
+        const scrolled = clamp(-rect.top, 0, totalScroll);
+        const progress = scrolled / totalScroll; // 0..1
+
+        // posición exacta (fluida) del carrusel
+        const exact = progress * (totalSlides - 1); // 0..2
+        const slideH = wrapper.getBoundingClientRect().height;
+        const translateY = -(exact * slideH);
+
+        track.style.transform = `translate3d(0, ${translateY}px, 0)`;
+
+        // Número (01/02/03)
+        const idx = clamp(Math.round(exact), 0, totalSlides - 1);
+        numberEl.textContent = String(idx + 1).padStart(2, "0");
+      });
+    }
+
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    stepsSection._howCarouselCleanup = () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+      track.style.transform = "";
+      stepsSection.classList.remove("how-carousel");
+      enabled = false;
+    };
+  }
+
+  function disable() {
+    if (stepsSection._howCarouselCleanup) stepsSection._howCarouselCleanup();
+  }
+
+  function handle() {
+    if (mql.matches) enable();
+    else disable();
+  }
+
+  if (mql.addEventListener) mql.addEventListener("change", handle);
+  else mql.addListener(handle);
+
+  handle();
+})();
+
 
     // Carrusel táctil en móvil para "Captura tu talento en tres pasos"
     (function () {
