@@ -2275,6 +2275,29 @@
     object-position: center;  /* centra el encuadre */
   }
 }
+/* ====== SOLO en "tres pasos" (desktop carrusel): sin márgenes arriba/abajo ====== */
+@media (min-width: 1024px) {
+  /* Quita el padding vertical típico de .section-inner (80px arriba/abajo) */
+  #how-steps.how-carousel .section-inner {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  /* Si el propio section tiene padding/margen, también lo anulamos */
+  #how-steps.how-carousel {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  /* A veces el título ("Captura tu talento...") mete margen inferior */
+  #how-steps.how-carousel h2,
+  #how-steps.how-carousel h3,
+  #how-steps.how-carousel p {
+    margin-top: 0;
+  }
+}
 
   </style>
 </head>
