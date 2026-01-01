@@ -4076,6 +4076,7 @@ signup_success_close: 'Close',
       });
     }
 
+<script>
 // "Tres pasos" – carrusel por scroll (solo escritorio, estilo Veo)
 (function () {
   const mql = window.matchMedia("(min-width: 1024px)");
@@ -4088,67 +4089,106 @@ signup_success_close: 'Close',
 
   let rafId = 0;
   let enabled = false;
+  let track = null;
+  let slides = [];
 
   const clamp = (n, a, b) => Math.max(a, Math.min(b, n));
 
-  function enable() {
-    if (enabled) return;
-    if (!numberEl || !wrapper || !triggersWrap) return;
-
-    enabled = true;
-
-    // Activa overrides CSS solo en desktop
-    stepsSection.classList.add("how-carousel");
-
-    // Crear track si no existe (sin tocar tu HTML)
-    let slides = Array.from(wrapper.querySelectorAll(".how-step-slide"));
-    let track = wrapper.querySelector(".how-step-track");
-
+  function buildTrack() {
+    // crea track si no existe y mete dentro las slides
+    track = wrapper.querySelector(".how-step-track");
     if (!track) {
       track = document.createElement("div");
       track.className = "how-step-track";
+      slides = Array.from(wrapper.querySelectorAll(".how-step-slide"));
       slides.forEach((s) => track.appendChild(s));
       wrapper.appendChild(track);
     } else {
       slides = Array.from(track.querySelectorAll(".how-step-slide"));
     }
 
-    // Quitar "active" para que no influya
     slides.forEach((s) => s.classList.remove("active"));
+  }
 
-    const totalSlides = slides.length;
-    if (!totalSlides) return;
+  function unwrapTrack() {
+    if (!track) return;
+    const kids = Array.from(track.children);
+    kids.forEach((k) => wrapper.appendChild(k));
+    track.remove();
+    track = null;
+    slides = [];
+  }
 
-    function update() {
-      cancelAnimationFrame(rafId);
-      rafId = requestAnimationFrame(() => {
-        const vh = window.innerHeight;
-        const rect = triggersWrap.getBoundingClientRect();
+  function update() {
+    cancelAnimationFrame(rafId);
+    rafId = requestAnimationFrame(() => {
+      if (!enabled || !track || !slides.length) return;
 
-        // total scroll útil dentro de los triggers
-        const totalScroll = Math.max(1, triggersWrap.offsetHeight - vh);
-        const scrolled = clamp(-rect.top, 0, totalScroll);
-        const progress = scrolled / totalScroll; // 0..1
+      const vh = window.innerHeight;
+      const rect = triggersWrap.getBoundingClientRect();
 
-      const slideH = wrapper.getBoundingClientRect().height;
+      // scroll útil dentro de los triggers
+      const totalScroll = Math.max(1, triggersWrap.offsetHeight - vh);
+      const scrolled = clamp(-rect.top, 0, totalScroll);
+      const progress = scrolled / totalScroll; // 0..1
 
-// Lee el gap desde CSS: --step-gap (definido en #how-steps.how-carousel)
-const gapStr = getComputedStyle(stepsSection).getPropertyValue("--step-gap").trim();
-const gap = gapStr ? parseFloat(gapStr) : 0;
+      // ✅ ESTA era la pieza que te faltaba
+      const exact = progress * (slides.length - 1); // 0..(n-1)
 
-// Paso real del carrusel = alto de la tarjeta + gap
-const step = slideH + gap;
+      // lee gap desde CSS --step-gap
+      const gapStr = getComputedStyle(stepsSection).getPropertyValue("--step-gap").trim();
+      const gap = gapStr ? parseFloat(gapStr) : 0;
 
-const translateY = -(exact * step);
-track.style.transform = `translate3d(0, ${translateY}px, 0)`;
+      const slideH = wrapper.clientHeight;
+      const step = slideH + gap;
 
+      const translateY = -(exact * step);
+      track.style.transform = `translate3d(0, ${translateY}px, 0)`;
 
-        track.style.transform = `translate3d(0, ${translateY}px, 0)`;
+      const idx = clamp(Math.round(exact), 0, slides.length - 1);
+      if (numberEl) numberEl.textContent = String(idx + 1).padStart(2, "0");
+    });
+  }
 
-        // Número (01/02/03)
-        const idx = clamp(Math.round(exact), 0, totalSlides - 1);
-        numberEl.textContent = String(idx + 1).padStart(2, "0");
-      });
+  function enable() {
+    if (enabled) return;
+    if (!numberEl || !wrapper || !triggersWrap) return;
+
+    enabled = true;
+    stepsSection.classList.add("how-carousel");
+    buildTrack();
+
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+  }
+
+  function disable() {
+    if (!enabled) return;
+    enabled = false;
+
+    window.removeEventListener("scroll", update);
+    window.removeEventListener("resize", update);
+
+    stepsSection.classList.remove("how-carousel");
+
+    // reset
+    unwrapTrack();
+    const directSlides = Array.from(wrapper.querySelectorAll(".how-step-slide"));
+    directSlides.forEach((s, i) => s.classList.toggle("active", i === 0));
+    if (numberEl) numberEl.textContent = "01";
+  }
+
+  // init + listener
+  if (mql.matches) enable();
+  if (mql.addEventListener) {
+    mql.addEventListener("change", (e) => (e.matches ? enable() : disable()));
+  } else {
+    // Safari viejo
+    mql.addListener((e) => (e.matches ? enable() : disable()));
+  }
+})();
+
     }
 
     update();
