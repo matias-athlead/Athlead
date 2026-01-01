@@ -1785,11 +1785,10 @@
       }
 
       #how-steps .how-step-card-wrapper {
-  flex: 1;
-  position: relative;
-  min-height: 540px;     /* fijo como el video */
-  max-width: 980px;      /* evita que se vaya enorme en pantallas grandes */
-}
+        flex: 1;
+        position: relative;
+        min-height: min(70vh, 620px);
+      }
 
       #how-steps .how-step-slide {
         position: absolute;
@@ -1805,14 +1804,11 @@
         pointer-events: auto;
       }
 
-  #how-steps .how-step-card {
-  position: relative;
-  border-radius: 28px;   /* más “Veo-like” */
-  height: 540px;         /* fijo (clave) */
-  max-height: 540px;
-  overflow: hidden;      /* para que el overlay no “rompa” bordes redondos */
-}
-
+      #how-steps .how-step-card {
+        border-radius: 24px;
+        height: 75vh;
+        max-height: 620px;
+      }
 
       #how-steps .how-step-image {
         width: 100%;
@@ -1821,21 +1817,13 @@
         display: block;
       }
 
- #how-steps .how-step-overlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;          /* antes estaba abajo: flex-end */
-  justify-content: flex-start;
-  padding: 0 0 0 64px;          /* texto a la izquierda, centrado vertical */
-  max-width: none;              /* que no recorte el overlay */
-}
-
-/* el bloque de texto no se estira infinito */
-#how-steps .how-step-overlay > div {
-  max-width: 520px;
-}
-
+      #how-steps .how-step-overlay {
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-start;
+        padding: 32px 36px 36px;
+        max-width: 520px;
+      }
 
       #how-steps .how-step-title {
         font-size: 42px;
@@ -2202,286 +2190,6 @@
   .cookie-btn {
     width: 100%;
     text-align: center;
-  }
-}
-/* ====== DESKTOP: carrusel por scroll estilo Veo (solo ordenador) ====== */
-@media (min-width: 1024px) {
-  /* activado por JS */
-  #how-steps.how-carousel .how-step-card-wrapper {
-    overflow: hidden;
-    height: min(70vh, 620px);
-  }
-
-  #how-steps.how-carousel .how-step-track {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    will-change: transform;
-    transform: translate3d(0, 0, 0);
-  }
-
-  /* Apaga el modo "fade" (absolute/opacity/active) y lo convierte en slides normales */
-  #how-steps.how-carousel .how-step-slide {
-    position: relative !important;
-    inset: auto !important;
-    flex: 0 0 100%;
-    height: 100%;
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-    pointer-events: auto !important;
-  }
-
-  /* Scroll length por paso (como Veo) */
-  #how-steps.how-carousel .how-step-trigger {
-    height: 100vh;
-  }
-}
-/* ====== SOLO ESTA PANTALLA (how-steps en desktop carrusel): sin márgenes y fotos bien visibles ====== */
-@media (min-width: 1024px) {
-  /* Quita el “container” limitado SOLO en esta sección */
-  #how-steps.how-carousel .section-inner {
-    max-width: none;      /* elimina el límite de 1100px */
-    width: 92vw;          /* ocupa casi todo el ancho como tu header */
-    margin: 0 auto;
-    padding-left: 0;      /* sin márgenes laterales */
-    padding-right: 0;
-  }
-
-  /* Que el layout use todo el ancho disponible */
-  #how-steps.how-carousel .how-steps-layout {
-    width: 100%;
-    max-width: none;
-    justify-content: flex-start;
-    gap: 56px;            /* ajusta el aire entre el número y la tarjeta */
-  }
-
-  /* La tarjeta ocupa todo el espacio restante */
-  #how-steps.how-carousel .how-step-card-wrapper {
-    max-width: none;
-    width: 100%;
-  }
-
-  #how-steps.how-carousel .how-step-card {
-    width: 100%;
-  }
-
-  /* La imagen SIEMPRE llena el contenedor sin deformarse */
-  #how-steps.how-carousel .how-step-card img,
-  #how-steps.how-carousel .how-step-card video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;        /* clave para que se vea bien */
-    object-position: center;  /* centra el encuadre */
-  }
-}
-/* ====== SOLO en "tres pasos" (desktop carrusel): sin márgenes arriba/abajo ====== */
-@media (min-width: 1024px) {
-  /* Quita el padding vertical típico de .section-inner (80px arriba/abajo) */
-  #how-steps.how-carousel .section-inner {
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
-  }
-
-  /* Si el propio section tiene padding/margen, también lo anulamos */
-  #how-steps.how-carousel {
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
-  }
-
-  /* A veces el título ("Captura tu talento...") mete margen inferior */
-  #how-steps.how-carousel h2,
-  #how-steps.how-carousel h3,
-  #how-steps.how-carousel p {
-    margin-top: 0;
-  }
-}
-/* ====== SOLO #how-steps (desktop carrusel): sin márgenes arriba/abajo ====== */
-@media (min-width: 1024px) {
-
-  /* Quita padding vertical del contenedor de la sección */
-  #how-steps.how-carousel .how-steps-inner{
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
-  }
-
-  /* Quita cualquier espacio extra interno */
-  #how-steps.how-carousel .how-step-triggers{
-    margin-top: 0 !important;   /* antes tenía 40px */
-  }
-
-  /* (Opcional pero recomendado) evita “huecos” visuales entre slides:
-     wrapper/slide/card con la MISMA altura */
-  #how-steps.how-carousel .how-step-card-wrapper{
-    height: min(70vh, 620px);
-    min-height: 0 !important;
-    overflow: hidden;
-  }
-
-  #how-steps.how-carousel .how-step-slide{
-    height: 100%;
-  }
-
-  #how-steps.how-carousel .how-step-card{
-    height: 100% !important;   /* MUY importante */
-    max-height: none !important;
-  }
-
-  #how-steps.how-carousel .how-step-image{
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-  }
-}
-/* ====== BIG FOOTER SLOGAN (tipo Veo) ====== */
-.big-footer-slogan{
-  background: #000;         /* tu fondo */
-  padding: 90px 0 60px;     /* espacio arriba/abajo */
-  overflow: hidden;         /* que el texto gigante no cree scroll horizontal */
-}
-
-.big-footer-slogan-inner{
-  width: min(1400px, 92vw); /* alineado con tu header */
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(4, max-content);
-  gap: clamp(24px, 4vw, 70px);
-  align-items: end;
-  justify-content: center;  /* centrado */
-}
-
-.big-footer-slogan-inner span{
-  font-family: inherit;     /* MISMA tipografía que Athlead */
-  font-weight: 800;
-  letter-spacing: -0.06em;
-  text-transform: uppercase;
-  line-height: 0.85;
-  color: #fff;
-  font-size: clamp(64px, 10vw, 160px);
-  white-space: nowrap;
-}
-
-/* Responsive: en móvil se apila en 2 filas (para no romper) */
-@media (max-width: 900px){
-  .big-footer-slogan{
-    padding: 60px 0 50px;
-  }
-
-  .big-footer-slogan-inner{
-    grid-template-columns: repeat(2, max-content);
-    justify-content: center;
-  }
-
-  .big-footer-slogan-inner span{
-    font-size: clamp(46px, 12vw, 90px);
-  }
-}
-/* ====== BIG FOOTER SLOGAN (legible, 1 línea) ====== */
-.big-footer-slogan{
-  background: #000;
-  padding: 40px 0 20px;
-  overflow: hidden;
-}
-
-.big-footer-slogan-inner{
-  width: 100%;
-  margin: 0 auto;
-
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-
-  padding: 0 4vw;
-
-  font-family: inherit;     /* misma tipografía Athlead */
-  font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: -0.06em;
-  line-height: 0.85;
-  color: #fff;
-
-  /* se adapta y siempre entra */
-  font-size: clamp(48px, 8.8vw, 170px);
-  white-space: nowrap;
-}
-/* ====== VE0-LIKE: margen entre fotos, pero sin margen arriba/abajo (solo desktop + solo how-steps carrusel) ====== */
-@media (min-width: 1024px) {
-  #how-steps.how-carousel { 
-    --step-gap: 34px; /* ajusta este número si querés más/menos separación */
-  }
-
-  /* 0 margen arriba/abajo de la sección (por si queda algo residual) */
-  #how-steps.how-carousel .how-steps-inner{
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
-  }
-  #how-steps.how-carousel .how-step-triggers{
-    margin-top: 0 !important;
-  }
-
-  /* Cada slide mide 100% de alto (no tocamos esto), pero le metemos "aire" abajo
-     SOLO entre slides (no en el último) */
-  #how-steps.how-carousel .how-step-slide:not(:last-child){
-    padding-bottom: var(--step-gap);
-  }
-  #how-steps.how-carousel .how-step-slide:last-child{
-    padding-bottom: 0;
-  }
-
-  /* La tarjeta ocupa todo el alto del slide,
-     excepto cuando hay gap (para que se vea el margen negro entre fotos) */
-  #how-steps.how-carousel .how-step-card{
-    height: 100% !important;
-    max-height: none !important;
-  }
-  #how-steps.how-carousel .how-step-slide:not(:last-child) .how-step-card{
-    height: calc(100% - var(--step-gap)) !important;
-  }
-
-  /* Asegura que la imagen rellene bien la tarjeta */
-  #how-steps.how-carousel .how-step-image{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-  }
-}
-/* ===== FIX: que las fotos rellenen siempre y no queden bandas negras ===== */
-@media (min-width: 1024px) {
-  #how-steps.how-carousel{
-    --step-gap: 26px; /* separación entre tarjetas (como Veo). Ajusta 18–34 */
-  }
-
-  /* IMPORTANTE: la tarjeta siempre ocupa el 100% del wrapper */
-  #how-steps.how-carousel .how-step-card{
-    height: 100% !important;
-    max-height: none !important;
-  }
-
-  /* Si tenías una regla que hacía height: calc(100% - gap), la anulamos */
-  #how-steps.how-carousel .how-step-slide:not(:last-child) .how-step-card{
-    height: 100% !important;
-  }
-
-  /* La imagen siempre cubre la tarjeta */
-  #how-steps.how-carousel .how-step-image{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    display: block;
-  }
-
-  /* El "gap" existe como espacio debajo del slide (entre slides), no dentro de la tarjeta */
-  #how-steps.how-carousel .how-step-slide:not(:last-child){
-    padding-bottom: var(--step-gap);
-  }
-  #how-steps.how-carousel .how-step-slide:last-child{
-    padding-bottom: 0;
   }
 }
 
@@ -4076,147 +3784,42 @@ signup_success_close: 'Close',
       });
     }
 
-// "Tres pasos" – carrusel por scroll (solo escritorio, estilo Veo)
-(function () {
-  const mql = window.matchMedia("(min-width: 1024px)");
-  const stepsSection = document.getElementById("how-steps");
-  if (!stepsSection) return;
+    // Bloque "Tres pasos" – scroll solo escritorio
+    (function () {
+      const stepsSection = document.getElementById('how-steps');
+      if (!stepsSection || window.innerWidth < 1024) return;
 
-  const numberEl = document.getElementById("howStepNumber");
-  const wrapper = stepsSection.querySelector(".how-step-card-wrapper");
-  const triggersWrap = stepsSection.querySelector(".how-step-triggers");
+      const slides = stepsSection.querySelectorAll('.how-step-slide');
+      const numberEl = document.getElementById('howStepNumber');
+      const triggers = stepsSection.querySelectorAll('.how-step-trigger');
 
-  let rafId = 0;
-  let enabled = false;
-  let track = null;
-  let slides = [];
+      if (!slides.length || !triggers.length || !numberEl) return;
 
-  const clamp = (n, a, b) => Math.max(a, Math.min(b, n));
+      const activate = (index) => {
+        slides.forEach((slide, i) => {
+          slide.classList.toggle('active', i === index);
+        });
+        numberEl.textContent = `0${index + 1}`;
+      };
 
-  function buildTrack() {
-    // crea track si no existe y mete dentro las slides
-    track = wrapper.querySelector(".how-step-track");
-    if (!track) {
-      track = document.createElement("div");
-      track.className = "how-step-track";
-      slides = Array.from(wrapper.querySelectorAll(".how-step-slide"));
-      slides.forEach((s) => track.appendChild(s));
-      wrapper.appendChild(track);
-    } else {
-      slides = Array.from(track.querySelectorAll(".how-step-slide"));
-    }
+      activate(0);
 
-    slides.forEach((s) => s.classList.remove("active"));
-  }
+      const stepObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const stepIndex = parseInt(entry.target.getAttribute('data-step'), 10) || 0;
+              activate(stepIndex);
+            }
+          });
+        },
+        {
+          threshold: 0.6
+        }
+      );
 
-  function unwrapTrack() {
-    if (!track) return;
-    const kids = Array.from(track.children);
-    kids.forEach((k) => wrapper.appendChild(k));
-    track.remove();
-    track = null;
-    slides = [];
-  }
-
-  function update() {
-    cancelAnimationFrame(rafId);
-    rafId = requestAnimationFrame(() => {
-      if (!enabled || !track || !slides.length) return;
-
-      const vh = window.innerHeight;
-      const rect = triggersWrap.getBoundingClientRect();
-
-      // scroll útil dentro de los triggers
-      const totalScroll = Math.max(1, triggersWrap.offsetHeight - vh);
-      const scrolled = clamp(-rect.top, 0, totalScroll);
-      const progress = scrolled / totalScroll; // 0..1
-
-      // ✅ ESTA era la pieza que te faltaba
-      const exact = progress * (slides.length - 1); // 0..(n-1)
-
-      // lee gap desde CSS --step-gap
-      const gapStr = getComputedStyle(stepsSection).getPropertyValue("--step-gap").trim();
-      const gap = gapStr ? parseFloat(gapStr) : 0;
-
-      const slideH = wrapper.clientHeight;
-      const step = slideH + gap;
-
-      const translateY = -(exact * step);
-      track.style.transform = `translate3d(0, ${translateY}px, 0)`;
-
-      const idx = clamp(Math.round(exact), 0, slides.length - 1);
-      if (numberEl) numberEl.textContent = String(idx + 1).padStart(2, "0");
-    });
-  }
-
-  function enable() {
-    if (enabled) return;
-    if (!numberEl || !wrapper || !triggersWrap) return;
-
-    enabled = true;
-    stepsSection.classList.add("how-carousel");
-    buildTrack();
-
-    update();
-    window.addEventListener("scroll", update, { passive: true });
-    window.addEventListener("resize", update);
-  }
-
-  function disable() {
-    if (!enabled) return;
-    enabled = false;
-
-    window.removeEventListener("scroll", update);
-    window.removeEventListener("resize", update);
-
-    stepsSection.classList.remove("how-carousel");
-
-    // reset
-    unwrapTrack();
-    const directSlides = Array.from(wrapper.querySelectorAll(".how-step-slide"));
-    directSlides.forEach((s, i) => s.classList.toggle("active", i === 0));
-    if (numberEl) numberEl.textContent = "01";
-  }
-
-  // init + listener
-  if (mql.matches) enable();
-  if (mql.addEventListener) {
-    mql.addEventListener("change", (e) => (e.matches ? enable() : disable()));
-  } else {
-    // Safari viejo
-    mql.addListener((e) => (e.matches ? enable() : disable()));
-  }
-})();
-
-    }
-
-    update();
-    window.addEventListener("scroll", update, { passive: true });
-    window.addEventListener("resize", update);
-    stepsSection._howCarouselCleanup = () => {
-      window.removeEventListener("scroll", update);
-      window.removeEventListener("resize", update);
-      track.style.transform = "";
-      stepsSection.classList.remove("how-carousel");
-      enabled = false;
-    };
-  }
-
-  function disable() {
-    if (stepsSection._howCarouselCleanup) stepsSection._howCarouselCleanup();
-  }
-
-  function handle() {
-    if (mql.matches) enable();
-    else disable();
-  }
-
-  if (mql.addEventListener) mql.addEventListener("change", handle);
-  else mql.addListener(handle);
-
-  handle();
-})();
-
+      triggers.forEach((trigger) => stepObserver.observe(trigger));
+    })();
 
     // Carrusel táctil en móvil para "Captura tu talento en tres pasos"
     (function () {
@@ -4774,9 +4377,5 @@ s0.parentNode.insertBefore(s1,s0);
 })();
 </script>
 <!--End of Tawk.to Script-->
- <!-- BIG FOOTER SLOGAN (tipo Veo) -->
-  <section class="big-footer-slogan" aria-label="Slogan">
-    <div class="big-footer-slogan-inner">YOU AND YOUR TALENT</div>
-  </section>
 </body>
 </html>
