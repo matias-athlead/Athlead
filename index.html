@@ -2323,6 +2323,65 @@
     padding: 18px 18px !important;
   }
 }
+    /* ===========================
+       VEO-LIKE 3 STEPS (DESKTOP ONLY)
+       No afecta móvil
+    ============================ */
+    @media (min-width: 1024px) {
+      .how-step-card-wrapper {
+        height: 560px; /* un poco más alto para que se vea el “preview” */
+      }
+
+      /* Estado base */
+      .how-step-slide {
+        opacity: 0;
+        transform: translateY(40px) scale(0.985);
+        pointer-events: none;
+      }
+
+      /* Slide activo */
+      .how-step-slide.active {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        pointer-events: auto;
+      }
+
+      /* Preview del siguiente (como se ve abajo en VEO) */
+      .how-step-slide.next-preview {
+        opacity: 0.28;
+        transform: translateY(170px) scale(0.985);
+        pointer-events: none;
+      }
+
+      /* Suavidad un poco más “VEO” */
+      .how-step-slide {
+        transition: opacity 0.55s ease, transform 0.55s ease;
+      }
+    }
+
+    /* ===========================
+       BIG BOTTOM TEXT (VEO STYLE)
+    ============================ */
+    .veo-bottom-title {
+      width: 100%;
+      padding: 72px 18px 42px;
+      font-weight: 900;
+      letter-spacing: -0.08em;
+      line-height: 0.9;
+      text-transform: uppercase;
+      text-align: center;
+      color: #000000;
+      white-space: nowrap;     /* siempre en una línea */
+      overflow: hidden;        /* sin scroll horizontal visible */
+      font-size: clamp(28px, 8.5vw, 170px); /* se adapta a móvil */
+    }
+
+    @media (max-width: 420px) {
+      .veo-bottom-title {
+        font-size: 9.5vw; /* asegura que entre en una línea */
+        padding: 56px 14px 34px;
+      }
+    }
 
   </style>
 </head>
@@ -3915,42 +3974,64 @@ signup_success_close: 'Close',
       });
     }
 
-    // Bloque "Tres pasos" – scroll solo escritorio
+       // Bloque "Tres pasos" – VEO-like carousel SOLO ESCRITORIO (rueda para cambiar paso)
     (function () {
       const stepsSection = document.getElementById('how-steps');
       if (!stepsSection || window.innerWidth < 1024) return;
 
-      const slides = stepsSection.querySelectorAll('.how-step-slide');
+      const slides = Array.from(stepsSection.querySelectorAll('.how-step-slide'));
       const numberEl = document.getElementById('howStepNumber');
-      const triggers = stepsSection.querySelectorAll('.how-step-trigger');
 
-      if (!slides.length || !triggers.length || !numberEl) return;
+      if (!slides.length || !numberEl) return;
 
-      const activate = (index) => {
-        slides.forEach((slide, i) => {
-          slide.classList.toggle('active', i === index);
+      let index = 0;
+      let locked = false;
+
+      const render = () => {
+        slides.forEach((s, i) => {
+          s.classList.toggle('active', i === index);
+          s.classList.toggle('next-preview', i === index + 1);
         });
-        numberEl.textContent = `0${index + 1}`;
+        numberEl.textContent = String(index + 1).padStart(2, '0');
       };
 
-      activate(0);
+      const go = (dir) => {
+        const next = Math.max(0, Math.min(slides.length - 1, index + dir));
+        if (next === index) return false;
+        index = next;
+        render();
+        return true;
+      };
 
-      const stepObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              const stepIndex = parseInt(entry.target.getAttribute('data-step'), 10) || 0;
-              activate(stepIndex);
-            }
-          });
+      render();
+
+      // Scroll wheel para pasar pasos como carrusel (sin romper el scroll del resto de la página)
+      stepsSection.addEventListener(
+        'wheel',
+        (e) => {
+          const down = e.deltaY > 0;
+
+          // Si estás en el primero y scrolleas arriba, o en el último y scrolleas abajo, deja que la página siga
+          if ((!down && index === 0) || (down && index === slides.length - 1)) return;
+
+          e.preventDefault();
+          if (locked) return;
+
+          locked = true;
+          go(down ? 1 : -1);
+          window.setTimeout(() => {
+            locked = false;
+          }, 650);
         },
-        {
-          threshold: 0.6
-        }
+        { passive: false }
       );
 
-      triggers.forEach((trigger) => stepObserver.observe(trigger));
+      // Click en la card para avanzar (opcional, pero ayuda)
+      slides.forEach((slide) => {
+        slide.addEventListener('click', () => go(1));
+      });
     })();
+
 
     // Carrusel táctil en móvil para "Captura tu talento en tres pasos"
     (function () {
@@ -4508,5 +4589,7 @@ s0.parentNode.insertBefore(s1,s0);
 })();
 </script>
 <!--End of Tawk.to Script-->
+    <div class="veo-bottom-title">YOU AND YOUR TALENT</div>
+
 </body>
 </html>
