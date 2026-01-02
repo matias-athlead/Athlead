@@ -1515,11 +1515,34 @@
     }
 
     .footer-tagline {
-      font-style: italic;
-      font-size: 15px;
-      opacity: 0.85;
-      margin-top: 4px;
-    }
+  /* estilo grande */
+  font-style: italic;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  opacity: 0.95;
+
+  /* clave para que sea responsive */
+  font-size: clamp(11px, 3.8vw, 26px);
+  line-height: 1;
+  margin-top: 14px;
+
+  /* clave para que NO haga salto de línea */
+  white-space: nowrap;
+
+  /* que no se “salga” del contenedor */
+  max-width: 100%;
+  display: block;
+  padding: 0 8px;
+}
+
+/* Ajuste extra para móviles muy chicos */
+@media (max-width: 360px) {
+  .footer-tagline {
+    font-size: 10.5px;
+    letter-spacing: -0.03em;
+  }
+}
+
 
     /* RESPONSIVE GENERAL */
 
@@ -3144,7 +3167,7 @@
 </div>
 
 
-      <div class="footer-tagline" data-i18n="footer_tagline">Deja que el talento hable por ti.</div>
+      <div class="footer-tagline" data-i18n="footer_tagline">YOU AND YOUR TALENT.</div>
     </div>
   </footer>
 <!-- MODAL LEGAL -->
