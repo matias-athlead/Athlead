@@ -2215,6 +2215,52 @@
     text-align: center;
   }
 }
+/* Bloque tipo VE0: texto enorme repartido, siempre 1 línea */
+.mega-slogan{
+  width: 100%;
+  margin-top: 18px;
+  padding: 28px 18px;
+
+  /* fondo tipo "papel" (ajustalo a tu web) */
+  background: #f4f2ee;
+
+  /* layout */
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 18px;
+
+  /* que NUNCA se parta en 2 líneas */
+  white-space: nowrap;
+
+  /* tipografía y look */
+  font-family: Impact, "Anton", "Bebas Neue", "Arial Black", system-ui, sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  line-height: 0.9;
+
+  /* CLAVE: tamaño que se adapta al ancho de pantalla */
+  font-size: clamp(16px, 7.2vw, 120px);
+
+  /* por si el contenedor tiene límites */
+  overflow: hidden;
+}
+
+/* Cada palabra: evita que se encoja raro */
+.mega-slogan span{
+  flex: 0 0 auto;
+}
+
+/* Ajuste fino para móviles chicos: aún más compacto */
+@media (max-width: 420px){
+  .mega-slogan{
+    font-size: clamp(14px, 7.8vw, 52px);
+    letter-spacing: -0.05em;
+    gap: 10px;
+    padding: 18px 12px;
+  }
+}
 
   </style>
 </head>
@@ -3167,8 +3213,13 @@
 </div>
 
 
-      <div class="footer-tagline" data-i18n="footer_tagline">YOU AND YOUR TALENT.</div>
-    </div>
+<div class="mega-slogan" aria-label="YOU AND YOUR TALENT">
+  <span>YOU</span>
+  <span>AND</span>
+  <span>YOUR</span>
+  <span>TALENT</span>
+</div>
+    
   </footer>
 <!-- MODAL LEGAL -->
 <div id="legal-modal" class="legal-modal">
