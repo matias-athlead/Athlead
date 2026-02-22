@@ -662,11 +662,9 @@
       .mobile-role-title.open .mobile-role-arrow {
         transform: rotate(180deg);
       }
-
-/* ===== APP PREVIEW (Carrusel 1 a 1) ===== */
+/* ===== APP PREVIEW (4 pantallas) ===== */
 .app-preview {
   background: #000000;
-  overflow: hidden;
 }
 
 .app-preview h2 {
@@ -682,46 +680,18 @@
   margin-top: 4px;
 }
 
-/* contenedor */
-.app-carousel {
-  margin-top: 34px;
-  position: relative;
-  max-width: 520px;  /* tamaño móvil */
-  margin-left: auto;
-  margin-right: auto;
+.app-preview-grid {
+  margin-top: 38px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  align-items: stretch;
 }
 
-/* En ordenador lo hacemos más pequeño */
-@media (min-width: 1024px) {
-  .app-carousel {
-    max-width: 360px;   /* 👈 AJUSTA ESTE VALOR */
-  }
-}
-
-/* track: una tarjeta por “pantalla” */
-.app-track {
-  display: flex;
-  gap: 0;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  border-radius: 26px;
-}
-
-.app-track::-webkit-scrollbar {
-  display: none;
-}
-
-/* cada slide ocupa el 100% del carrusel */
 .app-shot {
-  flex: 0 0 100%;
-  width: 100%;
-  scroll-snap-align: center;
-
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 26px;
+  border-radius: 22px;
   overflow: hidden;
   position: relative;
   box-shadow: 0 18px 45px rgba(0, 0, 0, 0.75);
@@ -743,11 +713,10 @@
   height: 100%;
   display: block;
   object-fit: cover;
-  aspect-ratio: 9 / 19.5; /* look app */
+  aspect-ratio: 9 / 19.5;
   filter: contrast(1.02) saturate(1.03);
 }
 
-/* etiqueta */
 .app-shot-label {
   position: absolute;
   left: 12px;
@@ -763,41 +732,22 @@
   backdrop-filter: blur(10px);
 }
 
-/* flechas */
-.app-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 42px;
-  height: 42px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.45);
-  background: rgba(0, 0, 0, 0.65);
-  color: #ffffff;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
-  transition: background 0.15s ease, color 0.15s ease;
-  z-index: 5;
+@media (max-width: 1024px) {
+  .app-preview-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
 }
 
-.app-arrow:hover {
-  background: #ffffff;
-  color: #000000;
-}
-
-.app-arrow.prev { left: -18px; }
-.app-arrow.next { right: -18px; }
-
-/* ajuste móvil */
 @media (max-width: 520px) {
-  .app-carousel { max-width: 92%; }
-  .app-shot img { aspect-ratio: 9 / 16; }
-  .app-arrow.prev { left: -10px; }
-  .app-arrow.next { right: -10px; }
+  .app-preview-grid {
+    grid-template-columns: 1fr;
+  }
+  .app-shot img {
+    aspect-ratio: 9 / 16;
+  }
 }
+
     /* JUGADAS DESTACADAS */
 
     .highlight-videos {
@@ -2394,85 +2344,7 @@
     padding: 18px 12px;
   }
 }
-/* ===== APP PREVIEW: solo desktop -> texto izq / carrusel der ===== */
-.app-preview-layout {
-  display: block; /* móvil: columna */
-}
 
-.app-preview-media {
-  margin-top: 28px; /* móvil */
-}
-
-@media (min-width: 1024px) {
-  .app-preview-layout {
-    display: grid;
-    grid-template-columns: 1.15fr 0.85fr; /* texto más ancho */
-    gap: 56px;
-    align-items: center;
-  }
-
-  .app-preview-media {
-    margin-top: 0;
-    display: flex;
-    justify-content: flex-end; /* empuja a la derecha */
-  }
-
-  /* carrusel un poco más pequeño SOLO en ordenador */
-  .app-carousel {
-    max-width: 340px; /* ajusta: 300-380 si quieres */
-  }
-
-  /* opcional: un pelín más compactas */
-  .app-shot img {
-    border-radius: 18px;
-  }
-}
-    /* =========================
-   DESKTOP: ver 4 pantallas a la vez (como tu screenshot)
-   MOBILE: sigue una por una
-   ========================= */
-
-@media (min-width: 1024px) {
-  /* El carrusel ocupa ancho y queda centrado */
-  .app-carousel {
-    position: relative;
-    width: 100%;
-    margin-top: 28px;
-  }
-
-  /* Track: en desktop NO queremos "overflow hidden" ni slide 100% */
-  .app-track {
-    display: flex;
-    gap: 22px;
-    align-items: flex-end;
-
-    overflow: visible !important;
-    transform: none !important;      /* MUY IMPORTANTE: anula el translate del JS */
-    transition: none !important;     /* evita animaciones raras si el JS intenta mover */
-  }
-
-  /* Cada “pantalla” con tamaño fijo y un poco grande */
-  .app-shot {
-    flex: 0 0 245px; /* ajusta 220-280 según gusto */
-    max-width: 245px;
-  }
-
-  .app-shot img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-
-  /* Flechas como overlay (si las quieres visibles) */
-  .app-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 5;
-  }
-  .app-arrow.prev { left: -10px; }
-  .app-arrow.next { right: -10px; }
-}
   </style>
 </head>
 <body>
@@ -2698,62 +2570,38 @@
       </a>
     </div>
   </section>
-<!-- APP PREVIEW (Carrusel 4 pantallas) -->
+  <!-- APP PREVIEW (4 pantallas) -->
 <section class="app-preview" id="app-preview">
-<div class="section-inner">
+  <div class="section-inner">
+    <p class="section-kicker" data-i18n="app_preview_kicker">La app</p>
+    <h2 data-i18n="app_preview_title">Así se ve Athlead por dentro</h2>
+    <p data-i18n="app_preview_p">
+      Un vistazo rápido a la experiencia: feed, perfil, rankings y mensajes. Diseño limpio, directo y pensado para enseñar talento.
+    </p>
 
-  <div class="app-preview-layout">
+    <div class="app-preview-grid">
+      <figure class="app-shot">
+        <img src="images/app-1.jpeg" alt="Athlead - Pantalla 1" loading="lazy" />
+        <figcaption class="app-shot-label" data-i18n="app_preview_label_1">Feed</figcaption>
+      </figure>
 
-    <!-- IZQUIERDA: texto -->
-    <div class="app-preview-copy">
-      <p class="section-kicker" data-i18n="app_preview_kicker">La app</p>
-      <h2 data-i18n="app_preview_title">Así se ve Athlead por dentro</h2>
-      <p data-i18n="app_preview_p">
-        Un vistazo rápido a la experiencia: feed, perfil, rankings y mensajes. Diseño limpio,
-        directo y pensado para enseñar talento.
-      </p>
-    </div>
+      <figure class="app-shot">
+        <img src="images/app-2.jpeg" alt="Athlead - Pantalla 2" loading="lazy" />
+        <figcaption class="app-shot-label" data-i18n="app_preview_label_2">Perfil</figcaption>
+      </figure>
 
-    <!-- DERECHA: carrusel -->
-    <div class="app-preview-media">
+      <figure class="app-shot">
+        <img src="images/app-3.jpeg" alt="Athlead - Pantalla 3" loading="lazy" />
+        <figcaption class="app-shot-label" data-i18n="app_preview_label_3">Rankings</figcaption>
+      </figure>
 
-      <div class="app-carousel">
-        <button class="app-arrow prev" type="button" aria-label="Anterior">‹</button>
-
-        <div class="app-track" id="appTrack">
-          <figure class="app-shot">
-            <img src="images/app-1.jpeg" alt="Athlead - Pantalla 1" loading="lazy" />
-            <figcaption class="app-shot-label" data-i18n="app_preview_label_1">Feed</figcaption>
-          </figure>
-
-          <figure class="app-shot">
-            <img src="images/app-2.jpeg" alt="Athlead - Pantalla 2" loading="lazy" />
-            <figcaption class="app-shot-label" data-i18n="app_preview_label_2">Perfil</figcaption>
-          </figure>
-
-          <figure class="app-shot">
-            <img src="images/app-3.jpeg" alt="Athlead - Pantalla 3" loading="lazy" />
-            <figcaption class="app-shot-label" data-i18n="app_preview_label_3">Rankings</figcaption>
-          </figure>
-
-          <figure class="app-shot">
-            <img src="images/app-4.jpeg" alt="Athlead - Pantalla 4" loading="lazy" />
-            <figcaption class="app-shot-label" data-i18n="app_preview_label_4">Mensajes</figcaption>
-          </figure>
-        </div>
-
-        <button class="app-arrow next" type="button" aria-label="Siguiente">›</button>
-      </div>
-
-    </div>
-  </div>
-
-</div>
-      <button class="app-arrow next" type="button" aria-label="Siguiente">›</button>
+      <figure class="app-shot">
+        <img src="images/app-4.jpeg" alt="Athlead - Pantalla 4" loading="lazy" />
+        <figcaption class="app-shot-label" data-i18n="app_preview_label_4">Mensajes</figcaption>
+      </figure>
     </div>
   </div>
 </section>
-<!-- FIN APP PREVIEW -->
 <!-- FIN APP PREVIEW -->
 
   <!-- CÓMO FUNCIONA — TRES PASOS -->
@@ -4129,53 +3977,6 @@ signup_success_close: 'Close',
         videosTrack.scrollBy({ left: scrollSlide(), behavior: 'smooth' });
       });
     }
-    // Carrusel App Preview (flechas desktop + scroll)
-// Carrusel App Preview (1 a 1: flechas + swipe)
-(function () {
-  const track = document.getElementById('appTrack');
-  if (!track) return;
-
-  const slides = Array.from(track.querySelectorAll('.app-shot'));
-  const prev = document.querySelector('.app-arrow.prev');
-  const next = document.querySelector('.app-arrow.next');
-
-  let index = 0;
-
-  function goTo(i) {
-    index = Math.max(0, Math.min(i, slides.length - 1));
-    const target = slides[index];
-    if (!target) return;
-    track.scrollTo({ left: target.offsetLeft, behavior: 'smooth' });
-  }
-
-  if (prev) prev.addEventListener('click', () => goTo(index - 1));
-  if (next) next.addEventListener('click', () => goTo(index + 1));
-
-  // actualizar index al hacer swipe
-  let snapTimeout;
-  track.addEventListener('scroll', () => {
-    window.clearTimeout(snapTimeout);
-    snapTimeout = window.setTimeout(() => {
-      const center = track.scrollLeft + track.clientWidth / 2;
-      let best = 0;
-      let bestDist = Infinity;
-
-      slides.forEach((s, i) => {
-        const sCenter = s.offsetLeft + s.clientWidth / 2;
-        const dist = Math.abs(sCenter - center);
-        if (dist < bestDist) {
-          bestDist = dist;
-          best = i;
-        }
-      });
-
-      index = best;
-    }, 80);
-  });
-
-  // estado inicial
-  goTo(0);
-})();
 
     // Autoplay silencioso en móvil
     if (window.innerWidth < 768) {
