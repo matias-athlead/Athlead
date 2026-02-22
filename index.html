@@ -663,7 +663,7 @@
         transform: rotate(180deg);
       }
 
-/* ===== APP PREVIEW (Carrusel 4 pantallas) ===== */
+/* ===== APP PREVIEW (Carrusel 1 a 1) ===== */
 .app-preview {
   background: #000000;
   overflow: hidden;
@@ -682,33 +682,39 @@
   margin-top: 4px;
 }
 
+/* contenedor */
 .app-carousel {
   margin-top: 34px;
   position: relative;
+  max-width: 520px;     /* ancho tipo móvil */
+  margin-left: auto;
+  margin-right: auto;
 }
 
+/* track: una tarjeta por “pantalla” */
 .app-track {
   display: flex;
-  gap: 18px;
+  gap: 0;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
-  padding: 6px 2px 10px;
-  scrollbar-width: none;        /* Firefox */
+  scrollbar-width: none;
+  border-radius: 26px;
 }
 
-.app-track::-webkit-scrollbar { /* Chrome/Safari */
+.app-track::-webkit-scrollbar {
   display: none;
 }
 
+/* cada slide ocupa el 100% del carrusel */
 .app-shot {
-  flex: 0 0 26%;
-  min-width: 240px;
+  flex: 0 0 100%;
+  width: 100%;
   scroll-snap-align: center;
 
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 22px;
+  border-radius: 26px;
   overflow: hidden;
   position: relative;
   box-shadow: 0 18px 45px rgba(0, 0, 0, 0.75);
@@ -730,10 +736,11 @@
   height: 100%;
   display: block;
   object-fit: cover;
-  aspect-ratio: 9 / 19.5;
+  aspect-ratio: 9 / 19.5; /* look app */
   filter: contrast(1.02) saturate(1.03);
 }
 
+/* etiqueta */
 .app-shot-label {
   position: absolute;
   left: 12px;
@@ -749,7 +756,7 @@
   backdrop-filter: blur(10px);
 }
 
-/* Flechas (solo desktop) */
+/* flechas */
 .app-arrow {
   position: absolute;
   top: 50%;
@@ -761,11 +768,11 @@
   background: rgba(0, 0, 0, 0.65);
   color: #ffffff;
   cursor: pointer;
-  display: none;
+  display: flex;
   align-items: center;
   justify-content: center;
   font-size: 22px;
-  transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+  transition: background 0.15s ease, color 0.15s ease;
   z-index: 5;
 }
 
@@ -774,23 +781,15 @@
   color: #000000;
 }
 
-.app-arrow.prev { left: -6px; }
-.app-arrow.next { right: -6px; }
+.app-arrow.prev { left: -18px; }
+.app-arrow.next { right: -18px; }
 
-@media (min-width: 1024px) {
-  .app-arrow { display: flex; }
-  .app-shot { flex: 0 0 24%; min-width: 260px; }
-}
-
-/* Tablet */
-@media (max-width: 1023px) {
-  .app-shot { flex: 0 0 55%; min-width: 250px; }
-}
-
-/* Móvil */
+/* ajuste móvil */
 @media (max-width: 520px) {
-  .app-shot { flex: 0 0 85%; min-width: 85%; }
+  .app-carousel { max-width: 92%; }
   .app-shot img { aspect-ratio: 9 / 16; }
+  .app-arrow.prev { left: -10px; }
+  .app-arrow.next { right: -10px; }
 }
     /* JUGADAS DESTACADAS */
 
@@ -4029,26 +4028,51 @@ signup_success_close: 'Close',
       });
     }
     // Carrusel App Preview (flechas desktop + scroll)
+// Carrusel App Preview (1 a 1: flechas + swipe)
 (function () {
   const track = document.getElementById('appTrack');
   if (!track) return;
 
+  const slides = Array.from(track.querySelectorAll('.app-shot'));
   const prev = document.querySelector('.app-arrow.prev');
   const next = document.querySelector('.app-arrow.next');
 
-  const scrollByAmount = () => Math.max(track.clientWidth * 0.85, 320);
+  let index = 0;
 
-  if (prev) {
-    prev.addEventListener('click', () => {
-      track.scrollBy({ left: -scrollByAmount(), behavior: 'smooth' });
-    });
+  function goTo(i) {
+    index = Math.max(0, Math.min(i, slides.length - 1));
+    const target = slides[index];
+    if (!target) return;
+    track.scrollTo({ left: target.offsetLeft, behavior: 'smooth' });
   }
 
-  if (next) {
-    next.addEventListener('click', () => {
-      track.scrollBy({ left: scrollByAmount(), behavior: 'smooth' });
-    });
-  }
+  if (prev) prev.addEventListener('click', () => goTo(index - 1));
+  if (next) next.addEventListener('click', () => goTo(index + 1));
+
+  // actualizar index al hacer swipe
+  let snapTimeout;
+  track.addEventListener('scroll', () => {
+    window.clearTimeout(snapTimeout);
+    snapTimeout = window.setTimeout(() => {
+      const center = track.scrollLeft + track.clientWidth / 2;
+      let best = 0;
+      let bestDist = Infinity;
+
+      slides.forEach((s, i) => {
+        const sCenter = s.offsetLeft + s.clientWidth / 2;
+        const dist = Math.abs(sCenter - center);
+        if (dist < bestDist) {
+          bestDist = dist;
+          best = i;
+        }
+      });
+
+      index = best;
+    }, 80);
+  });
+
+  // estado inicial
+  goTo(0);
 })();
 
     // Autoplay silencioso en móvil
