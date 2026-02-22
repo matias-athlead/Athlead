@@ -663,7 +663,91 @@
         transform: rotate(180deg);
       }
 
+/* ===== APP PREVIEW (4 pantallas) ===== */
+.app-preview {
+  background: #000000;
+}
 
+.app-preview h2 {
+  font-size: 32px;
+  letter-spacing: -0.03em;
+  margin-bottom: 10px;
+}
+
+.app-preview > .section-inner > p {
+  font-size: 15px;
+  opacity: 0.8;
+  max-width: 680px;
+  margin-top: 4px;
+}
+
+.app-preview-grid {
+  margin-top: 38px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  align-items: stretch;
+}
+
+.app-shot {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 22px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.75);
+}
+
+.app-shot::before {
+  content: "";
+  position: absolute;
+  inset: -30%;
+  background:
+    radial-gradient(circle at 0 0, rgba(78, 205, 196, 0.12), transparent 55%),
+    radial-gradient(circle at 100% 100%, rgba(255, 255, 255, 0.08), transparent 60%);
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.app-shot img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  aspect-ratio: 9 / 19.5;
+  filter: contrast(1.02) saturate(1.03);
+}
+
+.app-shot-label {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.92;
+  backdrop-filter: blur(10px);
+}
+
+@media (max-width: 1024px) {
+  .app-preview-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+}
+
+@media (max-width: 520px) {
+  .app-preview-grid {
+    grid-template-columns: 1fr;
+  }
+  .app-shot img {
+    aspect-ratio: 9 / 16;
+  }
+}
     /* JUGADAS DESTACADAS */
 
     .highlight-videos {
@@ -2260,249 +2344,7 @@
     padding: 18px 12px;
   }
 }
-/* ==============================
-   APP PREVIEW (entre About y How)
-   ============================== */
 
-.app-preview {
-  background: radial-gradient(circle at 20% 15%, rgba(78, 205, 196, 0.12), transparent 45%),
-              radial-gradient(circle at 80% 10%, rgba(255, 255, 255, 0.06), transparent 50%),
-              linear-gradient(180deg, #000000 0%, #050509 100%);
-  overflow: hidden;
-}
-
-.app-preview-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 90px 16px;
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 40px;
-  align-items: center;
-}
-
-.app-preview-kicker {
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  font-size: 12px;
-  opacity: 0.7;
-  margin-bottom: 10px;
-}
-
-.app-preview-title {
-  font-size: clamp(1.9rem, 3.2vw, 3.1rem);
-  line-height: 1.06;
-  letter-spacing: -0.04em;
-  margin-bottom: 16px;
-  text-transform: uppercase;
-}
-
-.app-preview-bullets {
-  list-style: none;
-  margin-top: 18px;
-  padding-left: 0;
-  display: grid;
-  gap: 10px;
-}
-
-.app-preview-bullets li {
-  display: flex;
-  gap: 10px;
-  align-items: flex-start;
-  color: rgba(255, 255, 255, 0.85);
-  font-size: 15px;
-  line-height: 1.5;
-}
-
-.app-preview-bullets li::before {
-  content: "•";
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 18px;
-  line-height: 1;
-  margin-top: 1px;
-}
-
-.app-preview-cta {
-  margin-top: 22px;
-  display: inline-flex;
-}
-
-/* Phone mock + carousel */
-.phone-mock {
-  width: min(360px, 92vw);
-  margin-left: auto;
-  margin-right: auto;
-  border-radius: 34px;
-  background: rgba(0, 0, 0, 0.55);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.85);
-  overflow: hidden;
-  position: relative;
-}
-
-.phone-topbar {
-  position: absolute;
-  top: 14px;
-  left: 14px;
-  right: 14px;
-  z-index: 5;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  pointer-events: none;
-}
-
-.phone-skip {
-  pointer-events: auto;
-  font-size: 13px;
-  opacity: 0.85;
-  background: rgba(0, 0, 0, 0.35);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  padding: 6px 12px;
-  border-radius: 999px;
-  cursor: pointer;
-}
-
-.phone-viewport {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 9 / 19.5;
-  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
-}
-
-.phone-track {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-}
-.phone-track::-webkit-scrollbar { display: none; }
-
-.phone-slide {
-  flex: 0 0 100%;
-  width: 100%;
-  height: 100%;
-  scroll-snap-align: center;
-  position: relative;
-  display: grid;
-  place-items: center;
-  padding: 18px;
-}
-
-.phone-shot {
-  width: 100%;
-  height: 100%;
-  border-radius: 26px;
-  border: 1px solid rgba(255, 255, 255, 0.10);
-  background: rgba(0, 0, 0, 0.55);
-  overflow: hidden;
-  position: relative;
-}
-
-/* Placeholder (cuando no hay imagen) */
-.phone-shot.placeholder {
-  display: grid;
-  place-items: center;
-  color: rgba(255, 255, 255, 0.75);
-  font-size: 13px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  background:
-    radial-gradient(circle at 30% 20%, rgba(78, 205, 196, 0.10), transparent 55%),
-    radial-gradient(circle at 70% 80%, rgba(255, 255, 255, 0.06), transparent 60%),
-    rgba(0, 0, 0, 0.55);
-}
-
-.phone-shot img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* Dots + Next */
-.phone-controls {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 14px;
-  z-index: 6;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-  padding: 0 14px;
-  pointer-events: none;
-}
-
-.phone-dots {
-  display: inline-flex;
-  gap: 7px;
-  align-items: center;
-  pointer-events: auto;
-}
-
-.phone-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.35);
-  border: none;
-  padding: 0;
-  cursor: pointer;
-}
-.phone-dot.active {
-  width: 18px;
-  background: rgba(255, 255, 255, 0.95);
-}
-
-.phone-next {
-  position: absolute;
-  right: 14px;
-  bottom: 52px;
-  width: 52px;
-  height: 52px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  background: rgba(255, 255, 255, 0.10);
-  color: #ffffff;
-  cursor: pointer;
-  font-size: 22px;
-  display: grid;
-  place-items: center;
-  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.6);
-  pointer-events: auto;
-  transition: transform 0.15s ease, background 0.15s ease;
-}
-.phone-next:hover {
-  transform: translateY(-1px);
-  background: rgba(255, 255, 255, 0.18);
-}
-
-/* Responsive */
-@media (max-width: 900px) {
-  .app-preview-inner {
-    grid-template-columns: 1fr;
-    gap: 24px;
-    padding: 70px 16px;
-    text-align: left;
-  }
-
-  .app-preview-cta {
-    width: 100%;
-  }
-
-  .app-preview-cta .btn {
-    width: 100%;
-  }
-
-  .phone-mock {
-    width: min(390px, 92vw);
-  }
-}
   </style>
 </head>
 <body>
@@ -2728,89 +2570,39 @@
       </a>
     </div>
   </section>
-
-  <!-- APP PREVIEW (NUEVA SECCIÓN) -->
+  <!-- APP PREVIEW (4 pantallas) -->
 <section class="app-preview" id="app-preview">
-  <div class="app-preview-inner">
-    <div class="app-preview-copy">
-      <p class="app-preview-kicker" data-i18n="app_prev_kicker">La app</p>
+  <div class="section-inner">
+    <p class="section-kicker" data-i18n="app_preview_kicker">La app</p>
+    <h2 data-i18n="app_preview_title">Así se ve Athlead por dentro</h2>
+    <p data-i18n="app_preview_p">
+      Un vistazo rápido a la experiencia: feed, perfil, rankings y mensajes. Diseño limpio, directo y pensado para enseñar talento.
+    </p>
 
-      <h2 class="app-preview-title" data-i18n="app_prev_title">
-        NO TE QUEDES ATRÁS Y ÚNETE A NUESTRA APP
-      </h2>
+    <div class="app-preview-grid">
+      <figure class="app-shot">
+        <img src="images/app-1.jpeg" alt="Athlead - Pantalla 1" loading="lazy" />
+        <figcaption class="app-shot-label" data-i18n="app_preview_label_1">Feed</figcaption>
+      </figure>
 
-      <ul class="app-preview-bullets">
-        <li data-i18n="app_prev_b1">Gana visibilidad</li>
-        <li data-i18n="app_prev_b2">Sé reconocido</li>
-        <li data-i18n="app_prev_b3">Cumple un sueño</li>
-      </ul>
+      <figure class="app-shot">
+        <img src="images/app-2.jpeg" alt="Athlead - Pantalla 2" loading="lazy" />
+        <figcaption class="app-shot-label" data-i18n="app_preview_label_2">Perfil</figcaption>
+      </figure>
 
-      <div class="app-preview-cta">
-        <a href="#signup" class="btn btn-cta" data-i18n="app_prev_cta">Sign up</a>
-      </div>
+      <figure class="app-shot">
+        <img src="images/app-3.jpeg" alt="Athlead - Pantalla 3" loading="lazy" />
+        <figcaption class="app-shot-label" data-i18n="app_preview_label_3">Rankings</figcaption>
+      </figure>
+
+      <figure class="app-shot">
+        <img src="images/app-4.jpeg" alt="Athlead - Pantalla 4" loading="lazy" />
+        <figcaption class="app-shot-label" data-i18n="app_preview_label_4">Mensajes</figcaption>
+      </figure>
     </div>
-
-    <div class="app-preview-phone">
-      <div class="phone-mock" aria-label="Vista previa de la app Athlead">
-        <div class="phone-topbar">
-          <button class="phone-skip" type="button" data-i18n="app_prev_skip">Skip</button>
-        </div>
-
-        <div class="phone-viewport">
-          <div class="phone-track" id="appTrack">
-            <!-- SLIDE 1 -->
-            <div class="phone-slide">
-              <div class="phone-shot placeholder">
-                <span>Screenshot 1</span>
-                <!-- Cuando tengas imagen, reemplaza por:
-                <img src="images/app-1.jpeg" alt="Pantalla 1 Athlead" />
-                -->
-              </div>
-            </div>
-
-            <!-- SLIDE 2 -->
-            <div class="phone-slide">
-              <div class="phone-shot placeholder">
-                <span>Screenshot 2</span>
-                <!-- <img src="images/app-2.jpg" alt="Pantalla 2 Athlead" /> -->
-              </div>
-            </div>
-
-            <!-- SLIDE 3 -->
-            <div class="phone-slide">
-              <div class="phone-shot placeholder">
-                <span>Screenshot 3</span>
-                <!-- <img src="images/app-3.jpg" alt="Pantalla 3 Athlead" /> -->
-              </div>
-            </div>
-
-            <!-- SLIDE 4 -->
-            <div class="phone-slide">
-              <div class="phone-shot placeholder">
-                <span>Screenshot 4</span>
-                <!-- <img src="images/app-4.jpg" alt="Pantalla 4 Athlead" /> -->
-              </div>
-            </div>
-          </div>
-
-          <button class="phone-next" id="appNextBtn" type="button" aria-label="Siguiente pantalla">
-            →
-          </button>
-
-          <div class="phone-controls">
-            <div class="phone-dots" id="appDots" aria-label="Indicadores de carrusel">
-              <button class="phone-dot active" type="button" data-index="0"></button>
-              <button class="phone-dot" type="button" data-index="1"></button>
-              <button class="phone-dot" type="button" data-index="2"></button>
-              <button class="phone-dot" type="button" data-index="3"></button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
   </div>
 </section>
+<!-- FIN APP PREVIEW -->
 
   <!-- CÓMO FUNCIONA — TRES PASOS -->
   <section class="how-steps" id="how-steps">
@@ -3579,6 +3371,14 @@
         nav_app_features: 'Características',
         nav_app_sport: 'Nuestro deporte',
         nav_app_subscriptions: 'Suscripciones',
+        app_preview_kicker: 'La app',
+app_preview_title: 'Así se ve Athlead por dentro',
+app_preview_p:
+  'Un vistazo rápido a la experiencia: feed, perfil, rankings y mensajes. Diseño limpio, directo y pensado para enseñar talento.',
+app_preview_label_1: 'Feed',
+app_preview_label_2: 'Perfil',
+app_preview_label_3: 'Rankings',
+app_preview_label_4: 'Mensajes',
 
 
 
@@ -3764,13 +3564,6 @@ signup_success_close: 'Cerrar',
         privacy_data: 'Protección de Datos',
 
         footer_tagline: 'Deja que el talento hable por ti.'
-        app_prev_kicker: 'La app',
-app_prev_title: 'NO TE QUEDES ATRÁS Y ÚNETE A NUESTRA APP',
-app_prev_b1: 'Gana visibilidad',
-app_prev_b2: 'Sé reconocido',
-app_prev_b3: 'Cumple un sueño',
-app_prev_cta: 'Sign up',
-app_prev_skip: 'Skip',
       },
 
       en: {
@@ -3791,13 +3584,14 @@ app_prev_skip: 'Skip',
         nav_app_features: 'Features',
         nav_app_sport: 'Our sport',
         nav_app_subscriptions: 'Subscriptions',
-          app_prev_kicker: 'The app',
-app_prev_title: 'DON’T FALL BEHIND — JOIN OUR APP',
-app_prev_b1: 'Gain visibility',
-app_prev_b2: 'Get recognized',
-app_prev_b3: 'Make your dream real',
-app_prev_cta: 'Sign up',
-app_prev_skip: 'Skip',
+        app_preview_kicker: 'The app',
+app_preview_title: 'This is what Athlead looks like inside',
+app_preview_p:
+  'A quick look at the experience: feed, profile, rankings and messages. Clean, straight-to-the-point design built to showcase talent.',
+app_preview_label_1: 'Feed',
+app_preview_label_2: 'Profile',
+app_preview_label_3: 'Rankings',
+app_preview_label_4: 'Messages',
 
 
         hero_badge: 'Amateur football · Spain',
@@ -4773,81 +4567,6 @@ signup_success_close: 'Close',
       closeModal();
     }
   });
-})();
-    // ==============================
-// APP PREVIEW CAROUSEL (4 slides)
-// ==============================
-(function () {
-  const track = document.getElementById('appTrack');
-  const dotsWrap = document.getElementById('appDots');
-  const nextBtn = document.getElementById('appNextBtn');
-  const skipBtn = document.querySelector('.phone-skip');
-
-  if (!track || !dotsWrap || !nextBtn) return;
-
-  const slides = Array.from(track.querySelectorAll('.phone-slide'));
-  const dots = Array.from(dotsWrap.querySelectorAll('.phone-dot'));
-  const total = slides.length;
-
-  function setActive(index) {
-    dots.forEach((d, i) => d.classList.toggle('active', i === index));
-  }
-
-  function scrollToIndex(index) {
-    const target = slides[index];
-    if (!target) return;
-    track.scrollTo({ left: target.offsetLeft, behavior: 'smooth' });
-    setActive(index);
-  }
-
-  function getClosestIndex() {
-    const center = track.scrollLeft + track.clientWidth / 2;
-    let best = 0;
-    let bestDist = Infinity;
-
-    slides.forEach((s, i) => {
-      const sCenter = s.offsetLeft + s.clientWidth / 2;
-      const dist = Math.abs(sCenter - center);
-      if (dist < bestDist) {
-        bestDist = dist;
-        best = i;
-      }
-    });
-
-    return best;
-  }
-
-  // Next button
-  nextBtn.addEventListener('click', () => {
-    const current = getClosestIndex();
-    const next = (current + 1) % total;
-    scrollToIndex(next);
-  });
-
-  // Dots click
-  dots.forEach((dot) => {
-    dot.addEventListener('click', () => {
-      const idx = parseInt(dot.getAttribute('data-index'), 10) || 0;
-      scrollToIndex(idx);
-    });
-  });
-
-  // Sync dots on scroll (swipe)
-  let raf = null;
-  track.addEventListener('scroll', () => {
-    if (raf) cancelAnimationFrame(raf);
-    raf = requestAnimationFrame(() => {
-      setActive(getClosestIndex());
-    });
-  });
-
-  // Skip: baja directo a "Cómo funciona" (how-steps)
-  if (skipBtn) {
-    skipBtn.addEventListener('click', () => {
-      const target = document.getElementById('how-steps');
-      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-  }
 })();
 
   </script>
