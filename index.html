@@ -686,9 +686,16 @@
 .app-carousel {
   margin-top: 34px;
   position: relative;
-  max-width: 520px;     /* ancho tipo móvil */
+  max-width: 520px;  /* tamaño móvil */
   margin-left: auto;
   margin-right: auto;
+}
+
+/* En ordenador lo hacemos más pequeño */
+@media (min-width: 1024px) {
+  .app-carousel {
+    max-width: 360px;   /* 👈 AJUSTA ESTE VALOR */
+  }
 }
 
 /* track: una tarjeta por “pantalla” */
