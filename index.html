@@ -2394,7 +2394,39 @@
     padding: 18px 12px;
   }
 }
+/* ===== APP PREVIEW: solo desktop -> texto izq / carrusel der ===== */
+.app-preview-layout {
+  display: block; /* móvil: columna */
+}
 
+.app-preview-media {
+  margin-top: 28px; /* móvil */
+}
+
+@media (min-width: 1024px) {
+  .app-preview-layout {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr; /* texto más ancho */
+    gap: 56px;
+    align-items: center;
+  }
+
+  .app-preview-media {
+    margin-top: 0;
+    display: flex;
+    justify-content: flex-end; /* empuja a la derecha */
+  }
+
+  /* carrusel un poco más pequeño SOLO en ordenador */
+  .app-carousel {
+    max-width: 340px; /* ajusta: 300-380 si quieres */
+  }
+
+  /* opcional: un pelín más compactas */
+  .app-shot img {
+    border-radius: 18px;
+  }
+}
   </style>
 </head>
 <body>
@@ -2622,38 +2654,55 @@
   </section>
 <!-- APP PREVIEW (Carrusel 4 pantallas) -->
 <section class="app-preview" id="app-preview">
-  <div class="section-inner">
-    <p class="section-kicker" data-i18n="app_preview_kicker">La app</p>
-    <h2 data-i18n="app_preview_title">Así se ve Athlead por dentro</h2>
-    <p data-i18n="app_preview_p">
-      Un vistazo rápido a la experiencia: feed, perfil, rankings y mensajes. Diseño limpio, directo y pensado para enseñar talento.
-    </p>
+<div class="section-inner">
 
-    <div class="app-carousel">
-      <button class="app-arrow prev" type="button" aria-label="Anterior">‹</button>
+  <div class="app-preview-layout">
 
-      <div class="app-track" id="appTrack">
-        <figure class="app-shot">
-          <img src="images/app-1.jpeg" alt="Athlead - Pantalla 1" loading="lazy" />
-          <figcaption class="app-shot-label" data-i18n="app_preview_label_1">Feed</figcaption>
-        </figure>
+    <!-- IZQUIERDA: texto -->
+    <div class="app-preview-copy">
+      <p class="section-kicker" data-i18n="app_preview_kicker">La app</p>
+      <h2 data-i18n="app_preview_title">Así se ve Athlead por dentro</h2>
+      <p data-i18n="app_preview_p">
+        Un vistazo rápido a la experiencia: feed, perfil, rankings y mensajes. Diseño limpio,
+        directo y pensado para enseñar talento.
+      </p>
+    </div>
 
-        <figure class="app-shot">
-          <img src="images/app-2.jpeg" alt="Athlead - Pantalla 2" loading="lazy" />
-          <figcaption class="app-shot-label" data-i18n="app_preview_label_2">Perfil</figcaption>
-        </figure>
+    <!-- DERECHA: carrusel -->
+    <div class="app-preview-media">
 
-        <figure class="app-shot">
-          <img src="images/app-3.jpeg" alt="Athlead - Pantalla 3" loading="lazy" />
-          <figcaption class="app-shot-label" data-i18n="app_preview_label_3">Rankings</figcaption>
-        </figure>
+      <div class="app-carousel">
+        <button class="app-arrow prev" type="button" aria-label="Anterior">‹</button>
 
-        <figure class="app-shot">
-          <img src="images/app-4.jpeg" alt="Athlead - Pantalla 4" loading="lazy" />
-          <figcaption class="app-shot-label" data-i18n="app_preview_label_4">Mensajes</figcaption>
-        </figure>
+        <div class="app-track" id="appTrack">
+          <figure class="app-shot">
+            <img src="images/app-1.jpeg" alt="Athlead - Pantalla 1" loading="lazy" />
+            <figcaption class="app-shot-label" data-i18n="app_preview_label_1">Feed</figcaption>
+          </figure>
+
+          <figure class="app-shot">
+            <img src="images/app-2.jpeg" alt="Athlead - Pantalla 2" loading="lazy" />
+            <figcaption class="app-shot-label" data-i18n="app_preview_label_2">Perfil</figcaption>
+          </figure>
+
+          <figure class="app-shot">
+            <img src="images/app-3.jpeg" alt="Athlead - Pantalla 3" loading="lazy" />
+            <figcaption class="app-shot-label" data-i18n="app_preview_label_3">Rankings</figcaption>
+          </figure>
+
+          <figure class="app-shot">
+            <img src="images/app-4.jpeg" alt="Athlead - Pantalla 4" loading="lazy" />
+            <figcaption class="app-shot-label" data-i18n="app_preview_label_4">Mensajes</figcaption>
+          </figure>
+        </div>
+
+        <button class="app-arrow next" type="button" aria-label="Siguiente">›</button>
       </div>
 
+    </div>
+  </div>
+
+</div>
       <button class="app-arrow next" type="button" aria-label="Siguiente">›</button>
     </div>
   </div>
