@@ -663,9 +663,10 @@
         transform: rotate(180deg);
       }
 
-/* ===== APP PREVIEW (4 pantallas) ===== */
+/* ===== APP PREVIEW (Carrusel 4 pantallas) ===== */
 .app-preview {
   background: #000000;
+  overflow: hidden;
 }
 
 .app-preview h2 {
@@ -681,15 +682,30 @@
   margin-top: 4px;
 }
 
-.app-preview-grid {
-  margin-top: 38px;
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+.app-carousel {
+  margin-top: 34px;
+  position: relative;
+}
+
+.app-track {
+  display: flex;
   gap: 18px;
-  align-items: stretch;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding: 6px 2px 10px;
+  scrollbar-width: none;        /* Firefox */
+}
+
+.app-track::-webkit-scrollbar { /* Chrome/Safari */
+  display: none;
 }
 
 .app-shot {
+  flex: 0 0 26%;
+  min-width: 240px;
+  scroll-snap-align: center;
+
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 22px;
@@ -733,20 +749,48 @@
   backdrop-filter: blur(10px);
 }
 
-@media (max-width: 1024px) {
-  .app-preview-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px;
-  }
+/* Flechas (solo desktop) */
+.app-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  background: rgba(0, 0, 0, 0.65);
+  color: #ffffff;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+  z-index: 5;
 }
 
+.app-arrow:hover {
+  background: #ffffff;
+  color: #000000;
+}
+
+.app-arrow.prev { left: -6px; }
+.app-arrow.next { right: -6px; }
+
+@media (min-width: 1024px) {
+  .app-arrow { display: flex; }
+  .app-shot { flex: 0 0 24%; min-width: 260px; }
+}
+
+/* Tablet */
+@media (max-width: 1023px) {
+  .app-shot { flex: 0 0 55%; min-width: 250px; }
+}
+
+/* Móvil */
 @media (max-width: 520px) {
-  .app-preview-grid {
-    grid-template-columns: 1fr;
-  }
-  .app-shot img {
-    aspect-ratio: 9 / 16;
-  }
+  .app-shot { flex: 0 0 85%; min-width: 85%; }
+  .app-shot img { aspect-ratio: 9 / 16; }
 }
     /* JUGADAS DESTACADAS */
 
@@ -2570,7 +2614,7 @@
       </a>
     </div>
   </section>
-  <!-- APP PREVIEW (4 pantallas) -->
+<!-- APP PREVIEW (Carrusel 4 pantallas) -->
 <section class="app-preview" id="app-preview">
   <div class="section-inner">
     <p class="section-kicker" data-i18n="app_preview_kicker">La app</p>
@@ -2579,29 +2623,36 @@
       Un vistazo rápido a la experiencia: feed, perfil, rankings y mensajes. Diseño limpio, directo y pensado para enseñar talento.
     </p>
 
-    <div class="app-preview-grid">
-      <figure class="app-shot">
-        <img src="images/app-1.jpeg" alt="Athlead - Pantalla 1" loading="lazy" />
-        <figcaption class="app-shot-label" data-i18n="app_preview_label_1">Feed</figcaption>
-      </figure>
+    <div class="app-carousel">
+      <button class="app-arrow prev" type="button" aria-label="Anterior">‹</button>
 
-      <figure class="app-shot">
-        <img src="images/app-2.jpeg" alt="Athlead - Pantalla 2" loading="lazy" />
-        <figcaption class="app-shot-label" data-i18n="app_preview_label_2">Perfil</figcaption>
-      </figure>
+      <div class="app-track" id="appTrack">
+        <figure class="app-shot">
+          <img src="images/app-1.jpeg" alt="Athlead - Pantalla 1" loading="lazy" />
+          <figcaption class="app-shot-label" data-i18n="app_preview_label_1">Feed</figcaption>
+        </figure>
 
-      <figure class="app-shot">
-        <img src="images/app-3.jpeg" alt="Athlead - Pantalla 3" loading="lazy" />
-        <figcaption class="app-shot-label" data-i18n="app_preview_label_3">Rankings</figcaption>
-      </figure>
+        <figure class="app-shot">
+          <img src="images/app-2.jpeg" alt="Athlead - Pantalla 2" loading="lazy" />
+          <figcaption class="app-shot-label" data-i18n="app_preview_label_2">Perfil</figcaption>
+        </figure>
 
-      <figure class="app-shot">
-        <img src="images/app-4.jpeg" alt="Athlead - Pantalla 4" loading="lazy" />
-        <figcaption class="app-shot-label" data-i18n="app_preview_label_4">Mensajes</figcaption>
-      </figure>
+        <figure class="app-shot">
+          <img src="images/app-3.jpeg" alt="Athlead - Pantalla 3" loading="lazy" />
+          <figcaption class="app-shot-label" data-i18n="app_preview_label_3">Rankings</figcaption>
+        </figure>
+
+        <figure class="app-shot">
+          <img src="images/app-4.jpeg" alt="Athlead - Pantalla 4" loading="lazy" />
+          <figcaption class="app-shot-label" data-i18n="app_preview_label_4">Mensajes</figcaption>
+        </figure>
+      </div>
+
+      <button class="app-arrow next" type="button" aria-label="Siguiente">›</button>
     </div>
   </div>
 </section>
+<!-- FIN APP PREVIEW -->
 <!-- FIN APP PREVIEW -->
 
   <!-- CÓMO FUNCIONA — TRES PASOS -->
@@ -3977,6 +4028,28 @@ signup_success_close: 'Close',
         videosTrack.scrollBy({ left: scrollSlide(), behavior: 'smooth' });
       });
     }
+    // Carrusel App Preview (flechas desktop + scroll)
+(function () {
+  const track = document.getElementById('appTrack');
+  if (!track) return;
+
+  const prev = document.querySelector('.app-arrow.prev');
+  const next = document.querySelector('.app-arrow.next');
+
+  const scrollByAmount = () => Math.max(track.clientWidth * 0.85, 320);
+
+  if (prev) {
+    prev.addEventListener('click', () => {
+      track.scrollBy({ left: -scrollByAmount(), behavior: 'smooth' });
+    });
+  }
+
+  if (next) {
+    next.addEventListener('click', () => {
+      track.scrollBy({ left: scrollByAmount(), behavior: 'smooth' });
+    });
+  }
+})();
 
     // Autoplay silencioso en móvil
     if (window.innerWidth < 768) {
