@@ -2427,6 +2427,52 @@
     border-radius: 18px;
   }
 }
+    /* =========================
+   DESKTOP: ver 4 pantallas a la vez (como tu screenshot)
+   MOBILE: sigue una por una
+   ========================= */
+
+@media (min-width: 1024px) {
+  /* El carrusel ocupa ancho y queda centrado */
+  .app-carousel {
+    position: relative;
+    width: 100%;
+    margin-top: 28px;
+  }
+
+  /* Track: en desktop NO queremos "overflow hidden" ni slide 100% */
+  .app-track {
+    display: flex;
+    gap: 22px;
+    align-items: flex-end;
+
+    overflow: visible !important;
+    transform: none !important;      /* MUY IMPORTANTE: anula el translate del JS */
+    transition: none !important;     /* evita animaciones raras si el JS intenta mover */
+  }
+
+  /* Cada “pantalla” con tamaño fijo y un poco grande */
+  .app-shot {
+    flex: 0 0 245px; /* ajusta 220-280 según gusto */
+    max-width: 245px;
+  }
+
+  .app-shot img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Flechas como overlay (si las quieres visibles) */
+  .app-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 5;
+  }
+  .app-arrow.prev { left: -10px; }
+  .app-arrow.next { right: -10px; }
+}
   </style>
 </head>
 <body>
