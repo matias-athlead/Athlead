@@ -1028,11 +1028,6 @@
       background: #ffffff;
     }
 
-    /* Ocultar los 3 puntos del carrusel de pasos en todos los dispositivos */
-    .how-steps-dots {
-      display: none !important;
-    }
-
     /* CÓMO FUNCIONA – EXPERIENCIA */
 
     .how-it-works {
@@ -1913,10 +1908,9 @@
 
     /* Desktop */
     @media (min-width: 1024px) {
-      #how-steps .how-steps-inner {
-        max-width: 1300px;
-        padding: 120px 16px 140px 40px;
-      }
+    #how-steps .how-steps-layout {
+  position: static;
+  display: flex;
 
       #how-steps .how-steps-layout {
         position: sticky;
@@ -2766,6 +2760,10 @@
         <button class="how-step-dot" data-step="1"></button>
         <button class="how-step-dot" data-step="2"></button>
       </div>
+      <div class="how-steps-nav" style="display:flex; gap:12px; margin-top:16px;">
+  <button id="howStepPrev" type="button" style="width:42px;height:42px;border-radius:999px;border:1px solid rgba(255,255,255,0.45);background:rgba(0,0,0,0.65);color:#fff;cursor:pointer;font-size:22px;display:flex;align-items:center;justify-content:center;">‹</button>
+  <button id="howStepNext" type="button" style="width:42px;height:42px;border-radius:999px;border:1px solid rgba(255,255,255,0.45);background:rgba(0,0,0,0.65);color:#fff;cursor:pointer;font-size:22px;display:flex;align-items:center;justify-content:center;">›</button>
+</div>
 
       <!-- Triggers para el scroll (solo desktop) -->
       <div class="how-step-triggers">
@@ -4064,33 +4062,34 @@ signup_success_close: 'Close',
     }
 
     // Bloque "Tres pasos" – scroll solo escritorio
-    (function () {
-      const stepsSection = document.getElementById('how-steps');
-      if (!stepsSection || window.innerWidth < 1024) return;
+// Bloque "Tres pasos" – carrusel con flechas (desktop) + swipe (móvil)
+(function () {
+  const stepsSection = document.getElementById('how-steps');
+  if (!stepsSection) return;
 
-      const slides = stepsSection.querySelectorAll('.how-step-slide');
-      const numberEl = document.getElementById('howStepNumber');
-      const triggers = stepsSection.querySelectorAll('.how-step-trigger');
+  // En móvil, el carrusel ya funciona por scroll nativo — solo gestionamos dots
+  if (window.innerWidth < 1024) return;
 
-      if (!slides.length || !triggers.length || !numberEl) return;
+  const slides = stepsSection.querySelectorAll('.how-step-slide');
+  const numberEl = document.getElementById('howStepNumber');
+  const dots = stepsSection.querySelectorAll('.how-step-dot');
+  const prevBtn = document.getElementById('howStepPrev');
+  const nextBtn = document.getElementById('howStepNext');
+  let current = 0;
 
-      const activate = (index) => {
-        slides.forEach((slide, i) => {
-          slide.classList.toggle('active', i === index);
-        });
-        numberEl.textContent = `0${index + 1}`;
-      };
+  const activate = (index) => {
+    slides.forEach((s, i) => s.classList.toggle('active', i === index));
+    if (numberEl) numberEl.textContent = `0${index + 1}`;
+    dots.forEach((d, i) => d.classList.toggle('active', i === index));
+    current = index;
+  };
 
-      activate(0);
+  activate(0);
 
-      const stepObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              const stepIndex = parseInt(entry.target.getAttribute('data-step'), 10) || 0;
-              activate(stepIndex);
-            }
-          });
+  if (prevBtn) prevBtn.addEventListener('click', () => activate((current - 1 + slides.length) % slides.length));
+  if (nextBtn) nextBtn.addEventListener('click', () => activate((current + 1) % slides.length));
+  dots.forEach((dot, i) => dot.addEventListener('click', () => activate(i)));
+})();
         },
         {
           threshold: 0.6
