@@ -921,159 +921,92 @@
       line-height: 0.9;
     }
 
-/* ===== HOW STEPS (Veo-style carousel) ===== */
-.how-steps {
-  padding: 100px 0;
-  background: #f6f3ee;
-}
+    .how-step-card-wrapper {
+      flex: 1;
+      position: relative;
+      height: 460px;
+    }
 
-.how-steps-title {
-  font-size: 56px;
-  line-height: 1.05;
-  margin: 0 0 40px 0;
-  color: #0b0b0b;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-}
+    .how-step-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      pointer-events: none;
+    }
 
-.how-steps-layout {
-  display: grid;
-  grid-template-columns: 240px 1fr;
-  gap: 40px;
-  align-items: start;
-}
+    .how-step-slide.active {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
 
-.how-step-number {
-  font-size: 160px;
-  line-height: 1;
-  font-weight: 900;
-  color: #0b0b0b;
-  letter-spacing: -0.04em;
-  position: sticky;
-  top: 120px; /* para que quede fijo como en Veo */
-}
+    .how-step-card {
+      width: 100%;
+      height: 100%;
+      border-radius: 32px;
+      overflow: hidden;
+      position: relative;
+      background: #111111;
+    }
 
-/* wrapper del carrusel */
-.how-step-card-wrapper {
-  position: relative;
-  border-radius: 28px;
-}
+    .how-step-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
-/* carrusel real */
-.how-carousel {
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  border-radius: 28px;
-}
+    .how-step-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: flex-end;
+      padding: 32px 34px;
+    }
 
-/* ocultar scrollbar */
-.how-carousel::-webkit-scrollbar {
-  display: none;
-}
-.how-carousel {
-  scrollbar-width: none;
-}
+    .how-step-title {
+      font-size: 24px;
+      font-weight: 700;
+      max-width: 420px;
+    }
 
-.how-step-slide {
-  flex: 0 0 100%;
-  scroll-snap-align: start;
-}
+    .how-step-sub {
+      font-size: 14px;
+      opacity: 0.85;
+      margin-top: 6px;
+    }
 
-.how-step-card {
-  height: 480px;
-  border-radius: 28px;
-  overflow: hidden;
-  position: relative;
-  background: #111;
-}
+    .how-step-cta {
+      margin-top: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      background: transparent;
+      color: #ffffff;
+      text-decoration: none;
+    }
 
-.how-step-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  filter: saturate(1.05);
-}
+    .how-step-cta:hover {
+      background: #ffffff;
+      color: #000000;
+    }
 
-.how-step-card-content {
-  position: absolute;
-  left: 28px;
-  bottom: 28px;
-  max-width: 520px;
-  color: #fff;
-  text-shadow: 0 10px 30px rgba(0,0,0,0.35);
-}
+    .how-step-triggers {
+      position: relative;
+      margin-top: 40px;
+    }
 
-.how-step-card-content h3 {
-  font-size: 34px;
-  margin: 0 0 10px 0;
-  font-weight: 800;
-}
+    .how-step-trigger {
+      height: 80vh;
+    }
 
-.how-step-card-content p {
-  margin: 0;
-  font-size: 18px;
-  opacity: 0.95;
-}
-
-/* dots */
-.how-steps-dots {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  margin-top: 16px;
-}
-
-.how-steps-dots button {
-  width: 10px;
-  height: 10px;
-  border-radius: 999px;
-  border: none;
-  background: rgba(0,0,0,0.25);
-  cursor: pointer;
-}
-
-.how-steps-dots button.active {
-  background: rgba(0,0,0,0.9);
-}
-
-/* flechas */
-.how-nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 44px;
-  height: 44px;
-  border-radius: 999px;
-  border: none;
-  background: rgba(0,0,0,0.55);
-  color: #fff;
-  font-size: 28px;
-  line-height: 1;
-  cursor: pointer;
-  display: grid;
-  place-items: center;
-  backdrop-filter: blur(8px);
-}
-
-.how-prev { left: 14px; }
-.how-next { right: 14px; }
-
-@media (max-width: 900px) {
-  .how-steps-title { font-size: 38px; }
-  .how-steps-layout {
-    grid-template-columns: 1fr;
-    gap: 18px;
-  }
-  .how-step-number {
-    position: relative;
-    top: auto;
-    font-size: 96px;
-  }
-  .how-step-card { height: 420px; }
-}
     .how-steps-dots {
       display: flex;
       gap: 8px;
@@ -2844,64 +2777,90 @@
   </section>
 
   <!-- CÓMO FUNCIONA – EXPERIENCIA POR TIPO DE USUARIO -->
-<section class="how-steps" id="how-it-works">
-  <div class="container">
-    <h2 class="how-steps-title">Capture, analyse, and share the action<br>in three simple steps</h2>
+  <section class="how-it-works" id="how-it-works">
+    <div class="section-inner">
+      <p class="section-kicker" data-i18n="roles_kicker">Elige tu rol</p>
+      <h2 data-i18n="roles_title">Una experiencia Athlead para cada tipo de usuario</h2>
+      <p data-i18n="roles_intro">
+        Athlead está pensada tanto para el jugador que quiere dejar de ser invisible como para el
+        club o entrenador que necesita encontrar talento sin perder tiempo en vídeos sueltos.
+      </p>
 
-    <div class="how-steps-layout">
-      <!-- Número grande a la izquierda -->
-      <div class="how-step-number" id="howStepNumber">01</div>
+      <div class="experience-grid">
+        <!-- Jugadores -->
+        <article class="experience-card">
+          <div class="experience-image-wrapper">
+            <img
+              src="images/athlead-jugador-main.jpg"
+              alt="Vista de Athlead para jugadores"
+              class="role-image"
+            />
+          </div>
+          <div class="experience-body">
+            <p class="experience-label" data-i18n="roles_players_label">Para jugadores</p>
+            <h3 data-i18n="roles_players_title">Tu escaparate de fútbol en el bolsillo</h3>
+            <p data-i18n="roles_players_p">
+              Crea tu perfil en minutos, sube tus mejores jugadas y deja que tu talento llegue a
+              entrenadores y clubes que no te conocen… todavía.
+            </p>
+            <ul>
+              <li data-i18n="roles_players_li1">Perfil con posición, edad, equipo y datos clave.</li>
+              <li data-i18n="roles_players_li2">Vídeos cortos ordenados por tipo de jugada.</li>
+              <li data-i18n="roles_players_li3">
+                Visibilidad frente a entrenadores y scouts que ya buscan online.
+              </li>
+            </ul>
+            <button
+              type="button"
+              class="experience-btn"
+              onclick="window.location.href='roles.html#jugadores'"
+              data-i18n="roles_players_btn"
+            >
+              Explorar
+            </button>
+          </div>
+        </article>
 
-      <!-- Carrusel a la derecha -->
-      <div class="how-step-card-wrapper">
-        <div class="how-carousel" id="howCarousel" aria-label="How it works steps">
-          
-          <article class="how-step-slide active" data-step="1">
-            <div class="how-step-card">
-              <img src="https://images.unsplash.com/photo-1521412644187-c49fa049e84d?auto=format&fit=crop&w=1200&q=80" alt="Step 1">
-              <div class="how-step-card-content">
-                <h3>Record and livestream every match</h3>
-                <p>Home and away. Share the action instantly.</p>
-              </div>
-            </div>
-          </article>
-
-          <article class="how-step-slide" data-step="2">
-            <div class="how-step-card">
-              <img src="https://images.unsplash.com/photo-1517927033932-b3d18e61fb3a?auto=format&fit=crop&w=1200&q=80" alt="Step 2">
-              <div class="how-step-card-content">
-                <h3>Analyse key moments automatically</h3>
-                <p>Clip, tag, and track performance with ease.</p>
-              </div>
-            </div>
-          </article>
-
-          <article class="how-step-slide" data-step="3">
-            <div class="how-step-card">
-              <img src="https://images.unsplash.com/photo-1521412644187-c49fa049e84d?auto=format&fit=crop&w=1200&q=80" alt="Step 3">
-              <div class="how-step-card-content">
-                <h3>Share highlights with players & scouts</h3>
-                <p>Create reels and send them in one click.</p>
-              </div>
-            </div>
-          </article>
-
-        </div>
-
-        <!-- Flechas (opcional, pero Veo suele tener navegación clara) -->
-        <button class="how-nav how-prev" type="button" aria-label="Previous step">‹</button>
-        <button class="how-nav how-next" type="button" aria-label="Next step">›</button>
-
-        <!-- Dots -->
-        <div class="how-steps-dots" id="howDots" aria-label="How it works pagination">
-          <button type="button" class="active" aria-label="Go to step 1"></button>
-          <button type="button" aria-label="Go to step 2"></button>
-          <button type="button" aria-label="Go to step 3"></button>
-        </div>
+        <!-- Clubes y entrenadores -->
+        <article class="experience-card">
+          <div class="experience-image-wrapper">
+            <img
+              src="images/athlead-clubes-main.jpg"
+              alt="Vista de Athlead para clubes y entrenadores"
+              class="role-image"
+            />
+          </div>
+          <div class="experience-body">
+            <p class="experience-label" data-i18n="roles_clubs_label">Para clubes y entrenadores</p>
+            <h3 data-i18n="roles_clubs_title">Encuentra talento sin perder horas en vídeos sueltos</h3>
+            <p data-i18n="roles_clubs_p">
+              Un panel pensado para fichar mejor: filtros avanzados, rankings y listas de
+              seguimiento para tener controlados a los jugadores que te interesan.
+            </p>
+            <ul>
+              <li data-i18n="roles_clubs_li1">
+                Filtros por edad, posición, categoría y zona geográfica.
+              </li>
+              <li data-i18n="roles_clubs_li2">
+                Perfiles con contexto y jugadas ordenadas para decidir rápido.
+              </li>
+              <li data-i18n="roles_clubs_li3">
+                Mensajes directos, sin intermediarios ni comisiones ocultas.
+              </li>
+            </ul>
+            <button
+              type="button"
+              class="experience-btn"
+              onclick="window.location.href='roles.html#clubes'"
+              data-i18n="roles_clubs_btn"
+            >
+              Explorar
+            </button>
+          </div>
+        </article>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
 <section class="signup-section" id="signup">
   <div class="section-inner">
@@ -4105,96 +4064,41 @@ signup_success_close: 'Close',
     }
 
     // Bloque "Tres pasos" – scroll solo escritorio
- // How Steps – Veo-style carousel (all devices)
-(function () {
-  const carousel = document.querySelector('#howCarousel');
-  const numberEl = document.querySelector('#howStepNumber');
-  const dotsWrap = document.querySelector('#howDots');
-  const prevBtn = document.querySelector('.how-prev');
-  const nextBtn = document.querySelector('.how-next');
+    (function () {
+      const stepsSection = document.getElementById('how-steps');
+      if (!stepsSection || window.innerWidth < 1024) return;
 
-  if (!carousel || !dotsWrap || !numberEl) return;
+      const slides = stepsSection.querySelectorAll('.how-step-slide');
+      const numberEl = document.getElementById('howStepNumber');
+      const triggers = stepsSection.querySelectorAll('.how-step-trigger');
 
-  const slides = Array.from(carousel.querySelectorAll('.how-step-slide'));
-  const dots = Array.from(dotsWrap.querySelectorAll('button'));
+      if (!slides.length || !triggers.length || !numberEl) return;
 
-  let current = 0;
+      const activate = (index) => {
+        slides.forEach((slide, i) => {
+          slide.classList.toggle('active', i === index);
+        });
+        numberEl.textContent = `0${index + 1}`;
+      };
 
-  function pad2(n) {
-    return String(n).padStart(2, '0');
-  }
+      activate(0);
 
-  function setActive(index) {
-    current = index;
-
-    slides.forEach((s, i) => s.classList.toggle('active', i === index));
-    dots.forEach((d, i) => d.classList.toggle('active', i === index));
-
-    numberEl.textContent = pad2(index + 1);
-  }
-
-  function scrollToIndex(index) {
-    const target = slides[index];
-    if (!target) return;
-
-    carousel.scrollTo({
-      left: target.offsetLeft - carousel.offsetLeft,
-      behavior: 'smooth'
-    });
-  }
-
-  // Click dots
-  dots.forEach((btn, index) => {
-    btn.addEventListener('click', () => {
-      setActive(index);
-      scrollToIndex(index);
-    });
-  });
-
-  // Arrows
-  if (prevBtn) {
-    prevBtn.addEventListener('click', () => {
-      const nextIndex = Math.max(0, current - 1);
-      setActive(nextIndex);
-      scrollToIndex(nextIndex);
-    });
-  }
-
-  if (nextBtn) {
-    nextBtn.addEventListener('click', () => {
-      const nextIndex = Math.min(slides.length - 1, current + 1);
-      setActive(nextIndex);
-      scrollToIndex(nextIndex);
-    });
-  }
-
-  // Sync on scroll (swipe)
-  let raf = null;
-  carousel.addEventListener('scroll', () => {
-    if (raf) cancelAnimationFrame(raf);
-
-    raf = requestAnimationFrame(() => {
-      const center = carousel.scrollLeft + carousel.clientWidth / 2;
-
-      let activeIndex = 0;
-      let bestDist = Infinity;
-
-      slides.forEach((slide, i) => {
-        const slideCenter = slide.offsetLeft + slide.clientWidth / 2;
-        const dist = Math.abs(slideCenter - center);
-        if (dist < bestDist) {
-          bestDist = dist;
-          activeIndex = i;
+      const stepObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const stepIndex = parseInt(entry.target.getAttribute('data-step'), 10) || 0;
+              activate(stepIndex);
+            }
+          });
+        },
+        {
+          threshold: 0.6
         }
-      });
+      );
 
-      setActive(activeIndex);
-    });
-  });
-
-  // Init
-  setActive(0);
-})();
+      triggers.forEach((trigger) => stepObserver.observe(trigger));
+    })();
 
     // Carrusel táctil en móvil para "Captura tu talento en tres pasos"
     (function () {
