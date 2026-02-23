@@ -1963,19 +1963,22 @@
         min-height: min(70vh, 620px);
       }
 
-      #how-steps .how-step-slide {
-        position: absolute;
-        inset: 0;
-        opacity: 0;
-        transform: translateY(20px);
-        pointer-events: none;
-      }
+     @media (min-width: 1024px) {
+  /* Solo 1 slide visible a la vez (sin “fusionarse”) */
+  #how-steps .how-step-slide {
+    position: absolute;
+    inset: 0;
+    display: none;       /* 👈 clave */
+    opacity: 1;
+    transform: none;
+    pointer-events: none;
+  }
 
-      #how-steps .how-step-slide.active {
-        opacity: 1;
-        transform: translateY(0);
-        pointer-events: auto;
-      }
+  #how-steps .how-step-slide.active {
+    display: block;      /* 👈 clave */
+    pointer-events: auto;
+  }
+}
 
       #how-steps .how-step-card {
         border-radius: 24px;
