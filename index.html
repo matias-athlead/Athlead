@@ -1963,40 +1963,20 @@
         min-height: min(70vh, 620px);
       }
 
-  /* Desktop: cadena de montaje (stack sticky) */
-@media (min-width: 1024px) {
-
-  #how-steps .how-steps-slides {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    padding-bottom: 120px;
-  }
-
+     @media (min-width: 1024px) {
+  /* Solo 1 slide visible a la vez (sin “fusionarse”) */
   #how-steps .how-step-slide {
-    position: sticky;
-    top: 110px; /* ajusta si tienes header fijo */
-    display: block;
+    position: absolute;
+    inset: 0;
+    display: none;       /* 👈 clave */
     opacity: 1;
     transform: none;
-    pointer-events: auto;
-
-    border-radius: 18px;
-    overflow: hidden;
-    box-shadow: 0 14px 40px rgba(0,0,0,.10);
-
-    min-height: 72vh;
+    pointer-events: none;
   }
 
-  /* Desfase progresivo tipo cadena */
-  #how-steps .how-step-slide:nth-child(1) { top: 110px; }
-  #how-steps .how-step-slide:nth-child(2) { top: 140px; }
-  #how-steps .how-step-slide:nth-child(3) { top: 170px; }
-
-  /* Ocultamos los triggers en desktop */
-  #how-steps .how-step-triggers {
-    display: none;
+  #how-steps .how-step-slide.active {
+    display: block;      /* 👈 clave */
+    pointer-events: auto;
   }
 }
 
@@ -3964,7 +3944,6 @@ signup_success_close: 'Close',
     });
 
     // Animaciones
-    if (window.innerWidth < 1024) {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -3985,7 +3964,7 @@ signup_success_close: 'Close',
         card.style.transition = 'all 0.5s ease';
         observer.observe(card);
       });
-}
+
     // Contact form → Google Sheets
     const CONTACT_SCRIPT_URL =
       'https://script.google.com/macros/s/AKfycbx5udqjlBi3yRKZMGbfgNxvzvBozoeyglYj9drSUo2C4OIBLQmJJqOXTtyuz-aouAO9/exec';
