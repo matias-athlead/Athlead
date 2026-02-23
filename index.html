@@ -787,9 +787,33 @@
 }
 
 /* Móvil */
+/* Móvil */
 @media (max-width: 520px) {
-  .app-shot { flex: 0 0 95%; min-width: 95%; }
-  .app-shot img { aspect-ratio: 9 / 16; }
+  .app-shot {
+    flex: 0 0 95%;
+    min-width: 95%;
+
+    /* 🔻 menos “marco” visual */
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45);
+    border-radius: 16px;
+  }
+
+  /* si el brillo del ::before te aumenta el “marco”, lo suavizamos o lo quitamos */
+  .app-shot::before {
+    opacity: 0.25;
+  }
+
+  .app-shot img {
+    aspect-ratio: 9 / 16;
+
+    /* ✅ para que se vean ENTERAS */
+    object-fit: contain;
+
+    /* ✅ para que se note menos el marco (porque contain deja “aire”) */
+    background: #000;
+  }
 }
     /* JUGADAS DESTACADAS */
 
