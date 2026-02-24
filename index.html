@@ -4610,23 +4610,7 @@ signup_success_close: 'Close',
     }
   });
 })();
-    <!-- MODAL YA REGISTRADO -->
-<div id="alreadyModal" class="signup-modal">
-  <div class="signup-modal-backdrop"></div>
-
-  <div class="signup-modal-box">
-    <h3>Ya estás inscrito ✅</h3>
-    <p>Hemos registrado tus datos. Si no recibiste email, revisa spam o vuelve a intentarlo más tarde.</p>
-    <button
-      type="button"
-      id="closeAlreadyModal"
-      class="submit-btn"
-      style="max-width: 220px; margin: 0 auto;"
-    >
-      Cerrar
-    </button>
-  </div>
-</div>
+   
     // ==== BLOQUEO DE REGISTRO (solo 1 vez por navegador) ====
 (function () {
   const STORAGE_KEY = 'athlead_signup_v1';
@@ -4743,6 +4727,23 @@ if (storedNow && storedNow.email && storedNow.email === currentEmail) {      loc
       lockFormUI();
     });
   }
+   <!-- MODAL YA REGISTRADO -->
+<div id="alreadyModal" class="signup-modal">
+  <div class="signup-modal-backdrop"></div>
+
+  <div class="signup-modal-box">
+    <h3>Ya estás inscrito ✅</h3>
+    <p>Hemos registrado tus datos. Si no recibiste email, revisa spam o vuelve a intentarlo más tarde.</p>
+    <button
+      type="button"
+      id="closeAlreadyModal"
+      class="submit-btn"
+      style="max-width: 220px; margin: 0 auto;"
+    >
+      Cerrar
+    </button>
+  </div>
+</div>
 })();
 
   </script>
