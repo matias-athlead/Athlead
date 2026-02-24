@@ -4564,7 +4564,64 @@ signup_success_close: 'Close',
   // Estado inicial
   updateCountryRelatedFields();
 })();
+// ==== ENVÍO DEL FORMULARIO + MODAL DE ÉXITO ====
+(function () {
+  const form = document.getElementById('signup-form');
+  const modal = document.getElementById('signupModal');
+  const closeBtn = document.getElementById('closeSignupModal');
+  const backdrop = document.querySelector('.signup-modal-backdrop');
 
+  if (!form || !modal) return;
+
+  const endpoint = form.getAttribute('action'); // usa tu URL de Google Script
+
+  function openModal() {
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+  if (backdrop) backdrop.addEventListener('click', closeModal);
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault(); // evita recarga de página
+        const consentCheckbox = document.getElementById('signup-consent');
+    if (consentCheckbox && !consentCheckbox.checked) {
+      alert(
+        t('signup_consent_error') ||
+          'Debes aceptar las políticas para poder registrarte.'
+      );
+      return;
+    }
+
+
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          Accept: 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        form.reset();
+        openModal();
+      } else {
+        openModal(); // si falla el script, igualmente mostramos el modal
+      }
+    } catch (err) {
+      openModal(); // error de red
+    }
+  });
+})();
 // ==== MODAL DE ÉXITO AL ENVIAR EL FORMULARIO ====
 (function () {
   const form = document.getElementById('signup-form');
@@ -4609,141 +4666,6 @@ signup_success_close: 'Close',
       closeModal();
     }
   });
-})();
-   
-    // ==== BLOQUEO DE REGISTRO (solo 1 vez por navegador) ====
-(function () {
-  const STORAGE_KEY = 'athlead_signup_v1';
-
-  const form = document.getElementById('signup-form');
-  const emailInput = document.getElementById('signup-email');
-  const submitBtn = form ? form.querySelector('button[type="submit"]') : null;
-
-  const successModal = document.getElementById('successModal'); // ya existe en tu HTML
-  const alreadyModal = document.getElementById('alreadyModal');
-
-  const closeAlreadyBtn = document.getElementById('closeAlreadyModal');
-  const alreadyBackdrop = alreadyModal ? alreadyModal.querySelector('.signup-modal-backdrop') : null;
-
-  if (!form || !emailInput || !submitBtn) return;
-
-  function getStored() {
-    try {
-      return JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
-    } catch {
-      return null;
-    }
-  }
-
-  function setStored(email) {
-    const payload = {
-      email: (email || '').trim().toLowerCase(),
-      ts: Date.now()
-    };
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
-  }
-
-  function openAlreadyModal() {
-    if (!alreadyModal) {
-      alert('Ya estás inscrito ✅');
-      return;
-    }
-    alreadyModal.classList.add('open');
-  }
-
-  function closeAlreadyModal() {
-    if (!alreadyModal) return;
-    alreadyModal.classList.remove('open');
-  }
-
-  function lockFormUI() {
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'YA ESTÁS INSCRITO ✅';
-    submitBtn.style.opacity = '0.7';
-    submitBtn.style.cursor = 'not-allowed';
-  }
-
-  function unlockFormUI() {
-    submitBtn.disabled = false;
-    submitBtn.textContent = t('signup_submit') || '¡SÍ, QUIERO ACCESO ANTICIPADO!';
-    submitBtn.style.opacity = '';
-    submitBtn.style.cursor = '';
-  }
-
-  // 1) Al cargar, si ya se registró -> bloqueo UI
-  const stored = getStored();
-  if (stored && stored.email) {
-    lockFormUI();
-  }
-
-  // 2) Si intenta enviar y ya está registrado -> bloquear y modal
-  form.addEventListener('submit', function (e) {
-    const storedNow = getStored();
-const currentEmail = (emailInput.value || '').trim().toLowerCase();
-if (storedNow && storedNow.email && storedNow.email === currentEmail) {      e.preventDefault();
-      openAlreadyModal();
-      return;
-    }
-  }, true);
-
-  // 3) Opcional: si escriben email distinto, igual bloquea (porque es por navegador)
-  // Si prefieres que sea "1 vez por email", comenta este bloque y usa el de abajo.
-  emailInput.addEventListener('input', () => {
-    const storedNow = getStored();
-const currentEmail = (emailInput.value || '').trim().toLowerCase();
-if (storedNow && storedNow.email && storedNow.email === currentEmail) {      lockFormUI();
-    } else {
-      unlockFormUI();
-    }
-  });
-
-  // Cerrar modal ya registrado
-  if (closeAlreadyBtn) closeAlreadyBtn.addEventListener('click', closeAlreadyModal);
-  if (alreadyBackdrop) alreadyBackdrop.addEventListener('click', closeAlreadyModal);
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeAlreadyModal();
-  });
-
-  // 4) Hook en tu iframe: cuando confirma envío correcto -> guardar + lock UI
-  const iframe = document.getElementById('hidden_iframe');
-  if (iframe) {
-    let formWasSubmitted = false;
-
-    form.addEventListener('submit', function () {
-      // Solo marcamos si NO estaba registrado
-      const storedNow = getStored();
-      if (storedNow && storedNow.email) return;
-      formWasSubmitted = true;
-    });
-
-    iframe.addEventListener('load', function () {
-      if (!formWasSubmitted) return;
-      formWasSubmitted = false;
-
-      // Guardar email actual
-      setStored(emailInput.value);
-
-      // Bloquear UI para siguientes intentos
-      lockFormUI();
-    });
-  }
-   <!-- MODAL YA REGISTRADO -->
-<div id="alreadyModal" class="signup-modal">
-  <div class="signup-modal-backdrop"></div>
-
-  <div class="signup-modal-box">
-    <h3>Ya estás inscrito ✅</h3>
-    <p>Hemos registrado tus datos. Si no recibiste email, revisa spam o vuelve a intentarlo más tarde.</p>
-    <button
-      type="button"
-      id="closeAlreadyModal"
-      class="submit-btn"
-      style="max-width: 220px; margin: 0 auto;"
-    >
-      Cerrar
-    </button>
-  </div>
-</div>
 })();
 
   </script>
