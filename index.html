@@ -96,25 +96,26 @@
 
     /* HEADER */
 
-   .header {
-  position: fixed;
-  top: 16px;
-  left: 50%;
-  transform: translate(-50%, 0);
-  width: min(1100px, 92%);
-  padding: 20px 28px;
-  border-radius: 999px;
-  background: rgba(0, 0, 0, 0.78);
-  backdrop-filter: blur(18px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 22px 45px rgba(0, 0, 0, 0.65);
-  z-index: 1000;
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  gap: 20px;
-  transition: transform 0.6s ease-in-out;
-}
+    .header {
+      position: fixed;
+      top: 16px;
+      left: 50%;
+      transform: translate(-50%, 0);
+      width: min(1100px, 92%);
+      padding: 20px 28px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.78);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 22px 45px rgba(0, 0, 0, 0.65);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      transition: transform 0.6s ease-in-out;
+    }
+
     .header.hide-header {
       transform: translate(-50%, -180%);
     }
@@ -132,24 +133,6 @@
       align-items: center;
       font-size: 16px;
     }
-    .logo {
-  justify-self: start;
-}
-
-.nav-links {
-  display: flex;
-  gap: 20px;
-  align-items: center;
-  font-size: 16px;
-  justify-self: center;
-}
-
-.header-actions {
-  justify-self: end;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
 
     .nav-links a {
       opacity: 0.8;
@@ -2497,9 +2480,8 @@
     <a href="index.html#faq" data-i18n="nav_faq">FAQ</a>
     <a href="index.html#contact" data-i18n="nav_contact">Contacto</a>
 
- 
     <!-- Dropdown App -->
-    <!-- div class="nav-item-app">
+    <div class="nav-item-app">
       <button class="nav-dropdown-toggle" type="button">
         <span data-i18n="nav_app">App</span>
         <span class="nav-dropdown-arrow">▾</span>
@@ -2510,7 +2492,7 @@
         <a href="subscripciones.html" data-i18n="nav_app_subscriptions">Suscripciones</a>
       </div>
     </div>
-  </nav-->
+  </nav>
 
   <div class="header-actions">
     <div class="lang-switcher" id="langSwitcher">
