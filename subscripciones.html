@@ -620,6 +620,37 @@
       .hero h1{font-size:32px;}
       .header{padding:16px 18px;}
     }
+  
+    /* === Animaciones al hacer scroll (reveal) === */
+    @media (prefers-reduced-motion: no-preference) {
+      .reveal {
+        opacity: 0;
+        transform: translateY(28px);
+        transition: opacity .75s cubic-bezier(.22,.61,.36,1), transform .75s cubic-bezier(.22,.61,.36,1);
+        will-change: opacity, transform;
+      }
+      .reveal.is-visible { opacity: 1; transform: none; }
+    }
+    /* === Botón "Abrir app" (login web de la app) === */
+    .btn-app {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 9px 18px; border-radius: 999px;
+      background: var(--accent-alt, #4ecdc4); color: #04201d;
+      font-size: 13px; font-weight: 700; letter-spacing: .02em;
+      border: 1px solid rgba(255,255,255,.22);
+      box-shadow: 0 10px 24px rgba(78,205,196,.28);
+      transition: transform .15s ease, box-shadow .15s ease, background-color .15s ease;
+      white-space: nowrap; text-decoration: none; cursor: pointer;
+    }
+    .btn-app:hover { transform: translateY(-1px); background: #5fded5; box-shadow: 0 16px 32px rgba(78,205,196,.4); }
+    .btn-app .btn-app-ico { font-size: 13px; line-height: 1; }
+    .mobile-app-cta {
+      display: block; text-align: center; margin: 0 0 16px;
+      padding: 14px 18px; border-radius: 14px;
+      background: var(--accent-alt, #4ecdc4); color: #04201d; font-weight: 800; letter-spacing: .02em;
+    }
+    @media (max-width: 768px) { .btn-app { display: none; } }
+
   </style>
 </head>
 
@@ -664,6 +695,7 @@
     </nav>
 
     <div class="header-actions">
+      <a class="btn-app" href="https://app.athlead.es/login"><span class="btn-app-ico">▸</span><span data-i18n="nav_open_app">Abrir app</span></a>
       <div class="lang-switcher" id="langSwitcher">
         <button class="lang-current" type="button" aria-expanded="false">
           <span class="lang-flag">🇪🇸</span>
@@ -689,6 +721,7 @@
   <!-- MOBILE MENU -->
   <div class="mobile-menu" id="mobileMenu">
     <div class="mobile-menu-links">
+      <a class="mobile-app-cta" href="https://app.athlead.es/login" data-i18n="nav_open_app">Abrir app</a>
       <a href="index.html#who-we-are" data-i18n="nav_about">Quiénes somos</a>
       <a href="index.html#how-steps" data-i18n="nav_how">Cómo funciona</a>
 
@@ -982,6 +1015,7 @@
         nav_app_features: 'Características',
         nav_app_sport: 'Nuestro deporte',
         nav_app_subscriptions: 'Suscripciones',
+        nav_open_app: 'Abrir app',
 
         subs_badge: 'Planes · Gratis y Premium',
         subs_title: 'Suscripciones Athlead',
@@ -1059,6 +1093,7 @@
         nav_app_features: 'Features',
         nav_app_sport: 'Our sport',
         nav_app_subscriptions: 'Subscriptions',
+        nav_open_app: 'Open app',
 
         subs_badge: 'Plans · Free & Premium',
         subs_title: 'Athlead Subscriptions',
@@ -1452,5 +1487,36 @@ s0.parentNode.insertBefore(s1,s0);
 })();
 </script>
 <!--End of Tawk.to Script-->
+
+  <!-- reveal-observer -->
+  <script>
+    (function () {
+      var SEL = '[data-reveal], .section-inner, .role-hero-content, .hero-content, .role-card, .roles-cta, .step-card, .steps-cta';
+      var els = Array.prototype.slice.call(document.querySelectorAll(SEL));
+      if (!els.length) return;
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce || !('IntersectionObserver' in window)) {
+        els.forEach(function (el) { el.classList.add('reveal', 'is-visible'); });
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+      var vh = window.innerHeight || document.documentElement.clientHeight;
+      els.forEach(function (el) {
+        el.classList.add('reveal');
+        var sibs = el.parentNode ? el.parentNode.children : [];
+        var idx = Array.prototype.indexOf.call(sibs, el);
+        if (idx > 0 && (el.classList.contains('role-card') || el.classList.contains('step-card'))) {
+          el.style.transitionDelay = (Math.min(idx, 5) * 0.09) + 's';
+        }
+        if (el.getBoundingClientRect().top < vh * 0.92) { el.classList.add('is-visible'); }
+        else { io.observe(el); }
+      });
+    })();
+  </script>
+
 </body>
 </html>

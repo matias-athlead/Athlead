@@ -755,6 +755,65 @@
         font-size: 3.2rem;
       }
     }
+  
+    /* === Animaciones al hacer scroll (reveal) === */
+    @media (prefers-reduced-motion: no-preference) {
+      .reveal {
+        opacity: 0;
+        transform: translateY(28px);
+        transition: opacity .75s cubic-bezier(.22,.61,.36,1), transform .75s cubic-bezier(.22,.61,.36,1);
+        will-change: opacity, transform;
+      }
+      .reveal.is-visible { opacity: 1; transform: none; }
+    }
+    /* === Botón "Abrir app" (login web de la app) === */
+    .btn-app {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 9px 18px; border-radius: 999px;
+      background: var(--accent-alt, #4ecdc4); color: #04201d;
+      font-size: 13px; font-weight: 700; letter-spacing: .02em;
+      border: 1px solid rgba(255,255,255,.22);
+      box-shadow: 0 10px 24px rgba(78,205,196,.28);
+      transition: transform .15s ease, box-shadow .15s ease, background-color .15s ease;
+      white-space: nowrap; text-decoration: none; cursor: pointer;
+    }
+    .btn-app:hover { transform: translateY(-1px); background: #5fded5; box-shadow: 0 16px 32px rgba(78,205,196,.4); }
+    .btn-app .btn-app-ico { font-size: 13px; line-height: 1; }
+    .mobile-app-cta {
+      display: block; text-align: center; margin: 0 0 16px;
+      padding: 14px 18px; border-radius: 14px;
+      background: var(--accent-alt, #4ecdc4); color: #04201d; font-weight: 800; letter-spacing: .02em;
+    }
+    @media (max-width: 768px) { .btn-app { display: none; } }
+
+  
+    /* === Enriquecimiento de las páginas de rol === */
+    .role-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .role-stat-card {
+      background: var(--bg-card, rgba(255,255,255,.04)); border: 1px solid var(--border-soft, rgba(255,255,255,.1));
+      border-radius: 20px; padding: 26px 22px; transition: transform .2s ease, border-color .2s ease;
+    }
+    .role-stat-card:hover { transform: translateY(-4px); border-color: rgba(78,205,196,.5); }
+    .role-stat-ico { font-size: 26px; margin-bottom: 10px; }
+    .role-stat-title { font-size: 17px; font-weight: 700; margin-bottom: 6px; letter-spacing: -.02em; }
+    .role-stat-text { font-size: 14px; line-height: 1.7; color: var(--text-muted, rgba(255,255,255,.7)); }
+    .role-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .role-gallery figure { margin: 0; border-radius: 20px; overflow: hidden; border: 1px solid var(--border-soft, rgba(255,255,255,.1)); background: #050505; position: relative; }
+    .role-gallery img { width: 100%; height: 280px; object-fit: cover; display: block; transition: transform .6s ease; }
+    .role-gallery figure:hover img { transform: scale(1.06); }
+    .role-gallery figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 16px; font-size: 13px; line-height: 1.5; background: linear-gradient(to top, rgba(0,0,0,.9), rgba(0,0,0,0)); }
+    .role-final-cta { text-align: center; border-radius: 28px; padding: 54px 26px; border: 1px solid var(--border-soft, rgba(255,255,255,.12)); background: linear-gradient(135deg, rgba(78,205,196,.14), rgba(255,255,255,.02)); }
+    .role-final-cta h2 { font-size: 30px; letter-spacing: -.03em; margin-bottom: 12px; }
+    .role-final-cta p { color: var(--text-muted, rgba(255,255,255,.7)); max-width: 640px; margin: 0 auto 24px; line-height: 1.7; }
+    .role-final-cta .role-hero-buttons { justify-content: center; }
+    @media (max-width: 768px) {
+      .role-stats { grid-template-columns: 1fr; }
+      .role-gallery { grid-template-columns: 1fr; }
+      .role-gallery img { height: 220px; }
+      .role-final-cta { padding: 40px 18px; }
+      .role-final-cta h2 { font-size: 24px; }
+    }
+
   </style>
 </head>
 
@@ -803,6 +862,7 @@
 
     <div class="header-actions">
       <!-- Selector de idioma -->
+      <a class="btn-app" href="https://app.athlead.es/login"><span class="btn-app-ico">▸</span><span data-i18n="nav_open_app">Abrir app</span></a>
       <div class="lang-switcher" id="langSwitcher">
         <button class="lang-current" type="button" aria-expanded="false">
           <span class="lang-flag">🇪🇸</span>
@@ -828,6 +888,7 @@
   <!-- MENÚ MÓVIL (ACTUALIZADO SOLO BARRA) -->
   <div class="mobile-menu" id="mobileMenu">
     <div class="mobile-menu-links">
+      <a class="mobile-app-cta" href="https://app.athlead.es/login" data-i18n="nav_open_app">Abrir app</a>
       <a href="index.html#who-we-are" data-i18n="nav_about">Quiénes somos</a>
       <a href="index.html#how-steps" data-i18n="nav_how">Cómo funciona</a>
 
@@ -996,6 +1057,47 @@
   </section>
 
   <!-- FOOTER -->
+  
+  <!-- SECCIÓN 3: Por qué Athlead (club) -->
+  <section class="role-section">
+    <div class="section-inner">
+      <p class="section-kicker" data-i18n="rc_stats_kicker">Por qué los clubes eligen Athlead</p>
+      <h2 class="role-title" style="margin-bottom:28px;" data-i18n="rc_stats_title">Un radar de talento para toda tu estructura deportiva</h2>
+      <div class="role-stats">
+        <div class="role-stat-card"><div class="role-stat-ico">🎯</div><div class="role-stat-title" data-i18n="rc_stat1_t">Filtros avanzados</div><p class="role-stat-text" data-i18n="rc_stat1_p">Encuentra perfiles por edad, posición, categoría, estilo de juego y zona geográfica en segundos.</p></div>
+        <div class="role-stat-card"><div class="role-stat-ico">🗂️</div><div class="role-stat-title" data-i18n="rc_stat2_t">Listas de seguimiento</div><p class="role-stat-text" data-i18n="rc_stat2_p">Guarda y comparte candidatos entre coordinadores, directores deportivos y cuerpo técnico.</p></div>
+        <div class="role-stat-card"><div class="role-stat-ico">💬</div><div class="role-stat-title" data-i18n="rc_stat3_t">Contacto directo</div><p class="role-stat-text" data-i18n="rc_stat3_p">Habla con el jugador o su entorno sin intermediarios obligatorios ni comisiones ocultas.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 4: Galería (club) -->
+  <section class="role-section role-section-alt">
+    <div class="section-inner">
+      <p class="section-kicker" data-i18n="rc_gallery_kicker">Cantera y captación</p>
+      <h2 class="role-title" style="margin-bottom:28px;" data-i18n="rc_gallery_title">Del vídeo a la ficha, sin salir del móvil</h2>
+      <div class="role-gallery">
+        <figure><img loading="lazy" src="images/athlead-clubes-main.jpg" alt="Panel de club en Athlead" /><figcaption data-i18n="rc_gallery_c1">Todo tu scouting en un único panel.</figcaption></figure>
+        <figure><img loading="lazy" src="images/sport-11-switch.jpg" alt="Cambio de orientación en un partido" /><figcaption data-i18n="rc_gallery_c2">Evalúa decisiones, no solo resultados.</figcaption></figure>
+        <figure><img loading="lazy" src="images/sport-11.jpg" alt="Partido de fútbol 11 amateur" /><figcaption data-i18n="rc_gallery_c3">El talento de tu zona, a un scroll.</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 5: CTA final (club) -->
+  <section class="role-section">
+    <div class="section-inner">
+      <div class="role-final-cta">
+        <h2 data-i18n="rc_cta_title">Ficha mejor, con más información y menos intermediarios</h2>
+        <p data-i18n="rc_cta_sub">Da de alta tu club en Athlead y empieza a descubrir jugadores que encajen con tu proyecto, filtrando por edad, posición, categoría y zona.</p>
+        <div class="role-hero-buttons">
+          <a href="index.html#signup" class="btn btn-cta" data-i18n="rc_cta_btn1">Apunta a tu club</a>
+          <a href="https://app.athlead.es/login" class="btn btn-secondary" data-i18n="rc_cta_btn2">Abrir la app</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-links">
@@ -1051,6 +1153,7 @@
         nav_app_features: 'Características',
         nav_app_sport: 'Nuestro deporte',
         nav_app_subscriptions: 'Suscripciones',
+        nav_open_app: 'Abrir app',
 
         footer_copyright: '© 2025 Athlead. Todos los derechos reservados.',
         privacy_privacy: 'Política de Privacidad',
@@ -1064,6 +1167,7 @@
         role_club_subtitle:
           'Como club o academia, Athlead es tu herramienta para descubrir jugadores que se ajustan a tu filosofía, categoría y presupuesto sin perder horas en vídeos desordenados.',
         role_club_meta:
+          'Filtra por edad, posición, categoría y zona. Guarda perfiles, crea listas de seguimiento y contacta directamente con los jugadores que te interesan.',
         role_club_cta_register: 'Registra tu club',
         role_club_cta_how: 'Ver cómo funciona',
 
@@ -1094,7 +1198,24 @@
           'Mejor comunicación con jugador y entorno: todo empieza con un perfil claro.',
         role_club_section2_li4:
           'Herramienta ideal para clubes que quieren profesionalizar su área de scouting.',
-        role_club_section2_cta: 'Apunta a tu club a Athlead'
+        role_club_section2_cta: 'Apunta a tu club a Athlead',
+        rc_stats_kicker: 'Por qué los clubes eligen Athlead',
+        rc_stats_title: 'Un radar de talento para toda tu estructura deportiva',
+        rc_stat1_t: 'Filtros avanzados',
+        rc_stat1_p: 'Encuentra perfiles por edad, posición, categoría, estilo de juego y zona geográfica en segundos.',
+        rc_stat2_t: 'Listas de seguimiento',
+        rc_stat2_p: 'Guarda y comparte candidatos entre coordinadores, directores deportivos y cuerpo técnico.',
+        rc_stat3_t: 'Contacto directo',
+        rc_stat3_p: 'Habla con el jugador o su entorno sin intermediarios obligatorios ni comisiones ocultas.',
+        rc_gallery_kicker: 'Cantera y captación',
+        rc_gallery_title: 'Del vídeo a la ficha, sin salir del móvil',
+        rc_gallery_c1: 'Todo tu scouting en un único panel.',
+        rc_gallery_c2: 'Evalúa decisiones, no solo resultados.',
+        rc_gallery_c3: 'El talento de tu zona, a un scroll.',
+        rc_cta_title: 'Ficha mejor, con más información y menos intermediarios',
+        rc_cta_sub: 'Da de alta tu club en Athlead y empieza a descubrir jugadores que encajen con tu proyecto, filtrando por edad, posición, categoría y zona.',
+        rc_cta_btn1: 'Apunta a tu club',
+        rc_cta_btn2: 'Abrir la app'
       },
 
       en: {
@@ -1117,6 +1238,7 @@
         nav_app_features: 'Features',
         nav_app_sport: 'Our sport',
         nav_app_subscriptions: 'Subscriptions',
+        nav_open_app: 'Open app',
 
         footer_copyright: '© 2025 Athlead. All rights reserved.',
         privacy_privacy: 'Privacy Policy',
@@ -1161,7 +1283,24 @@
           'Better communication with the player and their environment: everything starts from a clear profile.',
         role_club_section2_li4:
           'Ideal tool for clubs that want to professionalise their scouting department.',
-        role_club_section2_cta: 'Sign your club up to Athlead'
+        role_club_section2_cta: 'Sign your club up to Athlead',
+        rc_stats_kicker: 'Why clubs choose Athlead',
+        rc_stats_title: 'A talent radar for your whole sporting structure',
+        rc_stat1_t: 'Advanced filters',
+        rc_stat1_p: 'Find profiles by age, position, category, playing style and area in seconds.',
+        rc_stat2_t: 'Watch lists',
+        rc_stat2_p: 'Save and share candidates across coordinators, sporting directors and coaching staff.',
+        rc_stat3_t: 'Direct contact',
+        rc_stat3_p: 'Talk to the player or their circle with no mandatory agents or hidden commissions.',
+        rc_gallery_kicker: 'Academy and scouting',
+        rc_gallery_title: 'From video to profile, without leaving your phone',
+        rc_gallery_c1: 'All your scouting in a single dashboard.',
+        rc_gallery_c2: 'Assess decisions, not just results.',
+        rc_gallery_c3: 'The talent in your area, one scroll away.',
+        rc_cta_title: 'Sign better, with more information and fewer middlemen',
+        rc_cta_sub: 'Register your club on Athlead and start discovering players who fit your project, filtering by age, position, category and area.',
+        rc_cta_btn1: 'Register your club',
+        rc_cta_btn2: 'Open the app'
       }
     };
 
@@ -1363,6 +1502,37 @@ s0.parentNode.insertBefore(s1,s0);
 })();
 </script>
 <!--End of Tawk.to Script-->
+
+  <!-- reveal-observer -->
+  <script>
+    (function () {
+      var SEL = '[data-reveal], .section-inner, .role-hero-content, .hero-content, .role-card, .roles-cta, .step-card, .steps-cta';
+      var els = Array.prototype.slice.call(document.querySelectorAll(SEL));
+      if (!els.length) return;
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce || !('IntersectionObserver' in window)) {
+        els.forEach(function (el) { el.classList.add('reveal', 'is-visible'); });
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+      var vh = window.innerHeight || document.documentElement.clientHeight;
+      els.forEach(function (el) {
+        el.classList.add('reveal');
+        var sibs = el.parentNode ? el.parentNode.children : [];
+        var idx = Array.prototype.indexOf.call(sibs, el);
+        if (idx > 0 && (el.classList.contains('role-card') || el.classList.contains('step-card'))) {
+          el.style.transitionDelay = (Math.min(idx, 5) * 0.09) + 's';
+        }
+        if (el.getBoundingClientRect().top < vh * 0.92) { el.classList.add('is-visible'); }
+        else { io.observe(el); }
+      });
+    })();
+  </script>
+
 </body>
 </html>
 
