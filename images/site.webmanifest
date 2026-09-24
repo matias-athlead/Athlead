@@ -1,0 +1,14 @@
+{
+  "name": "Athlead",
+  "short_name": "Athlead",
+  "description": "Athlead - la app donde el talento del futbol base habla por ti.",
+  "icons": [
+    { "src": "/images/favicon-16x16.png", "sizes": "16x16", "type": "image/png" },
+    { "src": "/images/favicon-32x32.png", "sizes": "32x32", "type": "image/png" },
+    { "src": "/images/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ],
+  "theme_color": "#0e0e12",
+  "background_color": "#0e0e12",
+  "display": "standalone",
+  "start_url": "/index.html"
+}
